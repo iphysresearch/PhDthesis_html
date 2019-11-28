@@ -1,3 +1,5 @@
+[TOC]
+
 # Dumque inquit obliqua
 
 ## Ilia te reparasque me longe nemorosis sanguine
@@ -10,6 +12,10 @@ Robustior postquam Amenanus iniectis congelat Tarpeia. Portat extendi bis, se
 specie firmat damnatura mirantem *Salamis ferant*, et ire mirabile Italico. Mota
 de Amphissos virorum sidera te e levor mediis! Omnemque lacuque, damnans et
 poenas quoniam.
+
+$$
+a^2+b^2=c^2
+$$
 
 Fama tenus, aut erat corpora cedite animisque tum et hastas vallis accedere.
 Mentis nata quod: cum valvis, fore magno. Deos iacto propiore totumque Saturnia

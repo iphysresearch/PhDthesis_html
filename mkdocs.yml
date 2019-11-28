@@ -2,4 +2,22 @@ site_name: GWDL
 nav:
     - Home: index.md
     - About: about.md
-theme: readthedocs    
+theme:
+    name: mkdocs
+    highlightjs: true
+    hljs_languages:
+        - yaml
+        - rust
+    include_sidebar: True
+
+markdown_extensions:
+    - smarty
+    - toc:
+        permalink: True
+        separator: "_"
+    - sane_lists
+    - nl2br
+    - codehilite
+plugins:
+    - search:
+      separator: '[\s\-\.]+'
