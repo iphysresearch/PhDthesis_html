@@ -17,9 +17,9 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'gwdl'
-copyright = '2019, He Wang'
-author = 'He Wang'
+project = 'GWDL'
+copyright = '2019, he wang'
+author = 'he wang'
 
 # The full version, including alpha/beta/rc tags
 release = '0.0.1'
@@ -39,7 +39,7 @@ templates_path = ['_templates']
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = []
+exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 
 # -- Options for HTML output -------------------------------------------------
