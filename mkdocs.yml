@@ -20,4 +20,3 @@ markdown_extensions:
     - codehilite
 plugins:
     - search:
-      separator: '[\s\-\.]+'
