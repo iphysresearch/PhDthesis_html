@@ -9,9 +9,6 @@ some_url: https://example.com
 
 </br>
 
----
-
-
 ## 题目
 
 >引力波探测中关于深度学习数据分析的研究
@@ -20,7 +17,7 @@ some_url: https://example.com
 
 ## 描述
 
-- 此文是本人博士毕业论文的 HTML 版，用于学位申请的 PDF 版可见：[Overleaf](https://www.overleaf.com/read/gthybdcykshj) 或 [Github](https://github.com/iphysresearch/GWDL_thesis)。毕业答辩用的 Slides 可见 [Slides.com](https://slides.com/iphysresearch/phd-defense)。
+- 此文是本人博士毕业论文的 HTML 版，用于学位申请的 PDF 版可见：[Overleaf](https://www.overleaf.com/read/gthybdcykshj) 或 [Github](https://github.com/iphysresearch/PhDthesis_html)。毕业答辩用的 Slides 可见 [Slides.com](https://slides.com/iphysresearch/phd-defense)。
 
 - 开源此论文的原因，不仅是为了方便个人查阅和总结，也希望能够促进相关领域的研究和进步，多多增进学术交流的机会。
 
