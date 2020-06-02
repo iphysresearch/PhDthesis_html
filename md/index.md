@@ -111,3 +111,5 @@ some_url: https://example.com
 
 * 该论文工作的知识产权单位属北京师范大学。详情可查阅相关学位论文授权使用声明。
 * <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/3.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/">Creative Commons Attribution-NonCommercial 3.0 Unported License</a>.
+
+<script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=4f78b5&w=300&t=tt&d=KeeYB3un76pJkqHgl23yaieKpPYpHjZUYkLr8F-rJvE&co=ffffff&ct=808080&cmo=3acc3a&cmn=ff5353'></script>

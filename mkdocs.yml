@@ -5,6 +5,7 @@ site_author: He Wang
 copyright: He Wang@BNU
 docs_dir: md
 site_dir: docs
+edit_uri: edit/master/md/
 nav:
     - 首页: index.md
     - 正文:
