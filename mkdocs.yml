@@ -23,7 +23,7 @@ nav:
     - 致谢: Acknowledgement.md
     # - 关于: about.md
 theme:
-    name: mkdocs
+    name: mkdocs # material
     highlightjs: true
     hljs_languages:
         - yaml
@@ -62,4 +62,3 @@ plugins:
     - bibtex:
         bib_file: "ref.bib"
         cite_style: "pandoc"     # plain  pandoc
-
