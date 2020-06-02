@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="He Wang">
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>第六章 匹配滤波-卷积神经网络(MF-CNN)模型的应用研究 - GWDL</title>
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/rust.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <!-- Expander button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="..">GWDL</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li >
+                                <a href="..">首页</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">正文 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../Abstract/">摘要</a>
+</li>
+                                    
+<li >
+    <a href="../C1/">第一章 绪论</a>
+</li>
+                                    
+<li >
+    <a href="../C2/">第二章 引力波探测和数据分析理论</a>
+</li>
+                                    
+<li >
+    <a href="../C3/">第三章 深度学习的理论基础</a>
+</li>
+                                    
+<li >
+    <a href="../C4/">第四章 引力波探测中关于神经网络的可解释性研究</a>
+</li>
+                                    
+<li >
+    <a href="../C5/">第五章 卷积神经网络结构对引力波信号识别的性能研究</a>
+</li>
+                                    
+<li class="active">
+    <a href="./">第六章 匹配滤波-卷积神经网络(MF-CNN)模型的应用研究</a>
+</li>
+                                    
+<li >
+    <a href="../C7/">第七章 总结与展望</a>
+</li>
+                                    
+<li >
+    <a href="../Appendix/">附录</a>
+</li>
+                                </ul>
+                            </li>
+                            <li >
+                                <a href="../Acknowledgement/">致谢</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li >
+                                <a rel="next" href="../C5/">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li >
+                                <a rel="prev" href="../C7/">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/iphysresearch/PhDthesis_html/edit/master/docs/C6.md"><i class="fa fa-github"></i> Edit on GitHub</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#-mf-cnn">第六章 匹配滤波-卷积神经网络(MF-CNN)模型的应用研究</a></li>
+            <li><a href="#61">6.1 引言</a></li>
+            <li><a href="#62">6.2 时域中的匹配滤波</a></li>
+            <li><a href="#63">6.3 用于匹配滤波的卷积神经单元</a></li>
+            <li><a href="#64_-mf-cnn">6.4 匹配滤波-卷积神经网络(MF-CNN)模型的构造</a></li>
+            <li><a href="#65">6.5 搜寻疑似引力波信号的策略</a></li>
+            <li><a href="#66">6.6 数据准备与模型微调</a></li>
+            <li><a href="#67_ligo">6.7 真实 LIGO 引力波数据上的搜寻结果</a></li>
+            <li><a href="#68">6.8 总结与结论</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<p></br></p>
+<div class="toc">
+<ul>
+<li><a href="#-mf-cnn">第六章 匹配滤波-卷积神经网络(MF-CNN)模型的应用研究</a><ul>
+<li><a href="#61">6.1 引言</a></li>
+<li><a href="#62">6.2 时域中的匹配滤波</a></li>
+<li><a href="#63">6.3 用于匹配滤波的卷积神经单元</a></li>
+<li><a href="#64_-mf-cnn">6.4 匹配滤波-卷积神经网络(MF-CNN)模型的构造</a></li>
+<li><a href="#65">6.5 搜寻疑似引力波信号的策略</a></li>
+<li><a href="#66">6.6 数据准备与模型微调</a></li>
+<li><a href="#67_ligo">6.7 真实 LIGO 引力波数据上的搜寻结果</a><ul>
+<li><a href="#671_o1_o2">6.7.1 搜寻 O1 和 O2 中的引力波信号</a></li>
+<li><a href="#672">6.7.2 疑似引力波信号的统计特性</a></li>
+<li><a href="#673_glitch">6.7.3 引力波信号与 glitch 的统计分析</a></li>
+</ul>
+</li>
+<li><a href="#68">6.8 总结与结论</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<p></br></p>
+<hr />
+<h1 id="-mf-cnn">第六章 匹配滤波-卷积神经网络(MF-CNN)模型的应用研究<a class="headerlink" href="#-mf-cnn" title="Permanent link">&para;</a></h1>
+<p></br></p>
+<h2 id="61">6.1 引言<a class="headerlink" href="#61" title="Permanent link">&para;</a></h2>
+<p></br></p>
+<p>第一个双黑洞 (black holes, BHs) 并合系统产生的引力波 (gravitational waves, GWs) 探测事件 (GW150914) 由 aLIGO (advanced Laser Interferometer Gravitational-wave Observatory) 组织 <sup id="fnref:1"><a class="footnote-ref" href="#fn:1">7</a></sup> 所发现并确认，这为整个物理学和天文学界带来了巨大的变革 <sup id="fnref:2"><a class="footnote-ref" href="#fn:2">8</a></sup>，并于 2017 年获得了诺贝尔物理学奖。此后，硕果累累的重大引力波发现 <sup id="fnref:3"><a class="footnote-ref" href="#fn:3">9</a></sup> <sup id="fnref:4"><a class="footnote-ref" href="#fn:4">10</a></sup> <sup id="fnref:5"><a class="footnote-ref" href="#fn:5">11</a></sup> 为实验物理、理论物理、计算机科学和工程学等诸多领域的交叉研究与科学合作带来了契机，也带动了数值相对论模拟中高性能计算 (high-performance computing, HPC) <sup id="fnref:6"><a class="footnote-ref" href="#fn:6">12</a></sup> <sup id="fnref:7"><a class="footnote-ref" href="#fn:7">13</a></sup> <sup id="fnref:8"><a class="footnote-ref" href="#fn:8">14</a></sup> 的爆发以及高吞吐量的数据分析基础设施的发展 <sup id="fnref:9"><a class="footnote-ref" href="#fn:9">15</a></sup> <sup id="fnref:10"><a class="footnote-ref" href="#fn:10">16</a></sup>。</p>
+<p>匹配滤波技术 <sup id="fnref:11"><a class="footnote-ref" href="#fn:11">17</a></sup>，作为 aLIGO 低延迟引力波探测方法中最灵敏的算法，目前是只针对 4D 的波源参数空间(自旋校准分量的准圆轨道致密双星系统) <sup id="fnref:12"><a class="footnote-ref" href="#fn:12">18</a></sup> <sup id="fnref:13"><a class="footnote-ref" href="#fn:13">19</a></sup> <sup id="fnref:14"><a class="footnote-ref" href="#fn:14">20</a></sup> <sup id="fnref:15"><a class="footnote-ref" href="#fn:15">21</a></sup> 上搜寻信号 <span><span class="MathJax_Preview">(m_1,m_2,s^z_1,s^z_2)</span><script type="math/tex">(m_1,m_2,s^z_1,s^z_2)</script></span>，这仅是 GW 探测器的 9D 模板参数空间 <span><span class="MathJax_Preview">(m_1,m_2,\vec{s}_1,\vec{s}_2,e)</span><script type="math/tex">(m_1,m_2,\vec{s}_1,\vec{s}_2,e)</script></span> 的子集 <sup id="fnref:16"><a class="footnote-ref" href="#fn:16">22</a></sup> <sup id="fnref:17"><a class="footnote-ref" href="#fn:17">23</a></sup> <sup id="fnref:18"><a class="footnote-ref" href="#fn:18">24</a></sup> <sup id="fnref:19"><a class="footnote-ref" href="#fn:19">25</a></sup> <sup id="fnref:20"><a class="footnote-ref" href="#fn:20">26</a></sup>。近年来，有研究表明对致密的恒星双星系统来说，基于这样的模板库搜寻方法是不充分的，会遗漏引力波信号 <sup id="fnref:21"><a class="footnote-ref" href="#fn:21">27</a></sup> <sup id="fnref2:19"><a class="footnote-ref" href="#fn:19">25</a></sup> <sup id="fnref:22"><a class="footnote-ref" href="#fn:22">28</a></sup> <sup id="fnref:23"><a class="footnote-ref" href="#fn:23">29</a></sup>。所以，将模板依赖的引力波搜寻算法推广到任意自旋过程的准圆轨道或带偏心率的 BBHs 模板 是有必要的，然而这在计算开销上却是令人望而却步的 <sup id="fnref:24"><a class="footnote-ref" href="#fn:24">30</a></sup>。</p>
+<p>基于上述的考虑，我们需要一个全新的范式来解决当前引力波探测算法的局限性和计算开销的挑战。一个理想的候选方案就是现在发展快速的深度学习技术。该技术是一个高扩展性的机器学习算法，可以直接从原始数据中学习，并无需做任何人工的特征工程，通过深度层状的“人工神经元”构造神经网络，依靠反向传播和梯度下降等优化算法实现网络模型的学习 <sup id="fnref:25"><a class="footnote-ref" href="#fn:25">31</a></sup> <sup id="fnref:26"><a class="footnote-ref" href="#fn:26">32</a></sup>。特别是近年来，在 GPUs 等硬件的进步和大数据技术基础上，深度学习已经在诸多商业应用和人工智能 (AI) <sup id="fnref2:25"><a class="footnote-ref" href="#fn:25">31</a></sup> <sup id="fnref:27"><a class="footnote-ref" href="#fn:27">33</a></sup> <sup id="fnref:28"><a class="footnote-ref" href="#fn:28">34</a></sup> <sup id="fnref:29"><a class="footnote-ref" href="#fn:29">35</a></sup> <sup id="fnref:30"><a class="footnote-ref" href="#fn:30">36</a></sup> <sup id="fnref:31"><a class="footnote-ref" href="#fn:31">37</a></sup> <sup id="fnref:32"><a class="footnote-ref" href="#fn:32">38</a></sup> 研究领域中取得了巨大的成功，并已经在天体物理学领域 <sup id="fnref:33"><a class="footnote-ref" href="#fn:33">39</a></sup> <sup id="fnref:34"><a class="footnote-ref" href="#fn:34">40</a></sup> <sup id="fnref:35"><a class="footnote-ref" href="#fn:35">41</a></sup> <sup id="fnref:36"><a class="footnote-ref" href="#fn:36">42</a></sup> <sup id="fnref:37"><a class="footnote-ref" href="#fn:37">43</a></sup> <sup id="fnref:38"><a class="footnote-ref" href="#fn:38">44</a></sup> <sup id="fnref:39"><a class="footnote-ref" href="#fn:39">45</a></sup> <sup id="fnref:40"><a class="footnote-ref" href="#fn:40">46</a></sup> 内得以应用。</p>
+<p>最初，将卷积神经网络用来处理时序序列数据的灵感，可以追溯到深度学习起步的早期阶段 <sup id="fnref:41"><a class="footnote-ref" href="#fn:41">47</a></sup>。自此之后，整个机器学习社区就开始建立了以卷积神经网络为代表的一系列工作，当中数据来源不仅有语音信号 <sup id="fnref:42"><a class="footnote-ref" href="#fn:42">48</a></sup>，也有时频能谱图 <sup id="fnref:43"><a class="footnote-ref" href="#fn:43">49</a></sup> 作为数据表征。可见，由引力波观测所获得的时序数据与它们在原理和数据结构上非常相似的。卷积神经网络尤其在分类或回归任务中表现尤为优异，它们都是将数据的特征空间 <span><span class="MathJax_Preview">\mathbb{R}^d</span><script type="math/tex">\mathbb{R}^d</script></span> (比如说分辨率有限的图像或一段有限的语音片段)映射到一组有限的标签集合 (分类问题) 或者是一个低维实数向量 (回归问题)，由此达到提取特征信息和压缩特征空间维数的效果。</p>
+<p>在早先的研究中，将卷积神经网络应用在引力波信号搜寻上的工作都是一个分类学习问题。George 和 Huerta <sup id="fnref:44"><a class="footnote-ref" href="#fn:44">50</a></sup> 通过模拟 1 秒时长的高斯噪声与一部分描述双黑洞并合系统的引力波信号模板进行混合，如此生成数据集的过程和 PyCBC <sup id="fnref:45"><a class="footnote-ref" href="#fn:45">51</a></sup> 流水线很类似。在数据集中，对应了并合时间 (coalescence time) 的引力波信号峰值是随机排布在后 0.2 秒时长的范围内。基于该数据集，他们训练了深度神经网络模型，模型输出数据是 0 或 1 来分别表示某 1 秒时长的时序样本中是否含有引力波信号。该模型是需要一个阈值 (threshold) 来把控最终的二分类决策结果。此外，他们还训练了第二个神经网络，用以确定对应的双星系统的一些基本的波源参数。可见，卷积神经网络对于在高斯背景噪声中探测某种非高斯特征是很有效的，这些非高斯性就对应于输入数据中特定的片段中，并且有着比传统机器学习方法优异的表现。</p>
+<p>随后，他们也将卷积神经网络方法应用在了真实的 LIGO 数据中，所用到的引力波波源的参数也更加复杂和丰富，比如带有自旋和偏心率不为零的双黑洞系统 <sup id="fnref2:44"><a class="footnote-ref" href="#fn:44">50</a></sup> <sup id="fnref:46"><a class="footnote-ref" href="#fn:46">52</a></sup>。对于时长比较长的数据样本，都会通过滑动切片(sliding-window)的方式将数据切成有重叠的 1 秒时长的时序样本，用以方便输入到神经网络模型中。对于多探测通道的引力波数据来说，会先分别单独切片处理，然后再根据对应的 GPS 时间贴合在一起。尤为重要的是，作者认为他们的引力波探测和参数估计模型与匹配滤波技术相比，在相同的探测灵敏度下，无论是在错误率还是在计算效率上都更胜一筹 <sup id="fnref2:46"><a class="footnote-ref" href="#fn:46">52</a></sup>。我们将会在本章中解释这个结果，这对我们理解基于卷积神经的模型的性能度量是很重要的。</p>
+<p>Gabbard 等研究者 <sup id="fnref:47"><a class="footnote-ref" href="#fn:47">53</a></sup> 用了一种很类似的方式：同样是包含有卷积层和全连接层的深度神经网络来解决一个二分类学习问题，数据是在对高斯噪声背景下切分为 1 秒时长的模拟引力波信号。然而，他们的研究核心是与匹配滤波技术的对比。他们得出结论其所构造的网络模型与同样在 1 秒时长的样本数据上通过匹配滤波方法搜寻引力波信号的性能灵敏度是可比拟的。在本文的第<a href="../C5/">五</a>章，我们对比了上述研究者 <sup id="fnref3:46"><a class="footnote-ref" href="#fn:46">52</a></sup> <sup id="fnref2:47"><a class="footnote-ref" href="#fn:47">53</a></sup> 所构造的算法模型和泛化性能，并提出了结构更简单且性能更加优异的神经网络模型。</p>
+<p>另外，范锡龙老师等研究者 <sup id="fnref:48"><a class="footnote-ref" href="#fn:48">54</a></sup> 另辟蹊径地给出了一种不同的处理方法。在他们的方法中，引力波数据输入到卷积神经网络之前，先使用小波分解来预处理数据，使得数据预先体现出了频域表征。他们也运用了滑动切片的办法来统一每个数据样本的时长。不过，他们的结果是基于高斯白噪声的，并且引力波波形是通过模拟的衰减正弦波生成的。</p>
+<p>此外，也有一些引力波数据分析的工作是使用 CNN 模型来实现的。比如 glitch 的分类 <sup id="fnref2:39"><a class="footnote-ref" href="#fn:39">45</a></sup> <sup id="fnref2:40"><a class="footnote-ref" href="#fn:40">46</a></sup> <sup id="fnref2:43"><a class="footnote-ref" href="#fn:43">49</a></sup> <sup id="fnref:49"><a class="footnote-ref" href="#fn:49">55</a></sup> <sup id="fnref:50"><a class="footnote-ref" href="#fn:50">56</a></sup> 和参数估计 <sup id="fnref:51"><a class="footnote-ref" href="#fn:51">57</a></sup>。</p>
+<p>基于对卷积神经网络的理解和目前已有的工作 (第<a href="../C4/">四</a>章和第<a href="../C5/">五</a>章)，我们通过结合上述前人的实践经验，将网络结构推广到适用于多探测器引力波数据的情形。我们在真实 LIGO 数据背景上构建卷积神经网络，并验证能否对真实引力波事件有显著的响应。经过反复的实验和调整，我们发现通过固定滑动窗口的方式扫描特定的引力波事件附近的数据，很难清晰的将真实的引力波事件信号识别出来，或者说，与其附近的非高斯噪声误报之间区别开，如下方图中的左图所示。为了解决传统卷积神经网络对真实引力波信号识别的实际难题，我们提出一种假设：卷积特征提取部分的初始参数替换为匹配滤波模板波形，会提升网络模型对真实引力波信号的辨别能力。这是因为匹配滤波算法在本质上是一个很长的模板波形与数据做卷积的过程，对应于网络中一个小卷积核与数据做卷积运算。只要是用正确的波形模板做匹配滤波，就应该能很轻易的识别出信号。所以与其让网络自己学习波形特征，不如直接将标准的波形模板作为其初始化模型参数的特征。正是基于这样的思路，我们构造了全新的卷积神经网络模型(MFCNN)，发现确实可以大幅度提高真实引力波信号的辨别能力，如下方图中的右图所示。</p>
+<blockquote>
+<p>GW150914 引力波事件附近 10 秒真实 LIGO 数据分别根据 CNN (左) 和 MFCNN (右) 网络模型的预测结果对比图<br />
+<img alt="GW150914 引力波事件附近 10 秒真实 LIGO 数据分别根据 CNN (左) 和 MFCNN (右) 网络模型的预测结果对比图" src="../img/C6_intro.png" /></p>
+</blockquote>
+<p>我们所构造的全新神经网络框架 <sup id="fnref:52"><a class="footnote-ref" href="#fn:52">58</a></sup>，称其为匹配滤波-卷积神经网络 (Matched-filtering Convolutional Neural Network, MFCNN)，它是在一个深度卷积神经网络 <sup id="fnref:53"><a class="footnote-ref" href="#fn:53">59</a></sup> 系统的基础上，部署了一个“匹配滤波”层作为引力波数据的预处理层，它可以直接以原始的引力波时序序列作为分类任务的输入数据，而无需部署额外的数据清理过程。</p>
+<p>在本章中，我们将会进一步推广卷积神经网络在真实的 LIGO 噪声背景下来探测 GW 信号。我们将会首次阐述深度学习与匹配滤波技术中重要的数学联系 (第 <a href="./#62">6.2</a> 节)，从而给出神经网络版的信号处理 (白化) 和匹配滤波算法 (第 <a href="./#63">6.3</a> 节)，由此成功构建匹配滤波-卷积神经网络 (第 <a href="./#64_-mf-cnn">6.4</a> 节)。深度学习一旦从极少量的匹配模板信号中学习结束后，可以从非常低信噪比的时序信号里，在非高斯非稳态的 LIGO 噪声中实现真实引力波事件探测 (第 <a href="./#67_ligo">6.7</a> 节)。我们的结果证实了 MFCNN 可以在速度提高数个量级的基础上，对一些短噪声源 (如 glitch) 有着非常好的鲁棒性。我们也描述了 MFCNN 是如何处理多探测器中任意长的数据流 (第 <a href="./#65">6.5</a> 节)。尤为重要的是，本章的工作是相关研究领域中，首次利用深度学习技术成功地探测识别 LIGO 和 Virgo 在 O1 和 O2 上所有公开发布的真实引力波事件。</p>
+<p></br></p>
+<h2 id="62">6.2 时域中的匹配滤波<a class="headerlink" href="#62" title="Permanent link">&para;</a></h2>
+<p></br></p>
+<p>在这一节中，我们将会先简要回顾匹配滤波技术的数学基础 (第 <a href="../C2/#24">2.4</a> 节)。然后，我们将其从频域改写到时域上来表达。进而阐述清楚神经网络中的卷积运算与匹配滤波之间的关系。基于此，我们可以构建通过卷积神经网络来表达的匹配滤波方法。</p>
+<p>根据第<a href="../C2/">二</a>章中第 <a href="../C2/#24">2.4</a> 节所介绍的匹配滤波技术，我们可以将匹配滤波信噪比的数学表达式，从频域改写为时域上来表达。考虑一个模板信号 <span><span class="MathJax_Preview">h(t)</span><script type="math/tex">h(t)</script></span> 和某探测器中的时序数据 <span><span class="MathJax_Preview">d(t)</span><script type="math/tex">d(t)</script></span>。那么匹配滤波信噪比可以通过下面的公式计算：</p>
+<div>
+<div class="MathJax_Preview">\label{eqn:C6_timemfsnr}
+    \rho_\text{mf}(t_0) \equiv \frac{1}{\sqrt{\langle h|h\rangle}}|\langle d|h \rangle(t_0)|
+</div>
+<script type="math/tex; mode=display">\label{eqn:C6_timemfsnr}
+    \rho_\text{mf}(t_0) \equiv \frac{1}{\sqrt{\langle h|h\rangle}}|\langle d|h \rangle(t_0)|
+</script>
+</div>
+<p>其中，<span><span class="MathJax_Preview">t_0</span><script type="math/tex">t_0</script></span> 是在给定时序数据上 <span><span class="MathJax_Preview">\rho_\text{mf}</span><script type="math/tex">\rho_\text{mf}</script></span> 的最大值似然所对应的信号到达时间，上式中分子的含时内积可定义为</p>
+<div>
+<div class="MathJax_Preview">\label{eqn:C6_timemfsnr_fenzi}
+    \langle d|h \rangle(t) = 4\int^\infty_0\frac{\tilde{d}(f)\tilde{h}^* (f)}{S_n(f)}e^{2\pi ift}df
+</div>
+<script type="math/tex; mode=display">\label{eqn:C6_timemfsnr_fenzi}
+    \langle d|h \rangle(t) = 4\int^\infty_0\frac{\tilde{d}(f)\tilde{h}^* (f)}{S_n(f)}e^{2\pi ift}df
+</script>
+</div>
+<p>其中，<span><span class="MathJax_Preview">\tilde{\cdot}</span><script type="math/tex">\tilde{\cdot}</script></span> 表示傅里叶变换，<span><span class="MathJax_Preview">S_n(|f|)</span><script type="math/tex">S_n(|f|)</script></span> 是关于探测器噪声的单边平均功率谱密度。公式 \eqref{eqn:C6_timemfsnr} 中的分母就是我们在第<a href="../C2/">二</a>章中定义的内积：</p>
+<div>
+<div class="MathJax_Preview">
+    \langle h|h\rangle = 4\int^\infty_0\frac{\tilde{h}(f)\tilde{h}^* (f)}{S_n(f)}df
+</div>
+<script type="math/tex; mode=display">
+    \langle h|h\rangle = 4\int^\infty_0\frac{\tilde{h}(f)\tilde{h}^* (f)}{S_n(f)}df
+</script>
+</div>
+<p>根据卷积定理和相关函数与卷积之间的关系，我们可以将公式 \eqref{eqn:C6_timemfsnr_fenzi} 中的白化和频域乘积都改写为时域卷积 (<span><span class="MathJax_Preview">*</span><script type="math/tex">*</script></span>) 的形式</p>
+<div>
+<div class="MathJax_Preview">
+\begin{align}
+    \langle d | h\rangle(t) &amp;=4 \int_{0}^{\infty} \frac{\tilde{d}(f) \cdot \tilde{h}^{*}(f)}{S_{n}(f)} e^{2 \pi i f t} d f \\
+    &amp;=4 \int_{0}^{\infty}\left[\tilde{d}(f) \bar{S}_{n}(f)\right] \cdot\left[\tilde{h}(f) \bar{S}_{n}(f)\right]^{*} e^{2 \pi i f t} d f \\
+    &amp;=4 \int_{0}^{\infty} \tilde{d}(f) \cdot \tilde{h}^{*}(f) e^{2 \pi i f t} d f \\
+    &amp;=2 \bar{d}(t) * \bar{h}(-t) \label{eqn:C6_mfconv}
+\end{align}
+</div>
+<script type="math/tex; mode=display">
+\begin{align}
+    \langle d | h\rangle(t) &=4 \int_{0}^{\infty} \frac{\tilde{d}(f) \cdot \tilde{h}^{*}(f)}{S_{n}(f)} e^{2 \pi i f t} d f \\
+    &=4 \int_{0}^{\infty}\left[\tilde{d}(f) \bar{S}_{n}(f)\right] \cdot\left[\tilde{h}(f) \bar{S}_{n}(f)\right]^{*} e^{2 \pi i f t} d f \\
+    &=4 \int_{0}^{\infty} \tilde{d}(f) \cdot \tilde{h}^{*}(f) e^{2 \pi i f t} d f \\
+    &=2 \bar{d}(t) * \bar{h}(-t) \label{eqn:C6_mfconv}
+\end{align}
+</script>
+</div>
+<p>在上式中，我们已经将白化过程改写为时域卷积的形式：</p>
+<div>
+<div class="MathJax_Preview">
+\begin{align}\label{eqn:C6_whiten1}
+    \bar{d}(t)&amp;=d(t) * \bar{S}_{n}(t)\\
+    \bar{h}(t)&amp;=h(t) * \bar{S}_{n}(t)\label{eqn:C6_whiten2}
+\end{align}
+</div>
+<script type="math/tex; mode=display">
+\begin{align}\label{eqn:C6_whiten1}
+    \bar{d}(t)&=d(t) * \bar{S}_{n}(t)\\
+    \bar{h}(t)&=h(t) * \bar{S}_{n}(t)\label{eqn:C6_whiten2}
+\end{align}
+</script>
+</div>
+<p>其中，<span><span class="MathJax_Preview">\bar{S}_n(t)</span><script type="math/tex">\bar{S}_n(t)</script></span> 可以通过如下式的逆傅里叶变换给出</p>
+<div>
+<div class="MathJax_Preview">
+    \bar{S}_{n}(t)=\int_{-\infty}^{+\infty} S_{n}^{-1 / 2}(f) e^{2 \pi i f t} d f
+</div>
+<script type="math/tex; mode=display">
+    \bar{S}_{n}(t)=\int_{-\infty}^{+\infty} S_{n}^{-1 / 2}(f) e^{2 \pi i f t} d f
+</script>
+</div>
+<p>类似地，公式 \eqref{eqn:C6_timemfsnr} 中分母部分的不含时内积函数也可以在时域中表达为：</p>
+<div>
+<div class="MathJax_Preview">\label{eqn:C6_fenmu}
+    \langle h | h\rangle=\left. 2[\bar{h}(t) * \bar{h}(-t)]\right|_{t=0}
+</div>
+<script type="math/tex; mode=display">\label{eqn:C6_fenmu}
+    \langle h | h\rangle=\left. 2[\bar{h}(t) * \bar{h}(-t)]\right|_{t=0}
+</script>
+</div>
+<p>基于上述在时域上表达的匹配滤波信噪比公式 \eqref{eqn:C6_timemfsnr}, \eqref{eqn:C6_whiten1}, \eqref{eqn:C6_whiten2}, \eqref{eqn:C6_mfconv} 和 \eqref{eqn:C6_fenmu}，我们就可以将其进一步改写作卷积神经网络形式的白化滤波 (whitening filter)，匹配滤波 (matched filter) 以及归一化滤波 (normalization filter)。</p>
+<p></br></p>
+<h2 id="63">6.3 用于匹配滤波的卷积神经单元<a class="headerlink" href="#63" title="Permanent link">&para;</a></h2>
+<p></br></p>
+<p>在深度学习的框架下，数据都会通过以多维数组的形式来表示。以一维的时序引力波数据来说，可以表示成三维的数据结构 <span><span class="MathJax_Preview">[S,C,N]</span><script type="math/tex">[S,C,N]</script></span>，其中 <span><span class="MathJax_Preview">S</span><script type="math/tex">S</script></span> 对应于数据的样本数 (sample)，<span><span class="MathJax_Preview">C</span><script type="math/tex">C</script></span> 对应于多探测器的通道数 (channel)，而 <span><span class="MathJax_Preview">N</span><script type="math/tex">N</script></span> 表示的是数据采样数目 (number)，对应于数据长度。由此对于 <span><span class="MathJax_Preview">j\in\{\text{H1,L1}\}</span><script type="math/tex">j\in\{\text{H1,L1}\}</script></span> 双通道的卷积运算会基于给定的一组输入数据 (input)，及其对应的权重参数 (weight)，可计算给出相应的输出结果 (output)：</p>
+<div>
+<div class="MathJax_Preview">
+    \text { output }[S, S_w, N_*]=\sum_{j}^{\text {channel }} \text { input }[S, j,N] * \text { weight }[S_w, j,K]
+</div>
+<script type="math/tex; mode=display">
+    \text { output }[S, S_w, N_*]=\sum_{j}^{\text {channel }} \text { input }[S, j,N] * \text { weight }[S_w, j,K]
+</script>
+</div>
+<p>其中，<span><span class="MathJax_Preview">*</span><script type="math/tex">*</script></span> 是深度学习框架中的卷积运算操作，其相当于是在每个通道下并行地做了 <span><span class="MathJax_Preview">S\times S_w</span><script type="math/tex">S\times S_w</script></span> 次卷积运算，再将各通道的卷积结果线性加和得到的计算结果。输出数据的长度 <span><span class="MathJax_Preview">N_*</span><script type="math/tex">N_*</script></span> 是同时依赖于其输入数据的结构 (input) 和可学习权重参数 (weight) <sup id="fnref:weight"><a class="footnote-ref" href="#fn:weight">1</a></sup> 的，</p>
+<div>
+<div class="MathJax_Preview">
+    N_{*}=\lfloor(N-K+2 P) / S\rfloor+ 1
+</div>
+<script type="math/tex; mode=display">
+    N_{*}=\lfloor(N-K+2 P) / S\rfloor+ 1
+</script>
+</div>
+<p>其中，<span><span class="MathJax_Preview">\lfloor\cdot\rfloor</span><script type="math/tex">\lfloor\cdot\rfloor</script></span> 表示向下取整，<span><span class="MathJax_Preview">P</span><script type="math/tex">P</script></span> 和 <span><span class="MathJax_Preview">S</span><script type="math/tex">S</script></span> 分别是补零的数目 (padding) 和卷积核移动步长 (stride)，详细计算原理可见第 <a href="../C3/#341">3.4.1</a> 节。我们考虑把上述神经网络的卷积运算看作是平权的两个输入端和一个输出端所构成卷积运算单元，如下图所示。</p>
+<blockquote>
+<p>深度学习框架中一个卷积运算单元的示意图<br />
+<img alt="深度学习框架中一个卷积运算单元的示意图" src="../img/conv_unit.png" style="zoom:15%" /></p>
+</blockquote>
+<p>为了像池化层一样在不损失主要特征的前提下，能够压缩输出数据长度从而降低计算的复杂度，我们对卷积运算单元的输出数据执行包裹 (wrapping) 操作，通过 padding 的方式达到目标输出长度的整数倍后，进行折叠和相加，就可以使得输出数据长度与输入数据长度保持一致，如下图所示。该操作相当于是实现了模<span><span class="MathJax_Preview">N</span><script type="math/tex">N</script></span>的循环卷积 (modulo-<span><span class="MathJax_Preview">N</span><script type="math/tex">N</script></span> circular convolution) <sup id="fnref:54"><a class="footnote-ref" href="#fn:54">60</a></sup>。</p>
+<blockquote>
+<p>对卷积运算单元输出数据进行 wrapping 操作的示意图<br />
+<img alt="对卷积运算单元输出数据进行 wrapping 操作的示意图" src="../img/wrapping.png" style="zoom:15%" /></p>
+</blockquote>
+<p>对于单个探测器和某个波形模板来说，我们可以相应地将匹配滤波技术中白化公式 \eqref{eqn:C6_whiten1} 和 \eqref{eqn:C6_whiten2}、匹配滤波公式 \eqref{eqn:C6_mfconv} 和归一化内积公式 \eqref{eqn:C6_fenmu} 用深度学习框架中的卷积运算单元等价表示。假定有一段引力波数据 <span><span class="MathJax_Preview">d\,[1,1,N_d]</span><script type="math/tex">d\,[1,1,N_d]</script></span>，则白化操作和关于波形模板 <span><span class="MathJax_Preview">h\,[1,1,N_h]</span><script type="math/tex">h\,[1,1,N_h]</script></span> 的匹配滤波和归一化可以表示为：</p>
+<div>
+<div class="MathJax_Preview">
+\begin{align}
+    \bar{d} \,[1,1,N_d] &amp;= \omega\left( d \,[1,1,N_d] * \bar{S}_n \,[1,1,N_d] \right) \\
+    \bar{h} \,[1,1,N_h] &amp;= \omega\left( h \,[1,1,N_h] * \bar{S}_n \,[1,1,N_d] \right) \\
+    \langle d|h\rangle(t) \,[1,1,N_d] &amp;\sim \omega\left( \bar{d} \,[1,1,N_d] * \bar{h} \,[1,1,N_h] \right) \\
+    \langle h|h\rangle \, &amp;\sim \omega\left( \bar{h} \,[1,1,N_h] * \bar{h} \,[1,1,N_h] \right)|_{N_h=0}
+\end{align}
+</div>
+<script type="math/tex; mode=display">
+\begin{align}
+    \bar{d} \,[1,1,N_d] &= \omega\left( d \,[1,1,N_d] * \bar{S}_n \,[1,1,N_d] \right) \\
+    \bar{h} \,[1,1,N_h] &= \omega\left( h \,[1,1,N_h] * \bar{S}_n \,[1,1,N_d] \right) \\
+    \langle d|h\rangle(t) \,[1,1,N_d] &\sim \omega\left( \bar{d} \,[1,1,N_d] * \bar{h} \,[1,1,N_h] \right) \\
+    \langle h|h\rangle \, &\sim \omega\left( \bar{h} \,[1,1,N_h] * \bar{h} \,[1,1,N_h] \right)|_{N_h=0}
+\end{align}
+</script>
+</div>
+<p>其中，我们用 <span><span class="MathJax_Preview">\omega</span><script type="math/tex">\omega</script></span> 来代表 wrapping 操作。我们可以将上式分别改写作深度学习框架下的白化、匹配滤波和归一化的卷积神经单元，其权重参数分别对应为 <span><span class="MathJax_Preview">\bar{S}_n(t)</span><script type="math/tex">\bar{S}_n(t)</script></span>、<span><span class="MathJax_Preview">\bar{h}(t)</span><script type="math/tex">\bar{h}(t)</script></span> 和 <span><span class="MathJax_Preview">\bar{h}(t)</span><script type="math/tex">\bar{h}(t)</script></span>。并且我们设定卷积运算的 padding 超参数根据对应权重的长度对应为 <span><span class="MathJax_Preview">N-1,N_h-1,N_h-1</span><script type="math/tex">N-1,N_h-1,N_h-1</script></span>，以确保其可以实现完整的 Flip-and-slide 卷积模式 (详情可见第 <a href="../C3/#341">3.4.1</a> 节和第 <a href="../C3/#344">3.4.4</a> 节)。由此，匹配滤波算法就可以由深度学习框架下的卷积神经单元来构成，如下图所示。</p>
+<blockquote>
+<p>分别对应为白化、匹配滤波和归一化内积的卷积运算单元示意图<br />
+<img alt="分别对应为白化、匹配滤波和归一化内积的卷积运算单元示意图" src="../img/whiten_mf_norm.png" style="zoom:15%" /></p>
+</blockquote>
+<p></br></p>
+<h2 id="64_-mf-cnn">6.4 匹配滤波-卷积神经网络(MF-CNN)模型的构造<a class="headerlink" href="#64_-mf-cnn" title="Permanent link">&para;</a></h2>
+<p></br></p>
+<p>在本节中，我们将基于上节中所定义的白化、匹配滤波和归一化卷积神经单元来构建网络模型，我们称之为匹配滤波-卷积神经网络 (matched-filtering CNN, MF-CNN)。模型的构造总体上分为六个部分相串联，如下图所示。</p>
+<blockquote>
+<p>MFCNN 神经网络结构示意图<br />
+<img alt="MFCNN 神经网络结构示意图" src="../img/MF_network.png" /></p>
+<details class="note"><summary>上图网络的源代码 (source code)</summary><p><script src="https://gist.github.com/iphysresearch/a00009c1eede565090dbd29b18ae982c.js"></script></p>
+</details>
+</blockquote>
+<p>MFCNN 中的前三个部分分别对应的是白化、匹配滤波和归一化。它们是从匹配滤波算法受到的启发，分别实现了对数据的噪声估计、波形特征匹配和归一化操作。当某一个数据样本输入到网络之前，会先根据不同的探测器频道 (H1/L1) 分成独立的计算数据流。在白化 (Whitening) 阶段，模型需要先根据当前的数据信息估计噪声功率谱作为白化卷积计算单元的权重参数，进而实现对输入数据与 <span><span class="MathJax_Preview">C</span><script type="math/tex">C</script></span> 个模板的去色操作。在匹配滤波 (Matched-filtering) 阶段，去色后的 <span><span class="MathJax_Preview">C</span><script type="math/tex">C</script></span> 个模板将会作为网络的权重参数，与去色后的引力波数据分别进行时域卷积计算，其输出的数据结果将会与每个去色后的模板自卷积后输出的归一化 (Normalization) 结果相结合。从计算意义上来说，如此计算得到的结果 <span><span class="MathJax_Preview">\rho</span><script type="math/tex">\rho</script></span> 对应于 <span><span class="MathJax_Preview">C</span><script type="math/tex">C</script></span> 个模板与输入数据信号在各种可能到达时间下的匹配滤波信噪比。</p>
+<p>与匹配滤波技术类似，我们在最大化切片 (Maximum-slicing) 部分中取两个探测器频道下每个模板中最大似然的信噪比，作为最佳匹配输出结果，我们称其为特征响应 (Feature Response)。具体来说，我们挑出对应不同模板下特征响应的最大值 <span><span class="MathJax_Preview">\rho_m[1,C,1]</span><script type="math/tex">\rho_m[1,C,1]</script></span>，作为每个模板的输出特征：</p>
+<div>
+<div class="MathJax_Preview">
+    \rho_{m}[1, C, 1]=\max _{N_d}\, \rho\left[1, C, N_d\right]
+</div>
+<script type="math/tex; mode=display">
+    \rho_{m}[1, C, 1]=\max _{N_d}\, \rho\left[1, C, N_d\right]
+</script>
+</div>
+<p>与此同时，我们也可以从各个模板中挑出的最大特征响应 <span><span class="MathJax_Preview">\rho_m[1,C,1]</span><script type="math/tex">\rho_m[1,C,1]</script></span> 所对应的信号到达时间 <span><span class="MathJax_Preview">N_0</span><script type="math/tex">N_0</script></span> 和相对最佳匹配模板 <span><span class="MathJax_Preview">C_0</span><script type="math/tex">C_0</script></span>，</p>
+<div>
+<div class="MathJax_Preview">
+\begin{align}
+C_{0} &amp;=\underset{C}{\arg \max }\, \rho\left[1, C, N_d\right] \\
+N_{0} &amp;=\underset{N_d}{\arg \max }\, \rho\left[1, C, N_d\right]|_{C_0}
+\end{align}
+</div>
+<script type="math/tex; mode=display">
+\begin{align}
+C_{0} &=\underset{C}{\arg \max }\, \rho\left[1, C, N_d\right] \\
+N_{0} &=\underset{N_d}{\arg \max }\, \rho\left[1, C, N_d\right]|_{C_0}
+\end{align}
+</script>
+</div>
+<p>其中，<span><span class="MathJax_Preview">\rho\left[1, C, N_d\right]|_{C_0}</span><script type="math/tex">\rho\left[1, C, N_d\right]|_{C_0}</script></span> 表示从 <span><span class="MathJax_Preview">\rho</span><script type="math/tex">\rho</script></span> 的数据结构中取相对最佳匹配模板 <span><span class="MathJax_Preview">C_0</span><script type="math/tex">C_0</script></span> 所对应的时域信息。由此，就可以用 <span><span class="MathJax_Preview">\rho[1,C,N_d]|_{C_0,N_0}</span><script type="math/tex">\rho[1,C,N_d]|_{C_0,N_0}</script></span> 来表示对应最佳匹配模板上最大化似然的匹配滤波信噪比。最后，将 H1 和 L1 各自对应的输出结果 <span><span class="MathJax_Preview">\rho_m[1,C,1]</span><script type="math/tex">\rho_m[1,C,1]</script></span> 合并成 <span><span class="MathJax_Preview">\rho_m[1,2,C]</span><script type="math/tex">\rho_m[1,2,C]</script></span>。它表示某一段时序输入数据对应于 <span><span class="MathJax_Preview">C</span><script type="math/tex">C</script></span> 个模板分别在 H1 和 L1 探测器上的特征响应。</p>
+<p>将特征响应 <span><span class="MathJax_Preview">\rho_m[1,2,C]</span><script type="math/tex">\rho_m[1,2,C]</script></span> 作为典型卷积神经网络的输入数据特征，在第五、六部分中进行特征提取 (Feature Extraction) 和分类识别 (Classification)。从图上中可以看到，我们使用了两个卷积层和一个全连接层来判断时序输入中是否存在引力波信号。这样低容量的 CNN 有着较好的泛化能力。从图中还可以留意到，传统的卷积神经网络是如何用上节介绍的卷积神经单元来表达的。值得注意的是，CNN 部分的权重参数是可学习参数，会随着网络模型的迭代优化进行更新。在本文中，为了简化和明确我们的研究问题，波形模板作为卷积的权重参数是不会迭代更新的。</p>
+<p></br></p>
+<h2 id="65">6.5 搜寻疑似引力波信号的策略<a class="headerlink" href="#65" title="Permanent link">&para;</a></h2>
+<p></br></p>
+<p>在实际的引力波信号搜寻过程中(如 O1 和 O2)，我们需要对持续时间很长的时序数据流识别和标记疑似引力波信号。以往的由传统 CNN 网络 <sup id="fnref4:46"><a class="footnote-ref" href="#fn:46">52</a></sup> <sup id="fnref3:44"><a class="footnote-ref" href="#fn:44">50</a></sup> <sup id="fnref3:47"><a class="footnote-ref" href="#fn:47">53</a></sup> 构建的引力波搜寻算法都是关于二分类的问题。目前二分类模型的基本搜寻策略是通过时序窗口移动的办法来延拓到比较长的时序数据。由于分类器的输入窗口大小都是固定的，所以这就需要引入一个新的额外参数，即滑动窗口的步长。此外，过去的研究都会将模拟信号的峰值放在样本中后部 20% (或本文第<a href="../C4/">四</a>章取居中的80%) 的小范围内进行模型训练和测试实验，并不会覆盖到完整的窗口范围内。因此，无论是滑动窗口的大小还是步长，都对模型的性能度量和信号搜寻效果是有直接影响的，并且也很难解释。比方说，将 “FPR <span><span class="MathJax_Preview">\times</span><script type="math/tex">\times</script></span> 样本的时长 <span><span class="MathJax_Preview">=</span><script type="math/tex">=</script></span> FP” 是不合理的，因为重叠区域会混淆这个定义。其次，根据所设定的滑动窗口的步长大小，可能会只有部分波形会落在有效的窗口范围内，所以没法确定地将其标记为 0 或 1。而且，也没有对模型输出结果的自然解释。最后，为了确定信号的到达时间，会需要一个很高的时域分辨率 (即很短的时间步长)，但这也会带来很高的计算开销。综上，基于滑动窗口的传统 CNN 构建二分类模型是很难有效的应用在流数据上的。</p>
+<p>然而，本文所提出的 MFCNN 模型在性能度量和处理流数据上可以较好的克服上述难题。首先，考虑到 MFCNN 模型的前三部分本质上就是在做匹配滤波，所以疑似信号的到达时间落在输入窗口样本的任何范围内，都会在模型中产生一样的特征响应，从而会有一致预测结果。所以整个样本窗口范围都是有效的探测区间。此外，匹配滤波也会根据相对匹配最佳的波形模板输出该疑似引力波信号到达时刻的估计，以及该相对匹配最佳的模板波源参数。可见，MFCNN 模型在信号搜寻上可以借助匹配滤波技术的优势，为后续的数据处理和实验观测提供便利。然而为了简化研究，我们仅考虑在 MFCNN 模型训练完成后，目标是从真实的 LIGO 数据中能够搜寻到包含有引力波事件信号的数据段。</p>
+<p>对于本文所提出的 MFCNN 模型，我们采用的信号搜寻策略是：考虑一段 <span><span class="MathJax_Preview">T=5</span><script type="math/tex">T=5</script></span> 秒时长的有限时序序列作为模型的输入数据 <span><span class="MathJax_Preview">d</span><script type="math/tex">d</script></span>，以 1 秒为间隔移动时间窗口在数据流 <span><span class="MathJax_Preview">D</span><script type="math/tex">D</script></span> 上标记模型预测概率 <span><span class="MathJax_Preview">p</span><script type="math/tex">p</script></span>。从内积计算公式 \eqref{eqn:C6_timemfsnr_fenzi} 中可以看到，我们需要计算每一段输入数据样本 <span><span class="MathJax_Preview">d</span><script type="math/tex">d</script></span> 中的功率谱密度 <span><span class="MathJax_Preview">S_n</span><script type="math/tex">S_n</script></span>。由于 LIGO 中的噪声有着非稳态的特征，所以采用时长较长的时序数据作为输入来估计 <span><span class="MathJax_Preview">S_n</span><script type="math/tex">S_n</script></span> 可以捕获到更一般且稳定的噪声功率背景。然而，时长越长的输入数据也会显著地影响计算效率。考虑到在 LIGO 数据中真实的双黑洞并合事件信号都不足一秒，我们折中选取了 5 秒时长作为模型输入数据的窗口长度，并且在每一次截取的数据窗口之间，我们都在数据流 <span><span class="MathJax_Preview">D</span><script type="math/tex">D</script></span> 上向前 1 秒来滑动时间窗口，用以获得新的 5 秒输入数据。所以，理论上对于在数据流 <span><span class="MathJax_Preview">D</span><script type="math/tex">D</script></span> 中某一秒时长的数据，会被截取过五次输入到网络模型中，并给出五个相关的预测概率结果。如果对于模型输出 <span><span class="MathJax_Preview">p</span><script type="math/tex">p</script></span> 大于某一个给定阈值 <span><span class="MathJax_Preview">p_c</span><script type="math/tex">p_c</script></span>，我们的网络模型就会给出一个预警。如果有连续的 5 个以上预警出现，那么就将其视为一个疑似引力波信号。因此，如果我们的模型可以在某一秒的时间段中识别出引力波信号，那么模型就会在该时间区间上有连续 5 次的预警响应。</p>
+<p>当确认了某疑似引力波信号后，那么一个很实际的问题就是：引力波信号究竟在预警数据区间段中什么位置。基于我们上述的信号搜寻方法，一个引力波信息是可能埋在连续五个及以上的预警时间区间中。考虑到模型输出的每一次预警判断也对应的是 5 秒的时间区间，我们取某疑似引力波信号所对应的第一个预警区间的最左端时刻和最后一个预警区间的最右端时刻之间的时间区间，以此作为该疑似引力波信号可能存在的预警时间区间。在标记疑似事件的时候，我们会记录下疑似事件的数据区间长度和中间时刻。</p>
+<p>基于上述的讨论，我们给出基于模拟信号的模型性能度量方法。对于某测试数据流 <span><span class="MathJax_Preview">D</span><script type="math/tex">D</script></span>，将所有注入模拟信号的时间区间集合标记为 <span><span class="MathJax_Preview">D_{\mathcal{I}}</span><script type="math/tex">D_{\mathcal{I}}</script></span>，而其他未注入信号的时间区间集合为 <span><span class="MathJax_Preview">D_{\mathcal{N}}=D-D_{\mathcal{I}}</span><script type="math/tex">D_{\mathcal{N}}=D-D_{\mathcal{I}}</script></span>。训练好后的 MFCNN 模型会基于上述的信号搜寻策略，会在数据流 <span><span class="MathJax_Preview">D</span><script type="math/tex">D</script></span> 上给出所有模拟信号所在的预测时间区间集合，记作 <span><span class="MathJax_Preview">D_{\mathcal{P}}</span><script type="math/tex">D_{\mathcal{P}}</script></span>。据此，我们定义正报几率 (true alarm probability, TAP) 和误报几率 (false alarm probability, FAP) </p>
+<div>
+<div class="MathJax_Preview">
+\begin{align}
+    \text{TAP} &amp;\equiv \frac{D_{\mathcal{I}} \cap D_{\mathcal{P}}}{D_{\mathcal{I}}}\\
+    \text{FAP} &amp;\equiv \frac{D_{\mathcal{N}} \cap D_{\mathcal{P}}}{D_{\mathcal{N}}}
+\end{align}
+</div>
+<script type="math/tex; mode=display">
+\begin{align}
+    \text{TAP} &\equiv \frac{D_{\mathcal{I}} \cap D_{\mathcal{P}}}{D_{\mathcal{I}}}\\
+    \text{FAP} &\equiv \frac{D_{\mathcal{N}} \cap D_{\mathcal{P}}}{D_{\mathcal{N}}}
+\end{align}
+</script>
+</div>
+<p>显然上述定义是依赖于阈值 <span><span class="MathJax_Preview">p_c</span><script type="math/tex">p_c</script></span> 的，所以通过调整不同的 <span><span class="MathJax_Preview">p_c</span><script type="math/tex">p_c</script></span>，我们就可以给出由 TAP 和 FAP 所描述的 ROC 模型性能度量。考虑到在我们定义的模型预测时间区间中，即使是高信噪比的注入模拟信号，模型预测的时间区间会略大于实际注入信号的时间区间，但只要测试数据流足够长，该盈余的预测误差是可以忽略不计的。</p>
+<p></br></p>
+<h2 id="66">6.6 数据准备与模型微调<a class="headerlink" href="#66" title="Permanent link">&para;</a></h2>
+<p></br></p>
+<p>当考虑引力波背景数据时，一般有两种选择：根据探测器设计灵敏度 (ASD) 模拟的高斯有色噪声、以及真实的 LIGO 引力波探测数据 (基于匹配滤波流水线尚未发现任何信号事件的数据)。在前者的稳态背景噪声中 (第<a href="../C5/">五</a>章)，频谱分布的波动是均匀且稳定的，并不包含有 glitches。而正如本文第 <a href="../C2/#223">2.2.3</a> 节中所讨论的，glitch 是实际引力波数据分析中非常重要的噪声来源之一。因此在本章中，我们使用真实的 LIGO 引力波数据来训练和测试模型性能。我们将会从 O1 数据 (来自 GWOSC <sup id="fnref:55"><a class="footnote-ref" href="#fn:55">61</a></sup>) 中随机地采样背景噪声样本，并且要求采样后的 LIGO 数据满足以下要求：</p>
+<ol>
+<li>H1 和 L1 双探测器同时在线。</li>
+<li>不包含硬件模拟信号注入(hardware injections) <sup id="fnref:56"><a class="footnote-ref" href="#fn:56">62</a></sup></li>
+<li>不包含真实引力波事件 (GW150914，GW151012，GW151226) 附近的数据。</li>
+</ol>
+<blockquote>
+<p>(左) <span><span class="MathJax_Preview">62.50M_\odot+57.50M_\odot</span><script type="math/tex">62.50M_\odot+57.50M_\odot</script></span> 引力波波形(上)与采样的某段真实引力波数据混合 (<span><span class="MathJax_Preview">\rho_\text{opt}\sim25</span><script type="math/tex">\rho_\text{opt}\sim25</script></span>) 后的训练样本(下) <br />
+(右) 训练数据、测试数据、模板波形数据以及 11 个引力波事件波源的质量分布图<br />
+<img alt="" src="../img/C6_example.png" style="zoom:18%" /><img alt="" src="../img/C6_Distri_mass.png" style="zoom:18%" /></p>
+</blockquote>
+<p>我们使用 SEOBNRE 模型 <sup id="fnref:57"><a class="footnote-ref" href="#fn:57">63</a></sup> <sup id="fnref:58"><a class="footnote-ref" href="#fn:58">64</a></sup> 生成模拟的引力波波形。与第<a href="../C4/">四</a>章和第<a href="../C5/">五</a>章的波源参数配置一致，本章只考虑准圆周、无自旋的双黑洞并合系统为引力波的波源，共生成训练和测试用的波形模板 3220 个。每个波形样本时长为 5 秒，采样率为 4096Hz。由于模型所具有的匹配滤波特性，我们无需要求波形峰值在样本某区间内随机排布，而是将波形峰值固定在样本数据的居中位置处。关于 LIGO 探测器的方向等参数，我们参考的是 LALSimulation <sup id="fnref:lal"><a class="footnote-ref" href="#fn:lal">2</a></sup> 中的默认设定，所以每个数据样本都会对应有两个频道维度，分别对应于 H1 和 L1 两个探测器。考虑到模型本身就包含有白化的数据预处理操作，所以我们的数据样本是直接根据匹配滤波信噪比将模拟信号与真实噪声相混合的，如上方左图所示为某一训练数据样本。在 MFCNN 模型中，我们取等质量比但不同总质量参数的双黑洞并合系统，作为模型内部的匹配滤波模板。为了提高计算效率，要求匹配滤波模板波形的时长为 1 秒。<span><span class="MathJax_Preview">C</span><script type="math/tex">C</script></span> 作为模型内的波形模板数目，也是模型超参数之一。最后，训练数据集、测试数据集和模板波形 (<span><span class="MathJax_Preview">C=35</span><script type="math/tex">C=35</script></span>) 的质量分布，可如上方右图所示。为了方便比较，我们将 O1 和 O2 中 11 个真实的引力波事件也标记在图中。</p>
+<blockquote>
+<p>取 <span><span class="MathJax_Preview">p_c=0.5,C=35</span><script type="math/tex">p_c=0.5,C=35</script></span>，<br />
+(左) 在 <span><span class="MathJax_Preview">\rho_{opt}=6,8,10,12</span><script type="math/tex">\rho_{opt}=6,8,10,12</script></span> 测试信号数据下 MFCNN 模型的 ROC 曲线 <br />
+(右) 分别对应于 <span><span class="MathJax_Preview">\text{FAP}=0.1,0.01,0.001</span><script type="math/tex">\text{FAP}=0.1,0.01,0.001</script></span> 时 MFCNN 模型关于 <span><span class="MathJax_Preview">\rho_{opt}</span><script type="math/tex">\rho_{opt}</script></span> 的引力波信号识别效率<br />
+<img alt="" src="../img/C6_ROC_rho.png" style="zoom:20%" /><img alt="" src="../img/C6_TAP_rho.png" style="zoom:20%" /></p>
+</blockquote>
+<p>对 MFCNN 模型的训练策略与第<a href="../C5/">五</a>章是一致的，也会采用逐步降低信噪比的方式来达到训练收敛。模型训练完成后，就可以将其放置在真实引力波数据流中测试模型的性能。我们通过调整不同的匹配滤波信噪比，在 O1 背景噪声中随机注入测试波形信号，就可以给出 MFCNN 模型在其上进行引力波信号搜寻的预测结果。显然，信噪比较高的信号是容易辨识的。如上方左图所示，信噪比较大的测试数据会有明显较好的 ROC 曲线。对于不同信噪比下的引力波信号，TAP 可以用来表示该信号的识别效率 (recognition efficiency)。对于误报几率在 0.1、0.01 和 0.001 时，不同信噪比的模拟信号识别效率曲线，如上方右图所示。</p>
+<p>下面我们考察 MFCNN 模型内部匹配滤波模板的数目 <span><span class="MathJax_Preview">C</span><script type="math/tex">C</script></span> 和输入数据的窗口大小 <span><span class="MathJax_Preview">T</span><script type="math/tex">T</script></span> 这两个超参数对模型识别性能的影响。我们在 <span><span class="MathJax_Preview">[5,75]M_\odot</span><script type="math/tex">[5,75]M_\odot</script></span> 范围内均匀选取了不同数目的匹配滤波模板数目 <span><span class="MathJax_Preview">C=3,16,35,70,350</span><script type="math/tex">C=3,16,35,70,350</script></span> 并以此测试模型的泛化性能，如下方左图所示。我们发现即使使用很少量的波形模板 (<span><span class="MathJax_Preview">C=3</span><script type="math/tex">C=3</script></span>)，MFCNN 模型也依然有着不错的信号识别能力。可以看到，在模板数量大于 20 左右，ROC 曲线的变化就大致不依赖于模板数目这个超参数。因此在本文中，我们默认取 <span><span class="MathJax_Preview">C=35</span><script type="math/tex">C=35</script></span>。此外，我们根据输入窗口的大小 <span><span class="MathJax_Preview">T=1,5,10</span><script type="math/tex">T=1,5,10</script></span> 分别以 <span><span class="MathJax_Preview">0.2,1,2</span><script type="math/tex">0.2,1,2</script></span> 秒作为滑动间隔并训练 MFCNN 模型。通过连续五次及以上滑动窗口的预警策略来确定疑似信号的预测范围，我们同样道理的可以给出 MFCNN 模型在该测试数据上的 ROC 性能度量，如下方右图所示。从图中可以看到模型的性能表现基本上并不依赖于超参数 <span><span class="MathJax_Preview">T</span><script type="math/tex">T</script></span>。</p>
+<blockquote>
+<p>MFCNN 网络的超参数微调。<br />
+(左) 在 <span><span class="MathJax_Preview">\rho_{opt}=10,T=5</span><script type="math/tex">\rho_{opt}=10,T=5</script></span> 时，对于 <span><span class="MathJax_Preview">C=3,16,35,70,350</span><script type="math/tex">C=3,16,35,70,350</script></span> 的 ROC 曲线 <br />
+(右) 在 <span><span class="MathJax_Preview">\rho_{opt}=10,C=35</span><script type="math/tex">\rho_{opt}=10,C=35</script></span> 时，对于 <span><span class="MathJax_Preview">T=1,5,10</span><script type="math/tex">T=1,5,10</script></span> 的 ROC 曲线<br />
+<img alt="" src="../img/C6_ROC_C.png" style="zoom:20%" /><img alt="" src="../img/C6_ROC_T.png" style="zoom:20%" /></p>
+</blockquote>
+<p></br></p>
+<h2 id="67_ligo">6.7 真实 LIGO 引力波数据上的搜寻结果<a class="headerlink" href="#67_ligo" title="Permanent link">&para;</a></h2>
+<p></br></p>
+<p>LIGO 的第一次观测运行 (O1) 始于 2015 年 9 月 12 日 00:00 UTC (GPS 时间 1126051217) 至 2016 年 1 月 19 日 16:00 UTC (GPS 时间 1137254417)，其中 H1 和 L1 同时在线时间 <sup id="fnref:O1"><a class="footnote-ref" href="#fn:O1">3</a></sup> 占 42.8%，约 55 天。aLIGO 和 aVirgo 的第二次观测运行 (O2) 始于 2016 年 11 月 30 日 16:00 UTC (GPS 时间 1164556817) 至 2017 年 8 月 25 日 22:00 UTC (GPS 时间 1187733618)，其中 H1 和 L1 同时在线时间 <sup id="fnref:O2"><a class="footnote-ref" href="#fn:O2">4</a></sup> 占 46.4%，约 124 天。起初 LIGO 关于双黑洞并合事件信号搜寻中仅确认了两个引力波事件，分别是 GW150914 和 GW151226，另外还有因置信度不足的一例疑似引力波事件 LVT151012。在 LIGO 和 Virgo 研究团队的合作下，于 2019 年发布了第一份引力波事件官方目录 GWTC-1 <sup id="fnref:59"><a class="footnote-ref" href="#fn:59">65</a></sup>，该目录列出了迄今为止在 O1 和 O2 中检测到的所有引力波事件，其中报告了在之前数据分析中未宣布的四种由黑洞碰撞产生的引力波，由此把确认的双星并合事件的总数变为 11 个，其中就包括由疑似事件转正的 GW151012，还有一例双中子星并合的引力波事件 GW170817。</p>
+<h3 id="671_o1_o2">6.7.1 搜寻 O1 和 O2 中的引力波信号<a class="headerlink" href="#671_o1_o2" title="Permanent link">&para;</a></h3>
+<p>在这一节，我们将 MFCNN 模型应用在 LIGO 真实引力波探测数据上。模型超参数取为 <span><span class="MathJax_Preview">T=5,C=35</span><script type="math/tex">T=5,C=35</script></span>，同时我们设定阈值 <span><span class="MathJax_Preview">p_c=0.5</span><script type="math/tex">p_c=0.5</script></span>。从上上左图可以看到，在 <span><span class="MathJax_Preview">\rho_{opt}=10</span><script type="math/tex">\rho_{opt}=10</script></span> 时对应的正报几率和误报几率分别为 <span><span class="MathJax_Preview">\text{TAP}\approx0.7922,\text{FAP}\approx0.0228</span><script type="math/tex">\text{TAP}\approx0.7922,\text{FAP}\approx0.0228</script></span>。</p>
+<blockquote>
+<p>在 O1 中，确认的引力波事件(GW150914、GW151012 和 GW151226)的模型预测结果<br />
+<img alt="在 O1 中，确认的引力波事件(GW150914、GW151012 和 GW151226)的模型预测结果" src="../img/C6_O1events.png" /></p>
+</blockquote>
+<p>对于某个数据样本，如果模型预测的置信概率 <span><span class="MathJax_Preview">p</span><script type="math/tex">p</script></span> 大于某个设定的阈值 <span><span class="MathJax_Preview">p&gt;p_c</span><script type="math/tex">p>p_c</script></span>，那么我们的网络模型就会对该样本给一个预警标记。如果有连续 5 个及以上的预警标记，则就视作触发了一个疑似引力波信号。如上图所示，我们绘制了 O1 中三个真实引力波事件 (GW150914，GW151012 和 GW151226) 附近处模型输出的预测结果。可以看到，我们的网络模型能够清晰的将三个引力波事件准确地标记出来。对于联合信噪比 (<span><span class="MathJax_Preview">\rho_\text{pycbc}</span><script type="math/tex">\rho_\text{pycbc}</script></span>) 分别高达 23.6 和 13.1 的 GW150914 和 GW151226 来说，都有着理想的五次连续 <span><span class="MathJax_Preview">p=1</span><script type="math/tex">p=1</script></span> 的置信预测结果，而在信噪比 9.5 的 GW151012 上模型的置信预测会略微逊色许多，但对于包含有信号的五个连续预警标准下，我们的模型预测结果仍可以确保信噪比最弱的引力波事件 GW151012 的每个预警预测有 <span><span class="MathJax_Preview">p&gt;0.5</span><script type="math/tex">p>0.5</script></span>。</p>
+<p>另外一个很有趣的问题就是考察模型在训练和预测的不同噪声背景下，是否可以顺利地将模型识别信号的能力泛化到其他噪声环境中。曾有研究者 <sup id="fnref:60"><a class="footnote-ref" href="#fn:60">66</a></sup> 在 O1 数据上训练神经网络模型后，在 O2 数据上测试其模型的预测响应。与之类似，我们也将 MFCNN 模型直接在 O2 数据中考察其对真实引力波事件的预测结果。如下图所示，引力波数据 O2 中的全部 8 个引力波事件附近的模型预测结果。可以看到所有的真实引力波事件都可以清晰的识别和标记。在 <sup id="fnref2:60"><a class="footnote-ref" href="#fn:60">66</a></sup> 的工作中，他们针对双黑洞并合系统所训练的网络模型并没有成功识别到双中子星并合引力波事件 (GW170817)。然而，对于我们的 MFCNN 模型来说，可以非常清晰的将 GW170817 事件辨别出来。值得留意的是，该事件所对应双中子星系统的波源参数并不在我们模型训练集的质量分布范围内，如上上上上右图所示。由此可见，MFCNN 模型在非稳态噪声环境下也有着良好的外插泛化识别能力。</p>
+<blockquote>
+<p>在 O2 中，确认的引力波事件 (GW170104、GW170608、GW170729、GW170809、GW170814、GW170817、GW170818 和 GW170823) 的模型预测结果<br />
+<img alt="在 O2 中，确认的引力波事件(GW170104、GW170608、GW170729、GW170809、GW170814、GW170817、GW170818 和 GW170823)的模型预测结果" src="../img/C6_O2events.png" /></p>
+</blockquote>
+<p>除了 O1 上三个确认的引力波事件外，我们还将 MFCNN 模型应用在整个 O1 数据上搜寻疑似引力波信号。在本文中，我们设定阈值 <span><span class="MathJax_Preview">p_c=0.5</span><script type="math/tex">p_c=0.5</script></span>。如果有超过 5 次连续的模型预测结果并满足 <span><span class="MathJax_Preview">p_c&gt;0.5</span><script type="math/tex">p_c>0.5</script></span>，我们就会标记该段连续预测结果为一次疑似引力波信号预警。</p>
+<p>在不考虑数据质量的情况下，我们在 O1 数据中共找到 3363 个疑似信号 (不包含 GW150914、GW151012 和 GW151226)。在 LIGO 的公开数据中，会为数据标记不同的质量标签。数据被标记为 CBC-CAT3 意味着该段数据中并不包含有已确认的设备环境因素 <sup id="fnref:61"><a class="footnote-ref" href="#fn:61">67</a></sup> 所造成的 glitch 噪声。当我们仅考虑满足数据质量 CBC-CAT3 的 O1 数据后，模型预测共计 2069 个疑似信号。可见，平均而言每 40 分钟会有一个疑似引力波信号。正如在 <sup id="fnref3:60"><a class="footnote-ref" href="#fn:60">66</a></sup> 中所谈到的，深度学习方法还无法很好的为每一个疑似信号就统计重要性上进行排序。所以我们很难分清楚这些疑似引力波信号中相互之间的优劣性。我们只能建议对这些疑似引力波信号进一步的数据分析和研究，与之相关的数据信息已经在线上公开 <sup id="fnref:github"><a class="footnote-ref" href="#fn:github">5</a></sup>。</p>
+<p>在 GWTC-1 中报告了 O1 数据中新的三个疑似引力波信号，可以从 <sup id="fnref2:59"><a class="footnote-ref" href="#fn:59">65</a></sup> 中的表格 II 中查看到其详细数据信息。经过对比，该三个疑似引力波信号并不在我们模型所预测结果当中。<sup id="fnref:62"><a class="footnote-ref" href="#fn:62">68</a></sup> 发布了第一次运行期间的引力波信号目录(1-OGC)。在 <sup id="fnref2:62"><a class="footnote-ref" href="#fn:62">68</a></sup> 的表格 I 中罗列了 20 个按误报率(false alarm rate，FAR) 排序的候选引力波信号。其中已确认的三个引力波事件排在该表格前三的位置，其余 17 个候选信号与我们的疑似引力波信号都没有交集。我们还考察了与 <span><span class="MathJax_Preview">\gamma</span><script type="math/tex">\gamma</script></span> 射线暴 (GRB)所关联的事件 <sup id="fnref:GRB"><a class="footnote-ref" href="#fn:GRB">6</a></sup> 的关系。但是并没有任何记录的 GRB 事件与我们所给出的疑似引力波信号有所关联。</p>
+<p>在最近，2-OGC <sup id="fnref:63"><a class="footnote-ref" href="#fn:63">69</a></sup> 声称在 O2 数据上新确认的引力波事件 GW170121、GW170304 和 GW170727。有趣的是，这些新发现的引力波事件信号也可以在我们的 MFCNN 模型上清晰地被识别并标注出来，如下图所示。</p>
+<blockquote>
+<p>由 2-OGC 发布的引力波事件(GW170121、GW170304 和 GW170727)的模型预测结果<br />
+<img alt="由 2-OGC 发布的引力波事件(GW170121、GW170304 和 GW170727)的模型预测结果" src="../img/C6_2-OGC.png" /></p>
+</blockquote>
+<h3 id="672">6.7.2 疑似引力波信号的统计特性<a class="headerlink" href="#672" title="Permanent link">&para;</a></h3>
+<p>考虑到 MFCNN 算法模型有着匹配滤波技术所没有的泛化识别能力，所以考察 MFCNN 模型所预测的疑似引力波信号有着怎样统计分布特征是一件很有趣的事情。然而我们仔细地检查了所有的疑似引力波信号与 O1 数据背景在时域、频域和时频域上特征差异，并没有发现任何明显可区分的差别。</p>
+<blockquote>
+<p>MFCNN 模型的输出预测结果 <span><span class="MathJax_Preview">p</span><script type="math/tex">p</script></span> 分别关于完整 O1 数据和疑似引力波信号差异之间的对比<br />
+<img alt="MFCNN 模型的输出预测结果 pp 分别关于完整 O1 数据和疑似引力波信号差异之间的对比" src="../img/C6_Distri_rho.png" style="zoom:30%" /></p>
+</blockquote>
+<p>基于匹配滤波方法的流水线在提取引力波信号时，误报率是某给定信号置信度的重要衡量指标。粗略地说，误报率反映的是引力波数据中纯噪声的某种统计特性。所以将纯背景噪声与疑似引力波信号的统计特征相互对比是很有意义，比方说 <sup id="fnref2:2"><a class="footnote-ref" href="#fn:2">8</a></sup> 的图 4 中所表现的纯噪声与疑似信号之间的统计性差异。尽管 MFCNN 模型并不能提供直接反映噪声统计性的误报率，但是我们依然可以对比纯噪声和疑似信号之间的统计性差异。如上图所示，可以看到疑似信号关于 <span><span class="MathJax_Preview">p</span><script type="math/tex">p</script></span> 的统计分布与 O1 背景噪声响应之间有着明显的差异，这意味着疑似信号在统计意义上与 O1 数据相比服从不同的统计规律。</p>
+<h3 id="673_glitch">6.7.3 引力波信号与 glitch 的统计分析<a class="headerlink" href="#673_glitch" title="Permanent link">&para;</a></h3>
+<p>目前在 O1 数据中已探明的 glitches 已在 <sup id="fnref:64"><a class="footnote-ref" href="#fn:64">70</a></sup> 中发布。Glitch 对引力波信号的识别和数据分析的影响是很大的。所以考察 MFCNN 模型对这些 glitches 的筛查情况是很重要的。如上小节中谈到，我们的 MFCNN 模型扫描和处理完整的 O1 数据的时候，并没有考虑 glitch。如果 MFCNN 在搜寻疑似引力波信号时对非高斯的 glitch 噪声报告预警，就意味着我们的网络模型并不能将引力波信号波形与 glitch 噪声波形区分开来。在 <sup id="fnref2:64"><a class="footnote-ref" href="#fn:64">70</a></sup> 的公开报告中，O1 数据中共有 7368 个 glitches，其中 812 个落在了我们的疑似引力波信号所划定的预警范围内。这意味着我们的 MFCNN 模型对 glitches 的筛查能力可以达到 <span><span class="MathJax_Preview">\frac{7368-812}{7368}\approx90\%</span><script type="math/tex">\frac{7368-812}{7368}\approx90\%</script></span>。而且，我们发现 MFCNN 对具有高频、长时和信噪比较高的 glitch 筛查能力要更好。</p>
+<p>根据 <sup id="fnref3:64"><a class="footnote-ref" href="#fn:64">70</a></sup> 的数据报告，O1 中的 glitches 包含有 Blip、Kor_Fish 等各种不同波形差异的 glitches。我们发现 MFCNN 模型对不同类型 glitch 的辨别能力也是有差别的。我们将 O1 数据中关于不同类型的 glitch 噪声的数目、所占的百分比以及 MFCNN 对其识别的比例总结在下表中。</p>
+<blockquote>
+<p>O1 中不同类型 glitches 的数目和所占的百分比，以及在 MFCNN 模型下的筛查率</p>
+</blockquote>
+<div>
+<div class="MathJax_Preview">
+\begin{array}{c|c|c|c|c|c}
+\hline &amp; \text { Blip } &amp; \text { Koi_Fish } &amp; \text { Chirp } &amp; \text { Repeating Blips } &amp; \text { others } \\
+\hline \text { Numbers in O1 } &amp; 506 &amp; 247 &amp; 22 &amp; 21 &amp; 16 \\
+\hline  \text { % in } \mathrm{O} 1 &amp; 62 \% &amp; 30 \% &amp; 3 \% &amp; 3 \% &amp; 2 \% \\
+\hline \text { % distinguishable } &amp; 72 \% &amp; 65 \% &amp; 63 \% &amp; 92 \% &amp; &gt;99 \% \\
+\hline
+\end{array}
+</div>
+<script type="math/tex; mode=display">
+\begin{array}{c|c|c|c|c|c}
+\hline & \text { Blip } & \text { Koi_Fish } & \text { Chirp } & \text { Repeating Blips } & \text { others } \\
+\hline \text { Numbers in O1 } & 506 & 247 & 22 & 21 & 16 \\
+\hline  \text { % in } \mathrm{O} 1 & 62 \% & 30 \% & 3 \% & 3 \% & 2 \% \\
+\hline \text { % distinguishable } & 72 \% & 65 \% & 63 \% & 92 \% & >99 \% \\
+\hline
+\end{array}
+</script>
+</div>
+<p></br></p>
+<h2 id="68">6.8 总结与结论<a class="headerlink" href="#68" title="Permanent link">&para;</a></h2>
+<p></br></p>
+<p>近些年来，已有不少研究工作将深度学习技术应用到引力波数据处理当中。然而，绝大多数的工作还仅限于模拟数据中，这既包括模拟的背景噪声，也包括模拟的引力波波形数据。在本章中，我们通过合理地数学改写匹配滤波算法，将其运用在卷积神经网络的结构中，成功地开发和构建出“匹配滤波-卷积神经网络” (MFCNN) 模型，并最终将其应用在完整的真实 LIGO 探测引力波数据中 (O1)。</p>
+<p>MFCNN 是根据 O1 中抽样的小部分真实引力波数据作为训练的背景噪声，通过模拟的双星并合系统波源产生的引力波波形作为特征构建的模型。 训练好的 MFCNN 模型不仅可以清晰地探测到 O1 中确认的三个引力波事件，将其直接应用在 O2 数据中的 8 个引力波事件也是可以将它们探测出来。与 <sup id="fnref4:60"><a class="footnote-ref" href="#fn:60">66</a></sup> 的工作相比，虽然都可以将网络模型的识别能力泛化从 O1 泛化到 O2 中，但我们的结果指出 MFCNN 不仅可以对模板库中极少量的波形内插泛化，并且还可以泛化到训练数据集之外的新类型信号，所谓外插泛化，可以清晰地标记双中子星并合事件 GW170817。除了 O1 数据中的三个确认的引力波事件外，我们还报告了 2000+ 个疑似引力波信号，以供进一步深入研究和参考。通过与 GWTC-1 <sup id="fnref3:59"><a class="footnote-ref" href="#fn:59">65</a></sup> 和1-OGC <sup id="fnref3:62"><a class="footnote-ref" href="#fn:62">68</a></sup> 所报告的疑似引力波信号对比，我们并没有发现任何相符的信号事件，此外也没有任何与 GRB 事件相符的疑似引力波信号。</p>
+<p>另外，值得注意的是真实的引力波信号探测是在非稳态非高斯噪声源 glitch 的环境下，可见 glitch 分类和聚类对于 GW 探测器的定标 (characterization) 在未来是尤为重要的 <sup id="fnref3:39"><a class="footnote-ref" href="#fn:39">45</a></sup>。我们考察了 O1 中所有已探明的 glitches，发现 MFCNN 模型对非高斯的 glitch 有着优秀的鲁棒性。从理论上来说，深度学习可以学习到 LIGO 探测器中噪声的特征模式，并且可以发展出优于匹配滤波算法的策略，从而适应非高斯噪声的背景环境。</p>
+<p>考虑到所有的冗长计算消耗都体现在了深度学习算法的一次训练过程，所以训练时可以用 GPUs 完成繁重的计算量，训练完成后将连续的数据流实时地经由 CPUs 来数据分析和预测结果。由于 MFCNN 可以为每一次预测同时输出相对匹配最佳的模板参数和到达时间，所以将 MFCNN 当作内插泛化模板库的疑似引力波信号预警系统的话，将其部署在现行的引力波数据处理流水线上进行初步估测，可以更加快速和高效的缩小基于引力波模板探测的候选参数空间范围，进而会让现行的流水线用更少的模板和缩小的参数空间来得到更加详尽的参数估计和置信度测量，由此就实现了用最小的计算资源加速引力波在完整信号参数空间上的数据分析。</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:weight">
+<p>偏置项可以吸收到权重项中。&#160;<a class="footnote-backref" href="#fnref:weight" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:lal">
+<p><a href="https://lscsoft.docs.ligo.org/lalsuite/lalsimulation/group__lalsim__detector__strain.html">https://lscsoft.docs.ligo.org/lalsuite/lalsimulation/group__lalsim__detector__strain.html</a>&#160;<a class="footnote-backref" href="#fnref:lal" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:O1">
+<p><a href="https://www.gw-openscience.org/summary_pages/detector_status/O1/">https://www.gw-openscience.org/summary_pages/detector_status/O1/</a>&#160;<a class="footnote-backref" href="#fnref:O1" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:O2">
+<p><a href="https://www.gw-openscience.org/summary_pages/detector_status/O2/">https://www.gw-openscience.org/summary_pages/detector_status/O2/</a>&#160;<a class="footnote-backref" href="#fnref:O2" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+<li id="fn:github">
+<p><a href="https://github.com/WuShichao/mfcnn_catalog">https://github.com/WuShichao/mfcnn_catalog</a>&#160;<a class="footnote-backref" href="#fnref:github" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+</li>
+<li id="fn:GRB">
+<p><a href="https://gcn.gsfc.nasa.gov">https://gcn.gsfc.nasa.gov</a>&#160;<a class="footnote-backref" href="#fnref:GRB" title="Jump back to footnote 6 in the text">&#8617;</a></p>
+</li>
+<li id="fn:1">
+<p>J. Aasi and others. Advanced ligo. <em>Class. Quant. Grav.</em>, 32:074001, 2015. <a href="https://arxiv.org/abs/1411.4547">arXiv:1411.4547</a>, <a href="https://doi.org/10.1088/0264-9381/32/7/074001">doi:10.1088/0264-9381/32/7/074001</a>.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 7 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>B. P. Abbott and others. Observation of gravitational waves from a binary black hole merger. <em>Phys. Rev. Lett.</em>, 116<span><span class="MathJax_Preview">6</span><script type="math/tex">6</script></span>:061102, 2016. <a href="https://arxiv.org/abs/1602.03837">arXiv:1602.03837</a>, <a href="https://doi.org/10.1103/PhysRevLett.116.061102">doi:10.1103/PhysRevLett.116.061102</a>.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 8 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:2" title="Jump back to footnote 8 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>B. P. Abbott and others. Gw151226: observation of gravitational waves from a 22-solar-mass binary black hole coalescence. <em>Phys. Rev. Lett.</em>, 116<span><span class="MathJax_Preview">24</span><script type="math/tex">24</script></span>:241103, 2016. <a href="https://arxiv.org/abs/1606.04855">arXiv:1606.04855</a>, <a href="https://doi.org/10.1103/PhysRevLett.116.241103">doi:10.1103/PhysRevLett.116.241103</a>.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 9 in the text">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p>Benjamin P. Abbott and others. Gw170104: observation of a 50-solar-mass binary black hole coalescence at redshift 0.2. <em>Phys. Rev. Lett.</em>, 118<span><span class="MathJax_Preview">22</span><script type="math/tex">22</script></span>:221101, 2017. <a href="https://arxiv.org/abs/1706.01812">arXiv:1706.01812</a>, <a href="https://doi.org/10.1103/PhysRevLett.118.221101">doi:10.1103/PhysRevLett.118.221101</a>.&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 10 in the text">&#8617;</a></p>
+</li>
+<li id="fn:5">
+<p>B. P. Abbott and others. Gw170814: a three-detector observation of gravitational waves from a binary black hole coalescence. <em>Phys. Rev. Lett.</em>, 119<span><span class="MathJax_Preview">14</span><script type="math/tex">14</script></span>:141101, 2017. <a href="https://arxiv.org/abs/1709.09660">arXiv:1709.09660</a>, <a href="https://doi.org/10.1103/PhysRevLett.119.141101">doi:10.1103/PhysRevLett.119.141101</a>.&#160;<a class="footnote-backref" href="#fnref:5" title="Jump back to footnote 11 in the text">&#8617;</a></p>
+</li>
+<li id="fn:6">
+<p>Albert Einstein. The field equations of gravitation. <em>Sitzungsber. Preuss. Akad. Wiss. Berlin <span><span class="MathJax_Preview">Math\. Phys\.</span><script type="math/tex">Math\. Phys\.</script></span></em>, 1915:844–847, 1915.&#160;<a class="footnote-backref" href="#fnref:6" title="Jump back to footnote 12 in the text">&#8617;</a></p>
+</li>
+<li id="fn:7">
+<p>B. P. Abbott and others. Directly comparing gw150914 with numerical solutions of einstein’s equations for binary black hole coalescence. <em>Phys. Rev.</em>, D94<span><span class="MathJax_Preview">6</span><script type="math/tex">6</script></span>:064035, 2016. <a href="https://arxiv.org/abs/1606.01262">arXiv:1606.01262</a>, <a href="https://doi.org/10.1103/PhysRevD.94.064035">doi:10.1103/PhysRevD.94.064035</a>.&#160;<a class="footnote-backref" href="#fnref:7" title="Jump back to footnote 13 in the text">&#8617;</a></p>
+</li>
+<li id="fn:8">
+<p>Samantha A. Usman and others. The pycbc search for gravitational waves from compact binary coalescence. <em>Class. Quant. Grav.</em>, 33<span><span class="MathJax_Preview">21</span><script type="math/tex">21</script></span>:215004, 2016. <a href="https://arxiv.org/abs/1508.02357">arXiv:1508.02357</a>, <a href="https://doi.org/10.1088/0264-9381/33/21/215004">doi:10.1088/0264-9381/33/21/215004</a>.&#160;<a class="footnote-backref" href="#fnref:8" title="Jump back to footnote 14 in the text">&#8617;</a></p>
+</li>
+<li id="fn:9">
+<p>E. A. Huerta and others. Boss-ldg: a novel computational framework that brings together blue waters, open science grid, shifter and the ligo data grid to accelerate gravitational wave discovery. In <em>Proceedings, 13th International Conference on e-Science: Auckland, New Zealand, October 24-27, 2017</em>, 335–344. 2017. <a href="https://arxiv.org/abs/1709.08767">arXiv:1709.08767</a>, <a href="https://doi.org/10.1109/eScience.2017.47">doi:10.1109/eScience.2017.47</a>.&#160;<a class="footnote-backref" href="#fnref:9" title="Jump back to footnote 15 in the text">&#8617;</a></p>
+</li>
+<li id="fn:10">
+<p>Derek Weitzel, Brian Bockelman, Duncan A. Brown, Peter Couvares, Frank Würthwein, and Edgar Fajardo Hernandez. Data access for ligo on the osg. <em>arXiv</em>, 2017. <a href="https://arxiv.org/abs/1705.06202">arXiv:1705.06202</a>, <a href="https://doi.org/10.1145/3093338.3093363">doi:10.1145/3093338.3093363</a>.&#160;<a class="footnote-backref" href="#fnref:10" title="Jump back to footnote 16 in the text">&#8617;</a></p>
+</li>
+<li id="fn:11">
+<p>Benjamin J. Owen and B. S. Sathyaprakash. Matched filtering of gravitational waves from inspiraling compact binaries: computational cost and template placement. <em>Phys. Rev.</em>, D60:022002, 1999. <a href="https://arxiv.org/abs/gr-qc/9808076">arXiv:gr-qc/9808076</a>, <a href="https://doi.org/10.1103/PhysRevD.60.022002">doi:10.1103/PhysRevD.60.022002</a>.&#160;<a class="footnote-backref" href="#fnref:11" title="Jump back to footnote 17 in the text">&#8617;</a></p>
+</li>
+<li id="fn:12">
+<p>Davide Gerosa, Michael Kesden, Emanuele Berti, Richard O&rsquo;Shaughnessy, and Ulrich Sperhake. Resonant-plane locking and spin alignment in stellar-mass black-hole binaries: a diagnostic of compact-binary formation. <em>Phys. Rev.</em>, D87:104028, 2013. <a href="https://arxiv.org/abs/1302.4442">arXiv:1302.4442</a>, <a href="https://doi.org/10.1103/PhysRevD.87.104028">doi:10.1103/PhysRevD.87.104028</a>.&#160;<a class="footnote-backref" href="#fnref:12" title="Jump back to footnote 18 in the text">&#8617;</a></p>
+</li>
+<li id="fn:13">
+<p>Carl L. Rodriguez, Sourav Chatterjee, and Frederic A. Rasio. Binary black hole mergers from globular clusters: masses, merger rates, and the impact of stellar evolution. <em>Phys. Rev.</em>, D93<span><span class="MathJax_Preview">8</span><script type="math/tex">8</script></span>:084029, 2016. <a href="https://arxiv.org/abs/1602.02444">arXiv:1602.02444</a>, <a href="https://doi.org/10.1103/PhysRevD.93.084029">doi:10.1103/PhysRevD.93.084029</a>.&#160;<a class="footnote-backref" href="#fnref:13" title="Jump back to footnote 19 in the text">&#8617;</a></p>
+</li>
+<li id="fn:14">
+<p>Carl L. Rodriguez, Meagan Morscher, Bharath Pattabiraman, Sourav Chatterjee, Carl-Johan Haster, and Frederic A. Rasio. Binary black hole mergers from globular clusters: implications for advanced ligo. <em>Phys. Rev. Lett.</em>, 115<span><span class="MathJax_Preview">5</span><script type="math/tex">5</script></span>:051101, 2015. [Erratum: Phys. Rev. Lett.116,no.2,029901<span><span class="MathJax_Preview">2016</span><script type="math/tex">2016</script></span>]. <a href="https://arxiv.org/abs/1505.00792">arXiv:1505.00792</a>, <a href="https://doi.org/10.1103/PhysRevLett.116.029901, 10.1103/PhysRevLett.115.051101">doi:10.1103/PhysRevLett.116.029901, 10.1103/PhysRevLett.115.051101</a>.&#160;<a class="footnote-backref" href="#fnref:14" title="Jump back to footnote 20 in the text">&#8617;</a></p>
+</li>
+<li id="fn:15">
+<p>E. A. Huerta, Gabrielle Allen, Igor Andreoni, Javier M. Antelis, Etienne Bachelet, G. Bruce Berriman, Federica B. Bianco, Rahul Biswas, Matias Carrasco Kind, Kyle Chard, Minsik Cho, Philip S. Cowperthwaite, Zachariah B. Etienne, Maya Fishbach, Francisco Forster, Daniel George, Tom Gibbs, Matthew Graham, William Gropp, Robert Gruendl, Anushri Gupta, Roland Haas, Sarah Habib, Elise Jennings, Margaret W. G. Johnson, Erik Katsavounidis, Daniel S. Katz, Asad Khan, Volodymyr Kindratenko, William T. C. Kramer, Xin Liu, Ashish Mahabal, Zsuzsa Marka, Kenton McHenry, J. M. Miller, Claudia Moreno, M. S. Neubauer, Steve Oberlin, Alexander R. Olivas, Donald Petravick, Adam Rebei, Shawn Rosofsky, Milton Ruiz, Aaron Saxton, Bernard F. Schutz, Alex Schwing, Ed Seidel, Stuart L. Shapiro, Hongyu Shen, Yue Shen, Leo P. Singer, Brigitta M. Sipocz, Lunan Sun, John Towns, Antonios Tsokaros, Wei Wei, Jack Wells, Timothy J. Williams, Jinjun Xiong, and Zhizhen Zhao. Enabling real-time multi-messenger astrophysics discoveries with deep learning. <em>Nature Rev. Phys.</em>, 1<span><span class="MathJax_Preview">10</span><script type="math/tex">10</script></span>:600–608, October 2019. <a href="https://arxiv.org/abs/1911.11779">arXiv:1911.11779</a>, <a href="https://doi.org/10.1038/s42254-019-0097-4">doi:10.1038/s42254-019-0097-4</a>.&#160;<a class="footnote-backref" href="#fnref:15" title="Jump back to footnote 21 in the text">&#8617;</a></p>
+</li>
+<li id="fn:16">
+<p>Fabio Antonini, Sourav Chatterjee, Carl L. Rodriguez, Meagan Morscher, Bharath Pattabiraman, Vicky Kalogera, and Frederic A. Rasio. Black hole mergers and blue stragglers from hierarchical triples formed in globular clusters. <em>Astrophys. J.</em>, 816<span><span class="MathJax_Preview">2</span><script type="math/tex">2</script></span>:65, 2016. <a href="https://arxiv.org/abs/1509.05080">arXiv:1509.05080</a>, <a href="https://doi.org/10.3847/0004-637X/816/2/65">doi:10.3847/0004-637X/816/2/65</a>.&#160;<a class="footnote-backref" href="#fnref:16" title="Jump back to footnote 22 in the text">&#8617;</a></p>
+</li>
+<li id="fn:17">
+<p>Smadar Naoz, Bence Kocsis, Abraham Loeb, and Nicolas Yunes. Resonant post-newtonian eccentricity excitation in hierarchical three-body systems. <em>Astrophys. J.</em>, 773:187, 2013. <a href="https://arxiv.org/abs/1206.4316">arXiv:1206.4316</a>, <a href="https://doi.org/10.1088/0004-637X/773/2/187">doi:10.1088/0004-637X/773/2/187</a>.&#160;<a class="footnote-backref" href="#fnref:17" title="Jump back to footnote 23 in the text">&#8617;</a></p>
+</li>
+<li id="fn:18">
+<p>Johan Samsing, Morgan MacLeod, and Enrico Ramirez-Ruiz. The formation of eccentric compact binary inspirals and the role of gravitational wave emission in binary-single stellar encounters. <em>Astrophys. J.</em>, 784:71, 2014. <a href="https://arxiv.org/abs/1308.2964">arXiv:1308.2964</a>, <a href="https://doi.org/10.1088/0004-637X/784/1/71">doi:10.1088/0004-637X/784/1/71</a>.&#160;<a class="footnote-backref" href="#fnref:18" title="Jump back to footnote 24 in the text">&#8617;</a></p>
+</li>
+<li id="fn:19">
+<p>E. A. Huerta and others. Complete waveform model for compact binaries on eccentric orbits. <em>Phys. Rev.</em>, D95<span><span class="MathJax_Preview">2</span><script type="math/tex">2</script></span>:024038, 2017. <a href="https://arxiv.org/abs/1609.05933">arXiv:1609.05933</a>, <a href="https://doi.org/10.1103/PhysRevD.95.024038">doi:10.1103/PhysRevD.95.024038</a>.&#160;<a class="footnote-backref" href="#fnref:19" title="Jump back to footnote 25 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:19" title="Jump back to footnote 25 in the text">&#8617;</a></p>
+</li>
+<li id="fn:20">
+<p>Luis Lehner and Frans Pretorius. Numerical relativity and astrophysics. <em>Ann. Rev. Astron. Astrophys.</em>, 52:661–694, 2014. <a href="https://arxiv.org/abs/1405.4840">arXiv:1405.4840</a>, <a href="https://doi.org/10.1146/annurev-astro-081913-040031">doi:10.1146/annurev-astro-081913-040031</a>.&#160;<a class="footnote-backref" href="#fnref:20" title="Jump back to footnote 26 in the text">&#8617;</a></p>
+</li>
+<li id="fn:21">
+<p>S. Klimenko and others. Method for detection and reconstruction of gravitational wave transients with networks of advanced detectors. <em>Phys. Rev.</em>, D93<span><span class="MathJax_Preview">4</span><script type="math/tex">4</script></span>:042004, 2016. <a href="https://arxiv.org/abs/1511.05999">arXiv:1511.05999</a>, <a href="https://doi.org/10.1103/PhysRevD.93.042004">doi:10.1103/PhysRevD.93.042004</a>.&#160;<a class="footnote-backref" href="#fnref:21" title="Jump back to footnote 27 in the text">&#8617;</a></p>
+</li>
+<li id="fn:22">
+<p>E. A. Huerta, Prayush Kumar, Sean T. McWilliams, Richard O&rsquo;Shaughnessy, and Nicolás Yunes. Accurate and efficient waveforms for compact binaries on eccentric orbits. <em>Phys. Rev.</em>, D90<span><span class="MathJax_Preview">8</span><script type="math/tex">8</script></span>:084016, 2014. <a href="https://arxiv.org/abs/1408.3406">arXiv:1408.3406</a>, <a href="https://doi.org/10.1103/PhysRevD.90.084016">doi:10.1103/PhysRevD.90.084016</a>.&#160;<a class="footnote-backref" href="#fnref:22" title="Jump back to footnote 28 in the text">&#8617;</a></p>
+</li>
+<li id="fn:23">
+<p>E. A. Huerta and Duncan A. Brown. Effect of eccentricity on binary neutron star searches in advanced ligo. <em>Phys. Rev.</em>, D87<span><span class="MathJax_Preview">12</span><script type="math/tex">12</script></span>:127501, 2013. <a href="https://arxiv.org/abs/1301.1895">arXiv:1301.1895</a>, <a href="https://doi.org/10.1103/PhysRevD.87.127501">doi:10.1103/PhysRevD.87.127501</a>.&#160;<a class="footnote-backref" href="#fnref:23" title="Jump back to footnote 29 in the text">&#8617;</a></p>
+</li>
+<li id="fn:24">
+<p>Ian Harry, Stephen Privitera, Alejandro Bohé, and Alessandra Buonanno. Searching for gravitational waves from compact binaries with precessing spins. <em>Phys. Rev.</em>, D94<span><span class="MathJax_Preview">2</span><script type="math/tex">2</script></span>:024012, 2016. <a href="https://arxiv.org/abs/1603.02444">arXiv:1603.02444</a>, <a href="https://doi.org/10.1103/PhysRevD.94.024012">doi:10.1103/PhysRevD.94.024012</a>.&#160;<a class="footnote-backref" href="#fnref:24" title="Jump back to footnote 30 in the text">&#8617;</a></p>
+</li>
+<li id="fn:25">
+<p>Yann LeCun, Yoshua Bengio, and Geoffrey Hinton. Deep learning. <em>nature</em>, 521<span><span class="MathJax_Preview">7553</span><script type="math/tex">7553</script></span>:436–444, 2015.&#160;<a class="footnote-backref" href="#fnref:25" title="Jump back to footnote 31 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:25" title="Jump back to footnote 31 in the text">&#8617;</a></p>
+</li>
+<li id="fn:26">
+<p>Ian Goodfellow, Yoshua Bengio, and Aaron Courville. <em>Deep Learning</em>. Adaptive Computation and Machine Learning series. The MIT Press, 2016. ISBN 9780262337373. URL: <a href="https://www.amazon.com/Deep-Learning-Adaptive-Computation-Machine-ebook/dp/B01MRVFGX4?SubscriptionId=AKIAIOBINVZYXZQZ2U3A&amp;tag=chimbori05-20&amp;linkCode=xm2&amp;camp=2025&amp;creative=165953&amp;creativeASIN=B01MRVFGX4">https://www.amazon.com/Deep-Learning-Adaptive-Computation-Machine-ebook/dp/B01MRVFGX4?SubscriptionId=AKIAIOBINVZYXZQZ2U3A&amp;tag=chimbori05-20&amp;linkCode=xm2&amp;camp=2025&amp;creative=165953&amp;creativeASIN=B01MRVFGX4</a>.&#160;<a class="footnote-backref" href="#fnref:26" title="Jump back to footnote 32 in the text">&#8617;</a></p>
+</li>
+<li id="fn:27">
+<p>Jürgen Schmidhuber. Deep learning in neural networks: an overview. <em>Neural Networks</em>, 61:85–117, 2015. URL: <a href="http://www.sciencedirect.com/science/article/pii/S0893608014002135">http://www.sciencedirect.com/science/article/pii/S0893608014002135</a>, <a href="https://doi.org/10.1016/j.neunet.2014.09.003">doi:10.1016/j.neunet.2014.09.003</a>.&#160;<a class="footnote-backref" href="#fnref:27" title="Jump back to footnote 33 in the text">&#8617;</a></p>
+</li>
+<li id="fn:28">
+<p>Andre Esteva, Brett Kuprel, Roberto A. Novoa, Justin Ko, Susan M. Swetter, Helen M. Blau, and Sebastian Thrun. Dermatologist-level classification of skin cancer with deep neural networks. <em>Nature</em>, 542<span><span class="MathJax_Preview">7639</span><script type="math/tex">7639</script></span>:115–118, February 2017. <a href="https://doi.org/10.1038/nature21056">doi:10.1038/nature21056</a>.&#160;<a class="footnote-backref" href="#fnref:28" title="Jump back to footnote 34 in the text">&#8617;</a></p>
+</li>
+<li id="fn:29">
+<p>David Silver, Julian Schrittwieser, Karen Simonyan, Ioannis Antonoglou, Aja Huang, Arthur Guez, Thomas Hubert, Lucas Baker, Matthew Lai, Adrian Bolton, Yutian Chen, Timothy Lillicrap, Fan Hui, Laurent Sifre, George van den Driessche, Thore Graepel, and Demis Hassabis. Mastering the game of go without human knowledge. <em>Nature</em>, 550<span><span class="MathJax_Preview">7676</span><script type="math/tex">7676</script></span>:354–359, October 2017. <a href="https://doi.org/10.1038/nature24270">doi:10.1038/nature24270</a>.&#160;<a class="footnote-backref" href="#fnref:29" title="Jump back to footnote 35 in the text">&#8617;</a></p>
+</li>
+<li id="fn:30">
+<p>Matej Moravčík, Martin Schmid, Neil Burch, Viliam Lisý, Dustin Morrill, Nolan Bard, Trevor Davis, Kevin Waugh, Michael Johanson, and Michael Bowling. Deepstack: expert-level artificial intelligence in heads-up no-limit poker. <em>Science</em>, 356<span><span class="MathJax_Preview">6337</span><script type="math/tex">6337</script></span>:508–513, 2017. URL: <a href="https://science.sciencemag.org/content/356/6337/508">https://science.sciencemag.org/content/356/6337/508</a>, <a href="https://arxiv.org/abs/https://science.sciencemag.org/content/356/6337/508.full.pdf">arXiv:https://science.sciencemag.org/content/356/6337/508.full.pdf</a>, <a href="https://doi.org/10.1126/science.aam6960">doi:10.1126/science.aam6960</a>.&#160;<a class="footnote-backref" href="#fnref:30" title="Jump back to footnote 36 in the text">&#8617;</a></p>
+</li>
+<li id="fn:31">
+<p>Aaron van den Oord, Sander Dieleman, Heiga Zen, Karen Simonyan, Oriol Vinyals, Alex Graves, Nal Kalchbrenner, Andrew Senior, and Koray Kavukcuoglu. Wavenet: a generative model for raw audio. <em>arXiv</em>, 2016. <a href="https://arxiv.org/abs/1609.03499">arXiv:1609.03499</a>.&#160;<a class="footnote-backref" href="#fnref:31" title="Jump back to footnote 37 in the text">&#8617;</a></p>
+</li>
+<li id="fn:32">
+<p>Timothy J. O&rsquo;Shea, Johnathan Corgan, and T. Charles Clancy. Convolutional radio modulation recognition networks. In Chrisina Jayne and Lazaros Iliadis, editors, <em>Engineering Applications of Neural Networks</em>, 213–226. Cham, 2016. Springer International Publishing.&#160;<a class="footnote-backref" href="#fnref:32" title="Jump back to footnote 38 in the text">&#8617;</a></p>
+</li>
+<li id="fn:33">
+<p>Yashar D. Hezaveh, Laurence Perreault Levasseur, and Philip J. Marshall. Fast automated analysis of strong gravitational lenses with convolutional neural networks. <em>Nature</em>, 548:555–557, 2017. <a href="https://arxiv.org/abs/1708.08842">arXiv:1708.08842</a>, <a href="https://doi.org/10.1038/nature23463">doi:10.1038/nature23463</a>.&#160;<a class="footnote-backref" href="#fnref:33" title="Jump back to footnote 39 in the text">&#8617;</a></p>
+</li>
+<li id="fn:34">
+<p>Trisha A. Hinners, Kevin Tat, and Rachel Thorp. Machine learning techniques for stellar light curve classification. <em>The Astronomical Journal</em>, 156<span><span class="MathJax_Preview">1</span><script type="math/tex">1</script></span>:7, June 2018. <a href="https://doi.org/10.3847/1538-3881/aac16d">doi:10.3847/1538-3881/aac16d</a>.&#160;<a class="footnote-backref" href="#fnref:34" title="Jump back to footnote 40 in the text">&#8617;</a></p>
+</li>
+<li id="fn:35">
+<p>Nima Sedaghat and Ashish Mahabal. Effective image differencing with convnets for real-time transient hunting. <em>arXiv</em>, October 2017. <a href="https://arxiv.org/abs/1710.01422v1">arXiv:1710.01422v1</a>, <a href="https://doi.org/10.1093/mnras/sty613">doi:10.1093/mnras/sty613</a>.&#160;<a class="footnote-backref" href="#fnref:35" title="Jump back to footnote 41 in the text">&#8617;</a></p>
+</li>
+<li id="fn:36">
+<p>Kyle A. Pearson, Leon Palafox, and Caitlin A. Griffith. Searching for exoplanets using artificial intelligence. <em>arXiv</em>, June 2017. <a href="https://arxiv.org/abs/1706.04319v2">arXiv:1706.04319v2</a>, <a href="https://doi.org/10.1093/mnras/stx2761">doi:10.1093/mnras/stx2761</a>.&#160;<a class="footnote-backref" href="#fnref:36" title="Jump back to footnote 42 in the text">&#8617;</a></p>
+</li>
+<li id="fn:37">
+<p>Sascha Caron, Germán A. Gómez-Vargas, Luc Hendriks, and Roberto Ruiz de Austri. Analyzing γ-rays of the galactic center with deep learning. <em>Journal of Cosmology and Astroparticle Physics, Volume 2018, May 2018</em>, August 2017. <a href="https://arxiv.org/abs/1708.06706v2">arXiv:1708.06706v2</a>, <a href="https://doi.org/10.1088/1475-7516/2018/05/058">doi:10.1088/1475-7516/2018/05/058</a>.&#160;<a class="footnote-backref" href="#fnref:37" title="Jump back to footnote 43 in the text">&#8617;</a></p>
+</li>
+<li id="fn:38">
+<p>Daniel George, Hongyu Shen, and E. A. Huerta. Classification and unsupervised clustering of ligo data with deep transfer learning. <em>Phys. Rev.</em>, D97<span><span class="MathJax_Preview">10</span><script type="math/tex">10</script></span>:101501, 2018. <a href="https://doi.org/10.1103/PhysRevD.97.101501">doi:10.1103/PhysRevD.97.101501</a>.&#160;<a class="footnote-backref" href="#fnref:38" title="Jump back to footnote 44 in the text">&#8617;</a></p>
+</li>
+<li id="fn:39">
+<p>Michael Zevin, Scott Coughlin, Sara Bahaadini, Emre Besler, Neda Rohani, Sarah Allen, Miriam Cabero, Kevin Crowston, Aggelos K. Katsaggelos, Shane L. Larson, Tae Kyoung Lee, Chris Lintott, Tyson B. Littenberg, Andrew Lundgren, Carsten Oesterlund, Joshua R. Smith, Laura Trouille, and Vicky Kalogera. Gravity spy: integrating advanced ligo detector characterization, machine learning, and citizen science. <em>Class. Quantum Grav. 34 <span><span class="MathJax_Preview">2017</span><script type="math/tex">2017</script></span> 064003 <span><span class="MathJax_Preview">22pp</span><script type="math/tex">22pp</script></span></em>, November 2016. <a href="https://arxiv.org/abs/1611.04596v2">arXiv:1611.04596v2</a>, <a href="https://doi.org/10.1088/1361-6382/aa5cea">doi:10.1088/1361-6382/aa5cea</a>.&#160;<a class="footnote-backref" href="#fnref:39" title="Jump back to footnote 45 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:39" title="Jump back to footnote 45 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:39" title="Jump back to footnote 45 in the text">&#8617;</a></p>
+</li>
+<li id="fn:40">
+<p>Sara Bahaadini, Neda Rohani, Scott Coughlin, Michael Zevin, Vicky Kalogera, and Aggelos K. Katsaggelos. Deep multi-view models for glitch classification. In <em>2017 IEEE International Conference on Acoustics, Speech and Signal Processing <span><span class="MathJax_Preview">ICASSP</span><script type="math/tex">ICASSP</script></span></em>, 2931–2935. 2017. <a href="https://arxiv.org/abs/1705.00034">arXiv:1705.00034</a>, <a href="https://doi.org/10.1109/ICASSP.2017.7952693">doi:10.1109/ICASSP.2017.7952693</a>.&#160;<a class="footnote-backref" href="#fnref:40" title="Jump back to footnote 46 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:40" title="Jump back to footnote 46 in the text">&#8617;</a></p>
+</li>
+<li id="fn:41">
+<p>Yann LeCun and Yoshua Bengio. Convolutional networks for images, speech, and time series. <em>The handbook of brain theory and neural networks</em>, 3361<span><span class="MathJax_Preview">10</span><script type="math/tex">10</script></span>:255–258, 1995.&#160;<a class="footnote-backref" href="#fnref:41" title="Jump back to footnote 47 in the text">&#8617;</a></p>
+</li>
+<li id="fn:42">
+<p>Elena Cuoco, Massimiliano Razzano, and Andrei Utina. Wavelet-based classification of transient signals for gravitational wave detectors. <em>2018 26th European Signal Processing Conference <span><span class="MathJax_Preview">EUSIPCO</span><script type="math/tex">EUSIPCO</script></span></em>, pages 2648–2652, 2018. <a href="https://doi.org/10.23919/EUSIPCO.2018.8553393">doi:10.23919/EUSIPCO.2018.8553393</a>.&#160;<a class="footnote-backref" href="#fnref:42" title="Jump back to footnote 48 in the text">&#8617;</a></p>
+</li>
+<li id="fn:43">
+<p>Massimiliano Razzano and Elena Cuoco. Image-based deep learning for classification of noise transients in gravitational wave detectors. <em>arXiv</em>, March 2018. <a href="https://arxiv.org/abs/1803.09933v1">arXiv:1803.09933v1</a>.&#160;<a class="footnote-backref" href="#fnref:43" title="Jump back to footnote 49 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:43" title="Jump back to footnote 49 in the text">&#8617;</a></p>
+</li>
+<li id="fn:44">
+<p>Daniel George and E. A. Huerta. Deep neural networks to enable real-time multimessenger astrophysics. <em>Phys. Rev.</em>, D97<span><span class="MathJax_Preview">4</span><script type="math/tex">4</script></span>:044039, 2018. <a href="https://arxiv.org/abs/1701.00008">arXiv:1701.00008</a>, <a href="https://doi.org/10.1103/PhysRevD.97.044039">doi:10.1103/PhysRevD.97.044039</a>.&#160;<a class="footnote-backref" href="#fnref:44" title="Jump back to footnote 50 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:44" title="Jump back to footnote 50 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:44" title="Jump back to footnote 50 in the text">&#8617;</a></p>
+</li>
+<li id="fn:45">
+<p>Alex Nitz, Ian Harry, Duncan Brown, Christopher M. Biwer, Josh Willis, Tito Dal Canton, Collin Capano, Larne Pekowsky, Thomas Dent, Andrew R. Williamson, Soumi De, Gareth Davies, Miriam Cabero, Duncan Macleod, Bernd Machenschalk, Steven Reyes, Prayush Kumar, Thomas Massinger, Francesco Pannarale, Dfinstad, Márton Tápai, Stephen Fairhurst, Sebastian Khan, Leo Singer, Sumit Kumar, Alex Nielsen, Shasvath, Idorrington92, Amber Lenon, and Hunter Gabbard. Gwastro/pycbc: pycbc release v1.15.4. 2020. <a href="https://doi.org/10.5281/ZENODO.596388">doi:10.5281/ZENODO.596388</a>.&#160;<a class="footnote-backref" href="#fnref:45" title="Jump back to footnote 51 in the text">&#8617;</a></p>
+</li>
+<li id="fn:46">
+<p>Daniel George and E. A. Huerta. Deep learning for real-time gravitational wave detection and parameter estimation: results with advanced ligo data. <em>Phys. Lett.</em>, B778:64–70, 2018. <a href="https://arxiv.org/abs/1711.03121">arXiv:1711.03121</a>, <a href="https://doi.org/10.1016/j.physletb.2017.12.053">doi:10.1016/j.physletb.2017.12.053</a>.&#160;<a class="footnote-backref" href="#fnref:46" title="Jump back to footnote 52 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:46" title="Jump back to footnote 52 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:46" title="Jump back to footnote 52 in the text">&#8617;</a><a class="footnote-backref" href="#fnref4:46" title="Jump back to footnote 52 in the text">&#8617;</a></p>
+</li>
+<li id="fn:47">
+<p>Hunter Gabbard, Michael Williams, Fergus Hayes, and Chris Messenger. Matching matched filtering with deep networks for gravitational-wave astronomy. <em>Physical review letters</em>, 120<span><span class="MathJax_Preview">14</span><script type="math/tex">14</script></span>:141103, December 2018. <a href="https://arxiv.org/abs/1712.06041v2">arXiv:1712.06041v2</a>, <a href="https://doi.org/10.1103/physrevlett.120.141103">doi:10.1103/physrevlett.120.141103</a>.&#160;<a class="footnote-backref" href="#fnref:47" title="Jump back to footnote 53 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:47" title="Jump back to footnote 53 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:47" title="Jump back to footnote 53 in the text">&#8617;</a></p>
+</li>
+<li id="fn:48">
+<p>Xiangru Li, Woliang Yu, and Xilong Fan. A method of detecting gravitational wave based on time-frequency analysis and convolutional neural networks. <em>arXiv</em>, 2017. <a href="https://arxiv.org/abs/1712.00356">arXiv:1712.00356</a>.&#160;<a class="footnote-backref" href="#fnref:48" title="Jump back to footnote 54 in the text">&#8617;</a></p>
+</li>
+<li id="fn:49">
+<p>S. Bahaadini, V. Noroozi, N. Rohani, S. Coughlin, M. Zevin, J. R. Smith, V. Kalogera, and A. Katsaggelos. Machine learning for gravity spy: glitch classification and dataset. <em>Information Sciences</em>, 444:172–186, May 2018. <a href="https://doi.org/10.1016/j.ins.2018.02.068">doi:10.1016/j.ins.2018.02.068</a>.&#160;<a class="footnote-backref" href="#fnref:49" title="Jump back to footnote 55 in the text">&#8617;</a></p>
+</li>
+<li id="fn:50">
+<p>S. B. Coughlin, S. Bahaadini, N. Rohani, M. Zevin, O. Patane, M. Harandi, C. Jackson, V. Noroozi, S. Allen, J. Areeda, M. W. Coughlin, P. Ruiz, C. P. L. Berry, K. Crowston, A. K. Katsaggelos, A. Lundgren, C. Osterlund, J. R. Smith, L. Trouille, and V. Kalogera. Classifying the unknown: discovering novel gravitational-wave detector glitches using similarity learning. <em>arXiv</em>, March 2019. <a href="https://arxiv.org/abs/1903.04058v1">arXiv:1903.04058v1</a>.&#160;<a class="footnote-backref" href="#fnref:50" title="Jump back to footnote 56 in the text">&#8617;</a></p>
+</li>
+<li id="fn:51">
+<p>Hongyu Shen, E. A. Huerta, and Zhizhen Zhao. Deep learning at scale for gravitational wave parameter estimation of binary black hole mergers. <em>arXiv</em>, March 2019. <a href="https://arxiv.org/abs/1903.01998v1">arXiv:1903.01998v1</a>.&#160;<a class="footnote-backref" href="#fnref:51" title="Jump back to footnote 57 in the text">&#8617;</a></p>
+</li>
+<li id="fn:52">
+<p>He Wang, Shichao Wu, Zhoujian Cao, Xiaolin Liu, and Jian-Yang Zhu. Gravitational-wave signal recognition of LIGO data by deep learning. <em>Physical Review D</em>, May 2020. <a href="https://arxiv.org/abs/1909.13442">arXiv:1909.13442</a>, <a href="https://doi.org/10.1103/physrevd.101.104003">doi:10.1103/physrevd.101.104003</a>.&#160;<a class="footnote-backref" href="#fnref:52" title="Jump back to footnote 58 in the text">&#8617;</a></p>
+</li>
+<li id="fn:53">
+<p>Y. Lecun, L. Bottou, Y. Bengio, and P. Haffner. Gradient-based learning applied to document recognition. <em>Proceedings of the IEEE</em>, 86<span><span class="MathJax_Preview">11</span><script type="math/tex">11</script></span>:2278–2324, November 1998. <a href="https://doi.org/10.1109/5.726791">doi:10.1109/5.726791</a>.&#160;<a class="footnote-backref" href="#fnref:53" title="Jump back to footnote 59 in the text">&#8617;</a></p>
+</li>
+<li id="fn:54">
+<p>Sophocles J. Orfanidis. <em>Introduction to Signal Processing</em>. Prentice-Hall, Inc., USA, 1995. ISBN 0132091720.&#160;<a class="footnote-backref" href="#fnref:54" title="Jump back to footnote 60 in the text">&#8617;</a></p>
+</li>
+<li id="fn:55">
+<p>Michele Vallisneri, Jonah Kanner, Roy Williams, Alan Weinstein, and Branson Stephens. The ligo open science center. <em>J. Phys. Conf. Ser.</em>, 610<span><span class="MathJax_Preview">1</span><script type="math/tex">1</script></span>:012021, 2015. <a href="https://arxiv.org/abs/1410.4839">arXiv:1410.4839</a>, <a href="https://doi.org/10.1088/1742-6596/610/1/012021">doi:10.1088/1742-6596/610/1/012021</a>.&#160;<a class="footnote-backref" href="#fnref:55" title="Jump back to footnote 61 in the text">&#8617;</a></p>
+</li>
+<li id="fn:56">
+<p>C. Biwer and others. Validating gravitational-wave detections: the advanced ligo hardware injection system. <em>Phys. Rev.</em>, D95<span><span class="MathJax_Preview">6</span><script type="math/tex">6</script></span>:062002, 2017. <a href="https://arxiv.org/abs/1612.07864">arXiv:1612.07864</a>, <a href="https://doi.org/10.1103/PhysRevD.95.062002">doi:10.1103/PhysRevD.95.062002</a>.&#160;<a class="footnote-backref" href="#fnref:56" title="Jump back to footnote 62 in the text">&#8617;</a></p>
+</li>
+<li id="fn:57">
+<p>Zhoujian Cao and Wen-Biao Han. Waveform model for an eccentric binary black hole based on the effective-one-body-numerical-relativity formalism. <em>Phys. Rev.</em>, D96<span><span class="MathJax_Preview">4</span><script type="math/tex">4</script></span>:044028, 2017. <a href="https://arxiv.org/abs/1708.00166">arXiv:1708.00166</a>, <a href="https://doi.org/10.1103/PhysRevD.96.044028">doi:10.1103/PhysRevD.96.044028</a>.&#160;<a class="footnote-backref" href="#fnref:57" title="Jump back to footnote 63 in the text">&#8617;</a></p>
+</li>
+<li id="fn:58">
+<p>Hsing-Po Pan, Chun-Yu Lin, Zhoujian Cao, and Hwei-Jang Yo. Accuracy of source localization for eccentric inspiraling binary mergers using a ground-based detector network. <em>Phys. Rev.</em>, D100<span><span class="MathJax_Preview">12</span><script type="math/tex">12</script></span>:124003, 2019. <a href="https://arxiv.org/abs/1912.04455">arXiv:1912.04455</a>, <a href="https://doi.org/10.1103/PhysRevD.100.124003">doi:10.1103/PhysRevD.100.124003</a>.&#160;<a class="footnote-backref" href="#fnref:58" title="Jump back to footnote 64 in the text">&#8617;</a></p>
+</li>
+<li id="fn:59">
+<p>The L. I. G. O. Scientific Collaboration, the Virgo Collaboration, B. P. Abbott, R. Abbott, T. D. Abbott, S. Abraham, F. Acernese, K. Ackley, C. Adams, R. X. Adhikari, V. B. Adya, C. Affeldt, M. Agathos, K. Agatsuma, N. Aggarwal, O. D. Aguiar, L. Aiello, A. Ain, P. Ajith, G. Allen, A. Allocca, M. A. Aloy, P. A. Altin, A. Amato, A. Ananyeva, S. B. Anderson, W. G. Anderson, S. V. Angelova, S. Antier, S. Appert, K. Arai, M. C. Araya, J. S. Areeda, M. Arène, N. Arnaud, K. G. Arun, S. Ascenzi, G. Ashton, S. M. Aston, P. Astone, F. Aubin, P. Aufmuth, K. AultONeal, C. Austin, V. Avendano, A. Avila-Alvarez, S. Babak, P. Bacon, F. Badaracco, M. K. M. Bader, S. Bae, P. T. Baker, F. Baldaccini, G. Ballardin, S. W. Ballmer, S. Banagiri, J. C. Barayoga, S. E. Barclay, B. C. Barish, D. Barker, K. Barkett, S. Barnum, F. Barone, B. Barr, L. Barsotti, M. Barsuglia, D. Barta, J. Bartlett, I. Bartos, R. Bassiri, A. Basti, M. Bawaj, J. C. Bayley, M. Bazzan, B. Bécsy, M. Bejger, I. Belahcene, A. S. Bell, D. Beniwal, B. K. Berger, G. Bergmann, S. Bernuzzi, J. J. Bero, C. P. L. Berry, D. Bersanetti, A. Bertolini, J. Betzwieser, R. Bhandare, J. Bidler, I. A. Bilenko, S. A. Bilgili, G. Billingsley, J. Birch, R. Birney, O. Birnholtz, S. Biscans, S. Biscoveanu, A. Bisht, M. Bitossi, M. A. Bizouard, J. K. Blackburn, J. Blackman, C. D. Blair, D. G. Blair, R. M. Blair, S. Bloemen, N. Bode, M. Boer, Y. Boetzel, G. Bogaert, F. Bondu, E. Bonilla, R. Bonnand, P. Booker, B. A. Boom, C. D. Booth, R. Bork, V. Boschi, S. Bose, K. Bossie, V. Bossilkov, J. Bosveld, Y. Bouffanais, A. Bozzi, C. Bradaschia, P. R. Brady, A. Bramley, M. Branchesi, J. E. Brau, T. Briant, J. H. Briggs, F. Brighenti, A. Brillet, M. Brinkmann, V. Brisson, P. Brockill, A. F. Brooks, D. D. Brown, S. Brunett, A. Buikema, T. Bulik, H. J. Bulten, A. Buonanno, D. Buskulic, M. J. Bustamante Rosell, C. Buy, R. L. Byer, M. Cabero, L. Cadonati, G. Cagnoli, C. Cahillane, J. Calderón Bustillo, T. A. Callister, E. Calloni, J. B. Camp, W. A. Campbell, M. Canepa, K. C. Cannon, H. Cao, J. Cao, E. Capocasa, F. Carbognani, S. Caride, M. F. Carney, G. Carullo, J. Casanueva Diaz, C. Casentini, S. Caudill, M. Cavaglià, F. Cavalier, R. Cavalieri, G. Cella, P. Cerdá-Durán, G. Cerretani, E. Cesarini, O. Chaibi, K. Chakravarti, S. J. Chamberlin, M. Chan, S. Chao, P. Charlton, E. A. Chase, E. Chassande-Mottin, D. Chatterjee, M. Chaturvedi, K. Chatziioannou, B. D. Cheeseboro, H. Y. Chen, X. Chen, Y. Chen, H. P. Cheng, C. K. Cheong, H. Y. Chia, A. Chincarini, A. Chiummo, G. Cho, H. S. Cho, M. Cho, N. Christensen, Q. Chu, S. Chua, K. W. Chung, S. Chung, G. Ciani, A. A. Ciobanu, R. Ciolfi, F. Cipriano, A. Cirone, F. Clara, J. A. Clark, P. Clearwater, F. Cleva, C. Cocchieri, E. Coccia, P. F. Cohadon, D. Cohen, R. Colgan, M. Colleoni, C. G. Collette, C. Collins, L. R. Cominsky, M. Constancio Jr., L. Conti, S. J. Cooper, P. Corban, T. R. Corbitt, I. Cordero-Carrión, K. R. Corley, N. Cornish, A. Corsi, S. Cortese, C. A. Costa, R. Cotesta, M. W. Coughlin, S. B. Coughlin, J. P. Coulon, S. T. Countryman, P. Couvares, P. B. Covas, E. E. Cowan, D. M. Coward, M. J. Cowart, D. C. Coyne, R. Coyne, J. D. E. Creighton, T. D. Creighton, J. Cripe, M. Croquette, S. G. Crowder, T. J. Cullen, A. Cumming, L. Cunningham, E. Cuoco, T. Dal Canton, G. Dálya, S. L. Danilishin, S. D&rsquo;Antonio, K. Danzmann, A. Dasgupta, C. F. Da Silva Costa, L. E. H. Datrier, V. Dattilo, I. Dave, M. Davier, D. Davis, E. J. Daw, D. DeBra, M. Deenadayalan, J. Degallaix, M. De Laurentis, S. Deléglise, W. Del Pozzo, L. M. DeMarchi, N. Demos, T. Dent, R. De Pietri, J. Derby, R. De Rosa, C. De Rossi, R. DeSalvo, O. de Varona, S. Dhurandhar, M. C. Díaz, T. Dietrich, L. Di Fiore, M. Di Giovanni, T. Di Girolamo, A. Di Lieto, B. Ding, S. Di Pace, I. Di Palma, F. Di Renzo, A. Dmitriev, Z. Doctor, F. Donovan, K. L. Dooley, S. Doravari, I. Dorrington, T. P. Downes, M. Drago, J. C. Driggers, Z. Du, J. G. Ducoin, P. Dupej, S. E. Dwyer, P. J. Easter, T. B. Edo, M. C. Edwards, A. Effler, P. Ehrens, J. Eichholz, S. S. Eikenberry, M. Eisenmann, R. A. Eisenstein, R. C. Essick, H. Estelles, D. Estevez, Z. B. Etienne, T. Etzel, M. Evans, T. M. Evans, V. Fafone, H. Fair, S. Fairhurst, X. Fan, S. Farinon, B. Farr, W. M. Farr, E. J. Fauchon-Jones, M. Favata, M. Fays, M. Fazio, C. Fee, J. Feicht, M. M. Fejer, F. Feng, A. Fernandez-Galiana, I. Ferrante, E. C. Ferreira, T. A. Ferreira, F. Ferrini, F. Fidecaro, I. Fiori, D. Fiorucci, M. Fishbach, R. P. Fisher, J. M. Fishner, M. Fitz-Axen, R. Flaminio, M. Fletcher, E. Flynn, H. Fong, J. A. Font, P. W. F. Forsyth, J. D. Fournier, S. Frasca, F. Frasconi, Z. Frei, A. Freise, R. Frey, V. Frey, P. Fritschel, V. V. Frolov, P. Fulda, M. Fyffe, H. A. Gabbard, B. U. Gadre, S. M. Gaebel, J. R. Gair, L. Gammaitoni, M. R. Ganija, S. G. Gaonkar, A. Garcia, C. García-Quirós, F. Garufi, B. Gateley, S. Gaudio, G. Gaur, V. Gayathri, G. Gemme, E. Genin, A. Gennai, D. George, J. George, L. Gergely, V. Germain, S. Ghonge, Abhirup Ghosh, Archisman Ghosh, S. Ghosh, B. Giacomazzo, J. A. Giaime, K. D. Giardina, A. Giazotto, K. Gill, G. Giordano, L. Glover, P. Godwin, E. Goetz, R. Goetz, B. Goncharov, G. González, J. M. Gonzalez Castro, A. Gopakumar, M. L. Gorodetsky, S. E. Gossan, M. Gosselin, R. Gouaty, A. Grado, C. Graef, M. Granata, A. Grant, S. Gras, P. Grassia, C. Gray, R. Gray, G. Greco, A. C. Green, R. Green, E. M. Gretarsson, P. Groot, H. Grote, S. Grunewald, P. Gruning, G. M. Guidi, H. K. Gulati, Y. Guo, A. Gupta, M. K. Gupta, E. K. Gustafson, R. Gustafson, L. Haegel, O. Halim, B. R. Hall, E. D. Hall, E. Z. Hamilton, G. Hammond, M. Haney, M. M. Hanke, J. Hanks, C. Hanna, M. D. Hannam, O. A. Hannuksela, J. Hanson, T. Hardwick, K. Haris, J. Harms, G. M. Harry, I. W. Harry, C. J. Haster, K. Haughian, F. J. Hayes, J. Healy, A. Heidmann, M. C. Heintze, H. Heitmann, P. Hello, G. Hemming, M. Hendry, I. S. Heng, J. Hennig, A. W. Heptonstall, Francisco Hernandez Vivanco, M. Heurs, S. Hild, T. Hinderer, D. Hoak, S. Hochheim, D. Hofman, A. M. Holgado, N. A. Holland, K. Holt, D. E. Holz, P. Hopkins, C. Horst, J. Hough, E. J. Howell, C. G. Hoy, A. Hreibi, Y. Huang, E. A. Huerta, D. Huet, B. Hughey, M. Hulko, S. Husa, S. H. Huttner, T. Huynh-Dinh, B. Idzkowski, A. Iess, C. Ingram, R. Inta, G. Intini, B. Irwin, H. N. Isa, J. M. Isac, M. Isi, B. R. Iyer, K. Izumi, T. Jacqmin, S. J. Jadhav, K. Jani, N. N. Janthalur, P. Jaranowski, A. C. Jenkins, J. Jiang, D. S. Johnson, N. K. Johnson-McDaniel, A. W. Jones, D. I. Jones, R. Jones, R. J. G. Jonker, L. Ju, J. Junker, C. V. Kalaghatgi, V. Kalogera, B. Kamai, S. Kandhasamy, G. Kang, J. B. Kanner, S. J. Kapadia, S. Karki, K. S. Karvinen, R. Kashyap, M. Kasprzack, S. Katsanevas, E. Katsavounidis, W. Katzman, S. Kaufer, K. Kawabe, N. V. Keerthana, F. Kéfélian, D. Keitel, R. Kennedy, J. S. Key, F. Y. Khalili, H. Khan, I. Khan, S. Khan, Z. Khan, E. A. Khazanov, M. Khursheed, N. Kijbunchoo, Chunglee Kim, J. C. Kim, K. Kim, W. Kim, W. S. Kim, Y. M. Kim, C. Kimball, E. J. King, P. J. King, M. Kinley-Hanlon, R. Kirchhoff, J. S. Kissel, L. Kleybolte, J. H. Klika, S. Klimenko, T. D. Knowles, P. Koch, S. M. Koehlenbeck, G. Koekoek, S. Koley, V. Kondrashov, A. Kontos, N. Koper, M. Korobko, W. Z. Korth, I. Kowalska, D. B. Kozak, V. Kringel, N. Krishnendu, A. Królak, G. Kuehn, A. Kumar, P. Kumar, R. Kumar, S. Kumar, L. Kuo, A. Kutynia, S. Kwang, B. D. Lackey, K. H. Lai, T. L. Lam, M. Landry, B. B. Lane, R. N. Lang, J. Lange, B. Lantz, R. K. Lanza, A. Lartaux-Vollard, P. D. Lasky, M. Laxen, A. Lazzarini, C. Lazzaro, P. Leaci, S. Leavey, Y. K. Lecoeuche, C. H. Lee, H. K. Lee, H. M. Lee, H. W. Lee, J. Lee, K. Lee, J. Lehmann, A. Lenon, N. Leroy, N. Letendre, Y. Levin, J. Li, K. J. L. Li, T. G. F. Li, X. Li, F. Lin, F. Linde, S. D. Linker, T. B. Littenberg, J. Liu, X. Liu, R. K. L. Lo, N. A. Lockerbie, L. T. London, A. Longo, M. Lorenzini, V. Loriette, M. Lormand, G. Losurdo, J. D. Lough, C. O. Lousto, G. Lovelace, M. E. Lower, H. Lück, D. Lumaca, A. P. Lundgren, R. Lynch, Y. Ma, R. Macas, S. Macfoy, M. MacInnis, D. M. Macleod, A. Macquet, F. Magaña-Sandoval, L. Magaña Zertuche, R. M. Magee, E. Majorana, I. Maksimovic, A. Malik, N. Man, V. Mandic, V. Mangano, G. L. Mansell, M. Manske, M. Mantovani, F. Marchesoni, F. Marion, S. Márka, Z. Márka, C. Markakis, A. S. Markosyan, A. Markowitz, E. Maros, A. Marquina, S. Marsat, F. Martelli, I. W. Martin, R. M. Martin, D. V. Martynov, K. Mason, E. Massera, A. Masserot, T. J. Massinger, M. Masso-Reid, S. Mastrogiovanni, A. Matas, F. Matichard, L. Matone, N. Mavalvala, N. Mazumder, J. J. McCann, R. McCarthy, D. E. McClelland, S. McCormick, L. McCuller, S. C. McGuire, J. McIver, D. J. McManus, T. McRae, S. T. McWilliams, D. Meacher, G. D. Meadors, M. Mehmet, A. K. Mehta, J. Meidam, A. Melatos, G. Mendell, R. A. Mercer, L. Mereni, E. L. Merilh, M. Merzougui, S. Meshkov, C. Messenger, C. Messick, R. Metzdorff, P. M. Meyers, H. Miao, C. Michel, H. Middleton, E. E. Mikhailov, L. Milano, A. L. Miller, A. Miller, M. Millhouse, J. C. Mills, M. C. Milovich-Goff, O. Minazzoli, Y. Minenkov, A. Mishkin, C. Mishra, T. Mistry, S. Mitra, V. P. Mitrofanov, G. Mitselmakher, R. Mittleman, G. Mo, D. Moffa, K. Mogushi, S. R. P. Mohapatra, M. Montani, C. J. Moore, D. Moraru, G. Moreno, S. Morisaki, B. Mours, C. M. Mow-Lowry, Arunava Mukherjee, D. Mukherjee, S. Mukherjee, N. Mukund, A. Mullavey, J. Munch, E. A. Muñiz, M. Muratore, P. G. Murray, A. Nagar, I. Nardecchia, L. Naticchioni, R. K. Nayak, J. Neilson, G. Nelemans, T. J. N. Nelson, M. Nery, A. Neunzert, K. Y. Ng, S. Ng, P. Nguyen, D. Nichols, A. B. Nielsen, S. Nissanke, A. Nitz, F. Nocera, C. North, L. K. Nuttall, M. Obergaulinger, J. Oberling, B. D. O&rsquo;Brien, G. D. O&rsquo;Dea, G. H. Ogin, J. J. Oh, S. H. Oh, F. Ohme, H. Ohta, M. A. Okada, M. Oliver, P. Oppermann, Richard J. Oram, B. O&rsquo;Reilly, R. G. Ormiston, L. F. Ortega, R. O&rsquo;Shaughnessy, S. Ossokine, D. J. Ottaway, H. Overmier, B. J. Owen, A. E. Pace, G. Pagano, M. A. Page, A. Pai, S. A. Pai, J. R. Palamos, O. Palashov, C. Palomba, A. Pal-Singh, Huang-Wei Pan, B. Pang, P. T. H. Pang, C. Pankow, F. Pannarale, B. C. Pant, F. Paoletti, A. Paoli, M. A. Papa, A. Parida, W. Parker, D. Pascucci, A. Pasqualetti, R. Passaquieti, D. Passuello, M. Patil, B. Patricelli, B. L. Pearlstone, C. Pedersen, M. Pedraza, R. Pedurand, A. Pele, S. Penn, A. Perego, C. J. Perez, A. Perreca, H. P. Pfeiffer, M. Phelps, K. S. Phukon, O. J. Piccinni, M. Pichot, F. Piergiovanni, G. Pillant, L. Pinard, M. Pirello, M. Pitkin, R. Poggiani, D. Y. T. Pong, S. Ponrathnam, P. Popolizio, E. K. Porter, J. Powell, A. K. Prajapati, J. Prasad, K. Prasai, R. Prasanna, G. Pratten, T. Prestegard, S. Privitera, G. A. Prodi, L. G. Prokhorov, O. Puncken, M. Punturo, P. Puppo, M. Pürrer, H. Qi, V. Quetschke, P. J. Quinonez, E. A. Quintero, R. Quitzow-James, F. J. Raab, H. Radkins, N. Radulescu, P. Raffai, S. Raja, C. Rajan, B. Rajbhandari, M. Rakhmanov, K. E. Ramirez, A. Ramos-Buades, Javed Rana, K. Rao, P. Rapagnani, V. Raymond, M. Razzano, J. Read, T. Regimbau, L. Rei, S. Reid, D. H. Reitze, W. Ren, F. Ricci, C. J. Richardson, J. W. Richardson, P. M. Ricker, G. M. Riemenschneider, K. Riles, M. Rizzo, N. A. Robertson, R. Robie, F. Robinet, A. Rocchi, L. Rolland, J. G. Rollins, V. J. Roma, M. Romanelli, R. Romano, C. L. Romel, J. H. Romie, K. Rose, D. Rosińska, S. G. Rosofsky, M. P. Ross, S. Rowan, A. Rüdiger, P. Ruggi, G. Rutins, K. Ryan, S. Sachdev, T. Sadecki, M. Sakellariadou, O. Salafia, L. Salconi, M. Saleem, F. Salemi, A. Samajdar, L. Sammut, E. J. Sanchez, L. E. Sanchez, N. Sanchis-Gual, V. Sandberg, J. R. Sanders, K. A. Santiago, N. Sarin, B. Sassolas, B. S. Sathyaprakash, P. R. Saulson, O. Sauter, R. L. Savage, P. Schale, M. Scheel, J. Scheuer, P. Schmidt, R. Schnabel, R. M. S. Schofield, A. Schönbeck, E. Schreiber, B. W. Schulte, B. F. Schutz, S. G. Schwalbe, J. Scott, S. M. Scott, E. Seidel, D. Sellers, A. S. Sengupta, N. Sennett, D. Sentenac, V. Sequino, A. Sergeev, Y. Setyawati, D. A. Shaddock, T. Shaffer, M. S. Shahriar, M. B. Shaner, L. Shao, P. Sharma, P. Shawhan, H. Shen, R. Shink, D. H. Shoemaker, D. M. Shoemaker, S. ShyamSundar, K. Siellez, M. Sieniawska, D. Sigg, A. D. Silva, L. P. Singer, N. Singh, A. Singhal, A. M. Sintes, S. Sitmukhambetov, V. Skliris, B. J. J. Slagmolen, T. J. Slaven-Blair, J. R. Smith, R. J. E. Smith, S. Somala, E. J. Son, B. Sorazu, F. Sorrentino, T. Souradeep, E. Sowell, A. P. Spencer, A. K. Srivastava, V. Srivastava, K. Staats, C. Stachie, M. Standke, D. A. Steer, M. Steinke, J. Steinlechner, S. Steinlechner, D. Steinmeyer, S. P. Stevenson, D. Stocks, R. Stone, D. J. Stops, K. A. Strain, G. Stratta, S. E. Strigin, A. Strunk, R. Sturani, A. L. Stuver, V. Sudhir, T. Z. Summerscales, L. Sun, S. Sunil, J. Suresh, P. J. Sutton, B. L. Swinkels, M. J. Szczepańczyk, M. Tacca, S. C. Tait, C. Talbot, D. Talukder, D. B. Tanner, M. Tápai, A. Taracchini, J. D. Tasson, R. Taylor, F. Thies, M. Thomas, P. Thomas, S. R. Thondapu, K. A. Thorne, E. Thrane, Shubhanshu Tiwari, Srishti Tiwari, V. Tiwari, K. Toland, M. Tonelli, Z. Tornasi, A. Torres-Forné, C. I. Torrie, D. Töyrä, F. Travasso, G. Traylor, M. C. Tringali, A. Trovato, L. Trozzo, R. Trudeau, K. W. Tsang, M. Tse, R. Tso, L. Tsukada, D. Tsuna, D. Tuyenbayev, K. Ueno, D. Ugolini, C. S. Unnikrishnan, A. L. Urban, S. A. Usman, H. Vahlbruch, G. Vajente, G. Valdes, N. van Bakel, M. van Beuzekom, J. F. J. van den Brand, C. Van Den Broeck, D. C. Vander-Hyde, J. V. van Heijningen, L. van der Schaaf, A. A. van Veggel, M. Vardaro, V. Varma, S. Vass, M. Vasúth, A. Vecchio, G. Vedovato, J. Veitch, P. J. Veitch, K. Venkateswara, G. Venugopalan, D. Verkindt, F. Vetrano, A. Viceré, A. D. Viets, D. J. Vine, J. Y. Vinet, S. Vitale, T. Vo, H. Vocca, C. Vorvick, S. P. Vyatchanin, A. R. Wade, L. E. Wade, M. Wade, R. Walet, M. Walker, L. Wallace, S. Walsh, G. Wang, H. Wang, J. Z. Wang, W. H. Wang, Y. F. Wang, R. L. Ward, Z. A. Warden, J. Warner, M. Was, J. Watchi, B. Weaver, L. W. Wei, M. Weinert, A. J. Weinstein, R. Weiss, F. Wellmann, L. Wen, E. K. Wessel, P. Weßels, J. W. Westhouse, K. Wette, J. T. Whelan, L. V. White, B. F. Whiting, C. Whittle, D. M. Wilken, D. Williams, A. R. Williamson, J. L. Willis, B. Willke, M. H. Wimmer, W. Winkler, C. C. Wipf, H. Wittel, G. Woan, J. Woehler, J. K. Wofford, J. Worden, J. L. Wright, D. S. Wu, D. M. Wysocki, L. Xiao, H. Yamamoto, C. C. Yancey, L. Yang, M. J. Yap, M. Yazback, D. W. Yeeles, Hang Yu, Haocun Yu, S. H. R. Yuen, M. Yvert, A. K. Zadrożny, M. Zanolin, F. Zappa, T. Zelenova, J. P. Zendri, M. Zevin, J. Zhang, L. Zhang, T. Zhang, C. Zhao, M. Zhou, Z. Zhou, X. J. Zhu, A. B. Zimmerman, Y. Zlochower, M. E. Zucker, and J. Zweizig. Gwtc-1: a gravitational-wave transient catalog of compact binary mergers observed by ligo and virgo during the first and second observing runs. <em>Phys. Rev.</em>, X9<span><span class="MathJax_Preview">3</span><script type="math/tex">3</script></span>:031040, 2019. <a href="https://arxiv.org/abs/1811.12907">arXiv:1811.12907</a>, <a href="https://doi.org/10.1103/PhysRevX.9.031040">doi:10.1103/PhysRevX.9.031040</a>.&#160;<a class="footnote-backref" href="#fnref:59" title="Jump back to footnote 65 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:59" title="Jump back to footnote 65 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:59" title="Jump back to footnote 65 in the text">&#8617;</a></p>
+</li>
+<li id="fn:60">
+<p>Timothy D. Gebhard, Niki Kilbertus, Ian Harry, and Bernhard Schölkopf. Convolutional neural networks: a magic bullet for gravitational-wave detection? <em>arXiv</em>, April 2019. <a href="https://arxiv.org/abs/1904.08693v1">arXiv:1904.08693v1</a>.&#160;<a class="footnote-backref" href="#fnref:60" title="Jump back to footnote 66 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:60" title="Jump back to footnote 66 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:60" title="Jump back to footnote 66 in the text">&#8617;</a><a class="footnote-backref" href="#fnref4:60" title="Jump back to footnote 66 in the text">&#8617;</a></p>
+</li>
+<li id="fn:61">
+<p>J. Slutsky and others. Methods for reducing false alarms in searches for compact binary coalescences in ligo data. <em>Class. Quant. Grav.</em>, 27:165023, 2010. <a href="https://arxiv.org/abs/1004.0998">arXiv:1004.0998</a>, <a href="https://doi.org/10.1088/0264-9381/27/16/165023">doi:10.1088/0264-9381/27/16/165023</a>.&#160;<a class="footnote-backref" href="#fnref:61" title="Jump back to footnote 67 in the text">&#8617;</a></p>
+</li>
+<li id="fn:62">
+<p>Alexander H. Nitz, Collin Capano, Alex B. Nielsen, Steven Reyes, Rebecca White, Duncan A. Brown, and Badri Krishnan. 1-ogc: the first open gravitational-wave catalog of binary mergers from analysis of public advanced ligo data. <em>arXiv</em>, November 2018. <a href="https://arxiv.org/abs/1811.01921v3">arXiv:1811.01921v3</a>, <a href="https://doi.org/10.3847/1538-4357/ab0108">doi:10.3847/1538-4357/ab0108</a>.&#160;<a class="footnote-backref" href="#fnref:62" title="Jump back to footnote 68 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:62" title="Jump back to footnote 68 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:62" title="Jump back to footnote 68 in the text">&#8617;</a></p>
+</li>
+<li id="fn:63">
+<p>Alexander H. Nitz, Thomas Dent, Gareth S. Davies, Sumit Kumar, Collin D. Capano, Ian Harry, Simone Mazzon, Laura Nuttall, Andrew Lundgren, and Marton Tápai. 2-ogc: open gravitational-wave catalog of binary mergers from analysis of public advanced ligo and virgo data. <em>arXiv</em>, 2019. <a href="https://arxiv.org/abs/1910.05331">arXiv:1910.05331</a>.&#160;<a class="footnote-backref" href="#fnref:63" title="Jump back to footnote 69 in the text">&#8617;</a></p>
+</li>
+<li id="fn:64">
+<p>Scott Coughlin. Updated gravity spy data set. 2018. <a href="https://doi.org/10.5281/ZENODO.1476551">doi:10.5281/ZENODO.1476551</a>.&#160;<a class="footnote-backref" href="#fnref:64" title="Jump back to footnote 70 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:64" title="Jump back to footnote 70 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:64" title="Jump back to footnote 70 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+                <p>He Wang@BNU</p>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../mathjax-config.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

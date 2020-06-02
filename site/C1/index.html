@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="He Wang">
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>第一章 绪论 - GWDL</title>
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/rust.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <!-- Expander button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="..">GWDL</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li >
+                                <a href="..">首页</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">正文 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../Abstract/">摘要</a>
+</li>
+                                    
+<li class="active">
+    <a href="./">第一章 绪论</a>
+</li>
+                                    
+<li >
+    <a href="../C2/">第二章 引力波探测和数据分析理论</a>
+</li>
+                                    
+<li >
+    <a href="../C3/">第三章 深度学习的理论基础</a>
+</li>
+                                    
+<li >
+    <a href="../C4/">第四章 引力波探测中关于神经网络的可解释性研究</a>
+</li>
+                                    
+<li >
+    <a href="../C5/">第五章 卷积神经网络结构对引力波信号识别的性能研究</a>
+</li>
+                                    
+<li >
+    <a href="../C6/">第六章 匹配滤波-卷积神经网络(MF-CNN)模型的应用研究</a>
+</li>
+                                    
+<li >
+    <a href="../C7/">第七章 总结与展望</a>
+</li>
+                                    
+<li >
+    <a href="../Appendix/">附录</a>
+</li>
+                                </ul>
+                            </li>
+                            <li >
+                                <a href="../Acknowledgement/">致谢</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li >
+                                <a rel="next" href="../Abstract/">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li >
+                                <a rel="prev" href="../C2/">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/iphysresearch/PhDthesis_html/edit/master/docs/C1.md"><i class="fa fa-github"></i> Edit on GitHub</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#_1">第一章 绪论</a></li>
+            <li><a href="#11">1.1 引言</a></li>
+            <li><a href="#12">1.2 多信使天文学</a></li>
+            <li><a href="#13">1.3 研究现状、机遇与挑战</a></li>
+            <li><a href="#14">1.4 本文研究的目标与框架</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<p></br></p>
+<div class="toc">
+<ul>
+<li><a href="#_1">第一章 绪论</a><ul>
+<li><a href="#11">1.1 引言</a></li>
+<li><a href="#12">1.2 多信使天文学</a></li>
+<li><a href="#13">1.3 研究现状、机遇与挑战</a></li>
+<li><a href="#14">1.4 本文研究的目标与框架</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<p></br></p>
+<hr />
+<h1 id="_1">第一章 绪论<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p></br></p>
+<h2 id="11">1.1 引言<a class="headerlink" href="#11" title="Permanent link">&para;</a></h2>
+<p></br></p>
+<p>近几年，随着引力波 (Gravitational Wave, GW) 探测技术不断地进步和蓬勃发展，无论是对于观测天文学还是理论物理学，我们对引力波的认识与研究已经发生了翻天覆地的变化。坐落于美国的高新激光干涉仪引力波天文台 (advanced Laser Interferometric Gravitational wave Observatory, aLIGO) 在第一次观测运行期间 (2015 - 2016)，就首次探测到了宇宙当中所存在的强引力场相互作用 <sup id="fnref:1"><a class="footnote-ref" href="#fn:1">3</a></sup> <sup id="fnref:2"><a class="footnote-ref" href="#fn:2">4</a></sup>。我们对双黑洞 (Binary Black Hole, BBH) 波源系统产生的引力波直接进行观测，不仅可以为我们提供在强引力场效应下，双黑洞系统并合碰撞及其形成演化机制的实验证据 <sup id="fnref2:1"><a class="footnote-ref" href="#fn:1">3</a></sup> <sup id="fnref2:2"><a class="footnote-ref" href="#fn:2">4</a></sup> <sup id="fnref:3"><a class="footnote-ref" href="#fn:3">5</a></sup> <sup id="fnref:4"><a class="footnote-ref" href="#fn:4">6</a></sup>，同时也为恒星级黑洞的存在性，以及对黑洞角动量等物理参数的观测数据提供非常可靠的实验依据 <sup id="fnref:5"><a class="footnote-ref" href="#fn:5">7</a></sup> <sup id="fnref:6"><a class="footnote-ref" href="#fn:6">8</a></sup> <sup id="fnref:7"><a class="footnote-ref" href="#fn:7">9</a></sup> <sup id="fnref:8"><a class="footnote-ref" href="#fn:8">10</a></sup> <sup id="fnref:9"><a class="footnote-ref" href="#fn:9">11</a></sup> <sup id="fnref:10"><a class="footnote-ref" href="#fn:10">12</a></sup> <sup id="fnref:11"><a class="footnote-ref" href="#fn:11">13</a></sup> <sup id="fnref:12"><a class="footnote-ref" href="#fn:12">14</a></sup> <sup id="fnref3:2"><a class="footnote-ref" href="#fn:2">4</a></sup>。</p>
+<p>位于欧洲的高新引力波天文台 (advanced Virgo, aVirgo) <sup id="fnref:13"><a class="footnote-ref" href="#fn:13">15</a></sup> 顺利地在第二次观测运行 (2016 - 2017) 中加入 aLIGO 的联合探测计划。在其运行期间的一次 BBH 事件 (GW170814) 观测中，三个观测站首次地实现了联合组网观测，广义相对论的理论预言再一次得到了更加精确的实验检验，并且显著地提高了引力波事件天球定位的精确度 <sup id="fnref:14"><a class="footnote-ref" href="#fn:14">16</a></sup>，其性能的提升为之后同年首次探测到双中子星 (Binary Neutron Stars, BNSs) 并合事件及其所伴随着电磁对应体 (electromagnetic, EM) 的能谱等观测数据 <sup id="fnref:15"><a class="footnote-ref" href="#fn:15">17</a></sup> 提供了关键性实验支撑。这一次多信使事件 (GW170817) 最终确认为短伽玛射线暴 (gamma-ray bursts, GRBs) 为核心驱动的双中子星并合事件，其形成期间所产生的半数都是重于铁的物质 <sup id="fnref2:15"><a class="footnote-ref" href="#fn:15">17</a></sup> <sup id="fnref:16"><a class="footnote-ref" href="#fn:16">18</a></sup> <sup id="fnref:17"><a class="footnote-ref" href="#fn:17">19</a></sup> <sup id="fnref:18"><a class="footnote-ref" href="#fn:18">20</a></sup> <sup id="fnref:19"><a class="footnote-ref" href="#fn:19">21</a></sup> <sup id="fnref:20"><a class="footnote-ref" href="#fn:20">22</a></sup> <sup id="fnref:21"><a class="footnote-ref" href="#fn:21">23</a></sup> <sup id="fnref:22"><a class="footnote-ref" href="#fn:22">24</a></sup> <sup id="fnref:23"><a class="footnote-ref" href="#fn:23">25</a></sup> <sup id="fnref:24"><a class="footnote-ref" href="#fn:24">26</a></sup> <sup id="fnref:25"><a class="footnote-ref" href="#fn:25">27</a></sup>。 在未来，我们期待可以获得更多关于双中子星、中子星-黑洞等各类并合事件的探测结果，以及与辐射引力波所相关的天体形成机制的信息，如引力波波源系统是否也会产生短 GRBs、快速转动的极超新星 (hypernovae) 是否是长时 GRBs 以及塌缩星 (collapsars) 等天体现象的起源等等 <sup id="fnref2:24"><a class="footnote-ref" href="#fn:24">26</a></sup> <sup id="fnref2:25"><a class="footnote-ref" href="#fn:25">27</a></sup>。</p>
+<p>在 LIGO 科学合作组织 (LIGO Scientific Collaboration, LSC) 取得了一系列重大发现之后，位于世界各地的激光干涉引力波天文台从 2019 年 4 月开始了第三次观测运行 (2019 - 2020)。可以相信，随着未来几年 aLIGO 和 aVirgo 等探测器的不断发展和设计灵敏度的进一步地提升，观测到越来越多的引力波事件将会逐步形成常态。而且，在美国、欧洲和亚洲部署的引力波观测站实现全球联网后，将会进一步促进引力波天文学和多信使天文学的蓬勃发展 <sup id="fnref:26"><a class="footnote-ref" href="#fn:26">28</a></sup> <sup id="fnref2:13"><a class="footnote-ref" href="#fn:13">15</a></sup> <sup id="fnref:27"><a class="footnote-ref" href="#fn:27">29</a></sup> <sup id="fnref:28"><a class="footnote-ref" href="#fn:28">30</a></sup>。</p>
+<p></br></p>
+<h2 id="12">1.2 多信使天文学<a class="headerlink" href="#12" title="Permanent link">&para;</a></h2>
+<p></br></p>
+<p>在引力波天文学中，高性能计算 (High-Performance Computing, HPC) 对引力波波源(如黑洞、中子星和超新星等)的动力学演化，并实现高精度的数值相对论 (numerical relativity, NR) 模拟都有着举足轻重的地位。其所追求的目标是：1. 证实爱因斯坦的广义相对论能够精确地描述宇宙中的极端天体现象；2. 构建对应天体现象的引力波模板信号，有助于从强噪声数据中提取引力波信号，并推断其所对应引力波波源系统的天体物理性质 <sup id="fnref:29"><a class="footnote-ref" href="#fn:29">31</a></sup>。</p>
+<p>通过对引力波信使所携带的信息进行分析，我们可以从观测到的天体现象中直接了解到诸多我们所关心的重要物理问题，如不辐射光子的天体现象、宇宙大尺度的结构，严格意义下强引力场中的动力学机制、恒星的演化过程、恒星级和超大质量黑洞的形成和演化机制，以及包括暗物质和暗能量等等 <sup id="fnref:30"><a class="footnote-ref" href="#fn:30">32</a></sup> <sup id="fnref4:2"><a class="footnote-ref" href="#fn:2">4</a></sup>。此外，多信使天文学 (Multi-messenger astrophysics) 会更关注浩瀚宇宙中会发生的极端天体现象，如双中子星 (BNSs)、中子星-黑洞、中等质量黑洞(<span><span class="MathJax_Preview">100M_\odot-500M_\odot</span><script type="math/tex">100M_\odot-500M_\odot</script></span>)之间或恒星级黑洞与中子星之间的碰撞并合事件，以及带有偏心率的双星并合系统、超新星塌缩和其他很多不可预期的天体事件。引力波天文学与各类强大的光学望远镜 (如 Dark Energy Survey (DES) <sup id="fnref:31"><a class="footnote-ref" href="#fn:31">33</a></sup>, the Large Synoptic Survey Telescope (LSST) <sup id="fnref:32"><a class="footnote-ref" href="#fn:32">34</a></sup>, Euclid <sup id="fnref:33"><a class="footnote-ref" href="#fn:33">35</a></sup> <sup id="fnref:34"><a class="footnote-ref" href="#fn:34">36</a></sup>, and WFIRST <sup id="fnref:35"><a class="footnote-ref" href="#fn:35">37</a></sup> <sup id="fnref:36"><a class="footnote-ref" href="#fn:36">38</a></sup>)进行联合观测活动，将使得同步观测到相应引力波事件的电磁 (electromagnetic, EM) 对应体成为可能。这种协同观测技术也会由其他信使类型 (如光子、中微子和宇宙射线等 <sup id="fnref2:8"><a class="footnote-ref" href="#fn:8">10</a></sup>) 的存在，从而进一步充实我们对科学研究发现的理解。当我们能够对引力波、EM 和各种天体粒子等信使来源实现同步观测时，我们可以获得前所未有的丰富观测数据和更加清晰直观的物理图像，可能涉及到包括宇宙中基本相互作用力、伽马暴的起源、极端暗物质的物态方程、超新星内部的物理、量子场论和强引力场的边界效应等等，也会为更进一步构建宇宙的大统一理论提供充分可靠的研究数据和必要的理论论据素材 <sup id="fnref:37"><a class="footnote-ref" href="#fn:37">39</a></sup> <sup id="fnref:38"><a class="footnote-ref" href="#fn:38">40</a></sup>。</p>
+<p>因此，多信使天文学是天体物理学的未来。这需要全球不同研究团队之间实现通力合作，充分发挥联合观测的优势。我们首先会期待引力波探测器可以在第一时间内给出响应，并同时立即为其他天文学家预警，然后立刻在数秒间将其望远镜朝向其所预告的天球方位，由此可能会接收到中微子、宇宙射线或其他可观测天体粒子的信息载体。这种实时的多信使天文学观测将会有助于我们了解宇宙的起源、演化和归宿。从现实意义上来说，多信使天文学要求响应的延迟要达到非常低才有意义。所以，实时搜寻引力波疑似事件并给出其相应波源的 EM 对应体 <sup id="fnref2:16"><a class="footnote-ref" href="#fn:16">18</a></sup> <sup id="fnref2:17"><a class="footnote-ref" href="#fn:17">19</a></sup> <sup id="fnref2:18"><a class="footnote-ref" href="#fn:18">20</a></sup> <sup id="fnref2:19"><a class="footnote-ref" href="#fn:19">21</a></sup> <sup id="fnref2:21"><a class="footnote-ref" href="#fn:21">23</a></sup> <sup id="fnref2:22"><a class="footnote-ref" href="#fn:22">24</a></sup> <sup id="fnref2:23"><a class="footnote-ref" href="#fn:23">25</a></sup> 是非常有必要的，这可以实现快速地在相应频带上对 EM 和天体粒子进行观测 <sup id="fnref:39"><a class="footnote-ref" href="#fn:39">41</a></sup> <sup id="fnref:40"><a class="footnote-ref" href="#fn:40">42</a></sup>。通过多样的信使协同观测，能够即时地获取完整的关于宇宙天体事件的相关信息，由此可以得到非常全面的独特视角来解释一些尚未完全理解的动力学演化机制 <sup id="fnref3:24"><a class="footnote-ref" href="#fn:24">26</a></sup> <sup id="fnref3:25"><a class="footnote-ref" href="#fn:25">27</a></sup>，比方说，如果双中子星所产生的引力波在旋进过程中就能够探测识别到的话，那么基于实时的数据处理算法确定其天球方位的时间，就可以先于碰撞并合的十几秒被确定下来，那么天文望远镜就可以迅速转向过去，有望能够在第一时间就可以观测到完整的千新星 (kilonova) 爆发，而不会仅在其并合之后数小时才观测到对应的余辉辐射 (afterglow) <sup id="fnref3:15"><a class="footnote-ref" href="#fn:15">17</a></sup>。</p>
+<p></br></p>
+<h2 id="13">1.3 研究现状、机遇与挑战<a class="headerlink" href="#13" title="Permanent link">&para;</a></h2>
+<p></br></p>
+<p>在近几年，多信使天文学 (Multi-messenger astrophysics, MMA) <sup id="fnref2:37"><a class="footnote-ref" href="#fn:37">39</a></sup> <sup id="fnref:41"><a class="footnote-ref" href="#fn:41">43</a></sup> 已成为一个发展快速的多学科交叉的新兴研究领域。该领域充分利用了大数据存储、快速批量的数据处理等诸多技术，实现了对宇宙中来自同一天体事件的各类信使 (如电磁波、宇宙射线、引力波和中微子等) 进行协同观测。随着引力波多信使天文学时代的帷幕逐渐拉开，越来越多的引力波、电磁对应体及其宿主星系的探测将会更新我们对于物理学、天文学和宇宙学诸多问题的认识。目前，从数据处理需求的角度来看，在实时的多信使联合观测的研究中，有如下几个有待解决的挑战：</p>
+<ol>
+<li>
+<p>不充分的弱引力波信号搜寻方法</p>
+<p>绝大多数的引力波信号搜寻算法都是依赖于匹配滤波 (matched-filtering) 技术的。该技术是不断地将数据流与超过 300,000 个模板信号进行匹配比对 <sup id="fnref:42"><a class="footnote-ref" href="#fn:42">44</a></sup>。虽然有上千个 CPUs 资源可以部署和调用，但目前的一些主要算法和数据处理流水线仍会在一个有限且简化的模板参数空间子集中进行搜寻，即准圆形 (quasi-circular) -自旋校准 (spin-aligned) 的双星波源系统。有研究表明，较小偏心率的 BBH 可能会被这种准圆形的引力波模板搜寻所遗漏 <sup id="fnref3:43"><a class="footnote-ref" href="#fn:43">45</a></sup> <sup id="fnref2:44"><a class="footnote-ref" href="#fn:44">46</a></sup> <sup id="fnref2:45"><a class="footnote-ref" href="#fn:45">47</a></sup>。匹配滤波技术的计算复杂度会随着模板数量的增加而呈指数级增长。因此，在完整的引力波波源参数空间上进行匹配滤波，在计算意义上是完全不现实的。对一个引力波事件的波源参数进行精确的后验估计与重构通常需要花费几天的时间来完成 <sup id="fnref:46"><a class="footnote-ref" href="#fn:46">48</a></sup>，显然这对于随后准确的 EM 观测活动就已为时已晚。此外，匹配滤波技术仅在稳态高斯背景噪声下才是理论最优的搜寻算法，然而地面引力波观测站所记录的环境噪声特点是非高斯和非稳态的。</p>
+</li>
+<li>
+<p>存在反常非高斯的短噪声信号(glitch)</p>
+<p>反常非高斯的短噪声信号 (glitch) 是引力波探测数据中非常常见的噪声污染源。由于它们在 LIGO 和 Virgo 数据中出现的频率非常高，甚至和真实的引力波信号也很相像，所以成功地对它们进行识别和辨别是相当重要的，原因如下 <sup id="fnref:47"><a class="footnote-ref" href="#fn:47">49</a></sup> <sup id="fnref:48"><a class="footnote-ref" href="#fn:48">50</a></sup>：</p>
+<ul>
+<li>可以避免因不同观测站中出现相干的 glitch 而造成的引力波事件误报；</li>
+<li>快速地辨别并去除 glitch 可以改善引力波探测器的灵敏度，可以使因 glitch 而污染的引力波信号凸显出来 <sup id="fnref4:15"><a class="footnote-ref" href="#fn:15">17</a></sup>；</li>
+<li>LIGO 和 Virgo 探测系统中有上千条关于仪器设备和环境变化的信息收集频道，用以观测任何由于环境或硬件在引力波探测器中所产生的微小变化。</li>
+</ul>
+<p>通过非常细致地跟踪可能引起的 glitch 噪声信号类型，我们能够识别它们的噪声来源并及时地去除它们，这样就可以确保引力波数据分析的数据流是可信可用的。我们期待越来越多的 glitch 噪声类型可以被辨认清楚并用于提升引力波探测器的灵敏度。对目前已知的 glitch 的类型进行分类，以及其他未知类别的 glitch 进行自动聚类是一个艰巨的工作。由于 glitch 有着非常复杂且多变的形态 <sup id="fnref2:48"><a class="footnote-ref" href="#fn:48">50</a></sup>，这通常需要大量的人工标注工程或者某种更加“智能”的算法以实现。</p>
+</li>
+<li>
+<p>贫乏的引力波波形模板库</p>
+<p>目前，数值相对论的模拟过程里，用于模板匹配的引力波波形的模板量是非常匮乏的，尤其是对于带有偏心率和自旋的紧致双星系统。引力波天文学很依赖于理论波形模板库，这需要通过对爱因斯坦场方程组进行高精度数值相对论模拟来实现引力波信号的探测和参数估计。若没有表示各类引力波波源的精确模板库的话，会有大量的弱引力波信号被现行的引力波搜寻流水线所遗漏 <sup id="fnref2:43"><a class="footnote-ref" href="#fn:43">45</a></sup>。数以千计的数值相对论模拟都是在庞大的参数空间上均匀且稀疏地采样计算，并且每一次计算开销都非常大，在超级计算机上可能会花费数周时间才能模拟出一个理论波形。因此，构建一个基于数据驱动的算法模型，其不仅可以自动覆盖到不同参数空间之间的内插模板，甚至也可以外插地表征模板参数空间以外的引力波波源信号，尤其是新类型的引力波波源 (如超新星爆发等)，是非常需要的。</p>
+</li>
+<li>
+<p>需要在更广泛的天球范围里观测 EM 对应体</p>
+<p>由于引力波探测器的定位能力还很有限，计划中的联合观测网络也只能把引力波源定位在数十平方度之内 <sup id="fnref3:8"><a class="footnote-ref" href="#fn:8">10</a></sup>，所以若可以快速地探测到伴随着引力波信号的电磁波信号，那么就有望通过具有良好空间定位能力的电磁波望远镜(光学和伽玛射线探测器等)，大大提高引力波波源的定位能力。可见，非常迅速地从疑似引力波事件中，对潜在的短程、高噪、爆发式的波源产生的引力波信号进行分类和确认是一个难度很大的挑战。这需要更加精确的天球图像生成以及快速的图像处理算法和搜索技术，用以实现低延迟或实时地对大量由不同类型的天文望远镜所汇总的数据流进行智能化的数据分析。</p>
+</li>
+</ol>
+<p>人工智能 (Artificial Intelligence, AI)，作为基于人工神经网络 (由生物神经网络的建模得到启发) 的深度学习技术 <sup id="fnref:49"><a class="footnote-ref" href="#fn:49">51</a></sup> <sup id="fnref:50"><a class="footnote-ref" href="#fn:50">52</a></sup>，提供了一个解决上述挑战的理想框架。深度学习已成为一个我们生活中普遍存在的技术，如今它正在工业界和学术界中得以广泛地应用与发展。深度学习受益于大数据技术，近年来在各类 AI 领域内得到了巨大的发展和进步，从图像/语音的识别和合成、复杂游戏 (如 Poker, Go)、自动驾驶技术、智能医疗技术、自然语言处理和自动翻译等等 <sup id="fnref:51"><a class="footnote-ref" href="#fn:51">53</a></sup> <sup id="fnref:52"><a class="footnote-ref" href="#fn:52">54</a></sup> <sup id="fnref:53"><a class="footnote-ref" href="#fn:53">55</a></sup>。深度学习有着很好的可扩展性，可充分利用千兆级或更大的数据资源。尽管 HPC 目前已经是现代科学的重要组成部分，但在基础科学研究领域(如物理和天文学)中，至今仍还未充分的开发和发挥深度学习和 AI 技术的巨大潜力。</p>
+<p>本博士论文的主要动机之一是通过发展基于深度学习算法的 AI 技术，充分发挥现代硬件架构 (如GPUs) 的优势，提升对引力波数据的信号处理和数据分析的能力，从而推动实时的引力波天文学和多信使天文学的发展。这些方法以及他们在 LIGO 公开数据上的应用与讨论将会在本论文中逐一探讨。我们将会概述引力波探测技术和数据分析理论，并介绍深度学习的理论基础。基于卷积神经网络模型，我们可以构造专门处理引力波数据的深度学习算法，分析它在波形模板库上的内插和外插泛化能力，并实现在噪声很强的时序数据中实时地探测引力波信号。特别的是，深度学习方法相当于是将 LIGO 数据分析中所有繁重的计算开销都转化为了一次性的训练过程，因此这使得波形模板库可以约化为任意大小，并且仍然可以快速地用有限的计算资源分析数据 <sup id="fnref:54"><a class="footnote-ref" href="#fn:54">56</a></sup>。在本文中，我们将会阐述该技术是如何被应用于从 LIGO 所记录的真实引力波数据，并首次通过深度学习方法搜寻到所有已知并确认的真实引力波事件。</p>
+<p>综上，与现行的引力波信号搜寻算法相比，我们发现使用深度学习技术有着以下优势：</p>
+<ol>
+<li>
+<p>推断速度快</p>
+<p>实时端对端深度学习系统可以在非常有限的计算资源 (如一个 CPU/GPU) 下，快速地进行数据分析并给出计算结果，其推断速度在毫秒时间量级内。如此可以加速现行的数据处理流水线，更快地为随后的 EM 对应体产生预报。</p>
+</li>
+<li>
+<p>覆盖更广泛的模板参数空间</p>
+<p>目前，在引力波的完整模板参数空间中，模板匹配技术只能覆盖其中的一小部分，这是因为计算开销会随着参数数目的增加呈指数级增长。而另一方面，深度学习算法有着高度可扩展性，它只需要一次性的训练过程，就可以在有限的计算资源下内插地覆盖到全部高维度的模板参数空间。</p>
+</li>
+<li>
+<p>自然地泛化到新引力波波源的识别</p>
+<p>本文已表明对于训练数据分布之外的新波源信号，如带有自旋或偏心率的紧致双星并合系统，是可以通过深度学习方法在不影响灵敏度的情况下自动探测到的。与匹配滤波技术不同，这是因为深度学习不仅可以在训练数据分布中的模板之间插值学习，并且还可以自然地外插、泛化学习到分布之外的特征信息。该特性对新类型引力波的波源探测是尤为重要的，尤其是带有偏心率的引力波波源，因为该方法可以为如球状星系团和星系核等天体运行的过程提供更多的实验依据 <sup id="fnref:43"><a class="footnote-ref" href="#fn:43">45</a></sup> <sup id="fnref:44"><a class="footnote-ref" href="#fn:44">46</a></sup> <sup id="fnref:55"><a class="footnote-ref" href="#fn:55">57</a></sup> <sup id="fnref:45"><a class="footnote-ref" href="#fn:45">47</a></sup>。</p>
+</li>
+<li>
+<p>对反常非高斯噪声 (glitch) 的鲁棒性</p>
+<p>从本文的结果来看，深度学习方法可以从数据中将引力波信号与反常的非高斯噪声 (glitch) 区分出来，并且可以精确地探测到引力波信号，甚至是在含有大量的 glitches 噪声在数据背景中。这与匹配滤波技术的特点大不相同，比方说，某流水线在探测到一个双中子星并合事件时，其附近恰巧地出现了一个明显的 glitch，这使得随后的数据处理过程延迟数个小时之久，这只可能通过仔细地人工检查该段数据才能确认清楚。</p>
+</li>
+<li>
+<p>为现行数据分析流水线的提速</p>
+<p>一旦深度学习算法探测到一个疑似引力波信号后，能够估计其可能的波源参数范围的话，那么就可以快速地通过匹配滤波方法，使用预测结果所对应参数附近的少量精确模板来做交叉测试。使用这种方式估计候选引力波事件的物理参数可以作为一个出发点，从而加快贝叶斯估计算法对随后 EM 对应体估测的计算速度。因此，深度学习技术可以与成熟的匹配滤波技术相结合，加速现行的引力波数据处理流水线。通过缩小波源参数的搜索范围，用以提高参数估计的效率和精度，同时并不会对结果的可解释性有所损失。</p>
+</li>
+</ol>
+<p></br></p>
+<h2 id="14">1.4 本文研究的目标与框架<a class="headerlink" href="#14" title="Permanent link">&para;</a></h2>
+<p></br></p>
+<p>本博士论文的主要目标是通过发展基于深度学习算法的 AI 技术，充分发挥现代硬件架构 (如GPUs) 的优势，提升对引力波数据的信号处理和数据分析的能力，从而有望发现和理解理论预期之外的引力波信号和波源信息，进而推动实时的引力波天文学和多信使天文学的发展。本论文的论述结构是以第<a href="../C2/">二</a>、<a href="../C3/">三</a>章的理论作为铺垫，简明扼要地介绍文中所涉及相关技术的原理和方法，并且结合对这一新兴交叉科学领域的理解认识与个人心得，为后续的第<a href="../C4/">四</a>、<a href="../C5/">五</a>、<a href="../C6/">六</a>章的主要工作和理论引述打下坚实的论据基础。</p>
+<p>在第<a href="../C2/">二</a>章中，我们将会概述引力波探测及其相关的数据分析理论。引力波探测是一个多学科交叉、多领域合作的科学实验项目。总体而言，可以分为引力波波源的理论建模、引力波探测的实验设计和引力波的数据处理等三大方面。我们会较为详细的介绍与引力波数据分析密切相关的基本概念和常见的处理方法，并且会着重对匹配滤波技术的统计学原理和数学推导细节做详细地介绍。</p>
+<p>在第<a href="../C3/">三</a>章中，我们将会对针对本论文所涉及的深度学习技术和机器学习方法进行详细地阐述。我们会先从一般意义上的角度出发，对机器学习技术的优化原理以及模型性能评估的方法展开介绍，对通过数据驱动实现算法优化的过程有一个宏观的认识。再进一步以深度神经网络算法作为基本的模型构造，结合自己对神经元等结构组件的理解，直观地说明人工神经网络的基本构成和相关的深度学习方法。最后，我们着重讨论了本文所涉及的卷积神经网络的细节原理及其中不同组件的性能特点。</p>
+<p>从此后的三个章节开始，将会介绍我们工作的主要研究对象及其主要研究方法，并详细阐述我们所关注的研究问题，对相关的数据分析结果进行总结与讨论。为了帮助读者明确各章中研究对象和实验方法的细节差异，我们将分别对第<a href="../C4/">四</a>、<a href="../C5/">五</a>、<a href="../C6/">六</a>章中关于噪声数据来源、波形来源和模型构造等方法和要点总结在下表中。</p>
+<table>
+<thead>
+<tr>
+<th align="center"><span><span class="MathJax_Preview">\,</span><script type="math/tex">\,</script></span></th>
+<th>第<a href="../C4/">四</a>章</th>
+<th>第<a href="../C5/">五</a>章</th>
+<th>第<a href="../C6/">六</a>章</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">噪声特征 1</td>
+<td>白色高斯</td>
+<td>有色高斯</td>
+<td>非高斯</td>
+</tr>
+<tr>
+<td align="center">噪声特征 2</td>
+<td>稳态</td>
+<td>稳态</td>
+<td>非稳态</td>
+</tr>
+<tr>
+<td align="center">探测器的数目</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td align="center">信噪比</td>
+<td><span><span class="MathJax_Preview">\rho_\text{amp}</span><script type="math/tex">\rho_\text{amp}</script></span></td>
+<td><span><span class="MathJax_Preview">\rho_\text{opt}</span><script type="math/tex">\rho_\text{opt}</script></span></td>
+<td><span><span class="MathJax_Preview">\rho_\text{opt}</span><script type="math/tex">\rho_\text{opt}</script></span></td>
+</tr>
+<tr>
+<td align="center">波源模型</td>
+<td>SEOBNR</td>
+<td>SEOBNRE</td>
+<td>SEOBNRE</td>
+</tr>
+<tr>
+<td align="center">采样率 (Hz)</td>
+<td>8192</td>
+<td>8192</td>
+<td>4096</td>
+</tr>
+<tr>
+<td align="center">网络模型</td>
+<td>CNN</td>
+<td>CNN</td>
+<td>MFCNN</td>
+</tr>
+<tr>
+<td align="center">时序窗口大小 (sec)</td>
+<td>1</td>
+<td>1</td>
+<td>5</td>
+</tr>
+<tr>
+<td align="center">可探测信号范围 (\%)</td>
+<td>80</td>
+<td>80</td>
+<td>100</td>
+</tr>
+</tbody>
+</table>
+<p>本论文的第<a href="../C4/">四</a>章是我们通过构建神经网络模型在引力波信号探测和可解释性分析的初探性研究。在近些年，随着深度学习技术首次被介绍到引力波数据处理的研究领域以来 <sup id="fnref:56"><a class="footnote-ref" href="#fn:56">58</a></sup>，越来越多的研究和尝试开始关注到这个新兴的交叉研究领域，但还未曾有人仔细地探讨过，神经网络模型为何可以高效地探测和识别到低信噪比的引力波信号，以及鲜有研究者对引力波信号识别的外插泛化能力有所关注等等。这一章就这一系列问题展开了讨论和研究，主要结论和要点罗列如下：</p>
+<ol>
+<li>深度神经网络在引力波信号识别中有着优异的内插和外插泛化识别能力；</li>
+<li>在训练数据集合中，引力波波形的分布对模型泛化性能的影响是显著的；</li>
+<li>在深度卷积神经网络结构的内部，卷积层是逐层递进地实现引力波波形的特征提取和滤波降噪的效果；</li>
+<li>对应于处在旋进后期与并合阶段的双星并合系统的引力波波形片段，是影响神经网络模型进行预测和推断的主要波形特征。</li>
+</ol>
+<p>在第<a href="../C5/">五</a>章中，基于模拟的 LIGO 探测器背景噪声环境下，我们探讨了不同研究文献中关于信噪比定义的差异和影响，并且从深度神经网络泛化性能的角度出发，对采取不同信噪比构造的数据分布差异进行了对比研究。随后，我们针对卷积神经网络的超参数结构进行优化和微调，通过与其他研究者所提出的网络结构进行对比，我们提出了一种更简单且性能更优异的改进版卷积神经网络模型。这一章中的主要结论和要点罗列如下：</p>
+<ol>
+<li>在信噪比 <span><span class="MathJax_Preview">\rho_\text{mf}</span><script type="math/tex">\rho_\text{mf}</script></span> 和 <span><span class="MathJax_Preview">\rho_\text{opt}</span><script type="math/tex">\rho_\text{opt}</script></span> 都大于 <span><span class="MathJax_Preview">5\sim6</span><script type="math/tex">5\sim6</script></span> 时，其与引力波波形的最大振幅是呈正比的；</li>
+<li>根据信噪比定义 <span><span class="MathJax_Preview">\rho_\text{opt}</span><script type="math/tex">\rho_\text{opt}</script></span> 构建的引力波数据分布上所训练得到的卷积神经网络模型，在测试数据上有着更优异和更稳定的泛化性能表现；</li>
+<li>通过卷积神经网络参数的迁移学习，在训练数据信噪比 <span><span class="MathJax_Preview">\rho_\text{opt}=5\sim10</span><script type="math/tex">\rho_\text{opt}=5\sim10</script></span> 区间范围内时，会得到泛化性能最佳的网络模型；</li>
+<li>通过对网络结构的超参数<sup id="fnref:超参数"><a class="footnote-ref" href="#fn:超参数">1</a></sup>微调和优化后，改进版的卷积神经网络可以在拥有简单的结构基础上，同时保持优异的泛化性能。</li>
+</ol>
+<p>在第<a href="../C6/">六</a>章中，我们讨论真实的 LIGO 引力波数据上的信号探测方法。目前，绝大多数深度学习技术的研究都在模拟噪声中尝试，都还未考虑到对真实的引力波事件进行探测和识别。而在本论文中，我们通过借鉴匹配滤波技术的优势，提出了全新的 “匹配滤波-卷积神经网络” (MFCNN) 模型，用以实现在真实 LIGO 数据环境下的引力波信号识别。我们也对引力波数据流的信号搜寻策略进行了讨论，并成功地将 MFCNN 模型应用在了真实的 O1 和 O2 数据中。这一章中的主要结论和要点罗列如下：</p>
+<ol>
+<li>将匹配滤波技术与深度学习框架中的卷积运算之间建立起对应关系，揭示了其中的内在数学联系；</li>
+<li>受匹配滤波技术的启发，提出了全新的 MFCNN 模型框架，其中的核心思想理念是通过少量的匹配模板提取出关键的非高斯特征，并由此充分地发挥出匹配滤波的泛化能力；</li>
+<li>MFCNN 模型可以清晰地搜寻到 O1 和 O2 数据中所有真实的 11 个引力波事件，尤其是我们的模型对 GW170817 的预测结果说明 MFCNN 有着优秀的外插泛化能力；</li>
+<li>将 MFCNN 模型在完整 O1 数据中搜寻后，共报告 2000+ 的疑似引力波信号；</li>
+<li>MFCNN 模型对 glitch 噪声有着较强的鲁棒性，在 O1 数据上的 glitch 筛查率达到 90%。</li>
+</ol>
+<p>在本文中，很多关于统计学、机器学习和数据挖掘的术语和专有名词是不详细加以区分的，需要留意诸如：模型/算法/网络、训练/优化/学习/拟合、预测/推断、泛化/测试数据、样本/实例、变量/采样值/特征、样本标签/学习目标等这些相近含义的概念将会无差别的交替使用。更多相关术语和语言的对应关系可参考 <sup id="fnref:57"><a class="footnote-ref" href="#fn:57">59</a></sup>。</p>
+<p>关于本论文中引力波的信号处理与数据分析的代码程序实现，都是基于 Python 编程语言，使用 MXNet 深度学习框架来构建神经网络模型，并在 Floydhub 云计算平台 <sup id="fnref:floydhub"><a class="footnote-ref" href="#fn:floydhub">2</a></sup> 或本地的服务器 (4 x GPU1080ti) 上完成了绝大多数的计算任务，所涉及的 Python 应用库包括：Numpy <sup id="fnref:58"><a class="footnote-ref" href="#fn:58">60</a></sup>、Pandas <sup id="fnref:59"><a class="footnote-ref" href="#fn:59">61</a></sup>、Scipy <sup id="fnref:60"><a class="footnote-ref" href="#fn:60">62</a></sup>、MXNet <sup id="fnref:61"><a class="footnote-ref" href="#fn:61">63</a></sup>、Scikit-learn <sup id="fnref:62"><a class="footnote-ref" href="#fn:62">64</a></sup>、Matplotlib <sup id="fnref:63"><a class="footnote-ref" href="#fn:63">65</a></sup>、Seaborn <sup id="fnref:64"><a class="footnote-ref" href="#fn:64">66</a></sup>、Docker <sup id="fnref:65"><a class="footnote-ref" href="#fn:65">67</a></sup>、Ray <sup id="fnref:66"><a class="footnote-ref" href="#fn:66">68</a></sup>、PyCBC <sup id="fnref:67"><a class="footnote-ref" href="#fn:67">69</a></sup>、GWpy <sup id="fnref:68"><a class="footnote-ref" href="#fn:68">70</a></sup>、Jupyter <sup id="fnref:69"><a class="footnote-ref" href="#fn:69">71</a></sup> 和 Streamlit 等。</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:超参数">
+<p>超参数是指一些必须要在决定模型结构和训练网络之前就一定要定下来的参数。(如：模型结构设定、层数、卷积的大小、深度、填充数、各激活层的类型函数等等)&#160;<a class="footnote-backref" href="#fnref:超参数" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:floydhub">
+<p><a href="https://www.floydhub.com">https://www.floydhub.com</a>&#160;<a class="footnote-backref" href="#fnref:floydhub" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:1">
+<p>B. P. Abbott and others. Observation of gravitational waves from a binary black hole merger. <em>Phys. Rev. Lett.</em>, 116<span><span class="MathJax_Preview">6</span><script type="math/tex">6</script></span>:061102, 2016. <a href="https://arxiv.org/abs/1602.03837">arXiv:1602.03837</a>, <a href="https://doi.org/10.1103/PhysRevLett.116.061102">doi:10.1103/PhysRevLett.116.061102</a>.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 3 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:1" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>B. P. Abbott and others. Gw151226: observation of gravitational waves from a 22-solar-mass binary black hole coalescence. <em>Phys. Rev. Lett.</em>, 116<span><span class="MathJax_Preview">24</span><script type="math/tex">24</script></span>:241103, 2016. <a href="https://arxiv.org/abs/1606.04855">arXiv:1606.04855</a>, <a href="https://doi.org/10.1103/PhysRevLett.116.241103">doi:10.1103/PhysRevLett.116.241103</a>.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 4 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:2" title="Jump back to footnote 4 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:2" title="Jump back to footnote 4 in the text">&#8617;</a><a class="footnote-backref" href="#fnref4:2" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>Benjamin P. Abbott and others. Gw170104: observation of a 50-solar-mass binary black hole coalescence at redshift 0.2. <em>Phys. Rev. Lett.</em>, 118<span><span class="MathJax_Preview">22</span><script type="math/tex">22</script></span>:221101, 2017. <a href="https://arxiv.org/abs/1706.01812">arXiv:1706.01812</a>, <a href="https://doi.org/10.1103/PhysRevLett.118.221101">doi:10.1103/PhysRevLett.118.221101</a>.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p>B.. P.. Abbott and others. Gw170608: observation of a 19-solar-mass binary black hole coalescence. <em>Astrophys. J.</em>, 851<span><span class="MathJax_Preview">2</span><script type="math/tex">2</script></span>:L35, 2017. <a href="https://arxiv.org/abs/1711.05578">arXiv:1711.05578</a>, <a href="https://doi.org/10.3847/2041-8213/aa9f0c">doi:10.3847/2041-8213/aa9f0c</a>.&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 6 in the text">&#8617;</a></p>
+</li>
+<li id="fn:5">
+<p>B. P. Abbott and others. Properties of the binary black hole merger gw150914. <em>Phys. Rev. Lett.</em>, 116<span><span class="MathJax_Preview">24</span><script type="math/tex">24</script></span>:241102, 2016. <a href="https://arxiv.org/abs/1602.03840">arXiv:1602.03840</a>, <a href="https://doi.org/10.1103/PhysRevLett.116.241102">doi:10.1103/PhysRevLett.116.241102</a>.&#160;<a class="footnote-backref" href="#fnref:5" title="Jump back to footnote 7 in the text">&#8617;</a></p>
+</li>
+<li id="fn:6">
+<p>Krzysztof Belczynski, Michal Dominik, Tomasz Bulik, Richard O&rsquo;Shaughnessy, Chris Fryer, and Daniel E. Holz. The effect of metallicity on the detection prospects for gravitational waves. <em>Astrophys. J.</em>, 715:L138, 2010. <a href="https://arxiv.org/abs/1004.0386">arXiv:1004.0386</a>, <a href="https://doi.org/10.1088/2041-8205/715/2/L138">doi:10.1088/2041-8205/715/2/L138</a>.&#160;<a class="footnote-backref" href="#fnref:6" title="Jump back to footnote 8 in the text">&#8617;</a></p>
+</li>
+<li id="fn:7">
+<p>Fabio Antonini, Sourav Chatterjee, Carl L. Rodriguez, Meagan Morscher, Bharath Pattabiraman, Vicky Kalogera, and Frederic A. Rasio. Black hole mergers and blue stragglers from hierarchical triples formed in globular clusters. <em>Astrophys. J.</em>, 816<span><span class="MathJax_Preview">2</span><script type="math/tex">2</script></span>:65, 2016. <a href="https://arxiv.org/abs/1509.05080">arXiv:1509.05080</a>, <a href="https://doi.org/10.3847/0004-637X/816/2/65">doi:10.3847/0004-637X/816/2/65</a>.&#160;<a class="footnote-backref" href="#fnref:7" title="Jump back to footnote 9 in the text">&#8617;</a></p>
+</li>
+<li id="fn:8">
+<p>B. P. Abbott and others. Prospects for observing and localizing gravitational-wave transients with advanced ligo, advanced virgo and kagra. <em>Living Rev. Rel.</em>, 21<span><span class="MathJax_Preview">1</span><script type="math/tex">1</script></span>:3, 2018. <a href="https://arxiv.org/abs/1304.0670">arXiv:1304.0670</a>, <a href="https://doi.org/10.1007/s41114-018-0012-9,10.1007/lrr-2016-1">doi:10.1007/s41114-018-0012-9,10.1007/lrr-2016-1</a>.&#160;<a class="footnote-backref" href="#fnref:8" title="Jump back to footnote 10 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:8" title="Jump back to footnote 10 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:8" title="Jump back to footnote 10 in the text">&#8617;</a></p>
+</li>
+<li id="fn:9">
+<p>Carl L. Rodriguez, Sourav Chatterjee, and Frederic A. Rasio. Binary black hole mergers from globular clusters: masses, merger rates, and the impact of stellar evolution. <em>Phys. Rev.</em>, D93<span><span class="MathJax_Preview">8</span><script type="math/tex">8</script></span>:084029, 2016. <a href="https://arxiv.org/abs/1602.02444">arXiv:1602.02444</a>, <a href="https://doi.org/10.1103/PhysRevD.93.084029">doi:10.1103/PhysRevD.93.084029</a>.&#160;<a class="footnote-backref" href="#fnref:9" title="Jump back to footnote 11 in the text">&#8617;</a></p>
+</li>
+<li id="fn:10">
+<p>Krzysztof Belczynski, Daniel E. Holz, Tomasz Bulik, and Richard O&rsquo;Shaughnessy. The first gravitational-wave source from the isolated evolution of two 40-100 msun stars. <em>Nature</em>, 534:512, 2016. <a href="https://arxiv.org/abs/1602.04531">arXiv:1602.04531</a>, <a href="https://doi.org/10.1038/nature18322">doi:10.1038/nature18322</a>.&#160;<a class="footnote-backref" href="#fnref:10" title="Jump back to footnote 12 in the text">&#8617;</a></p>
+</li>
+<li id="fn:11">
+<p>Pablo Marchant, Norbert Langer, Philipp Podsiadlowski, Thomas M. Tauris, and Takashi J. Moriya. A new route towards merging massive black holes. <em>Astron. Astrophys.</em>, 588:A50, 2016. <a href="https://arxiv.org/abs/1601.03718">arXiv:1601.03718</a>, <a href="https://doi.org/10.1051/0004-6361/201628133">doi:10.1051/0004-6361/201628133</a>.&#160;<a class="footnote-backref" href="#fnref:11" title="Jump back to footnote 13 in the text">&#8617;</a></p>
+</li>
+<li id="fn:12">
+<p>S. E. de Mink and I. Mandel. The chemically homogeneous evolutionary channel for binary black hole mergers: rates and properties of gravitational-wave events detectable by advanced ligo. <em>Mon. Not. Roy. Astron. Soc.</em>, 460<span><span class="MathJax_Preview">4</span><script type="math/tex">4</script></span>:3545–3553, 2016. <a href="https://arxiv.org/abs/1603.02291">arXiv:1603.02291</a>, <a href="https://doi.org/10.1093/mnras/stw1219">doi:10.1093/mnras/stw1219</a>.&#160;<a class="footnote-backref" href="#fnref:12" title="Jump back to footnote 14 in the text">&#8617;</a></p>
+</li>
+<li id="fn:13">
+<p>F. Acernese and others. Advanced virgo: a second-generation interferometric gravitational wave detector. <em>Class. Quant. Grav.</em>, 32<span><span class="MathJax_Preview">2</span><script type="math/tex">2</script></span>:024001, 2015. <a href="https://arxiv.org/abs/1408.3978">arXiv:1408.3978</a>, <a href="https://doi.org/10.1088/0264-9381/32/2/024001">doi:10.1088/0264-9381/32/2/024001</a>.&#160;<a class="footnote-backref" href="#fnref:13" title="Jump back to footnote 15 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:13" title="Jump back to footnote 15 in the text">&#8617;</a></p>
+</li>
+<li id="fn:14">
+<p>B. P. Abbott and others. Gw170814: a three-detector observation of gravitational waves from a binary black hole coalescence. <em>Phys. Rev. Lett.</em>, 119<span><span class="MathJax_Preview">14</span><script type="math/tex">14</script></span>:141101, 2017. <a href="https://arxiv.org/abs/1709.09660">arXiv:1709.09660</a>, <a href="https://doi.org/10.1103/PhysRevLett.119.141101">doi:10.1103/PhysRevLett.119.141101</a>.&#160;<a class="footnote-backref" href="#fnref:14" title="Jump back to footnote 16 in the text">&#8617;</a></p>
+</li>
+<li id="fn:15">
+<p>B. P. Abbott and others. Gw170817: observation of gravitational waves from a binary neutron star inspiral. <em>Phys. Rev. Lett.</em>, 119<span><span class="MathJax_Preview">16</span><script type="math/tex">16</script></span>:161101, 2017. <a href="https://arxiv.org/abs/1710.05832">arXiv:1710.05832</a>, <a href="https://doi.org/10.1103/PhysRevLett.119.161101">doi:10.1103/PhysRevLett.119.161101</a>.&#160;<a class="footnote-backref" href="#fnref:15" title="Jump back to footnote 17 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:15" title="Jump back to footnote 17 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:15" title="Jump back to footnote 17 in the text">&#8617;</a><a class="footnote-backref" href="#fnref4:15" title="Jump back to footnote 17 in the text">&#8617;</a></p>
+</li>
+<li id="fn:16">
+<p>David Eichler, Mario Livio, Tsvi Piran, and David N. Schramm. Nucleosynthesis, neutrino bursts and gamma-rays from coalescing neutron stars. <em>Nature</em>, 340:126–128, 1989. [,682<span><span class="MathJax_Preview">1989</span><script type="math/tex">1989</script></span>]. <a href="https://doi.org/10.1038/340126a0">doi:10.1038/340126a0</a>.&#160;<a class="footnote-backref" href="#fnref:16" title="Jump back to footnote 18 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:16" title="Jump back to footnote 18 in the text">&#8617;</a></p>
+</li>
+<li id="fn:17">
+<p>Bohdan Paczynski. Gamma-ray bursters at cosmological distances. <em>Astrophys. J.</em>, 308:L43&ndash;L46, 1986. <a href="https://doi.org/10.1086/184740">doi:10.1086/184740</a>.&#160;<a class="footnote-backref" href="#fnref:17" title="Jump back to footnote 19 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:17" title="Jump back to footnote 19 in the text">&#8617;</a></p>
+</li>
+<li id="fn:18">
+<p>Ramesh Narayan, Bohdan Paczynski, and Tsvi Piran. Gamma-ray bursts as the death throes of massive binary stars. <em>Astrophys. J.</em>, 395:L83&ndash;L86, 1992. <a href="https://arxiv.org/abs/astro-ph/9204001">arXiv:astro-ph/9204001</a>, <a href="https://doi.org/10.1086/186493">doi:10.1086/186493</a>.&#160;<a class="footnote-backref" href="#fnref:18" title="Jump back to footnote 20 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:18" title="Jump back to footnote 20 in the text">&#8617;</a></p>
+</li>
+<li id="fn:19">
+<p>Christopher S. Kochanek and Tsvi Piran. Gravitational waves and gamma-ray bursts. <em>Astrophys. J.</em>, 417:L17&ndash;L20, 1993. <a href="https://arxiv.org/abs/astro-ph/9305015">arXiv:astro-ph/9305015</a>, <a href="https://doi.org/10.1086/187083">doi:10.1086/187083</a>.&#160;<a class="footnote-backref" href="#fnref:19" title="Jump back to footnote 21 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:19" title="Jump back to footnote 21 in the text">&#8617;</a></p>
+</li>
+<li id="fn:20">
+<p>B. P. Abbott and others. Multi-messenger observations of a binary neutron star merger. <em>Astrophys. J.</em>, 848<span><span class="MathJax_Preview">2</span><script type="math/tex">2</script></span>:L12, 2017. <a href="https://arxiv.org/abs/1710.05833">arXiv:1710.05833</a>, <a href="https://doi.org/10.3847/2041-8213/aa91c9">doi:10.3847/2041-8213/aa91c9</a>.&#160;<a class="footnote-backref" href="#fnref:20" title="Jump back to footnote 22 in the text">&#8617;</a></p>
+</li>
+<li id="fn:21">
+<p>Tsvi Piran, Ehud Nakar, and Stephan Rosswog. The electromagnetic signals of compact binary mergers. <em>Mon. Not. Roy. Astron. Soc.</em>, 430<span><span class="MathJax_Preview">3</span><script type="math/tex">3</script></span>:2121–2136, 2013. <a href="https://arxiv.org/abs/1204.6242">arXiv:1204.6242</a>, <a href="https://doi.org/10.1093/mnras/stt037">doi:10.1093/mnras/stt037</a>.&#160;<a class="footnote-backref" href="#fnref:21" title="Jump back to footnote 23 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:21" title="Jump back to footnote 23 in the text">&#8617;</a></p>
+</li>
+<li id="fn:22">
+<p>William H. Lee, Enrico Ramirez-Ruiz, and Glenn van de Ven. Short gamma-ray bursts from dynamically-assembled compact binaries in globular clusters: pathways, rates, hydrodynamics and cosmological setting. <em>Astrophys. J.</em>, 720:953–975, 2010. <a href="https://arxiv.org/abs/0909.2884">arXiv:0909.2884</a>, <a href="https://doi.org/10.1088/0004-637X/720/1/953">doi:10.1088/0004-637X/720/1/953</a>.&#160;<a class="footnote-backref" href="#fnref:22" title="Jump back to footnote 24 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:22" title="Jump back to footnote 24 in the text">&#8617;</a></p>
+</li>
+<li id="fn:23">
+<p>William H. Lee and Enrico Ramirez-Ruiz. The progenitors of short gamma-ray bursts. <em>New J. Phys.</em>, 9:17, 2007. <a href="https://arxiv.org/abs/astro-ph/0701874">arXiv:astro-ph/0701874</a>, <a href="https://doi.org/10.1088/1367-2630/9/1/017">doi:10.1088/1367-2630/9/1/017</a>.&#160;<a class="footnote-backref" href="#fnref:23" title="Jump back to footnote 25 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:23" title="Jump back to footnote 25 in the text">&#8617;</a></p>
+</li>
+<li id="fn:24">
+<p>ChristianD. Ott. The gravitational wave signature of core-collapse supernovae. <em>Class. Quant. Grav.</em>, 26:063001, 2009. <a href="https://arxiv.org/abs/0809.0695">arXiv:0809.0695</a>, <a href="https://doi.org/10.1088/0264-9381/26/6/063001">doi:10.1088/0264-9381/26/6/063001</a>.&#160;<a class="footnote-backref" href="#fnref:24" title="Jump back to footnote 26 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:24" title="Jump back to footnote 26 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:24" title="Jump back to footnote 26 in the text">&#8617;</a></p>
+</li>
+<li id="fn:25">
+<p>E. S. Phinney. Finding and using electromagnetic counterparts of gravitational wave sources. <em>arXiv</em>, 2009. <a href="https://arxiv.org/abs/0903.0098">arXiv:0903.0098</a>.&#160;<a class="footnote-backref" href="#fnref:25" title="Jump back to footnote 27 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:25" title="Jump back to footnote 27 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:25" title="Jump back to footnote 27 in the text">&#8617;</a></p>
+</li>
+<li id="fn:26">
+<p>J. Aasi and others. Advanced ligo. <em>Class. Quant. Grav.</em>, 32:074001, 2015. <a href="https://arxiv.org/abs/1411.4547">arXiv:1411.4547</a>, <a href="https://doi.org/10.1088/0264-9381/32/7/074001">doi:10.1088/0264-9381/32/7/074001</a>.&#160;<a class="footnote-backref" href="#fnref:26" title="Jump back to footnote 28 in the text">&#8617;</a></p>
+</li>
+<li id="fn:27">
+<p>Eiichi Hirose, Takanori Sekiguchi, Rahul Kumar, and Ryutaro Takahashi. Update on the development of cryogenic sapphire mirrors and their seismic attenuation system for kagra. <em>Class. Quant. Grav.</em>, 31<span><span class="MathJax_Preview">22</span><script type="math/tex">22</script></span>:224004, 2014. <a href="https://doi.org/10.1088/0264-9381/31/22/224004">doi:10.1088/0264-9381/31/22/224004</a>.&#160;<a class="footnote-backref" href="#fnref:27" title="Jump back to footnote 29 in the text">&#8617;</a></p>
+</li>
+<li id="fn:28">
+<p>C. S. Unnikrishnan. Indigo and ligo-india: scope and plans for gravitational wave research and precision metrology in india. <em>Int. J. Mod. Phys.</em>, D22:1341010, 2013. <a href="https://arxiv.org/abs/1510.06059">arXiv:1510.06059</a>, <a href="https://doi.org/10.1142/S0218271813410101">doi:10.1142/S0218271813410101</a>.&#160;<a class="footnote-backref" href="#fnref:28" title="Jump back to footnote 30 in the text">&#8617;</a></p>
+</li>
+<li id="fn:29">
+<p>Benjamin P. Abbott and others. Effects of waveform model systematics on the interpretation of gw150914. <em>Class. Quant. Grav.</em>, 34<span><span class="MathJax_Preview">10</span><script type="math/tex">10</script></span>:104002, 2017. <a href="https://arxiv.org/abs/1611.07531">arXiv:1611.07531</a>, <a href="https://doi.org/10.1088/1361-6382/aa6854">doi:10.1088/1361-6382/aa6854</a>.&#160;<a class="footnote-backref" href="#fnref:29" title="Jump back to footnote 31 in the text">&#8617;</a></p>
+</li>
+<li id="fn:30">
+<p>B. S. Sathyaprakash and B. F. Schutz. Physics, astrophysics and cosmology with gravitational waves. <em>Living Rev. Rel.</em>, 12:2, 2009. <a href="https://arxiv.org/abs/0903.0338">arXiv:0903.0338</a>, <a href="https://doi.org/10.12942/lrr-2009-2">doi:10.12942/lrr-2009-2</a>.&#160;<a class="footnote-backref" href="#fnref:30" title="Jump back to footnote 32 in the text">&#8617;</a></p>
+</li>
+<li id="fn:31">
+<p>T. Abbott and others. The dark energy survey. <em>arXiv</em>, 2005. <a href="https://arxiv.org/abs/astro-ph/0510346">arXiv:astro-ph/0510346</a>.&#160;<a class="footnote-backref" href="#fnref:31" title="Jump back to footnote 33 in the text">&#8617;</a></p>
+</li>
+<li id="fn:32">
+<p>Paul A. Abell and others. Lsst science book, version 2.0. <em>arXiv</em>, 2009. <a href="https://arxiv.org/abs/0912.0201">arXiv:0912.0201</a>.&#160;<a class="footnote-backref" href="#fnref:32" title="Jump back to footnote 34 in the text">&#8617;</a></p>
+</li>
+<li id="fn:33">
+<p>Luca Amendola and others. Cosmology and fundamental physics with the euclid satellite. <em>Living Rev. Rel.</em>, 16:6, 2013. <a href="https://arxiv.org/abs/1206.1225">arXiv:1206.1225</a>, <a href="https://doi.org/10.12942/lrr-2013-6">doi:10.12942/lrr-2013-6</a>.&#160;<a class="footnote-backref" href="#fnref:33" title="Jump back to footnote 35 in the text">&#8617;</a></p>
+</li>
+<li id="fn:34">
+<p>Luca Amendola and others. Cosmology and fundamental physics with the euclid satellite. <em>Living Rev. Rel.</em>, 21<span><span class="MathJax_Preview">1</span><script type="math/tex">1</script></span>:2, 2018. <a href="https://arxiv.org/abs/1606.00180">arXiv:1606.00180</a>, <a href="https://doi.org/10.1007/s41114-017-0010-3">doi:10.1007/s41114-017-0010-3</a>.&#160;<a class="footnote-backref" href="#fnref:34" title="Jump back to footnote 36 in the text">&#8617;</a></p>
+</li>
+<li id="fn:35">
+<p>D. Spergel and others. Wide-field infrared survey telescope-astrophysics focused telescope assets wfirst-afta final report. <em>arXiv</em>, 2013. <a href="https://arxiv.org/abs/1305.5422">arXiv:1305.5422</a>.&#160;<a class="footnote-backref" href="#fnref:35" title="Jump back to footnote 37 in the text">&#8617;</a></p>
+</li>
+<li id="fn:36">
+<p>D. Spergel and others. Wfirst-2.4: what every astronomer should know. <em>arXiv</em>, 2013. <a href="https://arxiv.org/abs/1305.5425">arXiv:1305.5425</a>.&#160;<a class="footnote-backref" href="#fnref:36" title="Jump back to footnote 38 in the text">&#8617;</a></p>
+</li>
+<li id="fn:37">
+<p>N. L. Christensen. Multimessenger astronomy. In <em>Proceedings, 46\textsuperscript th Rencontres de Moriond on Gravitational Waves and Experimental Gravity: La Thuile, Italy, March 20-27, 2011</em>, 35–42. 2011. <a href="https://arxiv.org/abs/1105.5843">arXiv:1105.5843</a>.&#160;<a class="footnote-backref" href="#fnref:37" title="Jump back to footnote 39 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:37" title="Jump back to footnote 39 in the text">&#8617;</a></p>
+</li>
+<li id="fn:38">
+<p>M. W. E. Smith and others. The astrophysical multimessenger observatory network <span><span class="MathJax_Preview">amon</span><script type="math/tex">amon</script></span>. <em>Astropart. Phys.</em>, 45:56–70, 2013. <a href="https://arxiv.org/abs/1211.5602">arXiv:1211.5602</a>, <a href="https://doi.org/10.1016/j.astropartphys.2013.03.003">doi:10.1016/j.astropartphys.2013.03.003</a>.&#160;<a class="footnote-backref" href="#fnref:38" title="Jump back to footnote 40 in the text">&#8617;</a></p>
+</li>
+<li id="fn:39">
+<p>Christian Rover, Marie-Anne Bizouard, Nelson Christensen, Harald Dimmelmeier, Ik Siong Heng, and Renate Meyer. Bayesian reconstruction of gravitational wave burst signals from simulations of rotating stellar core collapse and bounce. <em>Phys. Rev.</em>, D80:102004, 2009. <a href="https://arxiv.org/abs/0909.1093">arXiv:0909.1093</a>, <a href="https://doi.org/10.1103/PhysRevD.80.102004">doi:10.1103/PhysRevD.80.102004</a>.&#160;<a class="footnote-backref" href="#fnref:39" title="Jump back to footnote 41 in the text">&#8617;</a></p>
+</li>
+<li id="fn:40">
+<p>Tyson B. Littenberg, Ben Farr, Scott Coughlin, and Vicky Kalogera. Systematic errors in low latency gravitational wave parameter estimation impact electromagnetic follow-up observations. <em>Astrophys. J.</em>, 820<span><span class="MathJax_Preview">1</span><script type="math/tex">1</script></span>:7, 2016. <a href="https://arxiv.org/abs/1601.02661">arXiv:1601.02661</a>, <a href="https://doi.org/10.3847/0004-637X/820/1/7">doi:10.3847/0004-637X/820/1/7</a>.&#160;<a class="footnote-backref" href="#fnref:40" title="Jump back to footnote 42 in the text">&#8617;</a></p>
+</li>
+<li id="fn:41">
+<p>C. A. O. Zhou-jian. From the gravitational wave detection to multi-messenger astronomy. <em>College Physics</em>, 37<span><span class="MathJax_Preview">2</span><script type="math/tex">2</script></span>:1, 2018. URL: <a href="http://dxwl.bnu.edu.cn/EN/abstract/article_7516.shtml">http://dxwl.bnu.edu.cn/EN/abstract/article_7516.shtml</a>, <a href="https://doi.org/10.16854/j.cnki.1000-0712.170626">doi:10.16854/j.cnki.1000-0712.170626</a>.&#160;<a class="footnote-backref" href="#fnref:41" title="Jump back to footnote 43 in the text">&#8617;</a></p>
+</li>
+<li id="fn:42">
+<p>Samantha A. Usman and others. The pycbc search for gravitational waves from compact binary coalescence. <em>Class. Quant. Grav.</em>, 33<span><span class="MathJax_Preview">21</span><script type="math/tex">21</script></span>:215004, 2016. <a href="https://arxiv.org/abs/1508.02357">arXiv:1508.02357</a>, <a href="https://doi.org/10.1088/0264-9381/33/21/215004">doi:10.1088/0264-9381/33/21/215004</a>.&#160;<a class="footnote-backref" href="#fnref:42" title="Jump back to footnote 44 in the text">&#8617;</a></p>
+</li>
+<li id="fn:43">
+<p>E. A. Huerta and others. Complete waveform model for compact binaries on eccentric orbits. <em>Phys. Rev.</em>, D95<span><span class="MathJax_Preview">2</span><script type="math/tex">2</script></span>:024038, 2017. <a href="https://arxiv.org/abs/1609.05933">arXiv:1609.05933</a>, <a href="https://doi.org/10.1103/PhysRevD.95.024038">doi:10.1103/PhysRevD.95.024038</a>.&#160;<a class="footnote-backref" href="#fnref:43" title="Jump back to footnote 45 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:43" title="Jump back to footnote 45 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:43" title="Jump back to footnote 45 in the text">&#8617;</a></p>
+</li>
+<li id="fn:44">
+<p>V. Tiwari and others. Proposed search for the detection of gravitational waves from eccentric binary black holes. <em>Phys. Rev.</em>, D93<span><span class="MathJax_Preview">4</span><script type="math/tex">4</script></span>:043007, 2016. <a href="https://arxiv.org/abs/1511.09240">arXiv:1511.09240</a>, <a href="https://doi.org/10.1103/PhysRevD.93.043007">doi:10.1103/PhysRevD.93.043007</a>.&#160;<a class="footnote-backref" href="#fnref:44" title="Jump back to footnote 46 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:44" title="Jump back to footnote 46 in the text">&#8617;</a></p>
+</li>
+<li id="fn:45">
+<p>E. A. Huerta and others. Eccentric, nonspinning, inspiral, gaussian-process merger approximant for the detection and characterization of eccentric binary black hole mergers. <em>Phys. Rev.</em>, D97<span><span class="MathJax_Preview">2</span><script type="math/tex">2</script></span>:024031, 2018. <a href="https://arxiv.org/abs/1711.06276">arXiv:1711.06276</a>, <a href="https://doi.org/10.1103/PhysRevD.97.024031">doi:10.1103/PhysRevD.97.024031</a>.&#160;<a class="footnote-backref" href="#fnref:45" title="Jump back to footnote 47 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:45" title="Jump back to footnote 47 in the text">&#8617;</a></p>
+</li>
+<li id="fn:46">
+<p>J. Veitch and others. Parameter estimation for compact binaries with ground-based gravitational-wave observations using the lalinference software library. <em>Phys. Rev.</em>, D91<span><span class="MathJax_Preview">4</span><script type="math/tex">4</script></span>:042003, 2015. <a href="https://arxiv.org/abs/1409.7215">arXiv:1409.7215</a>, <a href="https://doi.org/10.1103/PhysRevD.91.042003">doi:10.1103/PhysRevD.91.042003</a>.&#160;<a class="footnote-backref" href="#fnref:46" title="Jump back to footnote 48 in the text">&#8617;</a></p>
+</li>
+<li id="fn:47">
+<p>Jade Powell, Alejandro Torres-Forné, Ryan Lynch, Daniele Trifirò, Elena Cuoco, Marco Cavaglià, Ik Siong Heng, and José A. Font. Classification methods for noise transients in advanced gravitational-wave detectors ii: performance tests on advanced ligo data. <em>Class. Quant. Grav.</em>, 34<span><span class="MathJax_Preview">3</span><script type="math/tex">3</script></span>:034002, September 2017. <a href="https://arxiv.org/abs/1609.06262v2">arXiv:1609.06262v2</a>, <a href="https://doi.org/10.1088/1361-6382/34/3/034002">doi:10.1088/1361-6382/34/3/034002</a>.&#160;<a class="footnote-backref" href="#fnref:47" title="Jump back to footnote 49 in the text">&#8617;</a></p>
+</li>
+<li id="fn:48">
+<p>Michael Zevin, Scott Coughlin, Sara Bahaadini, Emre Besler, Neda Rohani, Sarah Allen, Miriam Cabero, Kevin Crowston, Aggelos K. Katsaggelos, Shane L. Larson, Tae Kyoung Lee, Chris Lintott, Tyson B. Littenberg, Andrew Lundgren, Carsten Oesterlund, Joshua R. Smith, Laura Trouille, and Vicky Kalogera. Gravity spy: integrating advanced ligo detector characterization, machine learning, and citizen science. <em>Class. Quantum Grav. 34 <span><span class="MathJax_Preview">2017</span><script type="math/tex">2017</script></span> 064003 <span><span class="MathJax_Preview">22pp</span><script type="math/tex">22pp</script></span></em>, November 2016. <a href="https://arxiv.org/abs/1611.04596v2">arXiv:1611.04596v2</a>, <a href="https://doi.org/10.1088/1361-6382/aa5cea">doi:10.1088/1361-6382/aa5cea</a>.&#160;<a class="footnote-backref" href="#fnref:48" title="Jump back to footnote 50 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:48" title="Jump back to footnote 50 in the text">&#8617;</a></p>
+</li>
+<li id="fn:49">
+<p>Ian Goodfellow, Yoshua Bengio, and Aaron Courville. <em>Deep Learning</em>. Adaptive Computation and Machine Learning series. The MIT Press, 2016. ISBN 9780262337373. URL: <a href="https://www.amazon.com/Deep-Learning-Adaptive-Computation-Machine-ebook/dp/B01MRVFGX4?SubscriptionId=AKIAIOBINVZYXZQZ2U3A&amp;tag=chimbori05-20&amp;linkCode=xm2&amp;camp=2025&amp;creative=165953&amp;creativeASIN=B01MRVFGX4">https://www.amazon.com/Deep-Learning-Adaptive-Computation-Machine-ebook/dp/B01MRVFGX4?SubscriptionId=AKIAIOBINVZYXZQZ2U3A&amp;tag=chimbori05-20&amp;linkCode=xm2&amp;camp=2025&amp;creative=165953&amp;creativeASIN=B01MRVFGX4</a>.&#160;<a class="footnote-backref" href="#fnref:49" title="Jump back to footnote 51 in the text">&#8617;</a></p>
+</li>
+<li id="fn:50">
+<p>Yann LeCun, Yoshua Bengio, and Geoffrey Hinton. Deep learning. <em>nature</em>, 521<span><span class="MathJax_Preview">7553</span><script type="math/tex">7553</script></span>:436–444, 2015.&#160;<a class="footnote-backref" href="#fnref:50" title="Jump back to footnote 52 in the text">&#8617;</a></p>
+</li>
+<li id="fn:51">
+<p>A. K. Sharma, D. M. Adhyaru, T. H. Zaveri, and P. B. Thakkar. Comparative analysis of zoning based methods for gujarati handwritten numeral recognition. In <em>Proc. 5\textsuperscript th Nirma University Int. Conf. Engineering <span><span class="MathJax_Preview">NUiCONE</span><script type="math/tex">NUiCONE</script></span></em>, 1–5. November 2015. <a href="https://doi.org/10.1109/NUICONE.2015.7449632">doi:10.1109/NUICONE.2015.7449632</a>.&#160;<a class="footnote-backref" href="#fnref:51" title="Jump back to footnote 53 in the text">&#8617;</a></p>
+</li>
+<li id="fn:52">
+<p>David Silver, Aja Huang, Chris J. Maddison, Arthur Guez, Laurent Sifre, George van den Driessche, Julian Schrittwieser, Ioannis Antonoglou, Veda Panneershelvam, Marc Lanctot, Sander Dieleman, Dominik Grewe, John Nham, Nal Kalchbrenner, Ilya Sutskever, Timothy Lillicrap, Madeleine Leach, Koray Kavukcuoglu, Thore Graepel, and Demis Hassabis. Mastering the game of go with deep neural networks and tree search. <em>nature</em>, 529<span><span class="MathJax_Preview">7587</span><script type="math/tex">7587</script></span>:484, 2016. <a href="https://doi.org/10.1038/nature16961">doi:10.1038/nature16961</a>.&#160;<a class="footnote-backref" href="#fnref:52" title="Jump back to footnote 54 in the text">&#8617;</a></p>
+</li>
+<li id="fn:53">
+<p>Maryam M. Najafabadi, Flavio Villanustre, Taghi M. Khoshgoftaar, Naeem Seliya, Randall Wald, and Edin Muharemagic. Deep learning applications and challenges in big data analytics. <em>Journal of Big Data</em>, 2<span><span class="MathJax_Preview">1</span><script type="math/tex">1</script></span>:1, 2015.&#160;<a class="footnote-backref" href="#fnref:53" title="Jump back to footnote 55 in the text">&#8617;</a></p>
+</li>
+<li id="fn:54">
+<p>E. A. Huerta, Gabrielle Allen, Igor Andreoni, Javier M. Antelis, Etienne Bachelet, G. Bruce Berriman, Federica B. Bianco, Rahul Biswas, Matias Carrasco Kind, Kyle Chard, Minsik Cho, Philip S. Cowperthwaite, Zachariah B. Etienne, Maya Fishbach, Francisco Forster, Daniel George, Tom Gibbs, Matthew Graham, William Gropp, Robert Gruendl, Anushri Gupta, Roland Haas, Sarah Habib, Elise Jennings, Margaret W. G. Johnson, Erik Katsavounidis, Daniel S. Katz, Asad Khan, Volodymyr Kindratenko, William T. C. Kramer, Xin Liu, Ashish Mahabal, Zsuzsa Marka, Kenton McHenry, J. M. Miller, Claudia Moreno, M. S. Neubauer, Steve Oberlin, Alexander R. Olivas, Donald Petravick, Adam Rebei, Shawn Rosofsky, Milton Ruiz, Aaron Saxton, Bernard F. Schutz, Alex Schwing, Ed Seidel, Stuart L. Shapiro, Hongyu Shen, Yue Shen, Leo P. Singer, Brigitta M. Sipocz, Lunan Sun, John Towns, Antonios Tsokaros, Wei Wei, Jack Wells, Timothy J. Williams, Jinjun Xiong, and Zhizhen Zhao. Enabling real-time multi-messenger astrophysics discoveries with deep learning. <em>Nature Rev. Phys.</em>, 1<span><span class="MathJax_Preview">10</span><script type="math/tex">10</script></span>:600–608, October 2019. <a href="https://arxiv.org/abs/1911.11779">arXiv:1911.11779</a>, <a href="https://doi.org/10.1038/s42254-019-0097-4">doi:10.1038/s42254-019-0097-4</a>.&#160;<a class="footnote-backref" href="#fnref:54" title="Jump back to footnote 56 in the text">&#8617;</a></p>
+</li>
+<li id="fn:55">
+<p>E. A. Huerta, Prayush Kumar, Sean T. McWilliams, Richard O&rsquo;Shaughnessy, and Nicolás Yunes. Accurate and efficient waveforms for compact binaries on eccentric orbits. <em>Phys. Rev.</em>, D90<span><span class="MathJax_Preview">8</span><script type="math/tex">8</script></span>:084016, 2014. <a href="https://arxiv.org/abs/1408.3406">arXiv:1408.3406</a>, <a href="https://doi.org/10.1103/PhysRevD.90.084016">doi:10.1103/PhysRevD.90.084016</a>.&#160;<a class="footnote-backref" href="#fnref:55" title="Jump back to footnote 57 in the text">&#8617;</a></p>
+</li>
+<li id="fn:56">
+<p>Daniel George and E. A. Huerta. Deep learning for real-time gravitational wave detection and parameter estimation: results with advanced ligo data. <em>Phys. Lett.</em>, B778:64–70, 2018. <a href="https://arxiv.org/abs/1711.03121">arXiv:1711.03121</a>, <a href="https://doi.org/10.1016/j.physletb.2017.12.053">doi:10.1016/j.physletb.2017.12.053</a>.&#160;<a class="footnote-backref" href="#fnref:56" title="Jump back to footnote 58 in the text">&#8617;</a></p>
+</li>
+<li id="fn:57">
+<p>Larry Wasserman. <em>All of statistics: a concise course in statistical inference</em>. Springer Science &amp; Business Media, 2013.&#160;<a class="footnote-backref" href="#fnref:57" title="Jump back to footnote 59 in the text">&#8617;</a></p>
+</li>
+<li id="fn:58">
+<p>Stéfan van der Walt, S. Chris Colbert, and Gaël Varoquaux. The NumPy array: a structure for efficient numerical computation. <em>Computing in Science &amp; Engineering</em>, 13<span><span class="MathJax_Preview">2</span><script type="math/tex">2</script></span>:22–30, March 2011. <a href="https://doi.org/10.1109/mcse.2011.37">doi:10.1109/mcse.2011.37</a>.&#160;<a class="footnote-backref" href="#fnref:58" title="Jump back to footnote 60 in the text">&#8617;</a></p>
+</li>
+<li id="fn:59">
+<p>Wes McKinney. Data structures for statistical computing in python. In Stéfan van der Walt and Jarrod Millman, editors, <em>Proceedings of the 9th Python in Science Conference</em>, 51–56. 2010.&#160;<a class="footnote-backref" href="#fnref:59" title="Jump back to footnote 61 in the text">&#8617;</a></p>
+</li>
+<li id="fn:60">
+<p>Pauli Virtanen, Ralf Gommers, Travis E. Oliphant, Matt Haberland, Tyler Reddy, David Cournapeau, Evgeni Burovski, Pearu Peterson, Warren Weckesser, Jonathan Bright, Stéfan J. van der Walt, Matthew Brett, Joshua Wilson, K. Jarrod Millman, Nikolay Mayorov, Andrew R. J. Nelson, Eric Jones, Robert Kern, Eric Larson, C. J. Carey, İlhan Polat, Yu Feng, Eric W. Moore, Jake Vand erPlas, Denis Laxalde, Josef Perktold, Robert Cimrman, Ian Henriksen, E. A. Quintero, Charles R. Harris, Anne M. Archibald, Antônio H. Ribeiro, Fabian Pedregosa, Paul van Mulbregt, and SciPy 1. 0 Contributors. Scipy 1.0: fundamental algorithms for scientific computing in python. <em>Nature Methods</em>, 17:261–272, 2020. <a href="https://doi.org/10.1038/s41592-019-0686-2">doi:10.1038/s41592-019-0686-2</a>.&#160;<a class="footnote-backref" href="#fnref:60" title="Jump back to footnote 62 in the text">&#8617;</a></p>
+</li>
+<li id="fn:61">
+<p>Tianqi Chen, Mu Li, Yutian Li, Min Lin, Naiyan Wang, Minjie Wang, Tianjun Xiao, Bing Xu, Chiyuan Zhang, and Zheng Zhang. Mxnet: a flexible and efficient machine learning library for heterogeneous distributed systems. <em>arXiv</em>, December 2015. <a href="https://arxiv.org/abs/1512.01274v1">arXiv:1512.01274v1</a>.&#160;<a class="footnote-backref" href="#fnref:61" title="Jump back to footnote 63 in the text">&#8617;</a></p>
+</li>
+<li id="fn:62">
+<p>Fabian Pedregosa, Gaël Varoquaux, Alexandre Gramfort, Vincent Michel, Bertrand Thirion, Olivier Grisel, Mathieu Blondel, Peter Prettenhofer, Ron Weiss, Vincent Dubourg, and others. Scikit-learn: machine learning in python. <em>Journal of machine learning research</em>, 12<span><span class="MathJax_Preview">Oct</span><script type="math/tex">Oct</script></span>:2825–2830, 2011.&#160;<a class="footnote-backref" href="#fnref:62" title="Jump back to footnote 64 in the text">&#8617;</a></p>
+</li>
+<li id="fn:63">
+<p>John D. Hunter. Matplotlib: a 2d graphics environment. <em>Computing in Science &amp; Engineering</em>, 9<span><span class="MathJax_Preview">3</span><script type="math/tex">3</script></span>:90–95, 2007. <a href="https://doi.org/10.1109/mcse.2007.55">doi:10.1109/mcse.2007.55</a>.&#160;<a class="footnote-backref" href="#fnref:63" title="Jump back to footnote 65 in the text">&#8617;</a></p>
+</li>
+<li id="fn:64">
+<p>Michael Waskom, Olga Botvinnik, Joel Ostblom, Saulius Lukauskas, Paul Hobson, MaozGelbart, David C. Gemperline, Tom Augspurger, Yaroslav Halchenko, John B. Cole, Jordi Warmenhoven, Julian de Ruiter, Cameron Pye, Stephan Hoyer, Jake Vanderplas, Santi Villalba, Gero Kunter, Eric Quintero, Pete Bachant, Marcel Martin, Kyle Meyer, Corban Swain, Alistair Miles, Thomas Brunner, Drew O&rsquo;Kane, Tal Yarkoni, Mike Lee Williams, and Constantine Evans. Mwaskom/seaborn: v0.10.0 <span><span class="MathJax_Preview">january 2020</span><script type="math/tex">january 2020</script></span>. January 2020. <a href="https://doi.org/10.5281/zenodo.3629446">doi:10.5281/zenodo.3629446</a>.&#160;<a class="footnote-backref" href="#fnref:64" title="Jump back to footnote 66 in the text">&#8617;</a></p>
+</li>
+<li id="fn:65">
+<p>Dirk Merkel. Docker: lightweight linux containers for consistent development and deployment. <em>Linux journal</em>, 2014<span><span class="MathJax_Preview">239</span><script type="math/tex">239</script></span>:2, 2014.&#160;<a class="footnote-backref" href="#fnref:65" title="Jump back to footnote 67 in the text">&#8617;</a></p>
+</li>
+<li id="fn:66">
+<p>Philipp Moritz, Robert Nishihara, Stephanie Wang, Alexey Tumanov, Richard Liaw, Eric Liang, Melih Elibol, Zongheng Yang, William Paul, Michael I. Jordan, and Ion Stoica. Ray: a distributed framework for emerging ai applications. <em>arXiv</em>, December 2017. <a href="https://arxiv.org/abs/1712.05889v2">arXiv:1712.05889v2</a>.&#160;<a class="footnote-backref" href="#fnref:66" title="Jump back to footnote 68 in the text">&#8617;</a></p>
+</li>
+<li id="fn:67">
+<p>Alex Nitz, Ian Harry, Duncan Brown, Christopher M. Biwer, Josh Willis, Tito Dal Canton, Collin Capano, Larne Pekowsky, Thomas Dent, Andrew R. Williamson, Soumi De, Gareth Davies, Miriam Cabero, Duncan Macleod, Bernd Machenschalk, Steven Reyes, Prayush Kumar, Thomas Massinger, Francesco Pannarale, Dfinstad, Márton Tápai, Stephen Fairhurst, Sebastian Khan, Leo Singer, Sumit Kumar, Alex Nielsen, Shasvath, Idorrington92, Amber Lenon, and Hunter Gabbard. Gwastro/pycbc: pycbc release v1.15.4. 2020. <a href="https://doi.org/10.5281/ZENODO.596388">doi:10.5281/ZENODO.596388</a>.&#160;<a class="footnote-backref" href="#fnref:67" title="Jump back to footnote 69 in the text">&#8617;</a></p>
+</li>
+<li id="fn:68">
+<p>Duncan Macleod, Alex L. Urban, Scott Coughlin, Thomas Massinger, Matt Pitkin, paulaltin, Joseph Areeda, Eric Quintero, The Gitter Badger, Leo Singer, and Katrin Leinweber. Gwpy/gwpy: 1.0.1. January 2020. <a href="https://doi.org/10.5281/zenodo.3598469">doi:10.5281/zenodo.3598469</a>.&#160;<a class="footnote-backref" href="#fnref:68" title="Jump back to footnote 70 in the text">&#8617;</a></p>
+</li>
+<li id="fn:69">
+<p>Thomas Kluyver, Benjamin Ragan-Kelley, Fernando Pérez, Brian Granger, Matthias Bussonnier, Jonathan Frederic, Kyle Kelley, Jessica Hamrick, Jason Grout, Sylvain Corlay, Paul Ivanov, Damián Avila, Safia Abdalla, and Carol Willing. Jupyter notebooks – a publishing format for reproducible computational workflows. 2016.&#160;<a class="footnote-backref" href="#fnref:69" title="Jump back to footnote 71 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+                <p>He Wang@BNU</p>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../mathjax-config.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

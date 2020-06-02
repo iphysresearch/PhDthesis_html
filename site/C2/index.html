@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="He Wang">
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>第二章 引力波探测和数据分析理论 - GWDL</title>
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/rust.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <!-- Expander button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="..">GWDL</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li >
+                                <a href="..">首页</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">正文 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../Abstract/">摘要</a>
+</li>
+                                    
+<li >
+    <a href="../C1/">第一章 绪论</a>
+</li>
+                                    
+<li class="active">
+    <a href="./">第二章 引力波探测和数据分析理论</a>
+</li>
+                                    
+<li >
+    <a href="../C3/">第三章 深度学习的理论基础</a>
+</li>
+                                    
+<li >
+    <a href="../C4/">第四章 引力波探测中关于神经网络的可解释性研究</a>
+</li>
+                                    
+<li >
+    <a href="../C5/">第五章 卷积神经网络结构对引力波信号识别的性能研究</a>
+</li>
+                                    
+<li >
+    <a href="../C6/">第六章 匹配滤波-卷积神经网络(MF-CNN)模型的应用研究</a>
+</li>
+                                    
+<li >
+    <a href="../C7/">第七章 总结与展望</a>
+</li>
+                                    
+<li >
+    <a href="../Appendix/">附录</a>
+</li>
+                                </ul>
+                            </li>
+                            <li >
+                                <a href="../Acknowledgement/">致谢</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li >
+                                <a rel="next" href="../C1/">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li >
+                                <a rel="prev" href="../C3/">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/iphysresearch/PhDthesis_html/edit/master/docs/C2.md"><i class="fa fa-github"></i> Edit on GitHub</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#_1">第二章 引力波探测和数据分析理论</a></li>
+            <li><a href="#21">2.1 引言</a></li>
+            <li><a href="#22">2.2 引力波探测技术</a></li>
+            <li><a href="#23">2.3 信号处理与数据分析方法</a></li>
+            <li><a href="#24">2.4 匹配滤波技术</a></li>
+            <li><a href="#25">2.5 总结与结论</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<p></br></p>
+<div class="toc">
+<ul>
+<li><a href="#_1">第二章 引力波探测和数据分析理论</a><ul>
+<li><a href="#21">2.1 引言</a></li>
+<li><a href="#22">2.2 引力波探测技术</a><ul>
+<li><a href="#221">2.2.1 引力波波源建模</a></li>
+<li><a href="#222">2.2.2 引力波探测实验</a></li>
+<li><a href="#223">2.2.3 引力波数据处理</a></li>
+</ul>
+</li>
+<li><a href="#23">2.3 信号处理与数据分析方法</a><ul>
+<li><a href="#231">2.3.1 稳态性与高斯性</a></li>
+<li><a href="#232">2.3.2 功率谱密度</a></li>
+<li><a href="#233">2.3.3 能谱泄露与白化</a></li>
+<li><a href="#234">2.3.4 时域信号平移</a></li>
+</ul>
+</li>
+<li><a href="#24">2.4 匹配滤波技术</a><ul>
+<li><a href="#241">2.4.1 匹配滤波内积</a></li>
+<li><a href="#242">2.4.2 稳态噪声的概率分布</a></li>
+<li><a href="#243">2.4.3 理想探测统计量</a></li>
+<li><a href="#244">2.4.4 振幅未知的模板匹配滤波</a></li>
+<li><a href="#245">2.4.5 到达时间未知的模板匹配滤波</a></li>
+</ul>
+</li>
+<li><a href="#25">2.5 总结与结论</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<p></br></p>
+<hr />
+<h1 id="_1">第二章 引力波探测和数据分析理论<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p></br></p>
+<h2 id="21">2.1 引言<a class="headerlink" href="#21" title="Permanent link">&para;</a></h2>
+<p></br></p>
+<p>阿尔伯特·爱因斯坦 (Albert Einstein) 的广义相对论于 1916 年发表问世以来，就预言了引力波的存在。类似于电磁场的扰动来产生电磁波，引力波则对应地由时空的扰动而产生，并且以光速辐射传播，具有横波的特性。所谓横波，是指引力波对时空中测试粒子运动的影响在与引力波传播方向相互垂直的平面上。所以，引力波可以被看作是在静态时空背景上时空的涟漪，如图下所示 (来源:LIGO/T. Pyle <sup id="fnref:C2_gw_cartoon"><a class="footnote-ref" href="#fn:C2_gw_cartoon">1</a></sup>)。</p>
+<blockquote>
+<p>双黑洞并合系统产生引力波的示意图<br />
+<img alt="双黑洞并合系统产生引力波的示意图" src="../img/C2_gw_cartoon.jpg" style="zoom:50%" /></p>
+</blockquote>
+<p>“时空结构决定了物质如何运动，同时物质的分布又在时空上影响了其结构”，这是约翰·惠勒 (John Wheeler) 对广义相对论中的时空结构与物质相互之间制约关系的经典总结，这亦是对爱因斯坦广义相对论关于引力波预言的理论基础。用数学形式表达出来就是爱因斯坦场方程，将爱因斯坦曲率张量 <span><span class="MathJax_Preview">R_{\mu\nu}</span><script type="math/tex">R_{\mu\nu}</script></span> (描述时空弯曲程度)和物质能动张量 <span><span class="MathJax_Preview">T_{\mu\nu}</span><script type="math/tex">T_{\mu\nu}</script></span> (描述物质能量密度)建立起了联系，关于度规张量 <span><span class="MathJax_Preview">g_{\mu\nu}</span><script type="math/tex">g_{\mu\nu}</script></span> 的十个非线性偏微分方程组可以如下表示</p>
+<div>
+<div class="MathJax_Preview">\label{eqn:C2_EinsEqns}
+    R_{\mu\nu}-\frac{1}{2}g_{\mu\nu}R = \frac{8\pi G}{c^4}T_{\mu\nu}
+</div>
+<script type="math/tex; mode=display">\label{eqn:C2_EinsEqns}
+    R_{\mu\nu}-\frac{1}{2}g_{\mu\nu}R = \frac{8\pi G}{c^4}T_{\mu\nu}
+</script>
+</div>
+<p>其中，<span><span class="MathJax_Preview">G</span><script type="math/tex">G</script></span> 是牛顿引力常数，<span><span class="MathJax_Preview">c</span><script type="math/tex">c</script></span> 代表光速。上式是一个高度非线性的偏微分方程组，求其精确解通常是相当困难的。但是，在某些特定的条件下，可以找到其对应的近似解。那么，最常用的就是在弱场近似下的引力波动解。</p>
+<p>在弱场近似 (weak-field approximation) 下，时空度规 <span><span class="MathJax_Preview">g_{\mu\nu}</span><script type="math/tex">g_{\mu\nu}</script></span> 可以表示为平直时空背景 <span><span class="MathJax_Preview">\eta_{\mu\nu}</span><script type="math/tex">\eta_{\mu\nu}</script></span> 上加了一个微小扰动 <span><span class="MathJax_Preview">|h_{\mu\nu}\ll1|</span><script type="math/tex">|h_{\mu\nu}\ll1|</script></span>，</p>
+<div>
+<div class="MathJax_Preview">\label{eqn:C2_gmunu}
+    g_{\mu\nu}=\eta_{\mu\nu} + h_{\mu\nu}
+</div>
+<script type="math/tex; mode=display">\label{eqn:C2_gmunu}
+    g_{\mu\nu}=\eta_{\mu\nu} + h_{\mu\nu}
+</script>
+</div>
+<p>这样的近似假设是有意义的，因为这相当于是观者正处在相对于波源的类光无穷远处。将时空度规 <span><span class="MathJax_Preview">g_{\mu\nu}</span><script type="math/tex">g_{\mu\nu}</script></span> 表达式 \eqref{eqn:C2_gmunu} 代入到爱因斯坦场方程 \eqref{eqn:C2_EinsEqns} 中，就可以给出时空的度规微扰 <span><span class="MathJax_Preview">h_{\mu\nu}</span><script type="math/tex">h_{\mu\nu}</script></span> 所满足的动力学方程，度规微扰的演化已被看作是自由传播到无穷远处的时空波动。</p>
+<p>在真空弱场近似条件下，去掉微扰高阶项，并取迹反转 (trace-reversed) 度规 <span><span class="MathJax_Preview">\tilde{h}_{\mu\nu}=h_{\mu\nu}-\frac{1}{2}\eta_{\mu\nu}h</span><script type="math/tex">\tilde{h}_{\mu\nu}=h_{\mu\nu}-\frac{1}{2}\eta_{\mu\nu}h</script></span> 后，爱因斯坦场方程可以进一步简化为线性的波动方程：</p>
+<div>
+<div class="MathJax_Preview">
+\left(-\frac{1}{c^{2}} \frac{\partial^{2}}{\partial t^{2}}+\nabla^{2}\right) \tilde{h}_{\mu \nu}=0
+</div>
+<script type="math/tex; mode=display">
+\left(-\frac{1}{c^{2}} \frac{\partial^{2}}{\partial t^{2}}+\nabla^{2}\right) \tilde{h}_{\mu \nu}=0
+</script>
+</div>
+<p>该方程的平面波解可以表示为：</p>
+<div>
+<div class="MathJax_Preview">
+    \tilde{h}_{\mu\nu} = A_{\mu\nu} e^{ik_\alpha x^\alpha}
+</div>
+<script type="math/tex; mode=display">
+    \tilde{h}_{\mu\nu} = A_{\mu\nu} e^{ik_\alpha x^\alpha}
+</script>
+</div>
+<p>其中，<span><span class="MathJax_Preview">A_{\mu\nu}</span><script type="math/tex">A_{\mu\nu}</script></span> 是一个对称的 <span><span class="MathJax_Preview">4\times4</span><script type="math/tex">4\times4</script></span> 常系数矩阵，对应了引力波各个分量的振幅，<span><span class="MathJax_Preview">k_\alpha</span><script type="math/tex">k_\alpha</script></span> 是一个四维波矢，并满足 <span><span class="MathJax_Preview">k_{\alpha} x^{\alpha}=-k^{0} t+\vec{k} \cdot \vec{x}</span><script type="math/tex">k_{\alpha} x^{\alpha}=-k^{0} t+\vec{k} \cdot \vec{x}</script></span>。将该平面波解的形式代回到波动方程后，可以得到波矢的类光性：<span><span class="MathJax_Preview">k_\mu k^\mu=0</span><script type="math/tex">k_\mu k^\mu=0</script></span>。这说明广义相对论要求引力波必须是以光速来传播。</p>
+<p>通过引入协和 (harmonic) 规范条件，<span><span class="MathJax_Preview">k^\mu A_{\mu\nu}=0</span><script type="math/tex">k^\mu A_{\mu\nu}=0</script></span>，我们可以消除掉最后的两个规范自由度：<span><span class="MathJax_Preview">A^\mu_\mu=0</span><script type="math/tex">A^\mu_\mu=0</script></span> 和 <span><span class="MathJax_Preview">A^{0\mu}=0</span><script type="math/tex">A^{0\mu}=0</script></span>。第一个方程 (<span><span class="MathJax_Preview">k^\mu A_{\mu\nu}=0</span><script type="math/tex">k^\mu A_{\mu\nu}=0</script></span>) 是表示引力波的振动方向与传播方向垂直，即引力波是一个横波；第二个方程 (<span><span class="MathJax_Preview">A^\mu_\mu=0</span><script type="math/tex">A^\mu_\mu=0</script></span>) 表示引力波的振幅矩阵是无迹的，因此将这样的规范选择称为横向无迹 (transverse-traceless, TT) 规范。第三个方程 (<span><span class="MathJax_Preview">A^{0\mu}=0</span><script type="math/tex">A^{0\mu}=0</script></span>) 涉及到坐标系的一种选择，其可确保观者的四速 <span><span class="MathJax_Preview">u</span><script type="math/tex">u</script></span> 与引力波的传播方向是垂直的，即有 <span><span class="MathJax_Preview">A_{\mu\nu}u^\nu=0</span><script type="math/tex">A_{\mu\nu}u^\nu=0</script></span>。相关的严格论述可参考 <sup id="fnref:1"><a class="footnote-ref" href="#fn:1">9</a></sup>。</p>
+<p>我们考虑 z 方向为引力波的传播方向，</p>
+<div>
+<div class="MathJax_Preview">
+    k^{\alpha}=(\omega, 0,0, \omega / c)
+</div>
+<script type="math/tex; mode=display">
+    k^{\alpha}=(\omega, 0,0, \omega / c)
+</script>
+</div>
+<p>根据 <span><span class="MathJax_Preview">k_3A^{3\nu}=0</span><script type="math/tex">k_3A^{3\nu}=0</script></span> 条件，可知 <span><span class="MathJax_Preview">A_{3\nu}=0</span><script type="math/tex">A_{3\nu}=0</script></span>。由于矩阵 <span><span class="MathJax_Preview">A_{\mu\nu}</span><script type="math/tex">A_{\mu\nu}</script></span> 是无迹的，因此 <span><span class="MathJax_Preview">A_{\mu\nu}</span><script type="math/tex">A_{\mu\nu}</script></span> 矩阵的未知独立分量个数从 10 个缩减到只有 2 个，即</p>
+<div>
+<div class="MathJax_Preview">
+A_{\mu v}=\left(\begin{array}{cccc}
+0 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; A_{+} &amp; A_{\times} &amp; 0 \\
+0 &amp; A_{\times} &amp; -A_{+} &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 0
+\end{array}\right)
+</div>
+<script type="math/tex; mode=display">
+A_{\mu v}=\left(\begin{array}{cccc}
+0 & 0 & 0 & 0 \\
+0 & A_{+} & A_{\times} & 0 \\
+0 & A_{\times} & -A_{+} & 0 \\
+0 & 0 & 0 & 0
+\end{array}\right)
+</script>
+</div>
+<p>可以看到与电磁波传播有两个偏振模式一样，引力波也有两种偏振模式，分别是加号偏振 (plus polarization) 和交叉偏振 (cross polarization)。因此，真空爱因斯坦场方程沿 <span><span class="MathJax_Preview">z</span><script type="math/tex">z</script></span> 方向传播的平面波解可以改写为</p>
+<div>
+<div class="MathJax_Preview">\begin{align}
+    h_{+}(t, z)&amp;=A_{+} \cos \left(w(t-z / c)+\phi_{0}\right)\\
+    h_{\times}(t, z)&amp;=A_{\times} \cos \left(w(t-z / c)+\phi_{0}\right)
+\end{align}</div>
+<script type="math/tex; mode=display">\begin{align}
+    h_{+}(t, z)&=A_{+} \cos \left(w(t-z / c)+\phi_{0}\right)\\
+    h_{\times}(t, z)&=A_{\times} \cos \left(w(t-z / c)+\phi_{0}\right)
+\end{align}</script>
+</div>
+<p>为了考察引力波是如何与一个自由检验粒子产生影响，我们进一步用度规微扰的两种偏振模式 <span><span class="MathJax_Preview">h_+</span><script type="math/tex">h_+</script></span> 和 <span><span class="MathJax_Preview">h_\times</span><script type="math/tex">h_\times</script></span> 将时空度规解改写为</p>
+<div>
+<div class="MathJax_Preview">\label{eqn:C2_h+x}
+    g_{\mu\nu}=\eta_{\mu\nu}+h_{\alpha \beta}=\left(\begin{array}{cccc}
+    {-1} &amp; {0} &amp; {0} &amp; {0} \\
+    {0} &amp; {1+h_{+}} &amp; {h_{\times}} &amp; {0} \\
+    {0} &amp; {h_{\times}} &amp; {1-h_{+}} &amp; {0} \\
+    {0} &amp; {0} &amp; {0} &amp; {1}
+    \end{array}\right)
+</div>
+<script type="math/tex; mode=display">\label{eqn:C2_h+x}
+    g_{\mu\nu}=\eta_{\mu\nu}+h_{\alpha \beta}=\left(\begin{array}{cccc}
+    {-1} & {0} & {0} & {0} \\
+    {0} & {1+h_{+}} & {h_{\times}} & {0} \\
+    {0} & {h_{\times}} & {1-h_{+}} & {0} \\
+    {0} & {0} & {0} & {1}
+    \end{array}\right)
+</script>
+</div>
+<p>从公式 \eqref{eqn:C2_h+x} 可以看到，引力波 (沿着 <span><span class="MathJax_Preview">z</span><script type="math/tex">z</script></span> 轴传播) 的 <span><span class="MathJax_Preview">h_+</span><script type="math/tex">h_+</script></span> 极化方向对应的是 <span><span class="MathJax_Preview">x</span><script type="math/tex">x</script></span> 和 <span><span class="MathJax_Preview">y</span><script type="math/tex">y</script></span> 方向的挤压和拉伸，而 <span><span class="MathJax_Preview">h_\times</span><script type="math/tex">h_\times</script></span> 极化方向是对 <span><span class="MathJax_Preview">x</span><script type="math/tex">x</script></span>-<span><span class="MathJax_Preview">y</span><script type="math/tex">y</script></span> 平面上对角方向的挤压和拉伸，如下图所示 <sup id="fnref:2"><a class="footnote-ref" href="#fn:2">10</a></sup>。</p>
+<blockquote>
+<p>一束沿 <span><span class="MathJax_Preview">z</span><script type="math/tex">z</script></span> 方向传播的单色、稳定频率的引力波 (角频率: <span><span class="MathJax_Preview">\omega=2\pi/T</span><script type="math/tex">\omega=2\pi/T</script></span>)<br />
+<img alt="一束沿 zz 方向传播的单色、稳定频率的引力波 (角频率: \omega=2\pi/T\omega=2\pi/T)" src="../img/C2_gw_polar.png" style="zoom:60%" /></p>
+</blockquote>
+<p>可见，只需要探测物体之间空间位置的变化，就可以预计引力波的形态，从而判断是否有引力波出现。在过去的几十年里，正是为了精确地探求引力波所带来的微小应变 (strain) 变化，带动了整个引力波探测技术以及引力波天文学的发展和进步。</p>
+<p>本章将对引力波探测技术及其数据处理方法进行概述。引力波探测项目可以分为三个较独立的研究领域：引力波波源建模 (第 <a href="./#221">2.2.1</a> 节)、引力波探测实验 (第 <a href="./#222">2.2.2</a> 节) 和引力波数据处理 (第 <a href="./#223">2.2.3</a> 节)。在本章中，我们会以引力波数据的预处理流程为基础，介绍与本文内容密切相关的信号处理概念与数据分析理论 (第 <a href="./#23">2.3</a> 节)，尤其会对匹配滤波技术 (第 <a href="./#24">2.4</a> 节) 的统计基础做详细阐述。</p>
+<p></br></p>
+<h2 id="22">2.2 引力波探测技术<a class="headerlink" href="#22" title="Permanent link">&para;</a></h2>
+<h3 id="221">2.2.1 引力波波源建模<a class="headerlink" href="#221" title="Permanent link">&para;</a></h3>
+<p>从上一节的介绍可知，引力波波源的模型构建涉及的是引力波的动力学。具体说来，就是引力波波源建模需要针对宇宙中实际的天体作为研究对象，来求解爱因斯坦场方程。在引力波探测所关心的强引力波辐射之初，系统一般都处于强引力、强非线性、近光速的运动状态。对于这些运动状态，后牛顿展开 (post-Newtonian)、微扰 (perturbation) 等近似方法都会失效。由此，在引力波波源建模问题中，数值计算方法就扮演了非常重要的角色。就是在这样的背景下，数值相对论作为广体相对论一个独立的研究方向蓬勃发展起来。</p>
+<p>引力波的波源大体上可以分为四类：</p>
+<ul>
+<li>致密双星的并合系统。这类波源产生的引力波存在时间短，并且其波源的演化机制相对比较了解。粗略地讲，宇宙中双星的并合系统可以分为超大质量双黑洞系统、恒星级质量双星系统和质量一大一小的双星系统。</li>
+<li>超新星爆发。这是一个极端剧烈的过程，极大质量的物质偏离对称性的剧烈运动将发生强烈的短时引力波。根据这种引力波的强度和波形特点，会有助于我们了解目前还尚不清楚的超新星爆发机制。</li>
+<li>旋转的致密星体。偏离轴对称的旋转中子星就属于这一类，中子星偏离轴对称的程度越大或旋转速度越快，就会发射越强烈的引力波。这种长时引力波的波源机制是比较清楚的。</li>
+<li>随机背景引力辐射。极早期宇宙处于很高的能量标度，所以量子效应很明显，来自真空的量子涨落在经历诸如暴涨等过程后被放大，从而形成原初引力波。由于量子涨落的随机性，这种长时的原初引力波会分布在所有的频段。</li>
+</ul>
+<p>双星系统作为引力波探测实验中最有可能探测到的波源之一，其典型的引力波强度约为 <span><span class="MathJax_Preview">10^{-20}</span><script type="math/tex">10^{-20}</script></span>，其他可能引力波波源 (如旋转中子星、超新星爆发等) 的频段是难以达到 aLIGO 现有的 <span><span class="MathJax_Preview">10^{-23}</span><script type="math/tex">10^{-23}</script></span> 的灵敏度。双星系统可以是中子星-中子星、中子星-白矮星、中子星-黑洞、黑洞-黑洞等等。以双黑洞系统为例，在两黑洞间距较大，相互旋绕的速度较低，这种旋进 (spiral) 早期过程用后牛顿展开近似还是适用的。随着两个黑洞的相互旋绕靠近，伴随着引力波的释放，能量被耗散掉，这时进入双黑洞旋进后期。然后很快的，双黑洞迅速进一步靠近，并发生碰撞和融合，形成一个大黑洞。这个过程称为双黑洞并合 (merge) 期。旋进后期和并合期是引力波探测最感兴趣的阶段。在该阶段，目前几乎只有数值相对论才是唯一可行的处理爱因斯坦场方程的手段。振铃 (ringdown) 过程是并合成一个大黑洞之后，会经过一段逐渐变成稳态的单个克尔 (Kerr) 黑洞的振荡衰减过程，这一般是通过微扰理论来描述，如下图所示。</p>
+<blockquote>
+<p>数值计算所得到的引力波波形模板，对应于 H1 观测站上记录的 GW150914 引力波事件<br />
+<img alt="数值计算所得到的引力波波形模板，对应于 H1 观测站上记录的 GW150914 引力波事件" src="../img/C2_gw_wf.png" style="zoom:70%" /></p>
+</blockquote>
+<p>数值相对论是对爱因斯坦场方程不做任何近似的数值求解方法。以双黑洞系统为例，描述引力波波源涉及若干个系统参数，如双黑洞系统的黑洞质量、黑洞自旋、轨道偏心率等等。随着引力波探测技术的进步和发展，对引力波的理论建模提出了更高要求，即有更加精确和快速的波形建模方法的需求 <sup id="fnref:3"><a class="footnote-ref" href="#fn:3">11</a></sup> <sup id="fnref:4"><a class="footnote-ref" href="#fn:4">12</a></sup> <sup id="fnref:5"><a class="footnote-ref" href="#fn:5">13</a></sup> <sup id="fnref:6"><a class="footnote-ref" href="#fn:6">14</a></sup>。本论文使用的是带自旋的有效单体数值相对论 (SEOBNR) <sup id="fnref2:6"><a class="footnote-ref" href="#fn:6">14</a></sup> <sup id="fnref:7"><a class="footnote-ref" href="#fn:7">15</a></sup> 理论模型，通过该模型就可以建立双星系统中的系统参数与对应时空无穷远处的引力波波形之间的映射关系。近些年来，已经开始有研究者尝试通过人工神经网络和机器学习技术对引力波进行建模 <sup id="fnref:8"><a class="footnote-ref" href="#fn:8">16</a></sup> <sup id="fnref:9"><a class="footnote-ref" href="#fn:9">17</a></sup> <sup id="fnref:10"><a class="footnote-ref" href="#fn:10">18</a></sup> <sup id="fnref:11"><a class="footnote-ref" href="#fn:11">19</a></sup> <sup id="fnref:12"><a class="footnote-ref" href="#fn:12">20</a></sup>，并且取得了值得注目的研究成果。可见，基于数据驱动的引力波理论建模是一个很值得期待的研究方向。</p>
+<h3 id="222">2.2.2 引力波探测实验<a class="headerlink" href="#222" title="Permanent link">&para;</a></h3>
+<p>粗略地讲，引力波波源建模涉及的是引力波的动力学，而引力波探测实验涉及的就是引力波的运动学。在上一节中的波形图像结果告诉我们双黑洞并合时的引力波强度约为 <span><span class="MathJax_Preview">4\times10^{-22}</span><script type="math/tex">4\times10^{-22}</script></span> 米。这比原子核的直径 <span><span class="MathJax_Preview">10^{-15}</span><script type="math/tex">10^{-15}</script></span> 米还要小好几个数量级！为了探测到如此微弱的引力波对物质的影响，目前引力波探测器主要通过激光干涉测量试探物体间的距离变化来实现引力波观测的目的。</p>
+<p>目前，位于美国的激光干涉引力波天文台 (Laser Interferometer Gravitational-Wave Observatory, LIGO) <sup id="fnref:13"><a class="footnote-ref" href="#fn:13">21</a></sup> 是地面最大的引力波探测器，其原理是利用与迈克尔逊干涉仪相类似的激光干涉原理。LIGO 有两条很长且相互垂直的延伸臂，臂的镜头上安装着探测器，来自两个探测器的信号最终被中间仪器接受并形成干涉。利用干涉仪进行探测的基本原理就在于，比较激光在 其相互垂直的两臂中传播时所用的时间，如下图所示 (来自 Wikimedia Commons<sup id="fnref:LIGO_schematic"><a class="footnote-ref" href="#fn:LIGO_schematic">2</a></sup>)。在理论上，如果有振幅强度较大的引力波经过时，由于其独特的极化性质，干涉仪两个臂的长度做相反的变化，即一臂伸长时而另一臂会相应的缩短，从而使得两束相干光有了新的光程差，破坏了相干减弱的初始条件，进而会有一定数量的激光进入光探测器，获得信号输出，而该信号的大小就正比于引力波的无量纲振幅 <span><span class="MathJax_Preview">h</span><script type="math/tex">h</script></span>，探测到这个信号即可表明探测到引力波。可以理解，干涉仪的臂长越长，探测器对引力波的响应也就越强。</p>
+<blockquote>
+<p>激光干涉仪的原理示意图<br />
+<img alt="激光干涉仪的原理示意图" src="../img/C2_LIGO_schematic.png" style="zoom:40%" /></p>
+</blockquote>
+<p>美国的 LIGO 有两个干涉仪，分别是位于美国西海岸的汉福德(Handford, H1)和南海岸的利文斯顿 (Livingston, L1)，都有成一对 L 型的臂，且臂长都为 4 千米。随着探测实验技术的不断提高，LIGO 已经上线了第二代地面激光干涉实验装置，提高了探测灵敏度，对应为 aLIGO (Advanced LIGO) <sup id="fnref:14"><a class="footnote-ref" href="#fn:14">22</a></sup>。除 aLIGO 以外，还有其他的大型地面引力波探测器：位于意大利的 Virgo 项目 <sup id="fnref:15"><a class="footnote-ref" href="#fn:15">23</a></sup> (臂长 3 千米，现已升级为 aVirgo (Advanced Virgo) <sup id="fnref:16"><a class="footnote-ref" href="#fn:16">24</a></sup>)、德国的 GEO600 项目 <sup id="fnref:17"><a class="footnote-ref" href="#fn:17">25</a></sup> (臂长 600 米)等。同时，日本已正式上线运行一个臂长 3 千米的地下神岗引力波望远镜 (KAGRA) <sup id="fnref:18"><a class="footnote-ref" href="#fn:18">26</a></sup> <sup id="fnref:19"><a class="footnote-ref" href="#fn:19">27</a></sup>，该项目以前叫大尺度低温引力波望远镜 (LCGT)。目前印度正在规划的 LIGO-India <sup id="fnref:20"><a class="footnote-ref" href="#fn:20">28</a></sup> 也是一个地面引力波探测器。如下图 <sup id="fnref:21"><a class="footnote-ref" href="#fn:21">29</a></sup> 显示了全球主要地面引力波探测器的位置分布。</p>
+<blockquote>
+<p>全球主要的地面引力波天文台分布图<br />
+<img alt="全球主要的地面引力波天文台分布图" src="../img/LIGO_map.png" style="zoom:40%" /></p>
+</blockquote>
+<p>目前，aLIGO 的第一次探测运行 (The first observing run, O1) 从 2015 年 9 月 12 日至 2016 年 1 月 19 日，只有美国的两个引力波观测站(H1/L1)在线运行。第二次探测运行 (The second observing run, O2) 是从 2016 年 11 月 30 日至 2017 年 8 月 1 日，在此期间 aVirgo 于 2017 年 8 月底开始组网，实现了三个观测站同时运行(H1/L1/V1)。第三次探测运行 (O3) 始于 2019 年 4 月 1 日，位于日本 KAGRA 观测站将计划于 2020 年 2 月底 并网参与到全球引力波的探测网络中。受疫情 (CONVID-19) 的影响，O3 提前原定计划近一个月于 2020 年 3 月 27 日终止观测运行。</p>
+<blockquote>
+<p>不同引力波波源的应变强度和引力波探测器的灵敏度曲线 <sup id="fnref:C2_sensitivity_detector"><a class="footnote-ref" href="#fn:C2_sensitivity_detector">3</a></sup><br />
+<img alt="不同引力波波源的应变强度和引力波探测器的灵敏度曲线" src="../img/C2_sensitivity_detector.jpg" style="zoom:90%" /></p>
+</blockquote>
+<p>aLIGO 探测器的最敏感的频率约为 150 Hz，如上图 <sup id="fnref:22"><a class="footnote-ref" href="#fn:22">30</a></sup> 所示。在地球上很难探测到低于 1 Hz 的引力波，因为在该频段地球的引力成为了主要噪音源。因此，为了探测到更丰富的波源系统所发出的低频引力波 (&lt;10Hz)，就需要避免地表噪声的影响，把激光干涉仪放入外太空中，这就是空间引力波探测器。目前，较为成熟的是美宇航局与欧航局合作的 eLISA (evolved Laser Interferometer Space Antenna) 计划，已被列入欧空局的 L3 计划，检验 eLISA 实验技术的卫星 LISA Pathfinder 运行非常成功 <sup id="fnref:23"><a class="footnote-ref" href="#fn:23">31</a></sup>。日本科学家提出了 DECIGO 计划，拟开展空间引力波探测。中国也在积极探讨和发展空间引力波探测计划，目前中国有两大空间引力波探测项目，一个是中国科学院的“空间太极计划” <sup id="fnref:24"><a class="footnote-ref" href="#fn:24">32</a></sup> <sup id="fnref:25"><a class="footnote-ref" href="#fn:25">33</a></sup>，已于2019年8月31日将我国首颗空间引力波探测技术实验卫星“太极一号”发射上天，成功实现“三步走”第一步任务目标。有最新研究表明 LISA-Taiji 的合作联网 <sup id="fnref:26"><a class="footnote-ref" href="#fn:26">34</a></sup> 会将使引力波的探测效率提高数个量级。另一个是中山大学的“天琴计划” <sup id="fnref:27"><a class="footnote-ref" href="#fn:27">35</a></sup>，在2019年12月20日“天琴一号”的正式入轨意味着天琴空间引力波探测计划正式进入“太空试验”阶段。这两个项目目前还都处在预研阶段，已被列入中国科学院的空间 2050 年规划和国家重大“十二五”规划建设的探索预研计划中，主要科学目标是观测双黑洞并合和极大质量比天体并合时产生的低频引力波辐射。关于中国的地面引力波探测计划，还有中科院高能物理研究所主导的“阿里计划” <sup id="fnref:28"><a class="footnote-ref" href="#fn:28">36</a></sup> <sup id="fnref:29"><a class="footnote-ref" href="#fn:29">37</a></sup> 探测原初引力波和国家天文台主持的贵州的 500 米口径球面射电望远镜 FAST 项目 <sup id="fnref:30"><a class="footnote-ref" href="#fn:30">38</a></sup> 通过脉冲星计时阵探测引力波，此外中科院武汉物数所也正式公布了沼山长基线原子干涉引力天线 (ZAIGA) 科学计划 <sup id="fnref:31"><a class="footnote-ref" href="#fn:31">39</a></sup> 通过原子干涉仪探测引力波。在上述所有的引力波探测计划中，不论是引力波源的理论模型，还是引力波信号提取和数据处理，都扮演着重要甚至是不可或缺的角色。</p>
+<h3 id="223">2.2.3 引力波数据处理<a class="headerlink" href="#223" title="Permanent link">&para;</a></h3>
+<p>随着引力波探测器精度的不断提高和技术的发展，对引力波探测数据结果的正确分析和解释是越来越重要的。实际上，引力波数据处理的必要性之一，就是要在收集了大量的强噪声背景数据中辨别出真实的引力波信号。对于地面引力波探测器(如LIGO)，埋在复杂且非稳态的噪声中的引力波信号是极其微弱的。在引力波探测实验的数据分析中，一般会采用匹配滤波技术提高探测的信噪比，通过预先数值模拟出引力波源产生的理论波形，把该预言的波形作为模板进行数据分析 <sup id="fnref:32"><a class="footnote-ref" href="#fn:32">40</a></sup>。匹配滤波技术可以在既定硬件灵敏度的基础上提高引力波探测能力约 100 倍，付出的代价是大大增加数值分析的参数空间。为了确认一个引力波信号的存在性，我们都需要非常仔细的数据分析和数据处理流程，来确保在并行搜索的每个引力波探测器中能同时找到它，并且还与探测器背景噪声相比有着统计意义上的显著性，达到引力波探测实验所需要的置信度。引力波数据处理的另一个重要目的就是为了通过对引力波所携带的信息，分析出波源的一些物理性质，包括波源的物理参数以及其演化的一些信息，从而为其他研究者提供研究依据。</p>
+<p>在数据分析的过程中，由于引力波探测仪器的故障或其他外界干扰的存在，一般会在数据上留下一些短周期的脉冲数据流，这也是说引力波数据是非稳态 (可见本章的第 <a href="./#231">2.3.1</a> 节) 的主要缘故之一。由于匹配滤波时的波形模板也都是短周期的，这就会使得出现其与脉冲噪声信号匹配的几率较大，从而导致很高的引力波探测误报率。在多数情况下，这种短时的脉冲噪声都可以反映在探测器相关的辅助监测设施上。所以，在整个数据分析的过程中，会首先在每段数据上对数据的品质 (data quality) 特征类型做标记，为数据中任意一秒内的数据质量分级。</p>
+<ul>
+<li>第一类数据品质 (CAT1) 是最差的一级数据，它们不能用来数据分析。这些数据会直接被排除截取掉。    </li>
+<li>第二类数据品质 (CAT2) 是指已知环境噪声来源或有仪器干扰时段的数据片段。例如：某强烈的地震活动等。</li>
+<li>第三类数据品质 (CAT3) 是指某时段的数据片段，其引力波信号所经通道与外界环境有一些不明的统计相关性。</li>
+</ul>
+<p>引力波数据上对数据品质的标记是逐级递进的，即某段数据被标记了 CAT1，则说明该段数据没有通过 CAT1 的数据品质要求，那么更高级别的数据品质也是一定没有通过的。在真实的引力波数据中，除了已知的各种环境和探测仪器会带来噪声的贡献以外 (如下方左图 <sup id="fnref:33"><a class="footnote-ref" href="#fn:33">41</a></sup> 所示)，还存在一些短时且不清楚来源的反常噪声类型，一般我们称之为 glitch，如图下方右图 <sup id="fnref:34"><a class="footnote-ref" href="#fn:34">42</a></sup> 所示。Glitch 在引力波数据噪声背景中对数据分析的影响非常大，它们不仅可能会在不同的探测器上出现，目前也找不到与任何探测器环境之间的相关性。GravitySpy <sup id="fnref:35"><a class="footnote-ref" href="#fn:35">43</a></sup> 就是一个为了对目前所发现的 glitches 进行人工标记分类的项目，希望通过对 glitch 进行数据分析来最终能消除其带来的影响。</p>
+<blockquote>
+<p>(左) 在 Advanced LIGO 中各种已知噪声来源的振幅-频谱图；(右) glitch 的时频图(blip)<br />
+<img alt="" src="../img/C2_ALIGO_broadband.png" style="zoom:65%" /><img alt="" src="../img/C2_example_blip.png" style="zoom:45%" /></p>
+</blockquote>
+<p>随着引力波天文学的兴起，目前 LIGO 科学合作组织已经在 GWOSC (Gravitational-Wave Open Science Center) <sup id="fnref:36"><a class="footnote-ref" href="#fn:36">44</a></sup> 在线平台上将引力波的数据公开发布。引力波时序数据以大概一个小时 (4096 秒) 为单位打包成方便的数据块 (bluk data)，不仅详细记录了对应的 GPS 时间，还明确标注了每段数据的品质等级。公开的数据所涵盖的信息非常丰富和全面，从 2005 年起的科学测试运行到 O1 和 O2 的完整数据都可以根据科研的需要打包下载，极大地方便了引力波天文学相关的科研工作者。据悉 O3 的前六个月的数据将于 2021 年 4 月份公开发布 <sup id="fnref:37"><a class="footnote-ref" href="#fn:37">45</a></sup>。本文所实验的所有引力波数据皆来源于 GWOSC <sup id="fnref:GWOSC"><a class="footnote-ref" href="#fn:GWOSC">4</a></sup>。</p>
+<p>引力波的数据处理包括基于模板和非模板的两种处理和分析方式 <sup id="fnref:38"><a class="footnote-ref" href="#fn:38">46</a></sup>。本章 <a href="./#24">2.4</a> 节介绍的匹配滤波方法就是典型的基于模板的处理方法。两种方法都是可以提取相应的波源信息，但基于模板的数据处理方法具有更强的引力波探测能力，并且在提取引力波波源信息方面更具有系统性。下图所示的是 LIGO 分别在 O1 和 O2 两次正式运行期间所使用的波形模板库 <sup id="fnref:O1"><a class="footnote-ref" href="#fn:O1">5</a></sup> <sup id="fnref:O2"><a class="footnote-ref" href="#fn:O2">6</a></sup>。cWB <sup id="fnref:39"><a class="footnote-ref" href="#fn:39">47</a></sup> 是基于非模板处理方式的主要流水线之一。cWB 主要是通过在多探测器中寻找耦合，且显著的时频特征，来确定没有波形模板的引力波波源。PyCBC <sup id="fnref:40"><a class="footnote-ref" href="#fn:40">48</a></sup> 和 gstLAL <sup id="fnref:gstLAL"><a class="footnote-ref" href="#fn:gstLAL">7</a></sup> <sup id="fnref:41"><a class="footnote-ref" href="#fn:41">49</a></sup> 等数据处理流水线是基于精确的引力波波形模板的。它们是整个 LIGO 引力波数据分析中最重要的处理方式，主要靠基于模板的数据分析方法来确定每个引力波疑似事件的置信度和波源参数估计等。由此，我们再一次看到了引力波波源理论建模的重要性，其为引力波天文学实现波源信息的提取提供了理论基础。</p>
+<blockquote>
+<p>第一次(O1)和第二次(O2)运行期间 PyCBC 离线流水线中所使用的引力波波形模板分布<br />
+<img alt="第一次(O1)和第二次(O2)运行期间 PyCBC 离线流水线中所使用的引力波波形模板分布" src="../img/C2_templatebank_O1O2.png" style="zoom:50%" /></p>
+</blockquote>
+<p>引力波探测的意义不仅是诸如对包括经典广义相对论在内时空理论的直接验证，更在于其提供了对观测浩瀚宇宙的全新途径。这就如同观测天文学是从可见光天文学扩展到全波段天文学一样，能够极大地扩展人类的视野。另外，传统的观测天文学是完全依靠对电磁辐射的探测，而引力波天文学的兴起，则是标志着人类对宇宙观测手段已经开始超越电磁相互作用力的范畴。随着引力波观测技术的不断发展，已经引入了基于协同观测的全新研究范式——多信使天文学——的探索，未来也将进一步揭示更多关于恒星、星系以及宇宙中更多前所未有的信息。</p>
+<p></br></p>
+<h2 id="23">2.3 信号处理与数据分析方法<a class="headerlink" href="#23" title="Permanent link">&para;</a></h2>
+<p></br></p>
+<p>在本节中，我们将会概述与引力波的信号处理和数据分析所相关的重要概念及其处理方法。首先，先简要地回顾一下模拟信号系统理论中与本论文相关的专题、记号和约定。考虑一个模拟信号 (或时序信号) 可以用一个关于时间的函数来描述，即 <span><span class="MathJax_Preview">x(t)</span><script type="math/tex">x(t)</script></span>。关于 <span><span class="MathJax_Preview">x(t)</span><script type="math/tex">x(t)</script></span>  的傅里叶变换 (Fourier transform) 至频域上 <span><span class="MathJax_Preview">\tilde{x}(f)</span><script type="math/tex">\tilde{x}(f)</script></span> 就是该模拟信号的频谱 (frequency spectrum)</p>
+<div>
+<div class="MathJax_Preview">
+    \tilde{x}(f) =\int^\infty_{-\infty}x(t)e^{-i\Omega t}dt = \int^\infty_{-\infty}x(t)e^{-2\pi ift}dt
+</div>
+<script type="math/tex; mode=display">
+    \tilde{x}(f) =\int^\infty_{-\infty}x(t)e^{-i\Omega t}dt = \int^\infty_{-\infty}x(t)e^{-2\pi ift}dt
+</script>
+</div>
+<p>其中 <span><span class="MathJax_Preview">\Omega</span><script type="math/tex">\Omega</script></span> 是弧度频率 <sup id="fnref:omega"><a class="footnote-ref" href="#fn:omega">8</a></sup> (radian frequency)，单位是 [radians/second]。那么通常的频率 <span><span class="MathJax_Preview">f</span><script type="math/tex">f</script></span> 与 <span><span class="MathJax_Preview">\Omega</span><script type="math/tex">\Omega</script></span> 之间的关系是 <span><span class="MathJax_Preview">\Omega=2\pi f</span><script type="math/tex">\Omega=2\pi f</script></span>。<span><span class="MathJax_Preview">\tilde{x}(f)</span><script type="math/tex">\tilde{x}(f)</script></span> 的物理意义可以从其逆傅里叶变换 (inverse Fourier transform) 中观察到，即任意一个时序信号 <span><span class="MathJax_Preview">x(t)</span><script type="math/tex">x(t)</script></span> 都可以通过不同频率的正弦波 (sinusoids) 进行线性叠加得到：</p>
+<div>
+<div class="MathJax_Preview">
+    x(t)=\int^\infty_{-\infty}\tilde{x}(f)e^{i\Omega t}\frac{d\Omega}{2\pi} =\int^\infty_{-\infty}\tilde{x}(f)e^{2\pi ift}df
+</div>
+<script type="math/tex; mode=display">
+    x(t)=\int^\infty_{-\infty}\tilde{x}(f)e^{i\Omega t}\frac{d\Omega}{2\pi} =\int^\infty_{-\infty}\tilde{x}(f)e^{2\pi ift}df
+</script>
+</div>
+<p>在引力波数据处理的过程当中，可操作的是离散的引力波数据序列，那么引力波探测器是如何对连续模拟数据进行采样，同时又能确保离散采样的数据信息是无损的呢？这主要是基于数字信号处理理论中的采样定理来保证的，我们将关于引力波数据的采样原理，以及其中会涉及到数据处理相关的重要概念总结在附录 <a href="../Appendix/#a_nyquist">A</a> 中。对于数字信号而言，考虑时序信号 <span><span class="MathJax_Preview">x(t)</span><script type="math/tex">x(t)</script></span> 采样后为 <span><span class="MathJax_Preview">x[n]</span><script type="math/tex">x[n]</script></span>，第 <span><span class="MathJax_Preview">n</span><script type="math/tex">n</script></span> 个采样发生在时间 <span><span class="MathJax_Preview">t=n/f_s</span><script type="math/tex">t=n/f_s</script></span>，其中 <span><span class="MathJax_Preview">f_s</span><script type="math/tex">f_s</script></span> 是采样率，因此可以给出离散傅里叶变换 (discrete Fourier transform, DFT)和逆离散傅里叶变换 (inverse DFT)：</p>
+<div>
+<div class="MathJax_Preview">
+\begin{align}
+    \tilde{x}[k] &amp;= \sum_{n=0}^{N-1} e^{\frac{-2 \pi i}{N} k \cdot n} x[n] \\
+    x[n] &amp;= \frac{1}{N} \sum_{k=0}^{N-1} e^{\frac{2 \pi i}{N} k \cdot n} \tilde{x}[k]
+\end{align}
+</div>
+<script type="math/tex; mode=display">
+\begin{align}
+    \tilde{x}[k] &= \sum_{n=0}^{N-1} e^{\frac{-2 \pi i}{N} k \cdot n} x[n] \\
+    x[n] &= \frac{1}{N} \sum_{k=0}^{N-1} e^{\frac{2 \pi i}{N} k \cdot n} \tilde{x}[k]
+\end{align}
+</script>
+</div>
+<p>其中，信号采样点的数目是 N，并且 <span><span class="MathJax_Preview">\{k,n\}=0,\dots,N-1</span><script type="math/tex">\{k,n\}=0,\dots,N-1</script></span>。</p>
+<h3 id="231">2.3.1 稳态性与高斯性<a class="headerlink" href="#231" title="Permanent link">&para;</a></h3>
+<p>从本节开始，我们将针对引力波探测器的噪声特点和弱引力波信号的提取过程，介绍本论文中会涉及到的重要数据分析概念和数据处理方法，最终逐步地构建关于引力波数据的理想探测统计量，基于匹配滤波方法实现低信噪比引力波信号的探测识别。关于引力波数据分析方法更详细的论述可参阅 <sup id="fnref:42"><a class="footnote-ref" href="#fn:42">50</a></sup>。</p>
+<p>一个随机过程 (random process) 是由一串随机变量所构成的。引力波探测器中的噪声就是一个随机过程的例子，可以用一个时序序列 <span><span class="MathJax_Preview">x(t)</span><script type="math/tex">x(t)</script></span> 来表示。通常对于这样的一个时序序列，我们总是愿意关心其在时域上的统计性质。假定在某任意时刻 <span><span class="MathJax_Preview">t</span><script type="math/tex">t</script></span> 处，时序序列某取值 <span><span class="MathJax_Preview">x(t)</span><script type="math/tex">x(t)</script></span> 的概率密度函数为 <span><span class="MathJax_Preview">p_x</span><script type="math/tex">p_x</script></span>，则期望值为</p>
+<div>
+<div class="MathJax_Preview">
+    \langle x\rangle :=\int xp_x(t)dt
+</div>
+<script type="math/tex; mode=display">
+    \langle x\rangle :=\int xp_x(t)dt
+</script>
+</div>
+<p>如果一个随机过程的统计性质不会随着时间而改变，那么我们就称其为一个稳态的 (stationary) 随机过程。这里提到的统计性质，指的是某采样后的随机序列 <span><span class="MathJax_Preview">\{x_{t_1},\dots,x_{t_k}\}</span><script type="math/tex">\{x_{t_1},\dots,x_{t_k}\}</script></span>的联合概率分布，其等价于对于任意 <span><span class="MathJax_Preview">\tau,k</span><script type="math/tex">\tau,k</script></span> 而言 <span><span class="MathJax_Preview">\{x_{t_{1}+\tau}, \ldots, x_{t_{k}+\tau}\}</span><script type="math/tex">\{x_{t_{1}+\tau}, \ldots, x_{t_{k}+\tau}\}</script></span> 的联合概率分布。特别地，某二维随机变量 <span><span class="MathJax_Preview">(x_t,x_s)</span><script type="math/tex">(x_t,x_s)</script></span> 的联合概率分布仅是时域间隔 <span><span class="MathJax_Preview">|t-s|</span><script type="math/tex">|t-s|</script></span> 的函数，不依赖 <span><span class="MathJax_Preview">t</span><script type="math/tex">t</script></span> 或 <span><span class="MathJax_Preview">s</span><script type="math/tex">s</script></span>。若不那么严格的考虑，通常在引力波数据分析意义下的弱稳态 (weak stationarity) 或二次稳态性 (second-order stationarity) 会要求随机过程的平均值和方差是常数，并且自协方差 (auto-covariance) <span><span class="MathJax_Preview">cov(x_t,x_{t+τ})</span><script type="math/tex">cov(x_t,x_{t+τ})</script></span> 仅是 <span><span class="MathJax_Preview">\tau</span><script type="math/tex">\tau</script></span> 的函数。若时序序列 <span><span class="MathJax_Preview">x(t)</span><script type="math/tex">x(t)</script></span> 是稳态的，则其期望值也可以改写为 </p>
+<div>
+<div class="MathJax_Preview">
+    \langle x\rangle:=\lim_{T\rightarrow\infty}\frac{1}{T}\int^{T/2}_{-T/2}x(t)dx
+</div>
+<script type="math/tex; mode=display">
+    \langle x\rangle:=\lim_{T\rightarrow\infty}\frac{1}{T}\int^{T/2}_{-T/2}x(t)dx
+</script>
+</div>
+<p>在引力波数据处理中，我们对服从高斯分布的随机过程尤为感兴趣，即高斯 (Gaussian) 随机过程，显然它也是稳态的。在引力波探测器所收集的真实数据中，背景噪声的特点往往是非高斯、非稳态的。由此可见，在引力波数据分析的过程中，对非高斯非稳态噪声的辨别并将其与引力波信号相区别是一个重要的课题。关于稳态性和高斯性的严格定义和实验验证，可以参考 <sup id="fnref:43"><a class="footnote-ref" href="#fn:43">51</a></sup> 的附录 C 中的描述。</p>
+<h3 id="232">2.3.2 功率谱密度<a class="headerlink" href="#232" title="Permanent link">&para;</a></h3>
+<p>从统计意义上来说，某随机的时序信号会由它们的期望值和功率谱 (power spectrum) 来表征。简单起见，先考虑一段时长为 <span><span class="MathJax_Preview">T</span><script type="math/tex">T</script></span> 且平均值为 0 的连续信号 <span><span class="MathJax_Preview">x(t)</span><script type="math/tex">x(t)</script></span>，有 <span><span class="MathJax_Preview">\langle x\rangle=0</span><script type="math/tex">\langle x\rangle=0</script></span>。于是，我们就可以定义该段信号的功率 (power) 为 <span><span class="MathJax_Preview">x^2(t)</span><script type="math/tex">x^2(t)</script></span> 在时间 <span><span class="MathJax_Preview">T</span><script type="math/tex">T</script></span> 上的积分再除以该段时间 <span><span class="MathJax_Preview">T</span><script type="math/tex">T</script></span>，用以体现出“平均单位时间上某信号中的能量”。如果该段信号 <span><span class="MathJax_Preview">x(t)</span><script type="math/tex">x(t)</script></span> 还是稳态的，只要时长 <span><span class="MathJax_Preview">T</span><script type="math/tex">T</script></span> 足够长，那么此段信号 <span><span class="MathJax_Preview">x^2(t)</span><script type="math/tex">x^2(t)</script></span> 的平均值就与其上的期望值 <span><span class="MathJax_Preview">\langle x^2\rangle</span><script type="math/tex">\langle x^2\rangle</script></span> 是等价的：</p>
+<div>
+<div class="MathJax_Preview">
+    \langle x^2\rangle=\lim_{T\rightarrow\infty}\frac{1}{T}\int^{T/2}_{-T/2}x^2(t)dt
+</div>
+<script type="math/tex; mode=display">
+    \langle x^2\rangle=\lim_{T\rightarrow\infty}\frac{1}{T}\int^{T/2}_{-T/2}x^2(t)dt
+</script>
+</div>
+<p>如果，我们进一步定义这是一段带窗的有限信号 <span><span class="MathJax_Preview">x_T(t)</span><script type="math/tex">x_T(t)</script></span> 的话，即</p>
+<div>
+<div class="MathJax_Preview">
+\begin{align}
+    x_T(t) = \left\{\begin{matrix}
+    x(t) &amp; -T/2&lt;t&lt;T/2 \,, \\ 
+    0 &amp; \text{其他}
+    \end{matrix}\right.
+\end{align}
+</div>
+<script type="math/tex; mode=display">
+\begin{align}
+    x_T(t) = \left\{\begin{matrix}
+    x(t) & -T/2<t<T/2 \,, \\ 
+    0 & \text{其他}
+    \end{matrix}\right.
+\end{align}
+</script>
+</div>
+<p>于是，就有</p>
+<div>
+<div class="MathJax_Preview">
+\begin{align}
+    \langle x^2\rangle 
+     &amp;=\lim_{T\rightarrow\infty}\frac{1}{T}\int^\infty_{-\infty}x_T^2(t)dt \\ 
+     &amp;=\lim_{T\rightarrow\infty}\frac{1}{T}\int^\infty_{-\infty}|\tilde{x}_T(f)|^2df \\ 
+     &amp;=\lim_{T\rightarrow\infty}\frac{2}{T}\int^\infty_0|\tilde{x}_T(f)|^2df \\
+     &amp;=\int^\infty_0S_x(f)df
+\end{align}
+</div>
+<script type="math/tex; mode=display">
+\begin{align}
+    \langle x^2\rangle 
+     &=\lim_{T\rightarrow\infty}\frac{1}{T}\int^\infty_{-\infty}x_T^2(t)dt \\ 
+     &=\lim_{T\rightarrow\infty}\frac{1}{T}\int^\infty_{-\infty}|\tilde{x}_T(f)|^2df \\ 
+     &=\lim_{T\rightarrow\infty}\frac{2}{T}\int^\infty_0|\tilde{x}_T(f)|^2df \\
+     &=\int^\infty_0S_x(f)df
+\end{align}
+</script>
+</div>
+<p>其中 <span><span class="MathJax_Preview">S_x(f)</span><script type="math/tex">S_x(f)</script></span> 就是信号 <span><span class="MathJax_Preview">x(t)</span><script type="math/tex">x(t)</script></span> 的功率谱密度 (power spectral density, PSD)。上面推导中的第二个等号中我们使用了帕塞瓦尔定理 (Parseval's theorem)， <span><span class="MathJax_Preview">\int^\infty_{-\infty}|x_T(t)|^2dt=\int^\infty_{-\infty}|\tilde{x}_T(f)|^2df</span><script type="math/tex">\int^\infty_{-\infty}|x_T(t)|^2dt=\int^\infty_{-\infty}|\tilde{x}_T(f)|^2df</script></span>；第三个等号中我们使用了频域的对称性，即 <span><span class="MathJax_Preview">\tilde{x}_T(-f)=\tilde{x}_T^*(f)</span><script type="math/tex">\tilde{x}_T(-f)=\tilde{x}_T^*(f)</script></span>。</p>
+<p>从上面的推导中，我们已经定义出了引力波数据处理中最重要的概念之一：某稳态的时序序列 <span><span class="MathJax_Preview">x(t)</span><script type="math/tex">x(t)</script></span> 的功率谱密度为</p>
+<div>
+<div class="MathJax_Preview">
+    S_x(f):=\lim_{T\rightarrow\infty}\frac{2}{T}\Big|\int_{-T/2}^{T/2}x(t)e^{-2\pi ift}dt\Big|^2=\lim_{T\rightarrow\infty}\frac{2}{T}\Big|\tilde{x}(f)\Big|^2 \,。
+</div>
+<script type="math/tex; mode=display">
+    S_x(f):=\lim_{T\rightarrow\infty}\frac{2}{T}\Big|\int_{-T/2}^{T/2}x(t)e^{-2\pi ift}dt\Big|^2=\lim_{T\rightarrow\infty}\frac{2}{T}\Big|\tilde{x}(f)\Big|^2 \,。
+</script>
+</div>
+<p>其中，根据位于分母的 <span><span class="MathJax_Preview">T</span><script type="math/tex">T</script></span> 可知我们将 “能量” (energy) 换算为了 “功率” (power) 来表示其物理意义，上式也意味着给定某个频率后的功率谱密度是不依赖于时间 <span><span class="MathJax_Preview">T</span><script type="math/tex">T</script></span> 的，只依赖于频率 <span><span class="MathJax_Preview">f</span><script type="math/tex">f</script></span>。另外，式子中的因子 2 可以解释为：我们只考虑了正频部分，因为正负频的信息是对称一致的，所以上式的定义通常也称为单边的功率谱密度 (one-sided power spectral density)。</p>
+<p>经过采样后，对于一个离散时间序列 <span><span class="MathJax_Preview">x[n], n=0,\dots,N-1</span><script type="math/tex">x[n], n=0,\dots,N-1</script></span> 来说，采样率为 <span><span class="MathJax_Preview">f_s=1/\Delta t = N/T</span><script type="math/tex">f_s=1/\Delta t = N/T</script></span>，于是离散的单边功率谱密度就可以表示为：</p>
+<div>
+<div class="MathJax_Preview">
+    S[k] = \frac{2}{Ndt}\Big|dt\sum^{N-1}_{n=0}e^{-2\pi i\frac{kn}{N}}x[n]\Big|^2=\frac{2dt}{N}\Big|\tilde{x}[k]\Big|^2
+</div>
+<script type="math/tex; mode=display">
+    S[k] = \frac{2}{Ndt}\Big|dt\sum^{N-1}_{n=0}e^{-2\pi i\frac{kn}{N}}x[n]\Big|^2=\frac{2dt}{N}\Big|\tilde{x}[k]\Big|^2
+</script>
+</div>
+<p>其中，单边 PSD 的正频范围 <span><span class="MathJax_Preview">k=0,1,\dots,\lfloor\frac{N}{2}\rfloor</span><script type="math/tex">k=0,1,\dots,\lfloor\frac{N}{2}\rfloor</script></span>，其与附录 <a href="../Appendix/#a_nyquist">A</a> 中的定义是一致的，即对应于 <span><span class="MathJax_Preview">f=[0,1,\dots,N//2-1]/T</span><script type="math/tex">f=[0,1,\dots,N//2-1]/T</script></span>。</p>
+<p>另外值得一提的是，功率谱密度的量纲是 <span><span class="MathJax_Preview">[S[k]] = [dt^2/T]\frac{1}{Hz}</span><script type="math/tex">[S[k]] = [dt^2/T]\frac{1}{Hz}</script></span>。也就是说，PSD 的单位是 <span><span class="MathJax_Preview">[x(t)\text{的单位}]\cdot[\frac{1}{Hz}]</span><script type="math/tex">[x(t)\text{的单位}]\cdot[\frac{1}{Hz}]</script></span>。此外，另一个常用于表征一段时序信号的统计概念是振幅谱密度 (Amplitude spectral density, ASD)，其与 PSD 之间的关系是 <span><span class="MathJax_Preview">[ASD] = \sqrt{[PSD]}</span><script type="math/tex">[ASD] = \sqrt{[PSD]}</script></span>。在上一节中曾谈到服从高斯分布的随机噪声是稳态的，在本章的第 <a href="./#24">2.4</a> 节中可以证明其功率谱密度是一个不依赖于频率的常数。所以，我们将功率谱密度在频域上为常数值的随机噪声称为白噪声 (wihte noise)，功率谱密度不为常数值的随机噪声称为有色噪声 (coloured noise)。</p>
+<p>为了章节的完整性和后文的需要，这里还需要介绍功率谱密度的两个重要性质：</p>
+<ol>
+<li>
+<p>对于一个稳态过程来说，单边的功率谱密度等价于自相关 (autocorrelation) 函数 <span><span class="MathJax_Preview">R_x(\tau)</span><script type="math/tex">R_x(\tau)</script></span> 的傅里叶变换的 2 倍，</p>
+<div>
+<div class="MathJax_Preview">
+\label{eqn:psd_propert1}
+    S_x(f) = 2\int_{-\infty}^{\infty}R_x(\tau)e^{-2\pi i f\tau}d\tau
+</div>
+<script type="math/tex; mode=display">
+\label{eqn:psd_propert1}
+    S_x(f) = 2\int_{-\infty}^{\infty}R_x(\tau)e^{-2\pi i f\tau}d\tau
+</script>
+</div>
+<p>其中，<span><span class="MathJax_Preview">R_x(\tau) = \langle x(t)x(t+\tau)\rangle</span><script type="math/tex">R_x(\tau) = \langle x(t)x(t+\tau)\rangle</script></span>。证明可见附录 <a href="../Appendix/#b">B</a> 。值得注意的是，稳态过程中随机变量的自相关函数是一个只依赖于时间平移<span><span class="MathJax_Preview">\tau</span><script type="math/tex">\tau</script></span>，不依赖于时间 <span><span class="MathJax_Preview">t</span><script type="math/tex">t</script></span> 的函数。</p>
+</li>
+<li>
+<p>功率谱密度可以由对应频域分量的期望值来表示，即有：</p>
+<div>
+<div class="MathJax_Preview">
+\label{eqn:psd_propert2}
+    \langle \tilde{x}^\star(f')\tilde{x}(f)\rangle=\frac{1}{2}S_x(f)\delta(f-f')
+</div>
+<script type="math/tex; mode=display">
+\label{eqn:psd_propert2}
+    \langle \tilde{x}^\star(f')\tilde{x}(f)\rangle=\frac{1}{2}S_x(f)\delta(f-f')
+</script>
+</div>
+<p>证明可见附录 <a href="../Appendix/#b">B</a>。</p>
+</li>
+</ol>
+<p>根据上述的两个功率谱密度性质，在后文中我们会据此不仅实现了匹配滤波算法的推导，还会为我们开发 MFCNN 模型算法带来灵感和启发。</p>
+<h3 id="233">2.3.3 能谱泄露与白化<a class="headerlink" href="#233" title="Permanent link">&para;</a></h3>
+<p>在本小节中，我们将介绍引力波信号处理中常规的两个数据标准化预处理过程：加窗和白化。在前文中，我们曾谈到关于引力波数据的处理总是会放在频域中来考察，然而并不能直接对有限的时序数据直接做傅里叶变换，因为这存在 “能谱泄露” (spectral leakage) 的问题。在通常的傅里叶变换计算中，实际上是做了周期性延拓，因为数据处理都是在有限时间段或采样点内完成的，而数学上的傅里叶变换所要求的是时间从负无穷到正无穷的积分，因此就不得不需要做延拓。但是周期性的延拓会造成时域中的突变点，从而会对频谱产生明显的影响，即所谓能谱泄露。该影响大小依赖于有限时域信号边界上的不连续程度，所以通常用加窗 (windowing) 的办法来将这种不连续最小化，以实现在时域上局域化的傅里叶变换。</p>
+<p>在数学上，最简单的窗函数是矩形窗 (Rectangle window)</p>
+<div>
+<div class="MathJax_Preview">
+\label{eqn:C2_Rectangle}
+    w(t) \equiv\left\{\begin{array}{ll}
+    1 &amp; 0 \leq t \leq T \\
+    0 &amp; \text { 其他 }
+    \end{array}\right.
+</div>
+<script type="math/tex; mode=display">
+\label{eqn:C2_Rectangle}
+    w(t) \equiv\left\{\begin{array}{ll}
+    1 & 0 \leq t \leq T \\
+    0 & \text { 其他 }
+    \end{array}\right.
+</script>
+</div>
+<p>可以看到，其无非是将 <span><span class="MathJax_Preview">[0,T]</span><script type="math/tex">[0,T]</script></span> 区间之外的信号都设为 0。在引力波数据处理中，其他常用的窗函数还有：</p>
+<ul>
+<li>
+<p>三角窗 (Triangular window)</p>
+<div>
+<div class="MathJax_Preview">
+    w(t)\equiv1-|2t/T-1|
+</div>
+<script type="math/tex; mode=display">
+    w(t)\equiv1-|2t/T-1|
+</script>
+</div>
+</li>
+<li>
+<p>汉宁窗 (Hann window)</p>
+<div>
+<div class="MathJax_Preview">
+\label{eqn:C2_Hann}
+    w(t)\equiv \frac{1}{2}(1-\cos(2\pi t/T))
+</div>
+<script type="math/tex; mode=display">
+\label{eqn:C2_Hann}
+    w(t)\equiv \frac{1}{2}(1-\cos(2\pi t/T))
+</script>
+</div>
+</li>
+<li>
+<p>图基窗 (Tukey window)</p>
+<div>
+<div class="MathJax_Preview">
+\label{eqn:C2_tukey}
+    w(t) \equiv\left\{\begin{array}{ll}
+    {\frac{1}{2}\left[1-\cos \left(\frac{2 \pi}{r} \frac{t}{T}\right)\right],} &amp; {0 \leq \frac{t}{T} \leq \frac{r}{2}} \\
+    {1,} &amp; {\frac{r}{2} \leq \frac{t}{T} \leq 1-\frac{r}{2}} \\
+    {\frac{1}{2}\left[1+\cos \left(\frac{2 \pi}{r}\left[\frac{t}{T}-\left(1-\frac{r}{2}\right)\right]\right)\right],} &amp; {1-\frac{r}{2} \leq \frac{t}{T} \leq 1}
+    \end{array}\right.
+</div>
+<script type="math/tex; mode=display">
+\label{eqn:C2_tukey}
+    w(t) \equiv\left\{\begin{array}{ll}
+    {\frac{1}{2}\left[1-\cos \left(\frac{2 \pi}{r} \frac{t}{T}\right)\right],} & {0 \leq \frac{t}{T} \leq \frac{r}{2}} \\
+    {1,} & {\frac{r}{2} \leq \frac{t}{T} \leq 1-\frac{r}{2}} \\
+    {\frac{1}{2}\left[1+\cos \left(\frac{2 \pi}{r}\left[\frac{t}{T}-\left(1-\frac{r}{2}\right)\right]\right)\right],} & {1-\frac{r}{2} \leq \frac{t}{T} \leq 1}
+    \end{array}\right.
+</script>
+</div>
+</li>
+<li>
+<p>布拉克曼窗 (Blackman window)</p>
+<div>
+<div class="MathJax_Preview">
+    w(t)=0.42-0.5 \cos (2 \pi t / T)+0.08 \cos (4 \pi t / T)
+</div>
+<script type="math/tex; mode=display">
+    w(t)=0.42-0.5 \cos (2 \pi t / T)+0.08 \cos (4 \pi t / T)
+</script>
+</div>
+</li>
+</ul>
+<p>上述所有窗函数都会将信号区间两端的采样数值压缩为 0，如下方左图所示。图基窗公式 \eqref{eqn:C2_tukey} 中的参数 <span><span class="MathJax_Preview">r=0</span><script type="math/tex">r=0</script></span> 时会退化为矩形窗式 \eqref{eqn:C2_Rectangle}，<span><span class="MathJax_Preview">r=1</span><script type="math/tex">r=1</script></span> 时会退化为汉宁窗 \eqref{eqn:C2_Hann}。在数字信号处理中，关于其他常见的窗函数及其讨论可参阅 <sup id="fnref:44"><a class="footnote-ref" href="#fn:44">52</a></sup> <sup id="fnref:45"><a class="footnote-ref" href="#fn:45">53</a></sup>。</p>
+<blockquote>
+<p>(左图) 不同窗函数的时域图像 (右图) 以 Nyquist frequency 为单位频域，不同窗函数能谱泄露的幅度<br />
+<img alt="不同窗函数的时域图像" src="../img/C2_amp_window.png" style="zoom:20%" /><img alt="以 Nyquist frequency 为单位频域，不同窗函数能谱泄露的幅度" src="../img/C2_freq_window.png" style="zoom:20%" /></p>
+<details class="note"><summary>上图的源代码 (source code)</summary><details class="abstract"><summary>左图</summary><p><script src="https://gist.github.com/iphysresearch/14106bf7a9b9d01eafc6d90a965d8330.js"></script></p>
+</details>
+<details class="abstract"><summary>右图</summary><p><script src="https://gist.github.com/iphysresearch/ff9d0e9f0f95cb959ce7e4c1af6bfc23.js"></script></p>
+</details>
+</details>
+</blockquote>
+<p>对于一个给定的时序序列 <span><span class="MathJax_Preview">x(t)</span><script type="math/tex">x(t)</script></span> 和某窗函数 <span><span class="MathJax_Preview">w(t)</span><script type="math/tex">w(t)</script></span>，我们可以定义加窗后的 (windowed) 时序序列 <span><span class="MathJax_Preview">x_w(t)</span><script type="math/tex">x_w(t)</script></span> 为</p>
+<div>
+<div class="MathJax_Preview">
+    x_w(t)\equiv w(t)x(t)
+</div>
+<script type="math/tex; mode=display">
+    x_w(t)\equiv w(t)x(t)
+</script>
+</div>
+<p>在上式中，窗函数与时序信号在时域上的乘积，等价于窗函数和信号傅里叶变换后在频域上的卷积操作</p>
+<div>
+<div class="MathJax_Preview">
+    \tilde{x}_{w}(f)=\int_{-\infty}^{\infty} d f^{\prime} \tilde{x}\left(f-f^{\prime}\right) \tilde{w}\left(f^{\prime}\right)
+</div>
+<script type="math/tex; mode=display">
+    \tilde{x}_{w}(f)=\int_{-\infty}^{\infty} d f^{\prime} \tilde{x}\left(f-f^{\prime}\right) \tilde{w}\left(f^{\prime}\right)
+</script>
+</div>
+<p>由于窗函数 <span><span class="MathJax_Preview">w(t)</span><script type="math/tex">w(t)</script></span> 在时域上是紧支撑的 (compact support)，所以频域上 <span><span class="MathJax_Preview">\tilde{w}(f)</span><script type="math/tex">\tilde{w}(f)</script></span> 是非紧的 (infinite support)。这意味着任何窗函数作用下的时序信号在频域上总会有能谱泄露现象。能谱泄露的影响对于不同的窗函数也有所差异，如上方右图所示的不同窗函数在 Nyquist frequency <span><span class="MathJax_Preview">f_N \equiv 1/(2\Delta t)</span><script type="math/tex">f_N \equiv 1/(2\Delta t)</script></span> 频域上归一化的能谱泄露幅度 (<span><span class="MathJax_Preview">|\tilde{w}(f)| /|\tilde{w}(0)|</span><script type="math/tex">|\tilde{w}(f)| /|\tilde{w}(0)|</script></span>)。可以看到，所有窗函数中能谱泄露最严重的是矩形窗，而汉宁窗和布拉克曼窗在高频区域的能谱表现最好。一般来说，需要在时域信号的信息损失与频域上的能谱泄露问题之间找到合适的平衡。图基窗可以通过参数的调节，给出时域信息损失最少，且频域上也对随机引力波数据背景表现良好的平衡点。对于随机引力波背景 LIGO 数据而言，实现能谱泄露少且时域信息损失小的办法是可以使用相互重叠 50% 的汉宁窗 <sup id="fnref:46"><a class="footnote-ref" href="#fn:46">54</a></sup>。</p>
+<p>在引力波信号处理中，对探测器噪声的估计和数据处理是最重要的环节。在实际的引力波数据环境中，引力波噪声的功率谱密度是关于时间和频率的函数，即是非稳态和非高斯的，亦是有色的噪声。所以为了对探测器噪声进行估计和消除，就非常有必要对数据进行“去色”处理，即所谓白化 (whitening) <sup id="fnref:47"><a class="footnote-ref" href="#fn:47">55</a></sup> <sup id="fnref:48"><a class="footnote-ref" href="#fn:48">56</a></sup> <sup id="fnref:49"><a class="footnote-ref" href="#fn:49">57</a></sup>。</p>
+<p>白化过程的处理目标是要去掉所有与探测器噪声的相关性，最终得到一个稳态且高斯的白噪声功率谱。除了对噪声进行估计分析外，白化还对后续的匹配滤波是非常重要的，因为在一个信噪比非常低的噪声环境中进行模板匹配时，背景噪声是白噪声才能让匹配滤波算法发挥真正的作用。</p>
+<p>在频域上，白化过程可以如下表示：</p>
+<div>
+<div class="MathJax_Preview">
+    \hat{\tilde{x}}_w(f) = \frac{1}{\sqrt{S_x(f)}} \cdot\tilde{x}_w(f)
+</div>
+<script type="math/tex; mode=display">
+    \hat{\tilde{x}}_w(f) = \frac{1}{\sqrt{S_x(f)}} \cdot\tilde{x}_w(f)
+</script>
+</div>
+<p>值得注意的是，任何时序序列在经过一个白化滤波器之前，都需要先经过加窗的过程，以抑制序列边界的不连续性所带来的能谱泄露。</p>
+<p>在实际意义上，实现一个理想的白化滤波器是很困难的。这主要是由于噪声的非高斯、非稳态等特点所带来的复杂性，从而造成对 PSD 的估计偏差，最终会影响对引力波数据白化操作的效果。由此可见，对数据的噪声估计是非常具有挑战性的，因为在引力波探测器噪声中，可能会长达数十秒以上的数据都是非稳态的，所以很难从局部数据上概括引力波探测器噪声能谱的一般特征。目前，关于开发 PSD 的估计算法已经产生了很多有价值的工作 <sup id="fnref:50"><a class="footnote-ref" href="#fn:50">58</a></sup> <sup id="fnref:51"><a class="footnote-ref" href="#fn:51">59</a></sup> <sup id="fnref:52"><a class="footnote-ref" href="#fn:52">60</a></sup> <sup id="fnref:53"><a class="footnote-ref" href="#fn:53">61</a></sup> <sup id="fnref2:39"><a class="footnote-ref" href="#fn:39">47</a></sup>，尤其是引起我们注意的是 BayesLine 算法 <sup id="fnref:54"><a class="footnote-ref" href="#fn:54">62</a></sup>，这是一个基于贝叶斯推断，对能谱进行参数化拟合的算法模型。据悉由于该算法具有较为良好的噪声估计和白化滤波表现 <sup id="fnref:55"><a class="footnote-ref" href="#fn:55">63</a></sup>，已经成为诸多 LIGO 数据处理流水线的主流的 PSD 估计算法。</p>
+<h3 id="234">2.3.4 时域信号平移<a class="headerlink" href="#234" title="Permanent link">&para;</a></h3>
+<p>对引力波数据的噪声分析，通常需要花费很大的时间和精力，从而为了尽可能的降低事件误报率，提高引力波探测的置信度。除了白化这种为了扣除背景噪声影响的方法以外，另一种只为了得到单纯噪声信息的数据处理方法就是时域信号平移 (time-slides 或 time-shifted) 方法 (可参考 Paul Thomas Baker 的博士论文 <sup id="fnref:56"><a class="footnote-ref" href="#fn:56">64</a></sup> 中的 4.3 节)。</p>
+<p>Time-slides 方法是充分利用了真实引力波事件信号在不同的引力波探测器中是唯一可信的信号偶合事件，通过不断时域平移后可获得附近各类偶合噪声的统计显著性，进而可以估计引力波事件信号的误报率。经过对不同探测器的时域平移后，使得各个探测器的数据在 GPS 时域上是错位的，如下图所示 <sup id="fnref2:56"><a class="footnote-ref" href="#fn:56">64</a></sup>。我们会通过把数据的首尾相互连接成为环状，用以确保每次时域平移后的数据都包含了相等的长度。假设噪声源是完全独立的，那么对于身处异地的不同探测器来说，时域平移就可以提供很好的偶合噪声事件估计。如此偶合在一起的多频道探测数据上再进行引力波事件搜寻，就可以说找到的引力波事件全都是噪声引起的，亦所谓的纯噪声 (pure noise) 数据。此外，时域平移方法也是扩展数据量的一种有效手段，通过扩充疑似事件附近数几天的数据到数几年的数据后，根据背景噪声偶合事件数目来估计引力波疑似事件的误报率和置信度。</p>
+<blockquote>
+<p>时域信号平移技术的示意图<br />
+<img alt="时域信号平移技术的示意图" src="../img/C2_time-shifited.png" style="zoom:40%" /></p>
+</blockquote>
+<p>不过时域平移技术也一定的有局限性 <sup id="fnref:57"><a class="footnote-ref" href="#fn:57">65</a></sup> <sup id="fnref:58"><a class="footnote-ref" href="#fn:58">66</a></sup> <sup id="fnref:59"><a class="footnote-ref" href="#fn:59">67</a></sup>。随着 time-slides 的数目增多，误报率估计的误差会趋于饱和。再者，基于匹配滤波的数据处理流水线为了达到 <span><span class="MathJax_Preview">5\sigma</span><script type="math/tex">5\sigma</script></span> 的背景噪声估计，对一个疑似信号至少要将 time-slides 数目在 1744278 次偶合以上才能确保达到足够的置信度。可见，这对计算的需求也是很大的。</p>
+<p></br></p>
+<h2 id="24">2.4 匹配滤波技术<a class="headerlink" href="#24" title="Permanent link">&para;</a></h2>
+<p></br></p>
+<p>在本节中，我们将介绍引力波数据处理中非常重要的匹配滤波技术 <sup id="fnref:60"><a class="footnote-ref" href="#fn:60">68</a></sup>，它是一种依赖于精确理论模板提供的信号搜寻技术。这也是目前地面引力波探测器搜索原始振幅远低于背景噪声平均振幅的引力波信号搜寻方法。我们将会在上一节介绍的信号数据处理方法的基础上，从引力波信号探测为动机出发，进而从信号与噪声的概率密度分布引向理想探测统计量的定义，再从合理假设下的探测统计量给出匹配滤波信噪比的含义。</p>
+<p>假定引力波探测器给出的时序数据流 (data flow) 用 <span><span class="MathJax_Preview">d(t)</span><script type="math/tex">d(t)</script></span> 来表示，并且它是由加性的 (additive) 探测器噪声 <span><span class="MathJax_Preview">n(t)</span><script type="math/tex">n(t)</script></span> 和某引力波时域信号 <span><span class="MathJax_Preview">h(t)</span><script type="math/tex">h(t)</script></span> 组合而成：</p>
+<div>
+<div class="MathJax_Preview">
+    d(t) = n(t) + h(t)
+</div>
+<script type="math/tex; mode=display">
+    d(t) = n(t) + h(t)
+</script>
+</div>
+<p>在引力波探测器所给定的灵敏度下，可被探测到的引力波频段在时域上会被背景噪声所淹没的，即有 <span><span class="MathJax_Preview">|h(t)|\ll|n(t)|</span><script type="math/tex">|h(t)|\ll|n(t)|</script></span>。而匹配滤波的数据处理方法是将微弱的信号从强噪声中挖掘出来的强有力手段，由此成为了引力波探测技术中非常重要的理想滤波 (optimal filtering) 信号处理手段 2017Romano-Detectionmethodsstochastic}，其目的是：</p>
+<ol>
+<li>在一定的误报率下，要最大化引力波信号的探测概率；</li>
+<li>基于统计分析方法，要最大化信号与噪声之比；</li>
+<li>探测统计量应有方差极小值，并且是无偏估计的。</li>
+</ol>
+<p>在本小节中，我们将会从稳态噪声的统计特性出发，根据贝叶斯定理，给出匹配滤波技术中合适的探测统计量，并由此将低信噪比信号从噪声中挖掘出来。</p>
+<h3 id="241">2.4.1 匹配滤波内积<a class="headerlink" href="#241" title="Permanent link">&para;</a></h3>
+<p>首先，我们直接来谈理想情况下的信噪比(signal-to-noise ratio, SNR)，即给出最佳的匹配滤波信噪比 (optimal matched-filtering SNR) 的推导 <sup id="fnref:61"><a class="footnote-ref" href="#fn:61">69</a></sup>。根据本章的第 <a href="./#232">2.3.2</a> 节中所介绍的，我们可以给出某段时序数据 <span><span class="MathJax_Preview">d(t)</span><script type="math/tex">d(t)</script></span> 的双边的功率谱密度 (亦维纳一辛钦定理，Wiener-Khinchin theorem) 为</p>
+<div>
+<div class="MathJax_Preview">
+    G_d(f) = \int_{-\infty}^{\infty}R_d(\tau)e^{-2\pi i f\tau}d\tau
+</div>
+<script type="math/tex; mode=display">
+    G_d(f) = \int_{-\infty}^{\infty}R_d(\tau)e^{-2\pi i f\tau}d\tau
+</script>
+</div>
+<p>其中，自相关函数是 </p>
+<div>
+<div class="MathJax_Preview">
+    R_d(\tau) = \langle d(t)d(t+\tau)\rangle=\lim_{T\rightarrow\infty}\frac{1}{T}\int^T_0d(t)d(t-\tau)dt
+</div>
+<script type="math/tex; mode=display">
+    R_d(\tau) = \langle d(t)d(t+\tau)\rangle=\lim_{T\rightarrow\infty}\frac{1}{T}\int^T_0d(t)d(t-\tau)dt
+</script>
+</div>
+<p>可以留意到，自相关函数 <span><span class="MathJax_Preview">R_d(\tau)</span><script type="math/tex">R_d(\tau)</script></span> 与自卷积操作的联系非常密切，我们将会在第<a href="../C6/">六</a>章中充分利用这一点给出基于卷积神经单元定义的功率谱密度。</p>
+<p>对于纯信号的功率谱，根据 Parseval 定理并令维纳一辛钦定理(Wiener–Khinchin theorem)中的 <span><span class="MathJax_Preview">\tau = 0</span><script type="math/tex">\tau = 0</script></span>，我们就可以得到一个更简单的定义来表示其双边的功率谱密度(见第 <a href="./#232">2.3.2</a> 节)：</p>
+<div>
+<div class="MathJax_Preview">
+    G_d(f) = \lim_{T\rightarrow\infty}\frac{1}{T}\langle|\tilde{h}(f)|^2\rangle
+</div>
+<script type="math/tex; mode=display">
+    G_d(f) = \lim_{T\rightarrow\infty}\frac{1}{T}\langle|\tilde{h}(f)|^2\rangle
+</script>
+</div>
+<p>其中，<span><span class="MathJax_Preview">\tilde{h}(f)</span><script type="math/tex">\tilde{h}(f)</script></span> 是信号经过傅里叶变换后在频域上的分量，而 <span><span class="MathJax_Preview">\langle|\tilde{h}(f)|^2\rangle</span><script type="math/tex">\langle|\tilde{h}(f)|^2\rangle</script></span> 表示的是 <span><span class="MathJax_Preview">\tilde{h}(f)</span><script type="math/tex">\tilde{h}(f)</script></span> 上每个频域分量模平方的期望值，<span><span class="MathJax_Preview">1/T</span><script type="math/tex">1/T</script></span> 体现的是信号频率的“分辨率”。换句话说，功率谱密度可以成为信号在单位频率域上信号能量的一种量度。另外，正如在第 <a href="./#232">2.3.2</a> 节中所介绍的，我们通常使用单边的功率谱密度 <span><span class="MathJax_Preview">S(f)</span><script type="math/tex">S(f)</script></span> 来表示：</p>
+<div>
+<div class="MathJax_Preview">
+    S(f) = 2G(f), f&gt;0
+</div>
+<script type="math/tex; mode=display">
+    S(f) = 2G(f), f>0
+</script>
+</div>
+<p>为了比较信号与噪声相互之间的强度差异，即信噪比 <span><span class="MathJax_Preview">\rho</span><script type="math/tex">\rho</script></span>，我们考虑一个纯信号的功率谱密度 <span><span class="MathJax_Preview">G_d(f)</span><script type="math/tex">G_d(f)</script></span> 与某纯噪声的功率谱密度 <span><span class="MathJax_Preview">G_n(f)</span><script type="math/tex">G_n(f)</script></span> 之比并在频域上积分后的无量纲数值，以此定义最佳信噪比 (optimal SNR)：</p>
+<div>
+<div class="MathJax_Preview">
+\label{equ:C2_opt_SNR}
+    \rho_{opt}^2=\int^\infty_{-\infty}\frac{G_d(f)}{G_n(f)}df=2\int^\infty_0\frac{G_d(f)}{G_n(f)}df=2\int^\infty_0\frac{\tilde{h}^*(f)\tilde{h}(f)}{G_n(f)}df=4\int^\infty_0\frac{|\tilde{h}(f)|^2}{S_n(f)}df
+</div>
+<script type="math/tex; mode=display">
+\label{equ:C2_opt_SNR}
+    \rho_{opt}^2=\int^\infty_{-\infty}\frac{G_d(f)}{G_n(f)}df=2\int^\infty_0\frac{G_d(f)}{G_n(f)}df=2\int^\infty_0\frac{\tilde{h}^*(f)\tilde{h}(f)}{G_n(f)}df=4\int^\infty_0\frac{|\tilde{h}(f)|^2}{S_n(f)}df
+</script>
+</div>
+<p>由于上式中 <span><span class="MathJax_Preview">\rho_{opt}^2</span><script type="math/tex">\rho_{opt}^2</script></span> 正比于 PSDs 之比，所以信噪比 <span><span class="MathJax_Preview">\rho_{opt}</span><script type="math/tex">\rho_{opt}</script></span> 就正比于 ASDs 之比。这也就意味着对于某频段信号的信噪比，可以通过观察信号在某一频段上与探测器噪声的 ASD 之比的 <span><span class="MathJax_Preview">\sqrt{2}</span><script type="math/tex">\sqrt{2}</script></span> 倍即可快速估算出来。</p>
+<p>受公式 \eqref{equ:C2_opt_SNR} 的启发，我们可以如下定义关于两个任意时序序列 <span><span class="MathJax_Preview">a(t)</span><script type="math/tex">a(t)</script></span> 和 <span><span class="MathJax_Preview">b(t)</span><script type="math/tex">b(t)</script></span> 的内积：</p>
+<div>
+<div class="MathJax_Preview">
+\begin{align}
+    \langle a|b\rangle 
+    :=&amp; 4\Re\int^{\infty}_0\frac{\tilde{a}(f)\tilde{b}^*(f)}{S_n(f)}df \\
+    =&amp; 2 \int^{\infty}_{-\infty}\frac{\tilde{a}(f)\tilde{b}^*(f)}{S_n(|f|)}df \\
+    =&amp; \int^{\infty}_{-\infty}\frac{\tilde{a}(f)\tilde{b}^*(f)+\tilde{a}^*(f)\tilde{b}(f)}{S_n(|f|)}df
+\end{align}
+</div>
+<script type="math/tex; mode=display">
+\begin{align}
+    \langle a|b\rangle 
+    :=& 4\Re\int^{\infty}_0\frac{\tilde{a}(f)\tilde{b}^*(f)}{S_n(f)}df \\
+    =& 2 \int^{\infty}_{-\infty}\frac{\tilde{a}(f)\tilde{b}^*(f)}{S_n(|f|)}df \\
+    =& \int^{\infty}_{-\infty}\frac{\tilde{a}(f)\tilde{b}^*(f)+\tilde{a}^*(f)\tilde{b}(f)}{S_n(|f|)}df
+\end{align}
+</script>
+</div>
+<p>在上式中，位于分母的 <span><span class="MathJax_Preview">S_n</span><script type="math/tex">S_n</script></span> 相当于是对两个时序序列分别在频域上做了噪声加权 (noise-weighted)，或者说先在频域上进行白化操作。在第<a href="../C6/">六</a>章中，我们会把这个内积运算进一步拆解为两个步骤分布完成，并且分别用卷积神经单元来表示。</p>
+<p>到此，我们就启发式地引出最佳匹配滤波信噪比的定义 <span><span class="MathJax_Preview">\rho_\text{opt}=\sqrt{\langle h|h \rangle}</span><script type="math/tex">\rho_\text{opt}=\sqrt{\langle h|h \rangle}</script></span>。在后文中我们会进一步地看到，在稳态背景噪声下内积 <span><span class="MathJax_Preview">\langle d|h\rangle</span><script type="math/tex">\langle d|h\rangle</script></span> 就是一个理想的探测统计量。并且可以自然地推导出最佳匹配滤波信噪比在统计意义下的物理图像。</p>
+<h3 id="242">2.4.2 稳态噪声的概率分布<a class="headerlink" href="#242" title="Permanent link">&para;</a></h3>
+<p>首先，我们考虑噪声 <span><span class="MathJax_Preview">n(t)</span><script type="math/tex">n(t)</script></span> 是一个均值为 0 且高斯的稳态随机过程 (stochastic process)，即一段时长为 T，时间间隔为 <span><span class="MathJax_Preview">\Delta t</span><script type="math/tex">\Delta t</script></span>，采样后的噪声信号是 <span><span class="MathJax_Preview">n[j],j=0,1,\dots,N-1</span><script type="math/tex">n[j],j=0,1,\dots,N-1</script></span>，总采样点数目为 <span><span class="MathJax_Preview">N=T/\Delta t</span><script type="math/tex">N=T/\Delta t</script></span>，其对应的随机样本点的概率分布函数是</p>
+<div>
+<div class="MathJax_Preview">
+    p_n(n[j])=\Big(\frac{1}{\sqrt{2\pi}\sigma}\Big)^N\exp\Big\{-\frac{1}{2\sigma^2}\sum^{N-1}_{j=0}n[j]^2\Big\}
+</div>
+<script type="math/tex; mode=display">
+    p_n(n[j])=\Big(\frac{1}{\sqrt{2\pi}\sigma}\Big)^N\exp\Big\{-\frac{1}{2\sigma^2}\sum^{N-1}_{j=0}n[j]^2\Big\}
+</script>
+</div>
+<p>其中，<span><span class="MathJax_Preview">\sigma</span><script type="math/tex">\sigma</script></span> 为方差。正如本章的第 <a href="./#232">2.3.2</a> 节中所谈到的，在稳态噪声中，随机变量的自相关函数是仅依赖于时间平移的，即有 <span><span class="MathJax_Preview">R_x(\tau)=\langle x(t)x(t+\tau)\rangle\propto\delta</span><script type="math/tex">R_x(\tau)=\langle x(t)x(t+\tau)\rangle\propto\delta</script></span>。根据该常数正比的关系，我们就可以给出离散稳态高斯随机过程的自相关函数是 <span><span class="MathJax_Preview">R_{jk}=\langle n[j] n[k]\rangle=\sigma^{2} \delta_{j k}</span><script type="math/tex">R_{jk}=\langle n[j] n[k]\rangle=\sigma^{2} \delta_{j k}</script></span>。由此，根据功率谱密度的性质 \eqref{eqn:psd_propert1}，我们就可以给出高斯噪声的功率谱密度为</p>
+<div>
+<div class="MathJax_Preview">
+    S_n(f) = 2\int^\infty_{-\infty}R_n(\tau)e^{-2\pi i f\tau}d\tau=\lim_{\Delta t\rightarrow 0}2\sigma^2\Delta t
+</div>
+<script type="math/tex; mode=display">
+    S_n(f) = 2\int^\infty_{-\infty}R_n(\tau)e^{-2\pi i f\tau}d\tau=\lim_{\Delta t\rightarrow 0}2\sigma^2\Delta t
+</script>
+</div>
+<p>在上式中，我们考虑了连续积分的近似极限 <span><span class="MathJax_Preview">\Delta t\rightarrow0</span><script type="math/tex">\Delta t\rightarrow0</script></span> 有 </p>
+<div>
+<div class="MathJax_Preview">
+    \lim _{\Delta t \rightarrow 0} \sum_{j=0}^{N-1} x[j]^{2} \Delta t=\int_{0}^{T} x^{2}(t) d t \approx \int_{-\infty}^{\infty}|\tilde{x}(f)|^{2} d f
+</div>
+<script type="math/tex; mode=display">
+    \lim _{\Delta t \rightarrow 0} \sum_{j=0}^{N-1} x[j]^{2} \Delta t=\int_{0}^{T} x^{2}(t) d t \approx \int_{-\infty}^{\infty}|\tilde{x}(f)|^{2} d f
+</script>
+</div>
+<p>我们还注意到，当 <span><span class="MathJax_Preview">\Delta t\rightarrow0</span><script type="math/tex">\Delta t\rightarrow0</script></span> 时，白噪声的功率谱密度确实是一个常数值。因此我们之后将该噪声功率谱 <span><span class="MathJax_Preview">S_n(f)</span><script type="math/tex">S_n(f)</script></span> 写作 <span><span class="MathJax_Preview">S_n</span><script type="math/tex">S_n</script></span>。</p>
+<p>下面我们考察高斯白噪声的概率密度函数。由于在极限 <span><span class="MathJax_Preview">\Delta t\rightarrow0</span><script type="math/tex">\Delta t\rightarrow0</script></span> 下，白噪声的功率谱 <span><span class="MathJax_Preview">\sigma^2\Delta t</span><script type="math/tex">\sigma^2\Delta t</script></span> 在任何一段频谱带宽 <span><span class="MathJax_Preview">\Delta f</span><script type="math/tex">\Delta f</script></span> 中都是常数值(换句话说，离散采样的时序序列的方差是只依赖于采样间隔的)，我们有</p>
+<div>
+<div class="MathJax_Preview">
+\begin{align}
+    p_n(n[j])
+    &amp;\propto\lim _{\Delta t \rightarrow 0} \exp \left\{-\frac{1}{2 \sigma^{2}} \sum_{j=0}^{N-1} n[j]^{2}\right\} \\
+    &amp;=\lim _{\Delta t \rightarrow 0} \exp \left\{-\frac{1}{2 \sigma^{2} \Delta t} \sum_{j=0}^{N-1} n[j]^{2} \Delta t\right\} \\
+    &amp;=\exp \left\{-\frac{1}{S_{n}} \int_{0}^{T} n(t)^{2} d t\right\} \\
+    &amp; \approx \exp \left\{-\int_{-\infty}^{\infty} \frac{|\tilde{n}(f)|^{2}}{S_{n}} d f\right\} \\
+    &amp;=\exp \left\{-\frac{1}{2} 4 \int_{0}^{\infty} \frac{|\tilde{n}(f)|^{2}}{S_{n}} d f\right\}
+\end{align}
+</div>
+<script type="math/tex; mode=display">
+\begin{align}
+    p_n(n[j])
+    &\propto\lim _{\Delta t \rightarrow 0} \exp \left\{-\frac{1}{2 \sigma^{2}} \sum_{j=0}^{N-1} n[j]^{2}\right\} \\
+    &=\lim _{\Delta t \rightarrow 0} \exp \left\{-\frac{1}{2 \sigma^{2} \Delta t} \sum_{j=0}^{N-1} n[j]^{2} \Delta t\right\} \\
+    &=\exp \left\{-\frac{1}{S_{n}} \int_{0}^{T} n(t)^{2} d t\right\} \\
+    & \approx \exp \left\{-\int_{-\infty}^{\infty} \frac{|\tilde{n}(f)|^{2}}{S_{n}} d f\right\} \\
+    &=\exp \left\{-\frac{1}{2} 4 \int_{0}^{\infty} \frac{|\tilde{n}(f)|^{2}}{S_{n}} d f\right\}
+\end{align}
+</script>
+</div>
+<p>又由于有色噪声 <span><span class="MathJax_Preview">n_c(t)</span><script type="math/tex">n_c(t)</script></span> 与白噪声 <span><span class="MathJax_Preview">n(t)</span><script type="math/tex">n(t)</script></span> 之间有关系：<span><span class="MathJax_Preview">\tilde{n_c}(f)=K(f)\tilde{n}(f)</span><script type="math/tex">\tilde{n_c}(f)=K(f)\tilde{n}(f)</script></span> 和 <span><span class="MathJax_Preview">S_c(f)=|K(f)|^2S_n(f)</span><script type="math/tex">S_c(f)=|K(f)|^2S_n(f)</script></span>。因此，我们得到了(无论是白还是有色)稳态噪声 <span><span class="MathJax_Preview">n(t)</span><script type="math/tex">n(t)</script></span> 的概率分布函数与噪声的自内积之间的关系：</p>
+<div>
+<div class="MathJax_Preview">
+    p_n(n)\propto e^{-\langle n | n\rangle/2}
+</div>
+<script type="math/tex; mode=display">
+    p_n(n)\propto e^{-\langle n | n\rangle/2}
+</script>
+</div>
+<p>由此可见，稳态随机噪声的概率分布密度是一个仅依赖于噪声内积的函数。</p>
+<h3 id="243">2.4.3 理想探测统计量<a class="headerlink" href="#243" title="Permanent link">&para;</a></h3>
+<p>下面我们来讨论，当噪声的统计特性已知晓且某信号的波形也确切清楚的情况下，通过量化某段数据中包含有某信号的概率似然 <sup id="fnref2:60"><a class="footnote-ref" href="#fn:60">68</a></sup>，构建一个理想的探测统计量 (optimal detection statistic)。</p>
+<p>我们可以将该问题放在贝叶斯统计的框架下考虑。假定我们要区分如下的两个事件假设：</p>
+<div>
+<div class="MathJax_Preview">
+\begin{align}
+    \mathcal{H}_{0}:&amp; \quad d(t)=n(t)\\
+    \mathcal{H}_{1}:&amp; \quad d(t)=n(t) + h(t)
+\end{align}
+</div>
+<script type="math/tex; mode=display">
+\begin{align}
+    \mathcal{H}_{0}:& \quad d(t)=n(t)\\
+    \mathcal{H}_{1}:& \quad d(t)=n(t) + h(t)
+\end{align}
+</script>
+</div>
+<p>其中，<span><span class="MathJax_Preview">n(t)</span><script type="math/tex">n(t)</script></span> 对应的是引力波探测器所记录下的随机噪声，<span><span class="MathJax_Preview">h(t)</span><script type="math/tex">h(t)</script></span> 是某已知的引力波波形，<span><span class="MathJax_Preview">d(t)</span><script type="math/tex">d(t)</script></span> 就是某段引力波数据。所以，我们的目标是要考察给定 <span><span class="MathJax_Preview">d(t)</span><script type="math/tex">d(t)</script></span> 的条件下，事件 <span><span class="MathJax_Preview">\mathcal{H}_{1}</span><script type="math/tex">\mathcal{H}_{1}</script></span> 发生的概率，即 <span><span class="MathJax_Preview">P(\mathcal{H}_{1}|d)</span><script type="math/tex">P(\mathcal{H}_{1}|d)</script></span>。</p>
+<p>根据贝叶斯定理和全概率公式，有</p>
+<div>
+<div class="MathJax_Preview">
+\begin{align}
+    P(\mathcal{H}_{1}|d) 
+    &amp;= \frac{P(\mathcal{H}_{1})P(d|\mathcal{H}_{1})}{P(d)} \\
+    &amp;= \frac{P(\mathcal{H}_{1})P(d|\mathcal{H}_{1})}{P(d|\mathcal{H}_{1})P(\mathcal{H}_{1}) + P(d|\mathcal{H}_{2})P(\mathcal{H}_{2})} \\
+    &amp;= \frac{\Lambda(\mathcal{H}_{1}|d)}{\Lambda(\mathcal{H}_{1}|d)+P(\mathcal{H}_{2})/P(\mathcal{H}_{1})} \\
+    &amp;= \frac{O(\mathcal{H}_{1}|d)}{O(\mathcal{H}_{1}|d)+1}
+\end{align}
+</div>
+<script type="math/tex; mode=display">
+\begin{align}
+    P(\mathcal{H}_{1}|d) 
+    &= \frac{P(\mathcal{H}_{1})P(d|\mathcal{H}_{1})}{P(d)} \\
+    &= \frac{P(\mathcal{H}_{1})P(d|\mathcal{H}_{1})}{P(d|\mathcal{H}_{1})P(\mathcal{H}_{1}) + P(d|\mathcal{H}_{2})P(\mathcal{H}_{2})} \\
+    &= \frac{\Lambda(\mathcal{H}_{1}|d)}{\Lambda(\mathcal{H}_{1}|d)+P(\mathcal{H}_{2})/P(\mathcal{H}_{1})} \\
+    &= \frac{O(\mathcal{H}_{1}|d)}{O(\mathcal{H}_{1}|d)+1}
+\end{align}
+</script>
+</div>
+<p>其中，分别定义了似然率(likelihood ratio) <span><span class="MathJax_Preview">\Lambda(\mathcal{H}_{1}|d)</span><script type="math/tex">\Lambda(\mathcal{H}_{1}|d)</script></span> 和比值比(odds ratio) <span><span class="MathJax_Preview">O(\mathcal{H}_{1}|d)</span><script type="math/tex">O(\mathcal{H}_{1}|d)</script></span>:</p>
+<div>
+<div class="MathJax_Preview">
+\begin{align}
+    \Lambda(\mathcal{H}_{1}|d)
+    &amp;:= \frac{P(d|\mathcal{H}_{1})}{P(d|\mathcal{H}_{0})} \\
+    O(\mathcal{H}_{1}|d)
+    &amp;:= \frac{P(\mathcal{H}_{1})}{P(\mathcal{H}_{0})} \Lambda(\mathcal{H}_{1}|d)
+\end{align}
+</div>
+<script type="math/tex; mode=display">
+\begin{align}
+    \Lambda(\mathcal{H}_{1}|d)
+    &:= \frac{P(d|\mathcal{H}_{1})}{P(d|\mathcal{H}_{0})} \\
+    O(\mathcal{H}_{1}|d)
+    &:= \frac{P(\mathcal{H}_{1})}{P(\mathcal{H}_{0})} \Lambda(\mathcal{H}_{1}|d)
+\end{align}
+</script>
+</div>
+<p>可见当考虑给定数据 <span><span class="MathJax_Preview">d(t)</span><script type="math/tex">d(t)</script></span> 时的事件假设 <span><span class="MathJax_Preview">\mathcal{H}_{1}</span><script type="math/tex">\mathcal{H}_{1}</script></span> 会发生的概率，可以等价的考察其比值比 <span><span class="MathJax_Preview">O(\mathcal{H}_{1}|d)</span><script type="math/tex">O(\mathcal{H}_{1}|d)</script></span> 即可。又因为比值比 <span><span class="MathJax_Preview">O(\mathcal{H}_{1}|d)</span><script type="math/tex">O(\mathcal{H}_{1}|d)</script></span> 与似然率 <span><span class="MathJax_Preview">\Lambda(\mathcal{H}_{1}|d)</span><script type="math/tex">\Lambda(\mathcal{H}_{1}|d)</script></span> 之间关于先验比值比 <span><span class="MathJax_Preview">P(\mathcal{H}_{1})/P(\mathcal{H}_{0})</span><script type="math/tex">P(\mathcal{H}_{1})/P(\mathcal{H}_{0})</script></span> 是呈正比的，并且其并不依赖于给定的数据 <span><span class="MathJax_Preview">d(t)</span><script type="math/tex">d(t)</script></span>。所以我们可以通过考察似然率 <span><span class="MathJax_Preview">\Lambda(\mathcal{H}_{1}|d)</span><script type="math/tex">\Lambda(\mathcal{H}_{1}|d)</script></span> 来确定事件概率 <span><span class="MathJax_Preview">P(\mathcal{H}_{1}|d)</span><script type="math/tex">P(\mathcal{H}_{1}|d)</script></span> 。</p>
+<p>假设噪声 <span><span class="MathJax_Preview">n(t)</span><script type="math/tex">n(t)</script></span> 是稳态的，我们就可以分别计算得到事件假设 <span><span class="MathJax_Preview">\mathcal{H}_{0}</span><script type="math/tex">\mathcal{H}_{0}</script></span> (其中 <span><span class="MathJax_Preview">n(t) = d(t)</span><script type="math/tex">n(t) = d(t)</script></span>) 和 <span><span class="MathJax_Preview">\mathcal{H}_{1}</span><script type="math/tex">\mathcal{H}_{1}</script></span> (其中<span><span class="MathJax_Preview">n(t)=d(t)- h(t)</span><script type="math/tex">n(t)=d(t)- h(t)</script></span>) 上的概率分布密度：</p>
+<div>
+<div class="MathJax_Preview">
+\begin{align}
+    p(d|\mathcal{H}_{0}) 
+    &amp;= p_n[d(t)]\propto e^{-\langle d|d\rangle/2} \\
+    p(d|\mathcal{H}_{1}) 
+    &amp;= p_n[d(t)-h(t)]\propto e^{-\langle d-h|d-h\rangle/2}
+\end{align}
+</div>
+<script type="math/tex; mode=display">
+\begin{align}
+    p(d|\mathcal{H}_{0}) 
+    &= p_n[d(t)]\propto e^{-\langle d|d\rangle/2} \\
+    p(d|\mathcal{H}_{1}) 
+    &= p_n[d(t)-h(t)]\propto e^{-\langle d-h|d-h\rangle/2}
+\end{align}
+</script>
+</div>
+<p>由此，我们可以计算似然比 <span><span class="MathJax_Preview">\Lambda(\mathcal{H_1}|d)</span><script type="math/tex">\Lambda(\mathcal{H_1}|d)</script></span>，即含有信号的数据 <span><span class="MathJax_Preview">\mathcal{H_1}</span><script type="math/tex">\mathcal{H_1}</script></span> 中噪声部分的概率分布密度与不含有信号 <span><span class="MathJax_Preview">\mathcal{H_0}</span><script type="math/tex">\mathcal{H_0}</script></span> 的噪声中概率分布密度之比：</p>
+<div>
+<div class="MathJax_Preview">
+    \Lambda(\mathcal{H_1}|d) 
+    = \frac{p(d|\mathcal{H_1})}{p(d|\mathcal{H_0})}
+    =\frac{ p_n[d(t) - h(t)] }{ p_n[d(t)] } 
+    = \frac{ e^{-\langle d-h|d-h\rangle/2} }{ e^{-\langle d|d\rangle/2} } 
+    =e^{\langle d|h\rangle}e^{-\langle h|h\rangle/2}
+</div>
+<script type="math/tex; mode=display">
+    \Lambda(\mathcal{H_1}|d) 
+    = \frac{p(d|\mathcal{H_1})}{p(d|\mathcal{H_0})}
+    =\frac{ p_n[d(t) - h(t)] }{ p_n[d(t)] } 
+    = \frac{ e^{-\langle d-h|d-h\rangle/2} }{ e^{-\langle d|d\rangle/2} } 
+    =e^{\langle d|h\rangle}e^{-\langle h|h\rangle/2}
+</script>
+</div>
+<p>从上式可知，对于某波形信号 <span><span class="MathJax_Preview">h(t)</span><script type="math/tex">h(t)</script></span> 而言，似然比是一个只依赖于给定数据 <span><span class="MathJax_Preview">d(t)</span><script type="math/tex">d(t)</script></span> 的统计指标。并且似然比(以及比值比)关于内积 <span><span class="MathJax_Preview">\langle d|h\rangle</span><script type="math/tex">\langle d|h\rangle</script></span> 都是单调递增的。由此，我们得知内积</p>
+<div>
+<div class="MathJax_Preview">
+    \langle d|h\rangle = 4\Re\int^\infty_0\frac{\tilde{d}(f)\tilde{h}^*(f)}{S_n(f)}df
+</div>
+<script type="math/tex; mode=display">
+    \langle d|h\rangle = 4\Re\int^\infty_0\frac{\tilde{d}(f)\tilde{h}^*(f)}{S_n(f)}df
+</script>
+</div>
+<p>是一个理想的信号探测统计量(optimal detection statistic)，称之为匹配滤波 (matched filter)。只要给内积 <span><span class="MathJax_Preview">\langle d|h\rangle</span><script type="math/tex">\langle d|h\rangle</script></span> 设定某一阈值，就可以对噪声中是否含有某理想的匹配信号假设为真的程度给出定量的衡量。</p>
+<h3 id="244">2.4.4 振幅未知的模板匹配滤波<a class="headerlink" href="#244" title="Permanent link">&para;</a></h3>
+<p>若我们已知某模板波形 <span><span class="MathJax_Preview">g(t)</span><script type="math/tex">g(t)</script></span>，对于假设 <span><span class="MathJax_Preview">\mathcal{H_A}</span><script type="math/tex">\mathcal{H_A}</script></span> 来说，数据 <span><span class="MathJax_Preview">d(t)</span><script type="math/tex">d(t)</script></span> 中埋有某未知幅度大小 <span><span class="MathJax_Preview">A</span><script type="math/tex">A</script></span> 的信号 <span><span class="MathJax_Preview">h(t;A)=Ag(t)</span><script type="math/tex">h(t;A)=Ag(t)</script></span>，可以给出其对数似然比为</p>
+<div>
+<div class="MathJax_Preview">
+\begin{align}
+    \ln \Lambda(\mathcal{H_A}|d) 
+    &amp;= \ln \left({p\left(d | \mathcal{H}_A\right)}/{p\left(d | \mathcal{H}_{0}\right)} \right) \\
+    &amp;= \langle d| h(A)\rangle -\frac{1}{2}\langle h(A)| h(A)\rangle \\
+    &amp;= A\langle d| g\rangle -\frac{1}{2} A^{2}\langle g| g\rangle
+\end{align}
+</div>
+<script type="math/tex; mode=display">
+\begin{align}
+    \ln \Lambda(\mathcal{H_A}|d) 
+    &= \ln \left({p\left(d | \mathcal{H}_A\right)}/{p\left(d | \mathcal{H}_{0}\right)} \right) \\
+    &= \langle d| h(A)\rangle -\frac{1}{2}\langle h(A)| h(A)\rangle \\
+    &= A\langle d| g\rangle -\frac{1}{2} A^{2}\langle g| g\rangle
+\end{align}
+</script>
+</div>
+<p>显然，最大化该似然比的振幅 <span><span class="MathJax_Preview">A_{\max}</span><script type="math/tex">A_{\max}</script></span> ，可以通过对该振幅参数求导取极值即可给出：</p>
+<div>
+<div class="MathJax_Preview">\label{eqn:C6_maxlikehoodratio_amp}
+    A_{\max }=\frac{\langle d| g\rangle}{\langle g| g\rangle}
+</div>
+<script type="math/tex; mode=display">\label{eqn:C6_maxlikehoodratio_amp}
+    A_{\max }=\frac{\langle d| g\rangle}{\langle g| g\rangle}
+</script>
+</div>
+<p>由此，我们就可以得知模板波形信号在未知振幅时，最大对数似然率的探测统计：</p>
+<div>
+<div class="MathJax_Preview">
+\label{eqn:C6_maxlikehoodratio}
+    \ln \Lambda(\mathcal{H}_{A_{\max }} | d)=\frac{1}{2} \frac{\langle d| g\rangle^{2}}{\langle g| g\rangle}
+</div>
+<script type="math/tex; mode=display">
+\label{eqn:C6_maxlikehoodratio}
+    \ln \Lambda(\mathcal{H}_{A_{\max }} | d)=\frac{1}{2} \frac{\langle d| g\rangle^{2}}{\langle g| g\rangle}
+</script>
+</div>
+<p>在上述例子当中，某引力波信号 <span><span class="MathJax_Preview">h(t;A)=Ag(t)</span><script type="math/tex">h(t;A)=Ag(t)</script></span> 有着确定已知的波形 <span><span class="MathJax_Preview">g(t)</span><script type="math/tex">g(t)</script></span> 但是未知其振幅大小 <span><span class="MathJax_Preview">A</span><script type="math/tex">A</script></span>，最大对数似然率公式 \eqref{eqn:C6_maxlikehoodratio} 所对应的最可能的振幅由公式 \eqref{eqn:C6_maxlikehoodratio_amp} 所确定。我们通常将 <span><span class="MathJax_Preview">g(t)</span><script type="math/tex">g(t)</script></span> 称为引力波波形的模板 (tempalte)，其与待探测的信号 <span><span class="MathJax_Preview">h(t)</span><script type="math/tex">h(t)</script></span> 是呈正比的，并且内积 <span><span class="MathJax_Preview">\langle d|g\rangle</span><script type="math/tex">\langle d|g\rangle</script></span> 与 <span><span class="MathJax_Preview">\langle d|h\rangle</span><script type="math/tex">\langle d|h\rangle</script></span> 之间只相差一个常数因子。下面我们来讨论内积 <span><span class="MathJax_Preview">u=\langle d|g\rangle</span><script type="math/tex">u=\langle d|g\rangle</script></span> 的统计特点，进而给出最佳匹配滤波信噪比的定义。</p>
+<p>假设在一段纯噪声的引力波数据中，即 <span><span class="MathJax_Preview">d(t)=n(t)</span><script type="math/tex">d(t)=n(t)</script></span>，我们考察 <span><span class="MathJax_Preview">u^2</span><script type="math/tex">u^2</script></span> 的期望(假设<span><span class="MathJax_Preview">\langle u\rangle</span><script type="math/tex">\langle u\rangle</script></span>=0)：</p>
+<div>
+<div class="MathJax_Preview">
+\begin{align}
+    \left\langle u^{2}\right\rangle
+    &amp;=\left\langle\left(2 \int_{-\infty}^{\infty} \frac{\tilde{n}(f) \tilde{g}^{*}(f)}{S_{n}(|f|)} d f\right)\left(2 \int_{-\infty}^{\infty} \frac{\tilde{n}^{*}\left(f^{\prime}\right) \tilde{g}\left(f^{\prime}\right)}{S_{n}\left(\left|f^{\prime}\right|\right)} d f^{\prime}\right)\right\rangle \\
+    &amp; =4 \int_{-\infty}^{\infty} d f \int_{-\infty}^{\infty} d f^{\prime} \frac{\left\langle\tilde{n}^{*}\left(f^{\prime}\right) \tilde{n}(f)\right\rangle \tilde{g}^{*}(f) \tilde{g}\left(f^{\prime}\right)}{S_{n}(|f|) S_{n}\left(\left|f^{\prime}\right|\right)} \\
+    &amp; =4 \int_{-\infty}^{\infty} d f \int_{-\infty}^{\infty} d f^{\prime} \frac{\frac{1}{2} S_{n}(|f|) \delta\left(f-f^{\prime}\right) \tilde{g}^{*}(f) \tilde{g}\left(f^{\prime}\right)}{S_{n}(|f|) S_{n}\left(\left|f^{\prime}\right|\right)} \\
+    &amp; =2 \int_{-\infty}^{\infty} \frac{|\tilde{g}(f)|^{2}}{S_{n}(|f|)} d f \\
+    &amp;= \langle g|g\rangle
+\end{align}
+</div>
+<script type="math/tex; mode=display">
+\begin{align}
+    \left\langle u^{2}\right\rangle
+    &=\left\langle\left(2 \int_{-\infty}^{\infty} \frac{\tilde{n}(f) \tilde{g}^{*}(f)}{S_{n}(|f|)} d f\right)\left(2 \int_{-\infty}^{\infty} \frac{\tilde{n}^{*}\left(f^{\prime}\right) \tilde{g}\left(f^{\prime}\right)}{S_{n}\left(\left|f^{\prime}\right|\right)} d f^{\prime}\right)\right\rangle \\
+    & =4 \int_{-\infty}^{\infty} d f \int_{-\infty}^{\infty} d f^{\prime} \frac{\left\langle\tilde{n}^{*}\left(f^{\prime}\right) \tilde{n}(f)\right\rangle \tilde{g}^{*}(f) \tilde{g}\left(f^{\prime}\right)}{S_{n}(|f|) S_{n}\left(\left|f^{\prime}\right|\right)} \\
+    & =4 \int_{-\infty}^{\infty} d f \int_{-\infty}^{\infty} d f^{\prime} \frac{\frac{1}{2} S_{n}(|f|) \delta\left(f-f^{\prime}\right) \tilde{g}^{*}(f) \tilde{g}\left(f^{\prime}\right)}{S_{n}(|f|) S_{n}\left(\left|f^{\prime}\right|\right)} \\
+    & =2 \int_{-\infty}^{\infty} \frac{|\tilde{g}(f)|^{2}}{S_{n}(|f|)} d f \\
+    &= \langle g|g\rangle
+\end{align}
+</script>
+</div>
+<p>其中，使用了功率谱密度性质 \eqref{eqn:psd_propert2}。从上式中可以看到，模板匹配滤波 <span><span class="MathJax_Preview">u=\langle d|g\rangle</span><script type="math/tex">u=\langle d|g\rangle</script></span> 的方差 <span><span class="MathJax_Preview">\sigma_n^2=\text{Var}(u)=\langle g|g\rangle</span><script type="math/tex">\sigma_n^2=\text{Var}(u)=\langle g|g\rangle</script></span>。换言之，在没有引力波信号的纯噪声环境下，探测统计量 <span><span class="MathJax_Preview">u</span><script type="math/tex">u</script></span> 服从零均值且方差为 <span><span class="MathJax_Preview">\sigma_n^2=\langle g|g\rangle</span><script type="math/tex">\sigma_n^2=\langle g|g\rangle</script></span> 的高斯随机分布。</p>
+<p>类似的，若引力波数据中存在引力波信号时，即 <span><span class="MathJax_Preview">d(t)=n(t)+h(t;A)=n(t)+Ag(t)</span><script type="math/tex">d(t)=n(t)+h(t;A)=n(t)+Ag(t)</script></span>，由模板匹配滤波所表达的探测统计量 <span><span class="MathJax_Preview">u</span><script type="math/tex">u</script></span> 的均值和方差是</p>
+<div>
+<div class="MathJax_Preview">
+\begin{align}
+    \langle u\rangle
+    &amp;=\langle\langle d| g\rangle\rangle=\langle\langle n, g\rangle\rangle+\langle h| g\rangle=A\langle g| g\rangle=A \sigma_n^{2} \\
+    \langle u^2\rangle
+    &amp;=\langle \langle d|g \rangle^2 \rangle
+    = \langle [\langle n|g\rangle +\langle h|g\rangle]^2 \rangle \\
+    &amp;=\langle\langle n|g\rangle^2\rangle + 2\langle h|g \rangle\langle\langle n|g\rangle\rangle +\langle h|g\rangle^2 \\
+    &amp;=\sigma_n^2+A^2\sigma_n^4 \\
+    \text{Var}(u) 
+    &amp;= \langle u^2\rangle -\langle u\rangle^2 = (\sigma_n^2+A^2\sigma_n^4)-(A\sigma_n^2)^2 = \sigma_n^2
+\end{align}
+</div>
+<script type="math/tex; mode=display">
+\begin{align}
+    \langle u\rangle
+    &=\langle\langle d| g\rangle\rangle=\langle\langle n, g\rangle\rangle+\langle h| g\rangle=A\langle g| g\rangle=A \sigma_n^{2} \\
+    \langle u^2\rangle
+    &=\langle \langle d|g \rangle^2 \rangle
+    = \langle [\langle n|g\rangle +\langle h|g\rangle]^2 \rangle \\
+    &=\langle\langle n|g\rangle^2\rangle + 2\langle h|g \rangle\langle\langle n|g\rangle\rangle +\langle h|g\rangle^2 \\
+    &=\sigma_n^2+A^2\sigma_n^4 \\
+    \text{Var}(u) 
+    &= \langle u^2\rangle -\langle u\rangle^2 = (\sigma_n^2+A^2\sigma_n^4)-(A\sigma_n^2)^2 = \sigma_n^2
+\end{align}
+</script>
+</div>
+<p>从上式中可以看到，引力波数据中含有对应波形信号时，模板的探测统计量 <span><span class="MathJax_Preview">u=\langle d|g\rangle</span><script type="math/tex">u=\langle d|g\rangle</script></span> 服从的是均值为 <span><span class="MathJax_Preview">A\sigma_n^2</span><script type="math/tex">A\sigma_n^2</script></span> 且方差为 <span><span class="MathJax_Preview">\sigma_n^2</span><script type="math/tex">\sigma_n^2</script></span> 的高斯随机分布。如此一来，就可以理解上述波形幅度的最大似然 <span><span class="MathJax_Preview">A_{\max}=\langle d|g\rangle/\langle g|g\rangle</span><script type="math/tex">A_{\max}=\langle d|g\rangle/\langle g|g\rangle</script></span> 的期望是 <span><span class="MathJax_Preview">\langle A_{\max}\rangle=A</span><script type="math/tex">\langle A_{\max}\rangle=A</script></span>。</p>
+<p>到此我们就可以自然地定义匹配滤波的信号与噪声之比(matched filtering signal-to-noise ratio)为 </p>
+<div>
+<div class="MathJax_Preview">\label{eqn:mfsnr_mf}
+    \rho := \frac{u}{\sigma_n} = \frac{\langle d|g\rangle}{\sqrt{\langle g|g\rangle}}
+</div>
+<script type="math/tex; mode=display">\label{eqn:mfsnr_mf}
+    \rho := \frac{u}{\sigma_n} = \frac{\langle d|g\rangle}{\sqrt{\langle g|g\rangle}}
+</script>
+</div>
+<p>可以看到，<span><span class="MathJax_Preview">\rho</span><script type="math/tex">\rho</script></span> 是一个归一化的匹配滤波探测统计量。当引力波数据是不含信号的纯高斯噪声时，信噪比 <span><span class="MathJax_Preview">\rho</span><script type="math/tex">\rho</script></span> 服从均值为0 (<span><span class="MathJax_Preview">\langle\rho\rangle=0</span><script type="math/tex">\langle\rho\rangle=0</script></span>) 且方差为 1 (<span><span class="MathJax_Preview">\text{Var}(\rho)=1</span><script type="math/tex">\text{Var}(\rho)=1</script></span>) 的高斯随机分布。当数据中含有一个信号 <span><span class="MathJax_Preview">h(t)=Ag(t)</span><script type="math/tex">h(t)=Ag(t)</script></span> 时，信噪比 <span><span class="MathJax_Preview">\rho</span><script type="math/tex">\rho</script></span> 的均值期望为 <span><span class="MathJax_Preview">\rho_\text{opt}=\langle\rho\rangle=A\sigma_n=\sqrt{\langle h|h\rangle}</span><script type="math/tex">\rho_\text{opt}=\langle\rho\rangle=A\sigma_n=\sqrt{\langle h|h\rangle}</script></span>。由此可见，在本章的第 <a href="./#241">2.4.1</a> 节中，我们基于信号与噪声的能谱之比所定义的最佳匹配滤波信噪比 <span><span class="MathJax_Preview">\rho_\text{opt}</span><script type="math/tex">\rho_\text{opt}</script></span>，正对应于匹配滤波信噪比 <span><span class="MathJax_Preview">\rho</span><script type="math/tex">\rho</script></span> 作为探测统计量的期望值。在本文中，未特别说明的情况下，我们都会基于 <span><span class="MathJax_Preview">\rho_\text{opt}</span><script type="math/tex">\rho_\text{opt}</script></span> 的信噪比定义来混合引力波模板波形和噪声数据。为了以示区别，用符号 <span><span class="MathJax_Preview">\rho_\text{mf}</span><script type="math/tex">\rho_\text{mf}</script></span> 来表示由公式 \eqref{eqn:mfsnr_mf} 所定义的匹配滤波信噪比。在第<a href="../C5/">五</a>章中，我们将会对这两种不同信噪比定义与模板波形幅度之间的关系会进一步相关研究。</p>
+<h3 id="245">2.4.5 到达时间未知的模板匹配滤波<a class="headerlink" href="#245" title="Permanent link">&para;</a></h3>
+<p>假设引力波数据中含有一个已知波形模板 <span><span class="MathJax_Preview">g(t)</span><script type="math/tex">g(t)</script></span>，但未知振幅 <span><span class="MathJax_Preview">A</span><script type="math/tex">A</script></span> 和未知到达时间 <span><span class="MathJax_Preview">t_0</span><script type="math/tex">t_0</script></span> 的信号<span><span class="MathJax_Preview">h(t)=Ag(t-t_0)</span><script type="math/tex">h(t)=Ag(t-t_0)</script></span>，该信号的傅里叶变换为</p>
+<div>
+<div class="MathJax_Preview">
+    \tilde{h}(f)=A\tilde{g}(f)e^{-2\pi ift_0}
+</div>
+<script type="math/tex; mode=display">
+    \tilde{h}(f)=A\tilde{g}(f)e^{-2\pi ift_0}
+</script>
+</div>
+<p>由此，我们可以计算其探测统计量(即匹配滤波内积)</p>
+<div>
+<div class="MathJax_Preview">
+    \langle d|h\rangle = 2A\int^\infty_{-\infty}\frac{ \tilde{d}(f)\tilde{g}^* (f) }{S_n(|f|)}e^{2\pi ift_0}df=A\langle d|g \rangle(t_0)
+</div>
+<script type="math/tex; mode=display">
+    \langle d|h\rangle = 2A\int^\infty_{-\infty}\frac{ \tilde{d}(f)\tilde{g}^* (f) }{S_n(|f|)}e^{2\pi ift_0}df=A\langle d|g \rangle(t_0)
+</script>
+</div>
+<p>上式中，我们已经定义了一个含时的内积：</p>
+<div>
+<div class="MathJax_Preview">\label{eqn:C2_innerprod_t}
+    \langle d|h \rangle(t) := 2\int^\infty_{-\infty}\frac{ \tilde{d}(f)\tilde{h}^* (f) }{S_n(|f|)}e^{2\pi ift}df
+</div>
+<script type="math/tex; mode=display">\label{eqn:C2_innerprod_t}
+    \langle d|h \rangle(t) := 2\int^\infty_{-\infty}\frac{ \tilde{d}(f)\tilde{h}^* (f) }{S_n(|f|)}e^{2\pi ift}df
+</script>
+</div>
+<p>它可以表示为在各种可能的到达时间 <span><span class="MathJax_Preview">t</span><script type="math/tex">t</script></span> 下匹配滤波内积的时间序列。所以，我们就可以进一步将信噪比的定义推广到含时的匹配滤波信噪比 <span><span class="MathJax_Preview">\rho_\text{mf}(t)</span><script type="math/tex">\rho_\text{mf}(t)</script></span>：</p>
+<div>
+<div class="MathJax_Preview">\label{eqn:snr_mf_time}
+    \rho_{\text{mf}}(t)  := \frac{ |\langle d|h\rangle(t)|  }{ \sqrt{\langle h|h\rangle} }
+</div>
+<script type="math/tex; mode=display">\label{eqn:snr_mf_time}
+    \rho_{\text{mf}}(t)  := \frac{ |\langle d|h\rangle(t)|  }{ \sqrt{\langle h|h\rangle} }
+</script>
+</div>
+<p>由此可见，最大似然探测统计对应于在给定时间区间上 <span><span class="MathJax_Preview">\rho_{\text{mf}}</span><script type="math/tex">\rho_{\text{mf}}</script></span> 的最大值。到达时间的估计也就对应于该最大值所对应的时间 <span><span class="MathJax_Preview">t_{\text{peak}}=t_0</span><script type="math/tex">t_{\text{peak}}=t_0</script></span>，而波形幅度即为相应的最大似然估计 <span><span class="MathJax_Preview">A_{\max}=\rho(t_{\text{peak}})</span><script type="math/tex">A_{\max}=\rho(t_{\text{peak}})</script></span>。通过卷积定理，我们会进一步推广含时的匹配滤波信噪比公式 \eqref{eqn:snr_mf_time} 用时域卷积的方式来表达，进而通过构造卷积神经单元来实现匹配滤波机制。为了确保内容的一致性，我们对相关理论的介绍和推导，放在第<a href="../C6/">六</a>章中再讨论。</p>
+<p>关于匹配滤波技术，还有很多内容和技术细节可以讨论，诸如不同波形模板下的最大似然匹配、模板的参数估计、<span><span class="MathJax_Preview">\chi^2</span><script type="math/tex">\chi^2</script></span>估计等等。由于相关的讨论与本论文的研究课题交叉甚少，所以不在此进一步展开和概述，详细可参阅 <sup id="fnref2:32"><a class="footnote-ref" href="#fn:32">40</a></sup> <sup id="fnref3:60"><a class="footnote-ref" href="#fn:60">68</a></sup>。</p>
+<p></br></p>
+<h2 id="25">2.5 总结与结论<a class="headerlink" href="#25" title="Permanent link">&para;</a></h2>
+<p></br></p>
+<p>在本章，我们主要概述了引力波探测技术以及引力波数据分析理论的重要概念。在引言中，我们从真空弱场近似下的广义相对论中引力波的数学描述，得出需要探测到引力波的两种振荡模式以其对应的时空应变规律。在第二部分中，我们对引力波探测计划中的三个重要领域：波源建模、探测实验和数据处理三个部分做了较详细的介绍，阐述了在引力波探测计划中各个环节的研究背景、现状和价值。其中，引力波数据分析方面是本论文所涉及的主要研究领域。在第三部分中，我们着重介绍与本文密切相关的信号处理概念和基本数据处理方法，以有助于读者理解相关的数据处理流程和引力波数据的特点。在第四部分中，我们详细的介绍了基于模板波形的匹配滤波技术，从引力波噪声背景的统计特点出发，基于贝叶斯理论构建了合适的统计探测量，以此来定义最终的匹配滤波信噪比。</p>
+<p>近年来，引力波探测技术已经得到了长足的发展，尤其是深度学习技术的引入为引力波理论建模和数据分析等方面开辟了全新的思考途径。随着越来越多的研究成果出现，基于机器学习、深度学习的引力波信号处理和算法建模等相关领域的交叉和综合会越来越多。相信未来深度学习系统在引力波天文学领域会取得更大的进展和更多的突破。</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:C2_gw_cartoon">
+<p><a href="https://www.ligo.caltech.edu/image/ligo20160615f">https://www.ligo.caltech.edu/image/ligo20160615f</a>&#160;<a class="footnote-backref" href="#fnref:C2_gw_cartoon" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:LIGO_schematic">
+<p><a href="https://commons.wikimedia.org/wiki/File:LIGO_schematic_(multilang).svg">https://commons.wikimedia.org/wiki/File:LIGO_schematic_(multilang).svg</a>&#160;<a class="footnote-backref" href="#fnref:LIGO_schematic" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:C2_sensitivity_detector">
+<p><a href="http://gwplotter.com">http://gwplotter.com</a>&#160;<a class="footnote-backref" href="#fnref:C2_sensitivity_detector" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:GWOSC">
+<p><a href="https://gw-openscience.org">https://gw-openscience.org</a>&#160;<a class="footnote-backref" href="#fnref:GWOSC" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+<li id="fn:O1">
+<p>O1 template banks: <a href="https://github.com/ligo-cbc/pycbc-config/tree/master/O1/bank">https://github.com/ligo-cbc/pycbc-config/tree/master/O1/bank</a>&#160;<a class="footnote-backref" href="#fnref:O1" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+</li>
+<li id="fn:O2">
+<p>O2 template banks: <a href="https://github.com/ligo-cbc/pycbc-config/tree/master/O2/bank">https://github.com/ligo-cbc/pycbc-config/tree/master/O2/bank</a>&#160;<a class="footnote-backref" href="#fnref:O2" title="Jump back to footnote 6 in the text">&#8617;</a></p>
+</li>
+<li id="fn:gstLAL">
+<p>gstLAL: <a href="https://lscsoft.docs.ligo.org/gstlal/index.html">https://lscsoft.docs.ligo.org/gstlal/index.html</a>&#160;<a class="footnote-backref" href="#fnref:gstLAL" title="Jump back to footnote 7 in the text">&#8617;</a></p>
+</li>
+<li id="fn:omega">
+<p>这里是用 <span><span class="MathJax_Preview">\Omega</span><script type="math/tex">\Omega</script></span> 来代表用 [radians/sec] 为单位的物理频率(physical frequency)；而 <span><span class="MathJax_Preview">\omega</span><script type="math/tex">\omega</script></span> 代表用 [radians/sample] 为单位的数字频率(digital frequency)。&#160;<a class="footnote-backref" href="#fnref:omega" title="Jump back to footnote 8 in the text">&#8617;</a></p>
+</li>
+<li id="fn:1">
+<p>Canbin Liang and Bin Zhou. <em>foundation of modern physics Series 7: Introduction to Differential Geometry and General Relativity <span><span class="MathJax_Preview">Vol\.1</span><script type="math/tex">Vol\.1</script></span></em>. Unknown, 1991. ISBN 9787030164605. URL: <a href="https://www.amazon.com/foundation-modern-physics-Introduction-Differential/dp/7030164601?SubscriptionId=AKIAIOBINVZYXZQZ2U3A&amp;tag=chimbori05-20&amp;linkCode=xm2&amp;camp=2025&amp;creative=165953&amp;creativeASIN=7030164601">https://www.amazon.com/foundation-modern-physics-Introduction-Differential/dp/7030164601?SubscriptionId=AKIAIOBINVZYXZQZ2U3A&amp;tag=chimbori05-20&amp;linkCode=xm2&amp;camp=2025&amp;creative=165953&amp;creativeASIN=7030164601</a>.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 9 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Alexandre Le Tiec and J&rsquo;erome Novak. Theory of gravitational waves. In Gerard Auger and Eric Plagnol, editors, <em>An Overview of Gravitational Waves: Theory, Sources and Detection</em>, pages 1–41. 2017. <a href="https://arxiv.org/abs/1607.04202">arXiv:1607.04202</a>.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 10 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>Mark Hannam, Patricia Schmidt, Alejandro Bohé, Leïla Haegel, Sascha Husa, Frank Ohme, Geraint Pratten, and Michael Pürrer. Simple model of complete precessing black-hole-binary gravitational waveforms. <em>Phys. Rev. Lett.</em>, 113<span><span class="MathJax_Preview">15</span><script type="math/tex">15</script></span>:151101, 2014. <a href="https://arxiv.org/abs/1308.3271">arXiv:1308.3271</a>, <a href="https://doi.org/10.1103/PhysRevLett.113.151101">doi:10.1103/PhysRevLett.113.151101</a>.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 11 in the text">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p>Yi Pan, Alessandra Buonanno, Andrea Taracchini, Lawrence E. Kidder, Abdul H. Mroué, Harald P. Pfeiffer, Mark A. Scheel, and Béla Szilágyi. Inspiral-merger-ringdown waveforms of spinning, precessing black-hole binaries in the effective-one-body formalism. <em>Phys. Rev.</em>, D89<span><span class="MathJax_Preview">8</span><script type="math/tex">8</script></span>:084006, 2014. <a href="https://arxiv.org/abs/1307.6232">arXiv:1307.6232</a>, <a href="https://doi.org/10.1103/PhysRevD.89.084006">doi:10.1103/PhysRevD.89.084006</a>.&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 12 in the text">&#8617;</a></p>
+</li>
+<li id="fn:5">
+<p>Jonathan Blackman, Scott E. Field, Chad R. Galley, Béla Szilágyi, Mark A. Scheel, Manuel Tiglio, and Daniel A. Hemberger. Fast and accurate prediction of numerical relativity waveforms from binary black hole coalescences using surrogate models. <em>Phys. Rev. Lett.</em>, 115<span><span class="MathJax_Preview">12</span><script type="math/tex">12</script></span>:121102, 2015. <a href="https://arxiv.org/abs/1502.07758">arXiv:1502.07758</a>, <a href="https://doi.org/10.1103/PhysRevLett.115.121102">doi:10.1103/PhysRevLett.115.121102</a>.&#160;<a class="footnote-backref" href="#fnref:5" title="Jump back to footnote 13 in the text">&#8617;</a></p>
+</li>
+<li id="fn:6">
+<p>Zhoujian Cao and Wen-Biao Han. Waveform model for an eccentric binary black hole based on the effective-one-body-numerical-relativity formalism. <em>Phys. Rev.</em>, D96<span><span class="MathJax_Preview">4</span><script type="math/tex">4</script></span>:044028, 2017. <a href="https://arxiv.org/abs/1708.00166">arXiv:1708.00166</a>, <a href="https://doi.org/10.1103/PhysRevD.96.044028">doi:10.1103/PhysRevD.96.044028</a>.&#160;<a class="footnote-backref" href="#fnref:6" title="Jump back to footnote 14 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:6" title="Jump back to footnote 14 in the text">&#8617;</a></p>
+</li>
+<li id="fn:7">
+<p>Hsing-Po Pan, Chun-Yu Lin, Zhoujian Cao, and Hwei-Jang Yo. Accuracy of source localization for eccentric inspiraling binary mergers using a ground-based detector network. <em>Phys. Rev.</em>, D100<span><span class="MathJax_Preview">12</span><script type="math/tex">12</script></span>:124003, 2019. <a href="https://arxiv.org/abs/1912.04455">arXiv:1912.04455</a>, <a href="https://doi.org/10.1103/PhysRevD.100.124003">doi:10.1103/PhysRevD.100.124003</a>.&#160;<a class="footnote-backref" href="#fnref:7" title="Jump back to footnote 15 in the text">&#8617;</a></p>
+</li>
+<li id="fn:8">
+<p>Alvin J. K. Chua, Chad R. Galley, and Michele Vallisneri. Reduced-order modeling with artificial neurons for gravitational-wave inference. <em>Phys. Rev. Lett.</em>, 122<span><span class="MathJax_Preview">21</span><script type="math/tex">21</script></span>:211101, 2019. <a href="https://arxiv.org/abs/1811.05491">arXiv:1811.05491</a>, <a href="https://doi.org/10.1103/PhysRevLett.122.211101">doi:10.1103/PhysRevLett.122.211101</a>.&#160;<a class="footnote-backref" href="#fnref:8" title="Jump back to footnote 16 in the text">&#8617;</a></p>
+</li>
+<li id="fn:9">
+<p>Adam Rebei, E. A. Huerta, Sibo Wang, Sarah Habib, Roland Haas, Daniel Johnson, and Daniel George. Fusing numerical relativity and deep learning to detect higher-order multipole waveforms from eccentric binary black hole mergers. <em>Phys. Rev. D 100, 044025 <span><span class="MathJax_Preview">2019</span><script type="math/tex">2019</script></span></em>, July 2018. <a href="https://arxiv.org/abs/1807.09787v2">arXiv:1807.09787v2</a>, <a href="https://doi.org/10.1103/PhysRevD.100.044025">doi:10.1103/PhysRevD.100.044025</a>.&#160;<a class="footnote-backref" href="#fnref:9" title="Jump back to footnote 17 in the text">&#8617;</a></p>
+</li>
+<li id="fn:10">
+<p>Alvin J. K. Chua and Michele Vallisneri. Learning bayes&rsquo; theorem with a neural network for gravitational-wave inference. <em>arXiv</em>, 2019. <a href="https://arxiv.org/abs/1909.05966">arXiv:1909.05966</a>.&#160;<a class="footnote-backref" href="#fnref:10" title="Jump back to footnote 18 in the text">&#8617;</a></p>
+</li>
+<li id="fn:11">
+<p>Yoshinta Setyawati, Michael Pürrer, and Frank Ohme. Regression methods in waveform modeling: a comparative study. <em>arXiv</em>, 2019. <a href="https://arxiv.org/abs/1909.10986">arXiv:1909.10986</a>.&#160;<a class="footnote-backref" href="#fnref:11" title="Jump back to footnote 19 in the text">&#8617;</a></p>
+</li>
+<li id="fn:12">
+<p>E. A. Huerta and others. Eccentric, nonspinning, inspiral, gaussian-process merger approximant for the detection and characterization of eccentric binary black hole mergers. <em>Phys. Rev.</em>, D97<span><span class="MathJax_Preview">2</span><script type="math/tex">2</script></span>:024031, 2018. <a href="https://arxiv.org/abs/1711.06276">arXiv:1711.06276</a>, <a href="https://doi.org/10.1103/PhysRevD.97.024031">doi:10.1103/PhysRevD.97.024031</a>.&#160;<a class="footnote-backref" href="#fnref:12" title="Jump back to footnote 20 in the text">&#8617;</a></p>
+</li>
+<li id="fn:13">
+<p>Alex Abramovici and others. Ligo: the laser interferometer gravitational wave observatory. <em>Science</em>, 256:325–333, 1992. <a href="https://doi.org/10.1126/science.256.5055.325">doi:10.1126/science.256.5055.325</a>.&#160;<a class="footnote-backref" href="#fnref:13" title="Jump back to footnote 21 in the text">&#8617;</a></p>
+</li>
+<li id="fn:14">
+<p>Gregory M. Harry. Advanced ligo: the next generation of gravitational wave detectors. <em>Class. Quant. Grav.</em>, 27:084006, 2010. <a href="https://doi.org/10.1088/0264-9381/27/8/084006">doi:10.1088/0264-9381/27/8/084006</a>.&#160;<a class="footnote-backref" href="#fnref:14" title="Jump back to footnote 22 in the text">&#8617;</a></p>
+</li>
+<li id="fn:15">
+<p>F. Acernese, P. Amico, M. Al-Shourbagy, S. Aoudia, S. Avino, D. Babusci, G. Ballardin, R. Barillé, F. Barone, L. Barsotti, M. Barsuglia, F. Beauville, M. A. Bizouard, C. Boccara, F. Bondu, L. Bosi, C. Bradaschia, S. Braccini, A. Brillet, V. Brisson, L. Brocco, D. Buskulic, E. Calloni, E. Campagna, F. Cavalier, R. Cavalieri, G. Cella, E. Chassande-Mottin, C. Corda, A.-C. Clapson, F. Cleva, J.-P. Coulon, E. Cuoco, V. Dattilo, M. Davier, R. De Rosa, L. Di Fiore, A. Di Virgilio, B. Dujardin, A. Eleuteri, D. Enard, I. Ferrante, F. Fidecaro, I. Fiori, R. Flaminio, J.-D. Fournier, S. Frasca, F. Frasconi, A. Freise, L. Gammaitoni, A. Gennai, A. Giazotto, G. Giordano, L. Giordano, R. Gouaty, D. Grosjean, G. Guidi, S. Hebri, H. Heitmann, P. Hello, L. Holloway, S. Kreckelbergh, P. La Penna, V. Loriette, M. Loupias, G. Losurdo, J.-M. Mackowski, E. Majorana, C. N. Man, M. Mantovani, F. Marchesoni, F. Marion, J. Marque, F. Martelli, A. Masserot, M. Mazzoni, L. Milano, C. Moins, J. Moreau, N. Morgado, B. Mours, A. Pai, C. Palomba, F. Paoletti, S. Pardi, A. Pasqualetti, R. Passaquieti, D. Passuello, B. Perniola, F. Piergiovanni, L. Pinard, R. Poggiani, M. Punturo, P. Puppo, K. Qipiani, P. Rapagnani, V. Reita, A. Remillieux, F. Ricci, I. Ricciardi, P. Ruggi, G. Russo, S. Solimeno, A. Spallicci, R. Stanga, R. Taddei, D. Tombolato, M. Tonelli, A. Toncelli, E. Tournefier, F. Travasso, G. Vajente, D. Verkindt, F. Vetrano, A. Viceré, J.-Y. Vinet, H. Vocca, M. Yvert, and Z. Zhang. Status of virgo. <em>Classical and Quantum Gravity</em>, 22<span><span class="MathJax_Preview">18</span><script type="math/tex">18</script></span>:S869–S880, August 2005. <a href="https://doi.org/10.1088/0264-9381/22/18/s01">doi:10.1088/0264-9381/22/18/s01</a>.&#160;<a class="footnote-backref" href="#fnref:15" title="Jump back to footnote 23 in the text">&#8617;</a></p>
+</li>
+<li id="fn:16">
+<p>F. Acernese and others. Advanced virgo: a second-generation interferometric gravitational wave detector. <em>Class. Quant. Grav.</em>, 32<span><span class="MathJax_Preview">2</span><script type="math/tex">2</script></span>:024001, 2015. <a href="https://arxiv.org/abs/1408.3978">arXiv:1408.3978</a>, <a href="https://doi.org/10.1088/0264-9381/32/2/024001">doi:10.1088/0264-9381/32/2/024001</a>.&#160;<a class="footnote-backref" href="#fnref:16" title="Jump back to footnote 24 in the text">&#8617;</a></p>
+</li>
+<li id="fn:17">
+<p>B. Willke and others. The geo 600 gravitational wave detector. <em>Class. Quant. Grav.</em>, 19:1377–1387, 2002. <a href="https://doi.org/10.1088/0264-9381/19/7/321">doi:10.1088/0264-9381/19/7/321</a>.&#160;<a class="footnote-backref" href="#fnref:17" title="Jump back to footnote 25 in the text">&#8617;</a></p>
+</li>
+<li id="fn:18">
+<p>Eiichi Hirose, Takanori Sekiguchi, Rahul Kumar, and Ryutaro Takahashi. Update on the development of cryogenic sapphire mirrors and their seismic attenuation system for kagra. <em>Class. Quant. Grav.</em>, 31<span><span class="MathJax_Preview">22</span><script type="math/tex">22</script></span>:224004, 2014. <a href="https://doi.org/10.1088/0264-9381/31/22/224004">doi:10.1088/0264-9381/31/22/224004</a>.&#160;<a class="footnote-backref" href="#fnref:18" title="Jump back to footnote 26 in the text">&#8617;</a></p>
+</li>
+<li id="fn:19">
+<p>T. Akutsu and others. The status of kagra underground cryogenic gravitational wave telescope. <em>J. Phys. Conf. Ser.</em>, 1342<span><span class="MathJax_Preview">1</span><script type="math/tex">1</script></span>:012014, 2020. <a href="https://arxiv.org/abs/1710.04823">arXiv:1710.04823</a>, <a href="https://doi.org/10.1088/1742-6596/1342/1/012014">doi:10.1088/1742-6596/1342/1/012014</a>.&#160;<a class="footnote-backref" href="#fnref:19" title="Jump back to footnote 27 in the text">&#8617;</a></p>
+</li>
+<li id="fn:20">
+<p>C. S. Unnikrishnan. Indigo and ligo-india: scope and plans for gravitational wave research and precision metrology in india. <em>Int. J. Mod. Phys.</em>, D22:1341010, 2013. <a href="https://arxiv.org/abs/1510.06059">arXiv:1510.06059</a>, <a href="https://doi.org/10.1142/S0218271813410101">doi:10.1142/S0218271813410101</a>.&#160;<a class="footnote-backref" href="#fnref:20" title="Jump back to footnote 28 in the text">&#8617;</a></p>
+</li>
+<li id="fn:21">
+<p>Éric Chassande-Mottin. Data analysis challenges in transient gravitational-wave astronomy. <em>AIP Conf. Proc.</em>, 1535<span><span class="MathJax_Preview">1</span><script type="math/tex">1</script></span>:252, 2013. <a href="https://arxiv.org/abs/1210.7173">arXiv:1210.7173</a>, <a href="https://doi.org/10.1063/1.4807558">doi:10.1063/1.4807558</a>.&#160;<a class="footnote-backref" href="#fnref:21" title="Jump back to footnote 29 in the text">&#8617;</a></p>
+</li>
+<li id="fn:22">
+<p>C. J. Moore, R. H. Cole, and C. P. L. Berry. Gravitational-wave sensitivity curves. <em>Class. Quant. Grav.</em>, 32<span><span class="MathJax_Preview">1</span><script type="math/tex">1</script></span>:015014, 2015. <a href="https://arxiv.org/abs/1408.0740">arXiv:1408.0740</a>, <a href="https://doi.org/10.1088/0264-9381/32/1/015014">doi:10.1088/0264-9381/32/1/015014</a>.&#160;<a class="footnote-backref" href="#fnref:22" title="Jump back to footnote 30 in the text">&#8617;</a></p>
+</li>
+<li id="fn:23">
+<p>Elizabeth Gibney. Successful test drive for space-based gravitational-wave detector. <em>Nature News</em>, 531<span><span class="MathJax_Preview">7592</span><script type="math/tex">7592</script></span>:30, 2016.&#160;<a class="footnote-backref" href="#fnref:23" title="Jump back to footnote 31 in the text">&#8617;</a></p>
+</li>
+<li id="fn:24">
+<p>Xuefei Gong, Shengnian Xu, Shan Bai, Zhoujian Cao, Gerui Chen, Yanbei Chen, Xiaokai He, Gerhard Heinzel, Yun-Kau Lau, Chenzhou Liu, and others. A scientific case study of an advanced lisa mission. <em>Classical and Quantum Gravity</em>, 28<span><span class="MathJax_Preview">9</span><script type="math/tex">9</script></span>:094012, 2011.&#160;<a class="footnote-backref" href="#fnref:24" title="Jump back to footnote 32 in the text">&#8617;</a></p>
+</li>
+<li id="fn:25">
+<p>Wen-Rui Hu and Yue-Liang Wu. The taiji program in space for gravitational wave physics and the nature of gravity. <em>Natl. Sci. Rev.</em>, 4<span><span class="MathJax_Preview">5</span><script type="math/tex">5</script></span>:685–686, 2017. <a href="https://doi.org/10.1093/nsr/nwx116">doi:10.1093/nsr/nwx116</a>.&#160;<a class="footnote-backref" href="#fnref:25" title="Jump back to footnote 33 in the text">&#8617;</a></p>
+</li>
+<li id="fn:26">
+<p>Wen-Hong Ruan, Chang Liu, Zong-Kuan Guo, Yue-Liang Wu, and Rong-Gen Cai. The lisa-taiji network. <em>Nature Astronomy</em>, 4<span><span class="MathJax_Preview">2</span><script type="math/tex">2</script></span>:108–109, 2020. <a href="https://doi.org/10.1038/s41550-019-1008-4">doi:10.1038/s41550-019-1008-4</a>.&#160;<a class="footnote-backref" href="#fnref:26" title="Jump back to footnote 34 in the text">&#8617;</a></p>
+</li>
+<li id="fn:27">
+<p>Jun Luo and others. Tianqin: a space-borne gravitational wave detector. <em>Class. Quant. Grav.</em>, 33<span><span class="MathJax_Preview">3</span><script type="math/tex">3</script></span>:035010, 2016. <a href="https://arxiv.org/abs/1512.02076">arXiv:1512.02076</a>, <a href="https://doi.org/10.1088/0264-9381/33/3/035010">doi:10.1088/0264-9381/33/3/035010</a>.&#160;<a class="footnote-backref" href="#fnref:27" title="Jump back to footnote 35 in the text">&#8617;</a></p>
+</li>
+<li id="fn:28">
+<p>Yong-Ping Li, Yang Liu, Si-Yu Li, Hong Li, and Xinmin Zhang. Tibet&rsquo;s ali: a new window to detect the cmb polarization. <em>arXiv</em>, September 2017. <a href="https://arxiv.org/abs/1709.09053v2">arXiv:1709.09053v2</a>.&#160;<a class="footnote-backref" href="#fnref:28" title="Jump back to footnote 36 in the text">&#8617;</a></p>
+</li>
+<li id="fn:29">
+<p>Hong Li, Si-Yu Li, Yang Liu, Yong-Ping Li, and Xinmin Zhang. Tibet’s window on primordial gravitational waves. <em>Nature Astronomy</em>, 2<span><span class="MathJax_Preview">2</span><script type="math/tex">2</script></span>:104–106, 2018. <a href="https://doi.org/10.1038/s41550-017-0373-0">doi:10.1038/s41550-017-0373-0</a>.&#160;<a class="footnote-backref" href="#fnref:29" title="Jump back to footnote 37 in the text">&#8617;</a></p>
+</li>
+<li id="fn:30">
+<p>N. A. N. RENDONG, D. I. L. I., J. I. N. CHENGJIN, W. A. N. G. QIMING, Z. H. U. LICHUN, Z. H. U. WENBAI, H. A. I. Y. A. N. ZHANG, Y. U. E. YOULING, and L. E. I. Q. I. A. N. The five-hundred-meter aperture spherical radio telescope <span><span class="MathJax_Preview">fast</span><script type="math/tex">fast</script></span> project. <em>Int. J. Mod. Phys. D</em>, 20<span><span class="MathJax_Preview">06</span><script type="math/tex">06</script></span>:989–1024, June 2011. <a href="https://doi.org/10.1142/s0218271811019335">doi:10.1142/s0218271811019335</a>.&#160;<a class="footnote-backref" href="#fnref:30" title="Jump back to footnote 38 in the text">&#8617;</a></p>
+</li>
+<li id="fn:31">
+<p>Ming-Sheng Zhan, Jin Wang, Wei-Tou Ni, Dong-Feng Gao, Gang Wang, Ling-Xiang He, Run-Bing Li, Lin Zhou, Xi Chen, Jia-Qi Zhong, Biao Tang, Zhan-Wei Yao, Lei Zhu, Zong-Yuan Xiong, Si-Bin Lu, Geng-Hua Yu, Qun-Feng Cheng, Min Liu, Yu-Rong Liang, Peng Xu, Xiao-Dong He, Min Ke, Zheng Tan, and Jun Luo. Zaiga: zhaoshan long-baseline atom interferometer gravitation antenna. <em>Int. J. Mod. Phys. D</em>, 29<span><span class="MathJax_Preview">04</span><script type="math/tex">04</script></span>:1940005, May 2019. <a href="https://arxiv.org/abs/1903.09288v4">arXiv:1903.09288v4</a>, <a href="https://doi.org/10.1142/s0218271819400054">doi:10.1142/s0218271819400054</a>.&#160;<a class="footnote-backref" href="#fnref:31" title="Jump back to footnote 39 in the text">&#8617;</a></p>
+</li>
+<li id="fn:32">
+<p>Piotr Jaranowski and Andrzej Krolak. Gravitational-wave data analysis. formalism and sample applications: the gaussian case. <em>Living Rev. Rel.</em>, 8:3, 2005. [Living Rev. Rel.15,4<span><span class="MathJax_Preview">2012</span><script type="math/tex">2012</script></span>]. <a href="https://arxiv.org/abs/0711.1115">arXiv:0711.1115</a>.&#160;<a class="footnote-backref" href="#fnref:32" title="Jump back to footnote 40 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:32" title="Jump back to footnote 40 in the text">&#8617;</a></p>
+</li>
+<li id="fn:33">
+<p>S. Hild. Beyond the second generation of laser-interferometric gravitational wave observatories. <em>Class. Quant. Grav.</em>, 29:124006, 2012. <a href="https://arxiv.org/abs/1111.6277">arXiv:1111.6277</a>, <a href="https://doi.org/10.1088/0264-9381/29/12/124006">doi:10.1088/0264-9381/29/12/124006</a>.&#160;<a class="footnote-backref" href="#fnref:33" title="Jump back to footnote 41 in the text">&#8617;</a></p>
+</li>
+<li id="fn:34">
+<p>Robert E. Colgan, K. Rainer Corley, Yenson Lau, Imre Bartos, John N. Wright, Zsuzsa Marka, and Szabolcs Marka. Efficient gravitational-wave glitch identification from environmental data through machine learning. <em>arXiv</em>, 2019. <a href="https://arxiv.org/abs/1911.11831">arXiv:1911.11831</a>.&#160;<a class="footnote-backref" href="#fnref:34" title="Jump back to footnote 42 in the text">&#8617;</a></p>
+</li>
+<li id="fn:35">
+<p>Michael Zevin, Scott Coughlin, Sara Bahaadini, Emre Besler, Neda Rohani, Sarah Allen, Miriam Cabero, Kevin Crowston, Aggelos K. Katsaggelos, Shane L. Larson, Tae Kyoung Lee, Chris Lintott, Tyson B. Littenberg, Andrew Lundgren, Carsten Oesterlund, Joshua R. Smith, Laura Trouille, and Vicky Kalogera. Gravity spy: integrating advanced ligo detector characterization, machine learning, and citizen science. <em>Class. Quantum Grav. 34 <span><span class="MathJax_Preview">2017</span><script type="math/tex">2017</script></span> 064003 <span><span class="MathJax_Preview">22pp</span><script type="math/tex">22pp</script></span></em>, November 2016. <a href="https://arxiv.org/abs/1611.04596v2">arXiv:1611.04596v2</a>, <a href="https://doi.org/10.1088/1361-6382/aa5cea">doi:10.1088/1361-6382/aa5cea</a>.&#160;<a class="footnote-backref" href="#fnref:35" title="Jump back to footnote 43 in the text">&#8617;</a></p>
+</li>
+<li id="fn:36">
+<p>Michele Vallisneri, Jonah Kanner, Roy Williams, Alan Weinstein, and Branson Stephens. The ligo open science center. <em>J. Phys. Conf. Ser.</em>, 610<span><span class="MathJax_Preview">1</span><script type="math/tex">1</script></span>:012021, 2015. <a href="https://arxiv.org/abs/1410.4839">arXiv:1410.4839</a>, <a href="https://doi.org/10.1088/1742-6596/610/1/012021">doi:10.1088/1742-6596/610/1/012021</a>.&#160;<a class="footnote-backref" href="#fnref:36" title="Jump back to footnote 44 in the text">&#8617;</a></p>
+</li>
+<li id="fn:37">
+<p>The L. I. G. O. Scientific Collaboration and The Virgo Collaboration. A guide to ligo-virgo detector noise and extraction of transient gravitational-wave signals. <em>arXiv</em>, August 2019. <a href="https://arxiv.org/abs/1908.11170v1">arXiv:1908.11170v1</a>.&#160;<a class="footnote-backref" href="#fnref:37" title="Jump back to footnote 45 in the text">&#8617;</a></p>
+</li>
+<li id="fn:38">
+<p>The L. I. G. O. Scientific Collaboration, the Virgo Collaboration, B. P. Abbott, R. Abbott, T. D. Abbott, S. Abraham, F. Acernese, K. Ackley, C. Adams, R. X. Adhikari, V. B. Adya, C. Affeldt, M. Agathos, K. Agatsuma, N. Aggarwal, O. D. Aguiar, L. Aiello, A. Ain, P. Ajith, G. Allen, A. Allocca, M. A. Aloy, P. A. Altin, A. Amato, A. Ananyeva, S. B. Anderson, W. G. Anderson, S. V. Angelova, S. Antier, S. Appert, K. Arai, M. C. Araya, J. S. Areeda, M. Arène, N. Arnaud, K. G. Arun, S. Ascenzi, G. Ashton, S. M. Aston, P. Astone, F. Aubin, P. Aufmuth, K. AultONeal, C. Austin, V. Avendano, A. Avila-Alvarez, S. Babak, P. Bacon, F. Badaracco, M. K. M. Bader, S. Bae, P. T. Baker, F. Baldaccini, G. Ballardin, S. W. Ballmer, S. Banagiri, J. C. Barayoga, S. E. Barclay, B. C. Barish, D. Barker, K. Barkett, S. Barnum, F. Barone, B. Barr, L. Barsotti, M. Barsuglia, D. Barta, J. Bartlett, I. Bartos, R. Bassiri, A. Basti, M. Bawaj, J. C. Bayley, M. Bazzan, B. Bécsy, M. Bejger, I. Belahcene, A. S. Bell, D. Beniwal, B. K. Berger, G. Bergmann, S. Bernuzzi, J. J. Bero, C. P. L. Berry, D. Bersanetti, A. Bertolini, J. Betzwieser, R. Bhandare, J. Bidler, I. A. Bilenko, S. A. Bilgili, G. Billingsley, J. Birch, R. Birney, O. Birnholtz, S. Biscans, S. Biscoveanu, A. Bisht, M. Bitossi, M. A. Bizouard, J. K. Blackburn, J. Blackman, C. D. Blair, D. G. Blair, R. M. Blair, S. Bloemen, N. Bode, M. Boer, Y. Boetzel, G. Bogaert, F. Bondu, E. Bonilla, R. Bonnand, P. Booker, B. A. Boom, C. D. Booth, R. Bork, V. Boschi, S. Bose, K. Bossie, V. Bossilkov, J. Bosveld, Y. Bouffanais, A. Bozzi, C. Bradaschia, P. R. Brady, A. Bramley, M. Branchesi, J. E. Brau, T. Briant, J. H. Briggs, F. Brighenti, A. Brillet, M. Brinkmann, V. Brisson, P. Brockill, A. F. Brooks, D. D. Brown, S. Brunett, A. Buikema, T. Bulik, H. J. Bulten, A. Buonanno, D. Buskulic, M. J. Bustamante Rosell, C. Buy, R. L. Byer, M. Cabero, L. Cadonati, G. Cagnoli, C. Cahillane, J. Calderón Bustillo, T. A. Callister, E. Calloni, J. B. Camp, W. A. Campbell, M. Canepa, K. C. Cannon, H. Cao, J. Cao, E. Capocasa, F. Carbognani, S. Caride, M. F. Carney, G. Carullo, J. Casanueva Diaz, C. Casentini, S. Caudill, M. Cavaglià, F. Cavalier, R. Cavalieri, G. Cella, P. Cerdá-Durán, G. Cerretani, E. Cesarini, O. Chaibi, K. Chakravarti, S. J. Chamberlin, M. Chan, S. Chao, P. Charlton, E. A. Chase, E. Chassande-Mottin, D. Chatterjee, M. Chaturvedi, K. Chatziioannou, B. D. Cheeseboro, H. Y. Chen, X. Chen, Y. Chen, H. P. Cheng, C. K. Cheong, H. Y. Chia, A. Chincarini, A. Chiummo, G. Cho, H. S. Cho, M. Cho, N. Christensen, Q. Chu, S. Chua, K. W. Chung, S. Chung, G. Ciani, A. A. Ciobanu, R. Ciolfi, F. Cipriano, A. Cirone, F. Clara, J. A. Clark, P. Clearwater, F. Cleva, C. Cocchieri, E. Coccia, P. F. Cohadon, D. Cohen, R. Colgan, M. Colleoni, C. G. Collette, C. Collins, L. R. Cominsky, M. Constancio Jr., L. Conti, S. J. Cooper, P. Corban, T. R. Corbitt, I. Cordero-Carrión, K. R. Corley, N. Cornish, A. Corsi, S. Cortese, C. A. Costa, R. Cotesta, M. W. Coughlin, S. B. Coughlin, J. P. Coulon, S. T. Countryman, P. Couvares, P. B. Covas, E. E. Cowan, D. M. Coward, M. J. Cowart, D. C. Coyne, R. Coyne, J. D. E. Creighton, T. D. Creighton, J. Cripe, M. Croquette, S. G. Crowder, T. J. Cullen, A. Cumming, L. Cunningham, E. Cuoco, T. Dal Canton, G. Dálya, S. L. Danilishin, S. D&rsquo;Antonio, K. Danzmann, A. Dasgupta, C. F. Da Silva Costa, L. E. H. Datrier, V. Dattilo, I. Dave, M. Davier, D. Davis, E. J. Daw, D. DeBra, M. Deenadayalan, J. Degallaix, M. De Laurentis, S. Deléglise, W. Del Pozzo, L. M. DeMarchi, N. Demos, T. Dent, R. De Pietri, J. Derby, R. De Rosa, C. De Rossi, R. DeSalvo, O. de Varona, S. Dhurandhar, M. C. Díaz, T. Dietrich, L. Di Fiore, M. Di Giovanni, T. Di Girolamo, A. Di Lieto, B. Ding, S. Di Pace, I. Di Palma, F. Di Renzo, A. Dmitriev, Z. Doctor, F. Donovan, K. L. Dooley, S. Doravari, I. Dorrington, T. P. Downes, M. Drago, J. C. Driggers, Z. Du, J. G. Ducoin, P. Dupej, S. E. Dwyer, P. J. Easter, T. B. Edo, M. C. Edwards, A. Effler, P. Ehrens, J. Eichholz, S. S. Eikenberry, M. Eisenmann, R. A. Eisenstein, R. C. Essick, H. Estelles, D. Estevez, Z. B. Etienne, T. Etzel, M. Evans, T. M. Evans, V. Fafone, H. Fair, S. Fairhurst, X. Fan, S. Farinon, B. Farr, W. M. Farr, E. J. Fauchon-Jones, M. Favata, M. Fays, M. Fazio, C. Fee, J. Feicht, M. M. Fejer, F. Feng, A. Fernandez-Galiana, I. Ferrante, E. C. Ferreira, T. A. Ferreira, F. Ferrini, F. Fidecaro, I. Fiori, D. Fiorucci, M. Fishbach, R. P. Fisher, J. M. Fishner, M. Fitz-Axen, R. Flaminio, M. Fletcher, E. Flynn, H. Fong, J. A. Font, P. W. F. Forsyth, J. D. Fournier, S. Frasca, F. Frasconi, Z. Frei, A. Freise, R. Frey, V. Frey, P. Fritschel, V. V. Frolov, P. Fulda, M. Fyffe, H. A. Gabbard, B. U. Gadre, S. M. Gaebel, J. R. Gair, L. Gammaitoni, M. R. Ganija, S. G. Gaonkar, A. Garcia, C. García-Quirós, F. Garufi, B. Gateley, S. Gaudio, G. Gaur, V. Gayathri, G. Gemme, E. Genin, A. Gennai, D. George, J. George, L. Gergely, V. Germain, S. Ghonge, Abhirup Ghosh, Archisman Ghosh, S. Ghosh, B. Giacomazzo, J. A. Giaime, K. D. Giardina, A. Giazotto, K. Gill, G. Giordano, L. Glover, P. Godwin, E. Goetz, R. Goetz, B. Goncharov, G. González, J. M. Gonzalez Castro, A. Gopakumar, M. L. Gorodetsky, S. E. Gossan, M. Gosselin, R. Gouaty, A. Grado, C. Graef, M. Granata, A. Grant, S. Gras, P. Grassia, C. Gray, R. Gray, G. Greco, A. C. Green, R. Green, E. M. Gretarsson, P. Groot, H. Grote, S. Grunewald, P. Gruning, G. M. Guidi, H. K. Gulati, Y. Guo, A. Gupta, M. K. Gupta, E. K. Gustafson, R. Gustafson, L. Haegel, O. Halim, B. R. Hall, E. D. Hall, E. Z. Hamilton, G. Hammond, M. Haney, M. M. Hanke, J. Hanks, C. Hanna, M. D. Hannam, O. A. Hannuksela, J. Hanson, T. Hardwick, K. Haris, J. Harms, G. M. Harry, I. W. Harry, C. J. Haster, K. Haughian, F. J. Hayes, J. Healy, A. Heidmann, M. C. Heintze, H. Heitmann, P. Hello, G. Hemming, M. Hendry, I. S. Heng, J. Hennig, A. W. Heptonstall, Francisco Hernandez Vivanco, M. Heurs, S. Hild, T. Hinderer, D. Hoak, S. Hochheim, D. Hofman, A. M. Holgado, N. A. Holland, K. Holt, D. E. Holz, P. Hopkins, C. Horst, J. Hough, E. J. Howell, C. G. Hoy, A. Hreibi, Y. Huang, E. A. Huerta, D. Huet, B. Hughey, M. Hulko, S. Husa, S. H. Huttner, T. Huynh-Dinh, B. Idzkowski, A. Iess, C. Ingram, R. Inta, G. Intini, B. Irwin, H. N. Isa, J. M. Isac, M. Isi, B. R. Iyer, K. Izumi, T. Jacqmin, S. J. Jadhav, K. Jani, N. N. Janthalur, P. Jaranowski, A. C. Jenkins, J. Jiang, D. S. Johnson, N. K. Johnson-McDaniel, A. W. Jones, D. I. Jones, R. Jones, R. J. G. Jonker, L. Ju, J. Junker, C. V. Kalaghatgi, V. Kalogera, B. Kamai, S. Kandhasamy, G. Kang, J. B. Kanner, S. J. Kapadia, S. Karki, K. S. Karvinen, R. Kashyap, M. Kasprzack, S. Katsanevas, E. Katsavounidis, W. Katzman, S. Kaufer, K. Kawabe, N. V. Keerthana, F. Kéfélian, D. Keitel, R. Kennedy, J. S. Key, F. Y. Khalili, H. Khan, I. Khan, S. Khan, Z. Khan, E. A. Khazanov, M. Khursheed, N. Kijbunchoo, Chunglee Kim, J. C. Kim, K. Kim, W. Kim, W. S. Kim, Y. M. Kim, C. Kimball, E. J. King, P. J. King, M. Kinley-Hanlon, R. Kirchhoff, J. S. Kissel, L. Kleybolte, J. H. Klika, S. Klimenko, T. D. Knowles, P. Koch, S. M. Koehlenbeck, G. Koekoek, S. Koley, V. Kondrashov, A. Kontos, N. Koper, M. Korobko, W. Z. Korth, I. Kowalska, D. B. Kozak, V. Kringel, N. Krishnendu, A. Królak, G. Kuehn, A. Kumar, P. Kumar, R. Kumar, S. Kumar, L. Kuo, A. Kutynia, S. Kwang, B. D. Lackey, K. H. Lai, T. L. Lam, M. Landry, B. B. Lane, R. N. Lang, J. Lange, B. Lantz, R. K. Lanza, A. Lartaux-Vollard, P. D. Lasky, M. Laxen, A. Lazzarini, C. Lazzaro, P. Leaci, S. Leavey, Y. K. Lecoeuche, C. H. Lee, H. K. Lee, H. M. Lee, H. W. Lee, J. Lee, K. Lee, J. Lehmann, A. Lenon, N. Leroy, N. Letendre, Y. Levin, J. Li, K. J. L. Li, T. G. F. Li, X. Li, F. Lin, F. Linde, S. D. Linker, T. B. Littenberg, J. Liu, X. Liu, R. K. L. Lo, N. A. Lockerbie, L. T. London, A. Longo, M. Lorenzini, V. Loriette, M. Lormand, G. Losurdo, J. D. Lough, C. O. Lousto, G. Lovelace, M. E. Lower, H. Lück, D. Lumaca, A. P. Lundgren, R. Lynch, Y. Ma, R. Macas, S. Macfoy, M. MacInnis, D. M. Macleod, A. Macquet, F. Magaña-Sandoval, L. Magaña Zertuche, R. M. Magee, E. Majorana, I. Maksimovic, A. Malik, N. Man, V. Mandic, V. Mangano, G. L. Mansell, M. Manske, M. Mantovani, F. Marchesoni, F. Marion, S. Márka, Z. Márka, C. Markakis, A. S. Markosyan, A. Markowitz, E. Maros, A. Marquina, S. Marsat, F. Martelli, I. W. Martin, R. M. Martin, D. V. Martynov, K. Mason, E. Massera, A. Masserot, T. J. Massinger, M. Masso-Reid, S. Mastrogiovanni, A. Matas, F. Matichard, L. Matone, N. Mavalvala, N. Mazumder, J. J. McCann, R. McCarthy, D. E. McClelland, S. McCormick, L. McCuller, S. C. McGuire, J. McIver, D. J. McManus, T. McRae, S. T. McWilliams, D. Meacher, G. D. Meadors, M. Mehmet, A. K. Mehta, J. Meidam, A. Melatos, G. Mendell, R. A. Mercer, L. Mereni, E. L. Merilh, M. Merzougui, S. Meshkov, C. Messenger, C. Messick, R. Metzdorff, P. M. Meyers, H. Miao, C. Michel, H. Middleton, E. E. Mikhailov, L. Milano, A. L. Miller, A. Miller, M. Millhouse, J. C. Mills, M. C. Milovich-Goff, O. Minazzoli, Y. Minenkov, A. Mishkin, C. Mishra, T. Mistry, S. Mitra, V. P. Mitrofanov, G. Mitselmakher, R. Mittleman, G. Mo, D. Moffa, K. Mogushi, S. R. P. Mohapatra, M. Montani, C. J. Moore, D. Moraru, G. Moreno, S. Morisaki, B. Mours, C. M. Mow-Lowry, Arunava Mukherjee, D. Mukherjee, S. Mukherjee, N. Mukund, A. Mullavey, J. Munch, E. A. Muñiz, M. Muratore, P. G. Murray, A. Nagar, I. Nardecchia, L. Naticchioni, R. K. Nayak, J. Neilson, G. Nelemans, T. J. N. Nelson, M. Nery, A. Neunzert, K. Y. Ng, S. Ng, P. Nguyen, D. Nichols, A. B. Nielsen, S. Nissanke, A. Nitz, F. Nocera, C. North, L. K. Nuttall, M. Obergaulinger, J. Oberling, B. D. O&rsquo;Brien, G. D. O&rsquo;Dea, G. H. Ogin, J. J. Oh, S. H. Oh, F. Ohme, H. Ohta, M. A. Okada, M. Oliver, P. Oppermann, Richard J. Oram, B. O&rsquo;Reilly, R. G. Ormiston, L. F. Ortega, R. O&rsquo;Shaughnessy, S. Ossokine, D. J. Ottaway, H. Overmier, B. J. Owen, A. E. Pace, G. Pagano, M. A. Page, A. Pai, S. A. Pai, J. R. Palamos, O. Palashov, C. Palomba, A. Pal-Singh, Huang-Wei Pan, B. Pang, P. T. H. Pang, C. Pankow, F. Pannarale, B. C. Pant, F. Paoletti, A. Paoli, M. A. Papa, A. Parida, W. Parker, D. Pascucci, A. Pasqualetti, R. Passaquieti, D. Passuello, M. Patil, B. Patricelli, B. L. Pearlstone, C. Pedersen, M. Pedraza, R. Pedurand, A. Pele, S. Penn, A. Perego, C. J. Perez, A. Perreca, H. P. Pfeiffer, M. Phelps, K. S. Phukon, O. J. Piccinni, M. Pichot, F. Piergiovanni, G. Pillant, L. Pinard, M. Pirello, M. Pitkin, R. Poggiani, D. Y. T. Pong, S. Ponrathnam, P. Popolizio, E. K. Porter, J. Powell, A. K. Prajapati, J. Prasad, K. Prasai, R. Prasanna, G. Pratten, T. Prestegard, S. Privitera, G. A. Prodi, L. G. Prokhorov, O. Puncken, M. Punturo, P. Puppo, M. Pürrer, H. Qi, V. Quetschke, P. J. Quinonez, E. A. Quintero, R. Quitzow-James, F. J. Raab, H. Radkins, N. Radulescu, P. Raffai, S. Raja, C. Rajan, B. Rajbhandari, M. Rakhmanov, K. E. Ramirez, A. Ramos-Buades, Javed Rana, K. Rao, P. Rapagnani, V. Raymond, M. Razzano, J. Read, T. Regimbau, L. Rei, S. Reid, D. H. Reitze, W. Ren, F. Ricci, C. J. Richardson, J. W. Richardson, P. M. Ricker, G. M. Riemenschneider, K. Riles, M. Rizzo, N. A. Robertson, R. Robie, F. Robinet, A. Rocchi, L. Rolland, J. G. Rollins, V. J. Roma, M. Romanelli, R. Romano, C. L. Romel, J. H. Romie, K. Rose, D. Rosińska, S. G. Rosofsky, M. P. Ross, S. Rowan, A. Rüdiger, P. Ruggi, G. Rutins, K. Ryan, S. Sachdev, T. Sadecki, M. Sakellariadou, O. Salafia, L. Salconi, M. Saleem, F. Salemi, A. Samajdar, L. Sammut, E. J. Sanchez, L. E. Sanchez, N. Sanchis-Gual, V. Sandberg, J. R. Sanders, K. A. Santiago, N. Sarin, B. Sassolas, B. S. Sathyaprakash, P. R. Saulson, O. Sauter, R. L. Savage, P. Schale, M. Scheel, J. Scheuer, P. Schmidt, R. Schnabel, R. M. S. Schofield, A. Schönbeck, E. Schreiber, B. W. Schulte, B. F. Schutz, S. G. Schwalbe, J. Scott, S. M. Scott, E. Seidel, D. Sellers, A. S. Sengupta, N. Sennett, D. Sentenac, V. Sequino, A. Sergeev, Y. Setyawati, D. A. Shaddock, T. Shaffer, M. S. Shahriar, M. B. Shaner, L. Shao, P. Sharma, P. Shawhan, H. Shen, R. Shink, D. H. Shoemaker, D. M. Shoemaker, S. ShyamSundar, K. Siellez, M. Sieniawska, D. Sigg, A. D. Silva, L. P. Singer, N. Singh, A. Singhal, A. M. Sintes, S. Sitmukhambetov, V. Skliris, B. J. J. Slagmolen, T. J. Slaven-Blair, J. R. Smith, R. J. E. Smith, S. Somala, E. J. Son, B. Sorazu, F. Sorrentino, T. Souradeep, E. Sowell, A. P. Spencer, A. K. Srivastava, V. Srivastava, K. Staats, C. Stachie, M. Standke, D. A. Steer, M. Steinke, J. Steinlechner, S. Steinlechner, D. Steinmeyer, S. P. Stevenson, D. Stocks, R. Stone, D. J. Stops, K. A. Strain, G. Stratta, S. E. Strigin, A. Strunk, R. Sturani, A. L. Stuver, V. Sudhir, T. Z. Summerscales, L. Sun, S. Sunil, J. Suresh, P. J. Sutton, B. L. Swinkels, M. J. Szczepańczyk, M. Tacca, S. C. Tait, C. Talbot, D. Talukder, D. B. Tanner, M. Tápai, A. Taracchini, J. D. Tasson, R. Taylor, F. Thies, M. Thomas, P. Thomas, S. R. Thondapu, K. A. Thorne, E. Thrane, Shubhanshu Tiwari, Srishti Tiwari, V. Tiwari, K. Toland, M. Tonelli, Z. Tornasi, A. Torres-Forné, C. I. Torrie, D. Töyrä, F. Travasso, G. Traylor, M. C. Tringali, A. Trovato, L. Trozzo, R. Trudeau, K. W. Tsang, M. Tse, R. Tso, L. Tsukada, D. Tsuna, D. Tuyenbayev, K. Ueno, D. Ugolini, C. S. Unnikrishnan, A. L. Urban, S. A. Usman, H. Vahlbruch, G. Vajente, G. Valdes, N. van Bakel, M. van Beuzekom, J. F. J. van den Brand, C. Van Den Broeck, D. C. Vander-Hyde, J. V. van Heijningen, L. van der Schaaf, A. A. van Veggel, M. Vardaro, V. Varma, S. Vass, M. Vasúth, A. Vecchio, G. Vedovato, J. Veitch, P. J. Veitch, K. Venkateswara, G. Venugopalan, D. Verkindt, F. Vetrano, A. Viceré, A. D. Viets, D. J. Vine, J. Y. Vinet, S. Vitale, T. Vo, H. Vocca, C. Vorvick, S. P. Vyatchanin, A. R. Wade, L. E. Wade, M. Wade, R. Walet, M. Walker, L. Wallace, S. Walsh, G. Wang, H. Wang, J. Z. Wang, W. H. Wang, Y. F. Wang, R. L. Ward, Z. A. Warden, J. Warner, M. Was, J. Watchi, B. Weaver, L. W. Wei, M. Weinert, A. J. Weinstein, R. Weiss, F. Wellmann, L. Wen, E. K. Wessel, P. Weßels, J. W. Westhouse, K. Wette, J. T. Whelan, L. V. White, B. F. Whiting, C. Whittle, D. M. Wilken, D. Williams, A. R. Williamson, J. L. Willis, B. Willke, M. H. Wimmer, W. Winkler, C. C. Wipf, H. Wittel, G. Woan, J. Woehler, J. K. Wofford, J. Worden, J. L. Wright, D. S. Wu, D. M. Wysocki, L. Xiao, H. Yamamoto, C. C. Yancey, L. Yang, M. J. Yap, M. Yazback, D. W. Yeeles, Hang Yu, Haocun Yu, S. H. R. Yuen, M. Yvert, A. K. Zadrożny, M. Zanolin, F. Zappa, T. Zelenova, J. P. Zendri, M. Zevin, J. Zhang, L. Zhang, T. Zhang, C. Zhao, M. Zhou, Z. Zhou, X. J. Zhu, A. B. Zimmerman, Y. Zlochower, M. E. Zucker, and J. Zweizig. Gwtc-1: a gravitational-wave transient catalog of compact binary mergers observed by ligo and virgo during the first and second observing runs. <em>Phys. Rev.</em>, X9<span><span class="MathJax_Preview">3</span><script type="math/tex">3</script></span>:031040, 2019. <a href="https://arxiv.org/abs/1811.12907">arXiv:1811.12907</a>, <a href="https://doi.org/10.1103/PhysRevX.9.031040">doi:10.1103/PhysRevX.9.031040</a>.&#160;<a class="footnote-backref" href="#fnref:38" title="Jump back to footnote 46 in the text">&#8617;</a></p>
+</li>
+<li id="fn:39">
+<p>S. Klimenko, I. Yakushin, A. Mercer, and Guenakh Mitselmakher. Coherent method for detection of gravitational wave bursts. <em>Class. Quant. Grav.</em>, 25:114029, 2008. <a href="https://arxiv.org/abs/0802.3232">arXiv:0802.3232</a>, <a href="https://doi.org/10.1088/0264-9381/25/11/114029">doi:10.1088/0264-9381/25/11/114029</a>.&#160;<a class="footnote-backref" href="#fnref:39" title="Jump back to footnote 47 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:39" title="Jump back to footnote 47 in the text">&#8617;</a></p>
+</li>
+<li id="fn:40">
+<p>Alex Nitz, Ian Harry, Duncan Brown, Christopher M. Biwer, Josh Willis, Tito Dal Canton, Collin Capano, Larne Pekowsky, Thomas Dent, Andrew R. Williamson, Soumi De, Gareth Davies, Miriam Cabero, Duncan Macleod, Bernd Machenschalk, Steven Reyes, Prayush Kumar, Thomas Massinger, Francesco Pannarale, Dfinstad, Márton Tápai, Stephen Fairhurst, Sebastian Khan, Leo Singer, Sumit Kumar, Alex Nielsen, Shasvath, Idorrington92, Amber Lenon, and Hunter Gabbard. Gwastro/pycbc: pycbc release v1.15.4. 2020. <a href="https://doi.org/10.5281/ZENODO.596388">doi:10.5281/ZENODO.596388</a>.&#160;<a class="footnote-backref" href="#fnref:40" title="Jump back to footnote 48 in the text">&#8617;</a></p>
+</li>
+<li id="fn:41">
+<p>Cody Messick and others. Analysis framework for the prompt discovery of compact binary mergers in gravitational-wave data. <em>Phys. Rev.</em>, D95<span><span class="MathJax_Preview">4</span><script type="math/tex">4</script></span>:042001, 2017. <a href="https://arxiv.org/abs/1604.04324">arXiv:1604.04324</a>, <a href="https://doi.org/10.1103/PhysRevD.95.042001">doi:10.1103/PhysRevD.95.042001</a>.&#160;<a class="footnote-backref" href="#fnref:41" title="Jump back to footnote 49 in the text">&#8617;</a></p>
+</li>
+<li id="fn:42">
+<p>P. Jaranowski and A. Krolak. <em>Analysis of Gravitational-Wave Data</em>. Analysis of Gravitational Wave Data. Cambridge University Press, 2009. ISBN 9780521864596. URL: <a href="https://books.google.com.sg/books?id=eC9UEPyRuHoC">https://books.google.com.sg/books?id=eC9UEPyRuHoC</a>.&#160;<a class="footnote-backref" href="#fnref:42" title="Jump back to footnote 50 in the text">&#8617;</a></p>
+</li>
+<li id="fn:43">
+<p>Joseph D. Romano and Neil J. Cornish. Detection methods for stochastic gravitational-wave backgrounds: a unified treatment. <em>Living Rev. Rel.</em>, 20<span><span class="MathJax_Preview">1</span><script type="math/tex">1</script></span>:2, 2017. <a href="https://arxiv.org/abs/1608.06889">arXiv:1608.06889</a>, <a href="https://doi.org/10.1007/s41114-017-0004-1">doi:10.1007/s41114-017-0004-1</a>.&#160;<a class="footnote-backref" href="#fnref:43" title="Jump back to footnote 51 in the text">&#8617;</a></p>
+</li>
+<li id="fn:44">
+<p>Alan V. Oppenheim. <em>Discrete-time signal processing</em>. Pearson Education India, 1999.&#160;<a class="footnote-backref" href="#fnref:44" title="Jump back to footnote 52 in the text">&#8617;</a></p>
+</li>
+<li id="fn:45">
+<p>Saul A. Teukolsky, Brian P. Flannery, W. H. Press, and W. T. Vetterling. Numerical recipes in c. <em>SMR</em>, 693<span><span class="MathJax_Preview">1</span><script type="math/tex">1</script></span>:59–70, 1992.&#160;<a class="footnote-backref" href="#fnref:45" title="Jump back to footnote 53 in the text">&#8617;</a></p>
+</li>
+<li id="fn:46">
+<p>A. Lazzarini and J. Romano. Use of overlapping windows in the stochastic background search. <em>LIGO Report, http://www. ligo. caltech. edu/docs</em>, 2004. URL: <a href="https://dcc.ligo.org/T040089/public">https://dcc.ligo.org/T040089/public</a>.&#160;<a class="footnote-backref" href="#fnref:46" title="Jump back to footnote 54 in the text">&#8617;</a></p>
+</li>
+<li id="fn:47">
+<p>Elena Cuoco, Leonardo Fabbroni, Massimo Mazzoni, Ruggero Stanga, Giovanni Calamai, Giovanni Losurdo, and Flavio Vetrano. On line power spectra identification and whitening for the noise in interferometric gravitational wave detectors. <em>Class. Quant. Grav.</em>, 18:1727–1752, 2001. <a href="https://arxiv.org/abs/gr-qc/0011041">arXiv:gr-qc/0011041</a>, <a href="https://doi.org/10.1088/0264-9381/18/9/309">doi:10.1088/0264-9381/18/9/309</a>.&#160;<a class="footnote-backref" href="#fnref:47" title="Jump back to footnote 55 in the text">&#8617;</a></p>
+</li>
+<li id="fn:48">
+<p>Elena Cuoco, Giovanni Losurdo, Giovanni Calamai, Leonardo Fabbroni, Massimo Mazzoni, Ruggero Stanga, Gianluca Guidi, and Flavio Vetrano. Noise parametric identification and whitening for ligo 40-meter interferometer data. <em>Phys. Rev.</em>, D64:122002, 2001. <a href="https://arxiv.org/abs/gr-qc/0104071">arXiv:gr-qc/0104071</a>, <a href="https://doi.org/10.1103/PhysRevD.64.122002">doi:10.1103/PhysRevD.64.122002</a>.&#160;<a class="footnote-backref" href="#fnref:48" title="Jump back to footnote 56 in the text">&#8617;</a></p>
+</li>
+<li id="fn:49">
+<p>Leo Tsukada, Kipp Cannon, Chad Hanna, Drew Keppel, Duncan Meacher, and Cody Messick. Application of a zero-latency whitening filter to compact binary coalescence gravitational-wave searches. <em>Phys. Rev.</em>, D97<span><span class="MathJax_Preview">10</span><script type="math/tex">10</script></span>:103009, 2018. <a href="https://arxiv.org/abs/1708.04125">arXiv:1708.04125</a>, <a href="https://doi.org/10.1103/PhysRevD.97.103009">doi:10.1103/PhysRevD.97.103009</a>.&#160;<a class="footnote-backref" href="#fnref:49" title="Jump back to footnote 57 in the text">&#8617;</a></p>
+</li>
+<li id="fn:50">
+<p>J. Abadie and others. Search for gravitational waves from compact binary coalescence in ligo and virgo data from s5 and vsr1. <em>Phys. Rev.</em>, D82:102001, 2010. <a href="https://arxiv.org/abs/1005.4655">arXiv:1005.4655</a>, <a href="https://doi.org/10.1103/PhysRevD.85.089903,10.1103/PhysRevD.82.102001">doi:10.1103/PhysRevD.85.089903,10.1103/PhysRevD.82.102001</a>.&#160;<a class="footnote-backref" href="#fnref:50" title="Jump back to footnote 58 in the text">&#8617;</a></p>
+</li>
+<li id="fn:51">
+<p>J. Aasi and others. Parameter estimation for compact binary coalescence signals with the first generation gravitational-wave detector network. <em>Phys. Rev.</em>, D88:062001, 2013. <a href="https://arxiv.org/abs/1304.1775">arXiv:1304.1775</a>, <a href="https://doi.org/10.1103/PhysRevD.88.062001">doi:10.1103/PhysRevD.88.062001</a>.&#160;<a class="footnote-backref" href="#fnref:51" title="Jump back to footnote 59 in the text">&#8617;</a></p>
+</li>
+<li id="fn:52">
+<p>J. Veitch and others. Parameter estimation for compact binaries with ground-based gravitational-wave observations using the lalinference software library. <em>Phys. Rev.</em>, D91<span><span class="MathJax_Preview">4</span><script type="math/tex">4</script></span>:042003, 2015. <a href="https://arxiv.org/abs/1409.7215">arXiv:1409.7215</a>, <a href="https://doi.org/10.1103/PhysRevD.91.042003">doi:10.1103/PhysRevD.91.042003</a>.&#160;<a class="footnote-backref" href="#fnref:52" title="Jump back to footnote 60 in the text">&#8617;</a></p>
+</li>
+<li id="fn:53">
+<p>L. S. Finn, G. Gonzalez, J. Hough, M. F. Huq, S. Mohanty, Joseph D. Romano, S. Rowan, Peter R. Saulson, and K. A. Strain. Toward gravitational wave detection. <em>AIP Conf. Proc.</em>, 523<span><span class="MathJax_Preview">1</span><script type="math/tex">1</script></span>:451–458, 2000. <a href="https://arxiv.org/abs/gr-qc/9911001">arXiv:gr-qc/9911001</a>, <a href="https://doi.org/10.1063/1.1291910">doi:10.1063/1.1291910</a>.&#160;<a class="footnote-backref" href="#fnref:53" title="Jump back to footnote 61 in the text">&#8617;</a></p>
+</li>
+<li id="fn:54">
+<p>Tyson B. Littenberg and Neil J. Cornish. Bayesian inference for spectral estimation of gravitational wave detector noise. <em>Phys. Rev.</em>, D91<span><span class="MathJax_Preview">8</span><script type="math/tex">8</script></span>:084034, 2015. <a href="https://arxiv.org/abs/1410.3852">arXiv:1410.3852</a>, <a href="https://doi.org/10.1103/PhysRevD.91.084034">doi:10.1103/PhysRevD.91.084034</a>.&#160;<a class="footnote-backref" href="#fnref:54" title="Jump back to footnote 62 in the text">&#8617;</a></p>
+</li>
+<li id="fn:55">
+<p>Katerina Chatziioannou, Carl-Johan Haster, Tyson B. Littenberg, Will M. Farr, Sudarshan Ghonge, Margaret Millhouse, James A. Clark, and Neil Cornish. Noise spectral estimation methods and their impact on gravitational wave measurement of compact binary mergers. <em>Phys. Rev.</em>, D100<span><span class="MathJax_Preview">10</span><script type="math/tex">10</script></span>:104004, July 2019. <a href="https://arxiv.org/abs/1907.06540v1">arXiv:1907.06540v1</a>, <a href="https://doi.org/10.1103/PhysRevD.100.104004">doi:10.1103/PhysRevD.100.104004</a>.&#160;<a class="footnote-backref" href="#fnref:55" title="Jump back to footnote 63 in the text">&#8617;</a></p>
+</li>
+<li id="fn:56">
+<p>Paul Thomas Baker. <em>Distinguishing signal from noise: New techniques for gravitational wave data analysis</em>. PhD thesis, Montana State University - Bozeman, College of Letters &amp; Science, 2013. URL: <a href="https://scholarworks.montana.edu/xmlui/handle/1/2911">https://scholarworks.montana.edu/xmlui/handle/1/2911</a>.&#160;<a class="footnote-backref" href="#fnref:56" title="Jump back to footnote 64 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:56" title="Jump back to footnote 64 in the text">&#8617;</a></p>
+</li>
+<li id="fn:57">
+<p>Michal Was, Marie-Anne Bizouard, Violette Brisson, Fabien Cavalier, Michel Davier, Patrice Hello, Nicolas Leroy, Florent Robinet, and Miltiadis Vavoulidis. On the background estimation by time slides in a network of gravitational wave detectors. <em>Class. Quant. Grav.</em>, 27:015005, 2010. <a href="https://arxiv.org/abs/0906.2120">arXiv:0906.2120</a>, <a href="https://doi.org/10.1088/0264-9381/27/1/015005">doi:10.1088/0264-9381/27/1/015005</a>.&#160;<a class="footnote-backref" href="#fnref:57" title="Jump back to footnote 65 in the text">&#8617;</a></p>
+</li>
+<li id="fn:58">
+<p>Michal Was, Marie-Anne Bizouard, Violette Brisson, Fabien Cavalier, Michel Davier, Patrice Hello, Nicolas Leroy, Florent Robinet, and Miltiadis Vavoulidis. Limitations of the time slide method of background estimation. <em>Class. Quant. Grav.</em>, 27:194014, 2010. <a href="https://doi.org/10.1088/0264-9381/27/19/194014">doi:10.1088/0264-9381/27/19/194014</a>.&#160;<a class="footnote-backref" href="#fnref:58" title="Jump back to footnote 66 in the text">&#8617;</a></p>
+</li>
+<li id="fn:59">
+<p>Michael Coughlin, Patrick Meyers, Shivaraj Kandhasamy, Eric Thrane, and N. Christensen. Prospects for searches for long-duration gravitational-waves without time slides. <em>Phys. Rev.</em>, D92<span><span class="MathJax_Preview">4</span><script type="math/tex">4</script></span>:043007, 2015. <a href="https://arxiv.org/abs/1505.00205">arXiv:1505.00205</a>, <a href="https://doi.org/10.1103/PhysRevD.92.043007">doi:10.1103/PhysRevD.92.043007</a>.&#160;<a class="footnote-backref" href="#fnref:59" title="Jump back to footnote 67 in the text">&#8617;</a></p>
+</li>
+<li id="fn:60">
+<p>Jolien D. E. Creighton and Warren G. Anderson. <em>Gravitational-wave physics and astronomy: An introduction to theory, experiment and data analysis</em>. Weinheim, Germany: Wiley-VCH <span><span class="MathJax_Preview">2011</span><script type="math/tex">2011</script></span> 375 p, 2011. URL: <a href="http://www.wiley-vch.de/publish/dt/books/ISBN3-527-40886-X">http://www.wiley-vch.de/publish/dt/books/ISBN3-527-40886-X</a>.&#160;<a class="footnote-backref" href="#fnref:60" title="Jump back to footnote 68 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:60" title="Jump back to footnote 68 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:60" title="Jump back to footnote 68 in the text">&#8617;</a></p>
+</li>
+<li id="fn:61">
+<p>Daniel Hoak. <em>Gravitational Wave Astrophysics: Instrumentation, Detector Characterization, and a Search for Gravitational Signals from Gamma-ray Bursts</em>. PhD thesis, University of Massachusetts, September 2015. URL: <a href="https://scholarworks.umass.edu/dissertations_2/498">https://scholarworks.umass.edu/dissertations_2/498</a>.&#160;<a class="footnote-backref" href="#fnref:61" title="Jump back to footnote 69 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+                <p>He Wang@BNU</p>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../mathjax-config.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

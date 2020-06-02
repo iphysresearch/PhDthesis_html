@@ -1,4 +1,8 @@
 site_name: GWDL
+repo_url: https://github.com/iphysresearch/PhDthesis_html
+site_description: My PhD thesis
+site_author: He Wang
+copyright: He Wang@BNU
 nav:
     - 首页: index.md
     - 正文:

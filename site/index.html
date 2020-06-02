@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="My PhD thesis">
+        <meta name="author" content="He Wang">
+        
+        <link rel="shortcut icon" href="img/favicon.ico">
+        <title>GWDL</title>
+        <link href="css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="js/jquery-1.10.2.min.js" defer></script>
+        <script src="js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/rust.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body class="homepage">
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <!-- Expander button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href=".">GWDL</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="active">
+                                <a href=".">首页</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">正文 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="Abstract/">摘要</a>
+</li>
+                                    
+<li >
+    <a href="C1/">第一章 绪论</a>
+</li>
+                                    
+<li >
+    <a href="C2/">第二章 引力波探测和数据分析理论</a>
+</li>
+                                    
+<li >
+    <a href="C3/">第三章 深度学习的理论基础</a>
+</li>
+                                    
+<li >
+    <a href="C4/">第四章 引力波探测中关于神经网络的可解释性研究</a>
+</li>
+                                    
+<li >
+    <a href="C5/">第五章 卷积神经网络结构对引力波信号识别的性能研究</a>
+</li>
+                                    
+<li >
+    <a href="C6/">第六章 匹配滤波-卷积神经网络(MF-CNN)模型的应用研究</a>
+</li>
+                                    
+<li >
+    <a href="C7/">第七章 总结与展望</a>
+</li>
+                                    
+<li >
+    <a href="Appendix/">附录</a>
+</li>
+                                </ul>
+                            </li>
+                            <li >
+                                <a href="Acknowledgement/">致谢</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="disabled">
+                                <a rel="next" >
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li >
+                                <a rel="prev" href="Abstract/">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/iphysresearch/PhDthesis_html/edit/master/docs/index.md"><i class="fa fa-github"></i> Edit on GitHub</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#_1">题目</a></li>
+        <li class="main "><a href="#_2">描述</a></li>
+        <li class="main "><a href="#_3">正文目录</a></li>
+        <li class="main "><a href="#_4">版权声明</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<p></br></p>
+<hr />
+<h2 id="_1">题目<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>引力波探测中关于深度学习数据分析的研究<br />
+Research on Data Analysis of Deep Learning in Gravitational Wave Detection</p>
+</blockquote>
+<h2 id="_2">描述<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>此文是本人博士毕业论文的 HTML 版，用于学位申请的 PDF 版可见：<a href="https://www.overleaf.com/read/gthybdcykshj">Overleaf</a> 或 <a href="https://github.com/iphysresearch/GWDL_thesis">Github</a>。毕业答辩用的 Slides 可见 <a href="https://slides.com/iphysresearch/phd-defense">Slides.com</a>。</p>
+</li>
+<li>
+<p>开源此论文的原因，不仅是为了方便个人查阅和总结，也希望能够促进相关领域的研究和进步，多多增进学术交流的机会。</p>
+</li>
+<li>
+<p>该课题之初开展于相关研究的初探性阶段，由于本人才疏学浅，难免会存在理论上的疏忽和遗漏，或论述上的错误与不准确，也可能会有文献引用资料更新不及时的情况。如有不妥之处，还望明示指出! <a href="to:hewang@mail.bnu.edu.cn">My Email</a></p>
+</li>
+</ul>
+<h2 id="_3">正文目录<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="Abstract/">摘要</a></li>
+<li><a href="C1/">第一章 绪论</a><ul>
+<li><a href="C1/#11">1.1 引言</a></li>
+<li><a href="C1/#12">1.2 多信使天文学</a></li>
+<li><a href="C1/#13">1.3 研究现状、机遇与挑战</a></li>
+<li><a href="C1/#14">1.4 本文研究的目标与框架</a></li>
+</ul>
+</li>
+<li><a href="C2/">第二章 引力波探测和数据分析理论</a><ul>
+<li><a href="C2/#21">2.1 引言</a></li>
+<li><a href="C2/#22">2.2 引力波探测技术</a><ul>
+<li><a href="C2/#221">2.2.1 引力波波源建模</a></li>
+<li><a href="C2/#222">2.2.2 引力波探测实验</a></li>
+<li><a href="C2/#223">2.2.3 引力波数据处理</a></li>
+</ul>
+</li>
+<li><a href="C2/#23">2.3 信号处理与数据分析方法</a><ul>
+<li><a href="C2/#231">2.3.1 稳态性与高斯性</a></li>
+<li><a href="C2/#232">2.3.2 功率谱密度</a></li>
+<li><a href="C2/#233">2.3.3 能谱泄露与白化</a></li>
+<li><a href="C2/#234">2.3.4 时域信号平移</a></li>
+</ul>
+</li>
+<li><a href="C2/#24">2.4 匹配滤波技术</a><ul>
+<li><a href="C2/#241">2.4.1 匹配滤波内积</a></li>
+<li><a href="C2/#242">2.4.2 稳态噪声的概率分布</a></li>
+<li><a href="C2/#243">2.4.3 理想探测统计量</a></li>
+<li><a href="C2/#244">2.4.4 振幅未知的模板匹配滤波</a></li>
+<li><a href="C2/#245">2.4.5 到达时间未知的模板匹配滤波</a></li>
+</ul>
+</li>
+<li><a href="C2/#25">2.5 总结与结论</a></li>
+</ul>
+</li>
+<li><a href="C3/">第三章 深度学习的理论基础</a><ul>
+<li><a href="C3/#31">3.1 引言</a></li>
+<li><a href="C3/#32">3.2 机器学习理论</a><ul>
+<li><a href="C3/#321">3.2.1 基于梯度的优化方法</a><ul>
+<li><a href="C3/#3211">3.2.1.1 代价函数</a></li>
+<li><a href="C3/#3212">3.2.1.2 随机梯度下降算法</a></li>
+</ul>
+</li>
+<li><a href="C3/#322">3.2.2 模型的泛化能力，过拟合与欠拟合</a></li>
+<li><a href="C3/#323_roc_auc">3.2.3 性能度量指标：ROC 与 AUC</a></li>
+</ul>
+</li>
+<li><a href="C3/#33">3.3 深度神经网络</a><ul>
+<li><a href="C3/#331">3.3.1 神经元</a></li>
+<li><a href="C3/#332">3.3.2 全连接的神经网络</a></li>
+<li><a href="C3/#333">3.3.3 反向传播算法</a></li>
+<li><a href="C3/#334_dropout">3.3.4 Dropout 方法</a></li>
+</ul>
+</li>
+<li><a href="C3/#34">3.4 卷积神经网络</a><ul>
+<li><a href="C3/#341">3.4.1 卷积</a></li>
+<li><a href="C3/#342">3.4.2 非线性激活</a></li>
+<li><a href="C3/#343">3.4.3 池化</a></li>
+<li><a href="C3/#344">3.4.4 空洞卷积与感受野</a></li>
+</ul>
+</li>
+<li><a href="C3/#35">3.5 总结与结论</a></li>
+</ul>
+</li>
+<li><a href="C4/">第四章 引力波探测中关于神经网络的可解释性研究</a><ul>
+<li><a href="C4/#41">4.1 引言</a></li>
+<li><a href="C4/#42">4.2 神经网络的结构</a></li>
+<li><a href="C4/#43">4.3 数据集的制备和优化策略</a></li>
+<li><a href="C4/#44">4.4 引力波信号识别的泛化能力</a></li>
+<li><a href="C4/#45">4.5 引力波信号特征的可视化表示</a><ul>
+<li><a href="C4/#451">4.5.1 正向可视化方法</a></li>
+<li><a href="C4/#452">4.5.2 逆向可视化方法</a></li>
+</ul>
+</li>
+<li><a href="C4/#46">4.6 引力波波形特征的灵敏度分析</a></li>
+<li><a href="C4/#47">4.7 总结与结论</a></li>
+</ul>
+</li>
+<li><a href="C5/">第五章 卷积神经网络结构对引力波信号识别的性能研究</a><ul>
+<li><a href="C5/#51">5.1 引言</a></li>
+<li><a href="C5/#52">5.2 引力波数据的制备和处理流程</a></li>
+<li><a href="C5/#53">5.3 引力波数据分析中信噪比的比较分析</a></li>
+<li><a href="C5/#54">5.4 卷积神经网络的超参数调优和性能比较</a></li>
+<li><a href="C5/#55">5.5 总结与结论</a></li>
+</ul>
+</li>
+<li><a href="C6/">第六章 匹配滤波-卷积神经网络(MF-CNN)模型的应用研究</a><ul>
+<li><a href="C6/#61">6.1 引言</a></li>
+<li><a href="C6/#62">6.2 时域中的匹配滤波</a></li>
+<li><a href="C6/#63">6.3 用于匹配滤波的卷积神经单元</a></li>
+<li><a href="C6/#64_-mf-cnn">6.4 匹配滤波-卷积神经网络(MF-CNN)模型的构造</a></li>
+<li><a href="C6/#65">6.5 搜寻疑似引力波信号的策略</a></li>
+<li><a href="C6/#66">6.6 数据准备与模型微调</a></li>
+<li><a href="C6/#67_ligo">6.7 真实 LIGO 引力波数据上的搜寻结果</a><ul>
+<li><a href="C6/#671_o1_o2">6.7.1 搜寻 O1 和 O2 中的引力波信号</a></li>
+<li><a href="C6/#672">6.7.2 疑似引力波信号的统计特性</a></li>
+<li><a href="C6/#673_glitch">6.7.3 引力波信号与 glitch 的统计分析</a></li>
+</ul>
+</li>
+<li><a href="C6/#68">6.8 总结与结论</a></li>
+</ul>
+</li>
+<li><a href="C7/">第七章 总结与展望</a></li>
+<li><a href="Appendix/">附录</a><ul>
+<li><a href="Appendix/#a_nyquist">A. 采样定理与 Nyquist 频率</a></li>
+<li><a href="Appendix/#b">B. 关于功率谱密度性质的数学证明</a></li>
+<li><a href="Appendix/#c">C. 最大似然估计和交叉熵</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="_4">版权声明<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<ul>
+<li>该论文工作的知识产权单位属北京师范大学。详情可查阅相关学位论文授权使用声明。</li>
+<li><a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/3.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/">Creative Commons Attribution-NonCommercial 3.0 Unported License</a>.</li>
+</ul></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+                <p>He Wang@BNU</p>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = ".",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="js/base.js" defer></script>
+        <script src="mathjax-config.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+        <script src="search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
+
+<!--
+MkDocs version : 1.0.4
+Build Date UTC : 2020-06-02 08:24:11
+-->

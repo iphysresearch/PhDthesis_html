@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="He Wang">
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>附录 - GWDL</title>
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/rust.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <!-- Expander button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="..">GWDL</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li >
+                                <a href="..">首页</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">正文 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../Abstract/">摘要</a>
+</li>
+                                    
+<li >
+    <a href="../C1/">第一章 绪论</a>
+</li>
+                                    
+<li >
+    <a href="../C2/">第二章 引力波探测和数据分析理论</a>
+</li>
+                                    
+<li >
+    <a href="../C3/">第三章 深度学习的理论基础</a>
+</li>
+                                    
+<li >
+    <a href="../C4/">第四章 引力波探测中关于神经网络的可解释性研究</a>
+</li>
+                                    
+<li >
+    <a href="../C5/">第五章 卷积神经网络结构对引力波信号识别的性能研究</a>
+</li>
+                                    
+<li >
+    <a href="../C6/">第六章 匹配滤波-卷积神经网络(MF-CNN)模型的应用研究</a>
+</li>
+                                    
+<li >
+    <a href="../C7/">第七章 总结与展望</a>
+</li>
+                                    
+<li class="active">
+    <a href="./">附录</a>
+</li>
+                                </ul>
+                            </li>
+                            <li >
+                                <a href="../Acknowledgement/">致谢</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li >
+                                <a rel="next" href="../C7/">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li >
+                                <a rel="prev" href="../Acknowledgement/">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/iphysresearch/PhDthesis_html/edit/master/docs/Appendix.md"><i class="fa fa-github"></i> Edit on GitHub</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#_1">附录</a></li>
+            <li><a href="#a_nyquist">A. 采样定理与 Nyquist 频率</a></li>
+            <li><a href="#b">B. 关于功率谱密度性质的数学证明</a></li>
+            <li><a href="#c">C. 最大似然估计和交叉熵</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<p></br></p>
+<div class="toc">
+<ul>
+<li><a href="#_1">附录</a><ul>
+<li><a href="#a_nyquist">A. 采样定理与 Nyquist 频率</a></li>
+<li><a href="#b">B. 关于功率谱密度性质的数学证明</a></li>
+<li><a href="#c">C. 最大似然估计和交叉熵</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<p></br></p>
+<hr />
+<h1 id="_1">附录<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p></br></p>
+<h2 id="a_nyquist">A. 采样定理与 Nyquist 频率<a class="headerlink" href="#a_nyquist" title="Permanent link">&para;</a></h2>
+<p></br></p>
+<p>本附录将会介绍关于引力波数据的采样定理以及其中与引力波数据处理相关的重要概念。首先，我们来介绍采样的过程，即一个时序信号 <span><span class="MathJax_Preview">x(t)</span><script type="math/tex">x(t)</script></span> 会以每间隔 <span><span class="MathJax_Preview">\Delta t</span><script type="math/tex">\Delta t</script></span> 秒的周期性进行采样，如下方上图所示。因此，时间 <span><span class="MathJax_Preview">t</span><script type="math/tex">t</script></span> 就可以以采样间隔 <span><span class="MathJax_Preview">\Delta t</span><script type="math/tex">\Delta t</script></span> 为单位表述为：</p>
+<div>
+<div class="MathJax_Preview">
+    t = n\Delta t,n=0,\pm1,\pm2,\pm3,\dots
+</div>
+<script type="math/tex; mode=display">
+    t = n\Delta t,n=0,\pm1,\pm2,\pm3,\dots
+</script>
+</div>
+<blockquote>
+<p>(上) 对模拟信号的理想采样过程示意图；(下) 频谱上周期性重复出现高频响应的示意图<br />
+<img alt="" src="../img/App_ideal_sampler.png" style="zoom:20%" /><br />
+<img alt="" src="../img/App_multifrequency.png" style="zoom:20%" /></p>
+</blockquote>
+<p>显然，如果直接把采样后的离散样本点视作时序信号的话，就相当于是粗暴的把原始连续信号 <span><span class="MathJax_Preview">x(t)</span><script type="math/tex">x(t)</script></span> 切碎了，这样就会带来两个问题：1. 为了确保采样后的离散信号是无损的，应该取更小的采样间隔 <span><span class="MathJax_Preview">\Delta t</span><script type="math/tex">\Delta t</script></span>，那该如何选择呢？2. 采样会在频谱上会引起许多失真高频响应分量，并且这些高频频率分量会在频域上周期性的重复出现，如上方下图所示。这个周期可以通过采样率 (sampling rate) 来表示：</p>
+<div>
+<div class="MathJax_Preview">
+    f_s = \frac{1}{\Delta t}
+</div>
+<script type="math/tex; mode=display">
+    f_s = \frac{1}{\Delta t}
+</script>
+</div>
+<p>对于采样后信号的重复频率谱来说，如何唯一地确定原始频率究竟是哪一个呢？采样定理 (sampling theorem) 提供了一种量化的答案，其内容是对于某模拟信号 <span><span class="MathJax_Preview">x(t)</span><script type="math/tex">x(t)</script></span> 通过采样后，得到一个较为准确的离散表征 <span><span class="MathJax_Preview">x(n\Delta t)</span><script type="math/tex">x(n\Delta t)</script></span>，需要满足两个条件：</p>
+<ol>
+<li>模拟信号 <span><span class="MathJax_Preview">x(t)</span><script type="math/tex">x(t)</script></span> 必须是频谱有限的 (band-limited)。也就是说，其频率谱必须要受限于某最大频率值 <sup id="fnref:fmax"><a class="footnote-ref" href="#fn:fmax">1</a></sup>，<span><span class="MathJax_Preview">f_\text{max}</span><script type="math/tex">f_\text{max}</script></span>。</li>
+<li>采样率 <span><span class="MathJax_Preview">f_s</span><script type="math/tex">f_s</script></span> 必须是至少大于两倍于最大频率值 <span><span class="MathJax_Preview">f_\text{max}</span><script type="math/tex">f_\text{max}</script></span>，即 <span><span class="MathJax_Preview">f_x\le2f_\text{max}</span><script type="math/tex">f_x\le2f_\text{max}</script></span>，或者用采样间隔来表示：<span><span class="MathJax_Preview">\Delta t\le\frac{1}{2f_\text{max}}</span><script type="math/tex">\Delta t\le\frac{1}{2f_\text{max}}</script></span>。</li>
+</ol>
+<p>根据采样定理，最小采样率为 <span><span class="MathJax_Preview">f_s=2f_\text{max}</span><script type="math/tex">f_s=2f_\text{max}</script></span>，这个频率就是 Nyquist rate。对于任意的某 <span><span class="MathJax_Preview">f_s</span><script type="math/tex">f_s</script></span> 值来说，<span><span class="MathJax_Preview">f_s/2</span><script type="math/tex">f_s/2</script></span> 称为奈奎斯特频率 (Nyquist frequency)，据此可以定义出 Nyquist frequency interval 的边界\footnote{在信号处理中，区分各种常用的频率单位与相应的 Nyquist intervals 之间的关系是很重要的。举例来说，一个采样后的正弦波可以采用不同的单位来表示：<span><span class="MathJax_Preview">e^{2\pi if n\Delta t} = e^{2\pi i n(f/f_s)} = e^{i\Omega n\Delta t} = e^{i\omega n}</span><script type="math/tex">e^{2\pi if n\Delta t} = e^{2\pi i n(f/f_s)} = e^{i\Omega n\Delta t} = e^{i\omega n}</script></span>。}：</p>
+<div>
+<div class="MathJax_Preview">
+    \Big[-\frac{f_s}{2},\frac{f_s}{2}\Big]=\text{Nyquist frequency}
+</div>
+<script type="math/tex; mode=display">
+    \Big[-\frac{f_s}{2},\frac{f_s}{2}\Big]=\text{Nyquist frequency}
+</script>
+</div>
+<p>简而言之，采样定理为我们的采样率 <span><span class="MathJax_Preview">f_s</span><script type="math/tex">f_s</script></span> 的选取给出了上限：采样率 <span><span class="MathJax_Preview">f_s</span><script type="math/tex">f_s</script></span> 无论如何都应该不能大于 <span><span class="MathJax_Preview">2f_\text{max}</span><script type="math/tex">2f_\text{max}</script></span>。换句话说，在某一段有限长的时域信号里，最大频率周期(亦对应最小时间周期)范围里的连续信号中，采样点至少得有两个，不然采样后的离散信号是无法表征原连续信号的，如下图所示。</p>
+<blockquote>
+<p>不合适的采样率会造成离散信号信息混淆现象的示意图<br />
+<img alt="不合适的采样率会造成离散信号信息混淆现象的示意图" src="../img/App_Nyquist.png" style="zoom:80%" /></p>
+</blockquote>
+<p>在引力波数据处理的过程中，我们的信号数据都是离散的，所以就要考虑离散傅里叶变换 (discrete Fourier transform, DFT)和逆离散傅里叶变换 (inverse DFT)：</p>
+<div>
+<div class="MathJax_Preview">
+\begin{align}
+    \tilde{x}[k] &amp;= \sum_{n=0}^{N-1} e^{\frac{-2 \pi i}{N} k \cdot n} x[n] \\
+    x[n] &amp;= \frac{1}{N} \sum_{k=0}^{N-1} e^{\frac{2 \pi i}{N} k \cdot n} \tilde{x}[k]
+\end{align}
+</div>
+<script type="math/tex; mode=display">
+\begin{align}
+    \tilde{x}[k] &= \sum_{n=0}^{N-1} e^{\frac{-2 \pi i}{N} k \cdot n} x[n] \\
+    x[n] &= \frac{1}{N} \sum_{k=0}^{N-1} e^{\frac{2 \pi i}{N} k \cdot n} \tilde{x}[k]
+\end{align}
+</script>
+</div>
+<p>其中，信号采样点的数目是 N，并且 <span><span class="MathJax_Preview">\{k,n\}=0,\dots,N-1</span><script type="math/tex">\{k,n\}=0,\dots,N-1</script></span>。显然，根据上面的傅里叶变换公式，可以计算出频域里对应的第一个采样点的值，它的物理意义是时域信号所有采样点的平均和：</p>
+<div>
+<div class="MathJax_Preview">
+    \tilde{x}[0]=\sum_{n=0}^{N-1} x[n]
+</div>
+<script type="math/tex; mode=display">
+    \tilde{x}[0]=\sum_{n=0}^{N-1} x[n]
+</script>
+</div>
+<p>特别要注意的是，基于 Python 编程语言进行数据分析的时候，Python 中各种科学计算库中对傅里叶变换 (fft) 的定义与实际对应的近似连续时域信号和采样离散时域信号是有差别的，它们之间有如下关系(以 <code>numpy.fft</code> 为例)：</p>
+<div>
+<div class="MathJax_Preview">
+\begin{align}
+\tilde{x}[\omega] 
+&amp;= \int_{-\infty}^{+\infty} e^{-i \omega t} x(t) d t
+\cong d t\left\{\sum_{n=0}^{N-1} e^{\frac{-2 \pi i}{N} k \cdot n[n]}\right\} 
+\\
+x[t] 
+&amp;=\int_{-\infty}^{+\infty} e^{i \omega t} \tilde{x}(\omega) \frac{d \omega}{2 \pi}
+\cong\frac{1}{d t}\left\{\frac{1}{N} \sum_{k=0}^{N-1} e^{\frac{2 \pi i}{N} k \cdot n} \tilde{x}[k]\right\}
+\end{align}
+</div>
+<script type="math/tex; mode=display">
+\begin{align}
+\tilde{x}[\omega] 
+&= \int_{-\infty}^{+\infty} e^{-i \omega t} x(t) d t
+\cong d t\left\{\sum_{n=0}^{N-1} e^{\frac{-2 \pi i}{N} k \cdot n[n]}\right\} 
+\\
+x[t] 
+&=\int_{-\infty}^{+\infty} e^{i \omega t} \tilde{x}(\omega) \frac{d \omega}{2 \pi}
+\cong\frac{1}{d t}\left\{\frac{1}{N} \sum_{k=0}^{N-1} e^{\frac{2 \pi i}{N} k \cdot n} \tilde{x}[k]\right\}
+\end{align}
+</script>
+</div>
+<p>这是可以理解的，因为 Python 库所定义的傅里叶变换函数的参数是仅依赖于一个有限采样的时域序列 <span><span class="MathJax_Preview">x[n]</span><script type="math/tex">x[n]</script></span> 就可以给出结果了，并不一定要知道该序列所代表的总时长 <span><span class="MathJax_Preview">T</span><script type="math/tex">T</script></span> 或采样率 <span><span class="MathJax_Preview">df</span><script type="math/tex">df</script></span> 为何，所以如此定义可以使编程代码具有更好的一般普适性，提高编程代码重构的效果。</p>
+<blockquote>
+<p>频域索引和频域坐标之间的映射关系<br />
+<img alt="频域索引和频域坐标之间的映射关系" src="../img/C2_np_fft_freqs.png" style="zoom:20%" /></p>
+</blockquote>
+<p>在用 Python 做信号处理时，还需要留意的细节是信号在频域上是如何表示的。上文已经谈到过，根据采样定理，我们可以给出一定时间间隔 T 范围内信号的可能频率范围，即 Nyquist frequency interval。首先，最小频率(绝对值)是 0，然而可能的最小正频对应的是该时长为 T 的信号里周期次数仅为 1，所以最小正频应该是 <span><span class="MathJax_Preview">1/T</span><script type="math/tex">1/T</script></span>。那么最大正频就应该是该时长为 T 的信号里，在给定采样点数目为 N 的情况下，可以接受的信号周期的最大数目。根据上文讨论过的 Nyquist limit，一般来说，如果有奇数个采样点N，那就最多重构 (N−1)/2 个信号周期，如果是偶数个采样点N，那最多就重构 N/2−1 个信号周期。用 Python 语言来表示会更简单，那就是 <code>N//2-1</code> 个信号周期 (<code>//</code> 在 Python 中表示向下取整)。关于负频也是同样道理，不过在频域上很容易出错的一点，那就是我们一般并不会真的将负频表示在频域的负数范围里，而是会将其映射在正频的右侧方向上来表征。所以，表示在频域上的序列索引 (frequenct index) 与对应的频率坐标(frequency coordinate)的对应关系，如上图所示，蓝色部分对应的是 0 和 正频，橙色部分对应的是负频。横轴 index 表示在序列中的索引指标，纵轴 coordinate 就是对应的频率值。</p>
+<p>综上所示，只要给定某信号的总采样点数目 N 和采样率，我们就总可以在频域上确定是如何采样的 (同 <code>numpy.ff.fftfreq</code>)：</p>
+<div>
+<div class="MathJax_Preview">
+    f = [0, 1, \dots, N//2-1,-N//2,\dots,-1]/T
+</div>
+<script type="math/tex; mode=display">
+    f = [0, 1, \dots, N//2-1,-N//2,\dots,-1]/T
+</script>
+</div>
+<p>其中，<span><span class="MathJax_Preview">T=N/f_s</span><script type="math/tex">T=N/f_s</script></span>。</p>
+<p></br></p>
+<h2 id="b">B. 关于功率谱密度性质的数学证明<a class="headerlink" href="#b" title="Permanent link">&para;</a></h2>
+<p></br></p>
+<p>为了论文的完整性，在此补充关于功率谱密度的两个重要性质的证明。</p>
+<blockquote>
+<p>定义：<br />
+对于一个稳态随机过程 <span><span class="MathJax_Preview">x(t)</span><script type="math/tex">x(t)</script></span>，可以定义其上的功率谱密度 (power spectral density) 为：</p>
+<div>
+<div class="MathJax_Preview">\label{App:Sn}
+    S_{x}(f):=\lim _{T \rightarrow \infty} \frac{2}{T}\left|\int_{-T / 2}^{T / 2} x(t) \mathrm{e}^{-2 \pi i f t} d t\right|^{2}
+</div>
+<script type="math/tex; mode=display">\label{App:Sn}
+    S_{x}(f):=\lim _{T \rightarrow \infty} \frac{2}{T}\left|\int_{-T / 2}^{T / 2} x(t) \mathrm{e}^{-2 \pi i f t} d t\right|^{2}
+</script>
+</div>
+<p>性质 1：<br />
+对于一个稳态过程来说，其上单边的功率谱密度等价于自相关 (autocorrelation) 函数 <span><span class="MathJax_Preview">R_x(\tau)=\langle x(t)x(t+\tau) \rangle</span><script type="math/tex">R_x(\tau)=\langle x(t)x(t+\tau) \rangle</script></span> 的傅里叶变换的 2 倍。</p>
+</blockquote>
+<p>从功率谱密度的定义(公式\eqref{App:Sn})出发，</p>
+<div>
+<div class="MathJax_Preview">
+    S_{x}(f)=\lim _{T \rightarrow \infty} \frac{2}{T} \int_{-T / 2}^{T / 2} x(t) \mathrm{e}^{2 \pi i f t} d t \int_{-T / 2}^{T / 2} x\left(t^{\prime}\right) \mathrm{e}^{-2 \pi i f t^{\prime}} d t^{\prime} \,,
+</div>
+<script type="math/tex; mode=display">
+    S_{x}(f)=\lim _{T \rightarrow \infty} \frac{2}{T} \int_{-T / 2}^{T / 2} x(t) \mathrm{e}^{2 \pi i f t} d t \int_{-T / 2}^{T / 2} x\left(t^{\prime}\right) \mathrm{e}^{-2 \pi i f t^{\prime}} d t^{\prime} \,,
+</script>
+</div>
+<p>通过变量替换 <span><span class="MathJax_Preview">t=t^{\prime}+\tau</span><script type="math/tex">t=t^{\prime}+\tau</script></span>，则有</p>
+<div>
+<div class="MathJax_Preview">
+    S_{x}(f)=2 \int_{-\infty}^{\infty} d \tau \mathrm{e}^{-2 \pi i f \tau}\left[\lim _{T \rightarrow \infty} \frac{1}{T} \int_{-T / 2}^{T / 2} x\left(t^{\prime}\right) x\left(t^{\prime}+\tau\right) d t^{\prime}\right] \,.
+</div>
+<script type="math/tex; mode=display">
+    S_{x}(f)=2 \int_{-\infty}^{\infty} d \tau \mathrm{e}^{-2 \pi i f \tau}\left[\lim _{T \rightarrow \infty} \frac{1}{T} \int_{-T / 2}^{T / 2} x\left(t^{\prime}\right) x\left(t^{\prime}+\tau\right) d t^{\prime}\right] \,.
+</script>
+</div>
+<p>上式中，括号内的正是用平均时间来表示的自相关函数，于是有</p>
+<div>
+<div class="MathJax_Preview">
+    S_{x}(f)=2 \int_{-\infty}^{\infty} R_{x}(\tau) \mathrm{e}^{-2 \pi i f \tau} d \tau \,.
+</div>
+<script type="math/tex; mode=display">
+    S_{x}(f)=2 \int_{-\infty}^{\infty} R_{x}(\tau) \mathrm{e}^{-2 \pi i f \tau} d \tau \,.
+</script>
+</div>
+<blockquote>
+<p>性质 2：<br />
+一个稳态随机过程 <span><span class="MathJax_Preview">x(t)</span><script type="math/tex">x(t)</script></span> 的功率谱密度可以由其在频域上的分量来表示：</p>
+<div>
+<div class="MathJax_Preview">
+   \left\langle\tilde{x}^{*}\left(f^{\prime}\right) \tilde{x}(f)\right\rangle=\frac{1}{2} S_{x}(f) \delta\left(f-f^{\prime}\right) \,.
+</div>
+<script type="math/tex; mode=display">
+   \left\langle\tilde{x}^{*}\left(f^{\prime}\right) \tilde{x}(f)\right\rangle=\frac{1}{2} S_{x}(f) \delta\left(f-f^{\prime}\right) \,.
+</script>
+</div>
+</blockquote>
+<p>从频域分量上的期望出发，</p>
+<div>
+<div class="MathJax_Preview">
+    \left\langle\tilde{x}^{*}\left(f^{\prime}\right) \tilde{x}(f)\right\rangle=\left\langle\int_{-\infty}^{\infty} x\left(t^{\prime}\right) \mathrm{e}^{2 \pi i f^{\prime} t^{\prime}} d t^{\prime} \int_{-\infty}^{\infty} x(t) \mathrm{e}^{-2 \pi i f t} d t\right\rangle \,,
+</div>
+<script type="math/tex; mode=display">
+    \left\langle\tilde{x}^{*}\left(f^{\prime}\right) \tilde{x}(f)\right\rangle=\left\langle\int_{-\infty}^{\infty} x\left(t^{\prime}\right) \mathrm{e}^{2 \pi i f^{\prime} t^{\prime}} d t^{\prime} \int_{-\infty}^{\infty} x(t) \mathrm{e}^{-2 \pi i f t} d t\right\rangle \,,
+</script>
+</div>
+<p>再通过变量替换 <span><span class="MathJax_Preview">t=t^{\prime}+\tau</span><script type="math/tex">t=t^{\prime}+\tau</script></span>，则有</p>
+<div>
+<div class="MathJax_Preview">
+\begin{align}
+    \left\langle\tilde{x}^{*}\left(f^{\prime}\right) \tilde{x}(f)\right\rangle &amp;=\left\langle\int_{-\infty}^{\infty} x\left(t^{\prime}\right) \mathrm{e}^{2 \pi i f^{\prime} t^{\prime}} d t^{\prime} \int_{-\infty}^{\infty} x\left(t^{\prime}+\tau\right) \mathrm{e}^{-2 \pi i f\left(t^{\prime}+\tau\right)} d \tau\right\rangle \\
+    &amp;=\int_{-\infty}^{\infty} d t^{\prime} \mathrm{e}^{-2 \pi i\left(f-f^{\prime}\right) t^{\prime}} \int_{-\infty}^{\infty} d \tau \mathrm{e}^{-2 \pi i f \tau}\left\langle x\left(t^{\prime}\right) x\left(t^{\prime}+\tau\right)\right\rangle \,.
+\end{align}
+</div>
+<script type="math/tex; mode=display">
+\begin{align}
+    \left\langle\tilde{x}^{*}\left(f^{\prime}\right) \tilde{x}(f)\right\rangle &=\left\langle\int_{-\infty}^{\infty} x\left(t^{\prime}\right) \mathrm{e}^{2 \pi i f^{\prime} t^{\prime}} d t^{\prime} \int_{-\infty}^{\infty} x\left(t^{\prime}+\tau\right) \mathrm{e}^{-2 \pi i f\left(t^{\prime}+\tau\right)} d \tau\right\rangle \\
+    &=\int_{-\infty}^{\infty} d t^{\prime} \mathrm{e}^{-2 \pi i\left(f-f^{\prime}\right) t^{\prime}} \int_{-\infty}^{\infty} d \tau \mathrm{e}^{-2 \pi i f \tau}\left\langle x\left(t^{\prime}\right) x\left(t^{\prime}+\tau\right)\right\rangle \,.
+\end{align}
+</script>
+</div>
+<p>上式中的第二个积分正是不依赖于 <span><span class="MathJax_Preview">t^\prime</span><script type="math/tex">t^\prime</script></span> 的 <span><span class="MathJax_Preview">\frac{1}{2}S_x(f)</span><script type="math/tex">\frac{1}{2}S_x(f)</script></span>，而第一个积分可以写作狄拉克 delta 函数 <span><span class="MathJax_Preview">\delta(f-f^\prime)</span><script type="math/tex">\delta(f-f^\prime)</script></span>，于是有</p>
+<div>
+<div class="MathJax_Preview">
+    \left\langle\tilde{x}^{*}\left(f^{\prime}\right) \tilde{x}(f)\right\rangle=\frac{1}{2} S_{x}(f) \delta\left(f-f^{\prime}\right)\,.
+</div>
+<script type="math/tex; mode=display">
+    \left\langle\tilde{x}^{*}\left(f^{\prime}\right) \tilde{x}(f)\right\rangle=\frac{1}{2} S_{x}(f) \delta\left(f-f^{\prime}\right)\,.
+</script>
+</div>
+<p></br></p>
+<h2 id="c">C. 最大似然估计和交叉熵<a class="headerlink" href="#c" title="Permanent link">&para;</a></h2>
+<p></br></p>
+<p>在本附录中，我们将介绍机器学习优化理论中非常重要的最大似然估计方法。基于最大似然估计准则可以让我们从不同的机器学习模型中，可以得到特定未知函数作为好的估计和优化方向，而不是猜测某些函数可能是好的估计(然后分析其偏差和方差)。</p>
+<p>考虑一组含有 N 个样本的数据集 <span><span class="MathJax_Preview">\mathbf{X}=\{\mathbf{x}^{(1)},\dots,\mathbf{x}^{(N)}\}</span><script type="math/tex">\mathbf{X}=\{\mathbf{x}^{(1)},\dots,\mathbf{x}^{(N)}\}</script></span>，独立地由某未知的真实数据分布  <span><span class="MathJax_Preview">p_\text{data}(\mathbf{x})</span><script type="math/tex">p_\text{data}(\mathbf{x})</script></span> 生成。令 <span><span class="MathJax_Preview">p_\text{model}(\mathbf{x};\mathbf{\theta})</span><script type="math/tex">p_\text{model}(\mathbf{x};\mathbf{\theta})</script></span> 是一族由 <span><span class="MathJax_Preview">\theta</span><script type="math/tex">\theta</script></span> 确定在相同空间上的概率分布。换言之，<span><span class="MathJax_Preview">p_\text{model}(\mathbf{x};\mathbf{\theta})</span><script type="math/tex">p_\text{model}(\mathbf{x};\mathbf{\theta})</script></span> 将任意输入 <span><span class="MathJax_Preview">\mathbf{x}</span><script type="math/tex">\mathbf{x}</script></span> 映射到实数来估计真实概率分布 <span><span class="MathJax_Preview">p_\text{data}(\mathbf{x})</span><script type="math/tex">p_\text{data}(\mathbf{x})</script></span>。</p>
+<p>对模型参数 <span><span class="MathJax_Preview">\mathbf{\theta}</span><script type="math/tex">\mathbf{\theta}</script></span> 的最大似然估计被定义为：</p>
+<div>
+<div class="MathJax_Preview">
+\begin{align}
+     \mathbf{\theta}_ \text{ML} 
+     &amp;= \arg\max _ \theta p_\text{model}(\mathbf{X};\mathbf{\theta})\\
+     &amp;=\arg\max_\theta \prod^N_{i=1}p_\text{model}(\mathbf{x}^{(i)};\mathbf{\theta})
+\end{align}
+</div>
+<script type="math/tex; mode=display">
+\begin{align}
+     \mathbf{\theta}_ \text{ML} 
+     &= \arg\max _ \theta p_\text{model}(\mathbf{X};\mathbf{\theta})\\
+     &=\arg\max_\theta \prod^N_{i=1}p_\text{model}(\mathbf{x}^{(i)};\mathbf{\theta})
+\end{align}
+</script>
+</div>
+<p>在上式中，多个概率的乘积并不方便计算。为了得到一个便于计算的等价优化问题，我们可以对等式取似然对数同时不会改变其中的 <span><span class="MathJax_Preview">\arg\max</span><script type="math/tex">\arg\max</script></span> ，从而可以将乘积转化成了便于计算的求和形式：</p>
+<div>
+<div class="MathJax_Preview">
+    \mathbf{\theta}_ \text{ML} = \arg\max_\mathbf{\theta}\sum^N_{i=1}\log p_\text{model}(\mathbf{x}^{(i)};\mathbf{\theta})
+</div>
+<script type="math/tex; mode=display">
+    \mathbf{\theta}_ \text{ML} = \arg\max_\mathbf{\theta}\sum^N_{i=1}\log p_\text{model}(\mathbf{x}^{(i)};\mathbf{\theta})
+</script>
+</div>
+<p>因为当我们重新缩放代价函数时 <span><span class="MathJax_Preview">\arg\max</span><script type="math/tex">\arg\max</script></span> 也不会改变，所以我们可以乘以 <span><span class="MathJax_Preview">1/N</span><script type="math/tex">1/N</script></span> 因子得到和训练数据集 <span><span class="MathJax_Preview">\mathbf{X}</span><script type="math/tex">\mathbf{X}</script></span> 经验分布 <span><span class="MathJax_Preview">\hat{p}_ \text{data}</span><script type="math/tex">\hat{p}_ \text{data}</script></span> 相关的期望作为估计准则：</p>
+<div>
+<div class="MathJax_Preview">\label{eqn:argTheta}
+    \mathbf{\theta}_ \text{ML} = \arg\max_\mathbf{\theta}\mathbb{E}_ {\mathbf{x}\sim\hat{p}_ \text{data}}\log p_\text{model}(\mathbf{x};\mathbf{\theta})
+</div>
+<script type="math/tex; mode=display">\label{eqn:argTheta}
+    \mathbf{\theta}_ \text{ML} = \arg\max_\mathbf{\theta}\mathbb{E}_ {\mathbf{x}\sim\hat{p}_ \text{data}}\log p_\text{model}(\mathbf{x};\mathbf{\theta})
+</script>
+</div>
+<p>由此，我们就可以体会到在基于最大似然估计的机器学习任务中，优化的目标是通过不断的更新迭代先验的模型参数 <span><span class="MathJax_Preview">\mathbf{\theta}</span><script type="math/tex">\mathbf{\theta}</script></span> 使得上面等式右边关于经验分布 <span><span class="MathJax_Preview">\hat{p}_\text{data}</span><script type="math/tex">\hat{p}_\text{data}</script></span> 的期望值达到极大值。这里可以看到两个很重要的信息：1. 在经验分布所依赖的训练数据集分布中，从与学习任务相关的真实数据分布采集而来的数据质量会在很大程度上决定了机器学习效果的上限；2. 如何通过定义代价函数来得到一个良好的模型后验概率密度 <span><span class="MathJax_Preview">p_\text{model}</span><script type="math/tex">p_\text{model}</script></span> 也是非常重要的。下面，我们将从信息论的角度出发，会看到由负对数似然所构成代价函数都可以定义出一个良好的模型后验概率密度。</p>
+<p>在信息论中，可以通过某概率分布函数 <span><span class="MathJax_Preview">p(x),x\in X</span><script type="math/tex">p(x),x\in X</script></span> 作为变量，定义一个关于 <span><span class="MathJax_Preview">p(x)</span><script type="math/tex">p(x)</script></span> 的单调函数 <span><span class="MathJax_Preview">h(x)</span><script type="math/tex">h(x)</script></span>，称其为概率分布 <span><span class="MathJax_Preview">p(x)</span><script type="math/tex">p(x)</script></span> 的信息量(measure of information)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">2</a></sup>：</p>
+<div>
+<div class="MathJax_Preview">
+    h(x) \equiv -\log p(x)
+</div>
+<script type="math/tex; mode=display">
+    h(x) \equiv -\log p(x)
+</script>
+</div>
+<p>使其满足 <span><span class="MathJax_Preview">h(x, y)=h(x)+h(y)</span><script type="math/tex">h(x, y)=h(x)+h(y)</script></span>，其中 <span><span class="MathJax_Preview">p(x,y)=p(x)p(y)</span><script type="math/tex">p(x,y)=p(x)p(y)</script></span>。进而，就可以定义所有信息量的期望为随机变量 <span><span class="MathJax_Preview">x</span><script type="math/tex">x</script></span> 的熵 (entropy)：</p>
+<div>
+<div class="MathJax_Preview">
+    H(x) = -\sum_xp(x)\log p(x) = -\mathbb{E}_ {x\sim p}\log p(x)
+</div>
+<script type="math/tex; mode=display">
+    H(x) = -\sum_xp(x)\log p(x) = -\mathbb{E}_ {x\sim p}\log p(x)
+</script>
+</div>
+<p>值得留意的是，对于 0-1 伯努利分布而言，熵可以简化为 <span><span class="MathJax_Preview">H(x)=-p(x)\log(p(x))-(1-p(x))\log(1-p(x))</span><script type="math/tex">H(x)=-p(x)\log(p(x))-(1-p(x))\log(1-p(x))</script></span>。</p>
+<p>若同一个随机变量 <span><span class="MathJax_Preview">x</span><script type="math/tex">x</script></span> 有两个独立的概率分布 <span><span class="MathJax_Preview">p(x)</span><script type="math/tex">p(x)</script></span> 和 <span><span class="MathJax_Preview">q(x)</span><script type="math/tex">q(x)</script></span>，则可以定义这两个分布的相对熵 (relative entropy)(也常称为 KL 散度 (Kullback-Leibler divergence) 或信息增益 (information gain achieved))来衡量两个分布之间的差异：</p>
+<div>
+<div class="MathJax_Preview">
+\begin{align}
+    \text{KL}(p||q) 
+    &amp;\equiv -\sum_x p(x)\log q(x) -\Big(-\sum_x p(x)\log p(x)\Big) \\
+    &amp;=-\sum_x p(x) \log\Big\{\frac{q(x)}{p(x)}\Big\} \\
+    &amp;=-H_p(x) +  H_{(p, q)}(x)
+\end{align}
+</div>
+<script type="math/tex; mode=display">
+\begin{align}
+    \text{KL}(p||q) 
+    &\equiv -\sum_x p(x)\log q(x) -\Big(-\sum_x p(x)\log p(x)\Big) \\
+    &=-\sum_x p(x) \log\Big\{\frac{q(x)}{p(x)}\Big\} \\
+    &=-H_p(x) +  H_{(p, q)}(x)
+\end{align}
+</script>
+</div>
+<p>可见 KL 越小，表示 <span><span class="MathJax_Preview">p(x)</span><script type="math/tex">p(x)</script></span> 和 <span><span class="MathJax_Preview">q(x)</span><script type="math/tex">q(x)</script></span> 两个分布越接近。上式中，我们已经定义了交叉熵 (cross entropy) 为</p>
+<div>
+<div class="MathJax_Preview">
+    H_{(p,q)}(x)\equiv-\sum_x p(x)\log q(x) = -\mathbb{E}_ {x\sim p}\log q(x)
+</div>
+<script type="math/tex; mode=display">
+    H_{(p,q)}(x)\equiv-\sum_x p(x)\log q(x) = -\mathbb{E}_ {x\sim p}\log q(x)
+</script>
+</div>
+<p>综上，当对应到机器学习中最大似然估计方法时，训练集上的经验分布 <span><span class="MathJax_Preview">\hat{p}_ \text{data}</span><script type="math/tex">\hat{p}_ \text{data}</script></span> 和模型分布之间的差异程度可以用 KL 散度度量为：</p>
+<div>
+<div class="MathJax_Preview">
+    \text{KL}(\hat{p}_ \text{data}|p_\text{model}) 
+    = -H_{p_\text{data}}(\mathbf{X}) - \mathbb{E}_ {\mathbf{x}\sim \hat{p}_ \text{data}}\log p_\text{model}(\mathbf{x};\mathbf{\theta}) 
+</div>
+<script type="math/tex; mode=display">
+    \text{KL}(\hat{p}_ \text{data}|p_\text{model}) 
+    = -H_{p_\text{data}}(\mathbf{X}) - \mathbb{E}_ {\mathbf{x}\sim \hat{p}_ \text{data}}\log p_\text{model}(\mathbf{x};\mathbf{\theta}) 
+</script>
+</div>
+<p>由上式可知，等号右边第一项仅涉及数据的生成过程，和机器学习模型无关。这意味着当我们训练机器学习模型最小化 KL 散度时，我们只需要等价优化地最小化等号右边的第二项，即有</p>
+<div>
+<div class="MathJax_Preview">\label{eqn:argKL}
+    \arg\min_\theta \text{KL}(\hat{p}_ \text{data}|p_\text{model} ) = -\arg\min_\mathbf{\theta}\mathbb{E}_ {\mathbf{x}\sim\hat{p}_ \text{data}}\log p_\text{model}(\mathbf{x};\mathbf{\theta})
+</div>
+<script type="math/tex; mode=display">\label{eqn:argKL}
+    \arg\min_\theta \text{KL}(\hat{p}_ \text{data}|p_\text{model} ) = -\arg\min_\mathbf{\theta}\mathbb{E}_ {\mathbf{x}\sim\hat{p}_ \text{data}}\log p_\text{model}(\mathbf{x};\mathbf{\theta})
+</script>
+</div>
+<p>由此可见，当上式等号右边 <span><span class="MathJax_Preview">-\arg\min_\mathbf{\theta}=\arg\max_\mathbf{\theta}</span><script type="math/tex">-\arg\min_\mathbf{\theta}=\arg\max_\mathbf{\theta}</script></span> 等价替换后，最小化 KL 散度其实就是在最小化分布之间的交叉熵。并且通过对比公式 \eqref{eqn:argTheta} 和公式 \eqref{eqn:argKL} 可知，对于任何一个由负对数似然组成的代价函数都是定义在训练集上的经验分布和定义在模型上的概率分布之间的交叉熵。</p>
+<p>在本文中，我们使用的是 Sigmoid 函数公式 (第三章中的公式 <a href="../C3/#mjx-eqn-eqsoftmax">(7)</a>) 作为交叉熵的代价函数 (第 <a href="../C3/#3211">3.2.1.1</a> 节)。在二分类问题中即可约化为 Softmax 函数。下面我们将推导用 Softmax 函数公式 (第三章中的公式 <a href="../C3/#mjx-eqn-eqnC3_sigmoid">(10)</a>) 来定义为条件概率密度 <span><span class="MathJax_Preview">p_\text{model}(y|\mathbf{x})</span><script type="math/tex">p_\text{model}(y|\mathbf{x})</script></span>，其中 <span><span class="MathJax_Preview">y=0,1</span><script type="math/tex">y=0,1</script></span> 分别代表某数据样本所对应的标签。从第三章中的公式 <a href="../C3/#mjx-eqn-eqnC3_logsoftmax">(8)</a> 的负对数似然出发，某样本的代价函数可以表示为</p>
+<div>
+<div class="MathJax_Preview">
+\begin{align}
+    J(\mathbf{\theta}) 
+    &amp;=-\log p_\text{model}(y | \mathbf{x}) \\
+    &amp;=-\log\left[\frac{\exp (y z)}{\sum_{y^{\prime}=0}^{1} \exp \left(y^{\prime} z\right)} \right]\\
+    &amp;=  \begin{cases}
+            \log(1+e^{z})&amp; \text{ if } y=0 \\ 
+            \log(1+e^{-z}) &amp; \text{ if } y=1 
+        \end{cases}\\
+    &amp;=  \begin{cases}
+            -\log(1-\hat{y})&amp; \text{ if } y=0 \\ 
+            -\log(\hat{y}) &amp; \text{ if } y=1 
+        \end{cases}\\
+    &amp;= - y \log \hat{y}-\left(1-y\right) \log \left(1-\hat{y}\right) \label{eqn:binaryloss}
+\end{align}
+</div>
+<script type="math/tex; mode=display">
+\begin{align}
+    J(\mathbf{\theta}) 
+    &=-\log p_\text{model}(y | \mathbf{x}) \\
+    &=-\log\left[\frac{\exp (y z)}{\sum_{y^{\prime}=0}^{1} \exp \left(y^{\prime} z\right)} \right]\\
+    &=  \begin{cases}
+            \log(1+e^{z})& \text{ if } y=0 \\ 
+            \log(1+e^{-z}) & \text{ if } y=1 
+        \end{cases}\\
+    &=  \begin{cases}
+            -\log(1-\hat{y})& \text{ if } y=0 \\ 
+            -\log(\hat{y}) & \text{ if } y=1 
+        \end{cases}\\
+    &= - y \log \hat{y}-\left(1-y\right) \log \left(1-\hat{y}\right) \label{eqn:binaryloss}
+\end{align}
+</script>
+</div>
+<p>其中，<span><span class="MathJax_Preview">z</span><script type="math/tex">z</script></span> 表示模型最后输出值，<span><span class="MathJax_Preview">\hat{y} = \frac{1}{1-e^z}</span><script type="math/tex">\hat{y} = \frac{1}{1-e^z}</script></span> 是该数据样本所对应的具有一定概率意义的预测输出结果。在本文中未明确说明的情况下，都是用公式 \eqref{eqn:binaryloss} 来作为二分类学习任务的代价函数。</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:fmax">
+<p>一般是让模拟信号在采样前经过一个预设 <span><span class="MathJax_Preview">f_{max}</span><script type="math/tex">f_{max}</script></span> 的模拟低通滤波器 (lowpass analog filter) 来实现的。&#160;<a class="footnote-backref" href="#fnref:fmax" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:1">
+<p>Christopher M. Bishop. <em>Pattern recognition and machine learning</em>. Information science and statistics. Springer, New York, NY, 2006. Softcover published in 2016. URL: <a href="https://cds.cern.ch/record/998831">https://cds.cern.ch/record/998831</a>.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+                <p>He Wang@BNU</p>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../mathjax-config.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

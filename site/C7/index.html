@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="He Wang">
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>第七章 总结与展望 - GWDL</title>
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/rust.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <!-- Expander button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="..">GWDL</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li >
+                                <a href="..">首页</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">正文 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../Abstract/">摘要</a>
+</li>
+                                    
+<li >
+    <a href="../C1/">第一章 绪论</a>
+</li>
+                                    
+<li >
+    <a href="../C2/">第二章 引力波探测和数据分析理论</a>
+</li>
+                                    
+<li >
+    <a href="../C3/">第三章 深度学习的理论基础</a>
+</li>
+                                    
+<li >
+    <a href="../C4/">第四章 引力波探测中关于神经网络的可解释性研究</a>
+</li>
+                                    
+<li >
+    <a href="../C5/">第五章 卷积神经网络结构对引力波信号识别的性能研究</a>
+</li>
+                                    
+<li >
+    <a href="../C6/">第六章 匹配滤波-卷积神经网络(MF-CNN)模型的应用研究</a>
+</li>
+                                    
+<li class="active">
+    <a href="./">第七章 总结与展望</a>
+</li>
+                                    
+<li >
+    <a href="../Appendix/">附录</a>
+</li>
+                                </ul>
+                            </li>
+                            <li >
+                                <a href="../Acknowledgement/">致谢</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li >
+                                <a rel="next" href="../C6/">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li >
+                                <a rel="prev" href="../Appendix/">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/iphysresearch/PhDthesis_html/edit/master/docs/C7.md"><i class="fa fa-github"></i> Edit on GitHub</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#_1">第七章 总结与展望</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<p></br></p>
+<hr />
+<h1 id="_1">第七章 总结与展望<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p></br></p>
+<p>引力波是爱因斯坦 “广义相对论” 中最重要的预言，引力波探测是当代物理学重要的前沿领域之一。在可以预见的未来，引力波天文学、多信使天文学、HPC 数值模拟、以及基于深度学习和新计算硬件系统所加持下 AI 系统的崛起等都将会发挥越来越重要的作用，对重大的科学研究发现和国际科学合作项目的长期发展都会有举足轻重的意义。</p>
+<p>本论文介绍了作者攻读博士学位期间基于深度学习技术实现引力波信号探测和数据处理的几个工作：基于神经网络算法在引力波信号探测和可解释性分析的初探研究；在模拟 LIGO 噪声背景下，数据分布和卷积神经网络的模型结构对泛化的影响进行对比研究；构造全新的算法模型，真实 LIGO 引力波数据上，成功地搜寻到已确认的全部引力波事件以及其他泛化性能的研究。希望我们的工作可以进一步地促进新范式的转换和该多领域交叉学科的融合发展，相关研究涉及观测天文学、理论与计算物理学、数据科学、数字信号处理和计算机科学等。而且，本论文中所发展的深度学习方法和数据处理技术将会有助于加速现行的引力波数据处理流水线，并为发现新的引力理论带来契机与希望。</p>
+<p>随着引力波天文学不断地进步与发展，引力波事件的观测将会逐步形成常态，并且在人工智能技术革新的充分带动下，相关研究课题领域将会呈现可持续的蓬勃发展前景，由此进一步地促进多信使天文学的发展。在未来的研究中，可以从以下几个方面进一步深化现有研究：深度学习的黑箱性使得性能优异的模型所得到的试验结果难以理解透彻，且很难明确实验结果的置信程度，可以考虑借鉴成熟的信号处理技术，构造具有自适应性且解释性强的算法实现引力波数据分析；基于深度学习技术，需要设计和实现关于背景数据高斯或非高斯性的高性能噪声功率谱密度估计算法，从而有助于构建高置信度的引力波信号异常检测方法；对引力波事件信号的波源参数估计仍处在理论验证阶段，有待于从机器学习和表征学习算法的角度来探索真实噪声背景下，对引力波模板库的最大后验概率估计。</p>
+<p>考虑到未来引力波探测器灵敏度的进一步提升，每周都会有源源不断的引力波事件被探测和分析，基于机器学习技术在引力波数据分析领域上的交叉研究领域也将会越来越火热 <sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>，届时将给引力波天文学和多信使天文学的发展带来巨大契机，开创数据科学与基础理论的交叉研究与发展的新格局。</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Elena Cuoco, Jade Powell, Marco Cavaglià, Kendall Ackley, Michal Bejger, Chayan Chatterjee, Michael Coughlin, Scott Coughlin, Paul Easter, Reed Essick, Hunter Gabbard, Timothy Gebhard, Shaon Ghosh, Leila Haegel, Alberto Iess, David Keitel, Zsuzsa Marka, Szabolcs Marka, Filip Morawski, Tri Nguyen, Rich Ormiston, Michael Puerrer, Massimiliano Razzano, Kai Staats, Gabriele Vajente, and Daniel Williams. Enhancing gravitational-wave science with machine learning. <em>arXiv</em>, May 2020. <a href="https://arxiv.org/abs/2005.03745v2">arXiv:2005.03745v2</a>.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+                <p>He Wang@BNU</p>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../mathjax-config.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

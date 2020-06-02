@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="He Wang">
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>第五章 卷积神经网络结构对引力波信号识别的性能研究 - GWDL</title>
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/rust.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <!-- Expander button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="..">GWDL</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li >
+                                <a href="..">首页</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">正文 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../Abstract/">摘要</a>
+</li>
+                                    
+<li >
+    <a href="../C1/">第一章 绪论</a>
+</li>
+                                    
+<li >
+    <a href="../C2/">第二章 引力波探测和数据分析理论</a>
+</li>
+                                    
+<li >
+    <a href="../C3/">第三章 深度学习的理论基础</a>
+</li>
+                                    
+<li >
+    <a href="../C4/">第四章 引力波探测中关于神经网络的可解释性研究</a>
+</li>
+                                    
+<li class="active">
+    <a href="./">第五章 卷积神经网络结构对引力波信号识别的性能研究</a>
+</li>
+                                    
+<li >
+    <a href="../C6/">第六章 匹配滤波-卷积神经网络(MF-CNN)模型的应用研究</a>
+</li>
+                                    
+<li >
+    <a href="../C7/">第七章 总结与展望</a>
+</li>
+                                    
+<li >
+    <a href="../Appendix/">附录</a>
+</li>
+                                </ul>
+                            </li>
+                            <li >
+                                <a href="../Acknowledgement/">致谢</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li >
+                                <a rel="next" href="../C4/">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li >
+                                <a rel="prev" href="../C6/">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/iphysresearch/PhDthesis_html/edit/master/docs/C5.md"><i class="fa fa-github"></i> Edit on GitHub</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#_1">第五章 卷积神经网络结构对引力波信号识别的性能研究</a></li>
+            <li><a href="#51">5.1 引言</a></li>
+            <li><a href="#52">5.2 引力波数据的制备和处理流程</a></li>
+            <li><a href="#53">5.3 引力波数据分析中信噪比的比较分析</a></li>
+            <li><a href="#54">5.4 卷积神经网络的超参数调优和性能比较</a></li>
+            <li><a href="#55">5.5 总结与结论</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<p></br></p>
+<div class="toc">
+<ul>
+<li><a href="#_1">第五章 卷积神经网络结构对引力波信号识别的性能研究</a><ul>
+<li><a href="#51">5.1 引言</a></li>
+<li><a href="#52">5.2 引力波数据的制备和处理流程</a></li>
+<li><a href="#53">5.3 引力波数据分析中信噪比的比较分析</a></li>
+<li><a href="#54">5.4 卷积神经网络的超参数调优和性能比较</a></li>
+<li><a href="#55">5.5 总结与结论</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<p></br></p>
+<hr />
+<h1 id="_1">第五章 卷积神经网络结构对引力波信号识别的性能研究<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p></br></p>
+<h2 id="51">5.1 引言<a class="headerlink" href="#51" title="Permanent link">&para;</a></h2>
+<p></br></p>
+<p>引力波天文学已经发展成为一个非常成熟的研究领域。截止到第二次运行阶段 (O2) 结束，高新激光干涉仪引力波天文台 aLIGO <sup id="fnref:1"><a class="footnote-ref" href="#fn:1">5</a></sup> <sup id="fnref:2"><a class="footnote-ref" href="#fn:2">6</a></sup> 与欧洲的 aVirgo <sup id="fnref:3"><a class="footnote-ref" href="#fn:3">7</a></sup> 引力波探测器联合观测到数十个双黑洞系统的引力波并合事件。如此瞩目的成就再一次印证了爱因斯坦广义相对论的准确预言 <sup id="fnref:4"><a class="footnote-ref" href="#fn:4">8</a></sup> <sup id="fnref:5"><a class="footnote-ref" href="#fn:5">9</a></sup> <sup id="fnref:6"><a class="footnote-ref" href="#fn:6">10</a></sup> <sup id="fnref:7"><a class="footnote-ref" href="#fn:7">11</a></sup> <sup id="fnref:8"><a class="footnote-ref" href="#fn:8">12</a></sup>，也意味着引力波天文学正式迈入了收获丰硕成果的引力波观测新时代。</p>
+<p>引力波的成功探测将会为引力理论和天文学的研究提供全新的方式和观测手段，尤其是开辟了多信使天文学的崭新局面。引力波作为信息的载体，不仅可以提供电磁波不能提供的信息，还可以为后续的光学观测预警，这就是基于联合观测的多信使天文学 <sup id="fnref:9"><a class="footnote-ref" href="#fn:9">13</a></sup>。GW170817 <sup id="fnref:10"><a class="footnote-ref" href="#fn:10">14</a></sup> 是人们第一次成功进行的多信使天文学观测事件。随着 aLIGO 和 aVirgo 的探测器灵敏度进一步的提升，未来的多信使天文学将结合各地的天文台 <sup id="fnref:11"><a class="footnote-ref" href="#fn:11">15</a></sup> <sup id="fnref:12"><a class="footnote-ref" href="#fn:12">16</a></sup> <sup id="fnref:13"><a class="footnote-ref" href="#fn:13">17</a></sup> <sup id="fnref:14"><a class="footnote-ref" href="#fn:14">18</a></sup> <sup id="fnref:15"><a class="footnote-ref" href="#fn:15">19</a></sup> <sup id="fnref:16"><a class="footnote-ref" href="#fn:16">20</a></sup> <sup id="fnref:17"><a class="footnote-ref" href="#fn:17">21</a></sup> 会观测到更多的引力波事件和更多类型的引力波波源，也会接收到更多关于宇宙环境中各种天体的运动、结构、起源和演化的丰富信息。</p>
+<p>随着多信使天文学的发展，人们逐渐地意识到当前正在面临着机遇与挑战并存的研究现状。为了充分发挥多信使天文学中协同观测的能力，计算开销是目前最主要的限制因素。首先，低延迟的引力波探测技术的计算开销很大程度上是受限于信号处理中的匹配滤波技术 (matched-filtering)。匹配滤波是一种用于在高斯、稳态和加性的噪声中，探测特定的已知波形形状信号的线性最优算法。在目前的引力波探测领域中，匹配滤波技术仍仅从 4D 波源参数空间 (即双星各自的总质量 <span><span class="MathJax_Preview">(m_1,m_2)</span><script type="math/tex">(m_1,m_2)</script></span> 和非零自旋角动量 (<span><span class="MathJax_Preview">s_1^z,s_2^z</span><script type="math/tex">s_1^z,s_2^z</script></span>)) 外加一个轨道偏心率 (<span><span class="MathJax_Preview">e</span><script type="math/tex">e</script></span>) 所构成的波形模板库 (template bank) 搜寻引力波信号。将匹配滤波算法运用在完全放开的高维波源参数空间上搜寻引力波信号，在计算开销上是不现实的，因为这会要求所需要的模板库波形数目上升数个数量级 <sup id="fnref:18"><a class="footnote-ref" href="#fn:18">22</a></sup> <sup id="fnref:19"><a class="footnote-ref" href="#fn:19">23</a></sup>。目前的引力波后续观测预警使用的是高误报率、低信息量方式。这大大地增加了后续观测的难度。此外，该算法只能适用于搜寻延时短的引力波波源信号，对于较长的引力波波形的信噪比表现并不理想。</p>
+<p>近些年来，引力波天文学中运用机器学习来实现信号处理的工作是一个正在茁长成长的领域 <sup id="fnref:20"><a class="footnote-ref" href="#fn:20">24</a></sup> <sup id="fnref:21"><a class="footnote-ref" href="#fn:21">25</a></sup> <sup id="fnref:22"><a class="footnote-ref" href="#fn:22">26</a></sup> <sup id="fnref:23"><a class="footnote-ref" href="#fn:23">27</a></sup>,<sup id="fnref:24"><a class="footnote-ref" href="#fn:24">28</a></sup> <sup id="fnref:25"><a class="footnote-ref" href="#fn:25">29</a></sup>。对于传统的机器学习技术，甚至包括如浅层 ANNs，都需要人工对数据中的特征进行抽取，而不是对原始数据本身直接作为输入。然而，深度神经网络可以实现自动地特征提取，在低信噪比的数据环境中成功地探测识别引力波信号 (可见第<a href="../C4/">四</a>章)。在以往的研究 <sup id="fnref:26"><a class="footnote-ref" href="#fn:26">30</a></sup> <sup id="fnref:27"><a class="footnote-ref" href="#fn:27">31</a></sup> 中，研究者们尝试了在高斯噪声背景和模拟的 aLIGO 探测器噪声下就深度卷积神经网络的引力波信号识别能力，发现探测某种非高斯特征是很有效的，现在这些非高斯性就对应于输入数据中特定的片段中，并且有着比传统机器学习方法优异的表现，并与匹配滤波技术相比较也有着可比拟的信号识别率。然而，还尚未有研究针对不同文献中所提出的不同网络模型结构之间的性能差异进行比较。此外，由于缺乏数据预处理流程的详细描述，还少有研究者曾讨论过数据集中信噪比定义的不同考量对泛化性能的影响。</p>
+<p>在本章，我们将根据 aLIGO 引力波探测器的灵敏度模拟引力波背景噪声数据，通过在不同信噪比约定下完成数据预处理流程和数据集的制备 (第 <a href="./#52">5.2</a> 节)，我们对比了训练数据分布的差异对卷积神经网络在低信噪比引力波信号识别能力的影响和规律 (第 <a href="./#53">5.3</a> 节)。随后，我们对卷积神经网络的结构超参数进行较系统性地考察、微调和优化 (第 <a href="./#54">5.4</a> 节)，提出一个改进版的卷积神经网络构架。通过与前人研究的模型结构作比较，发现我们所提出的改进版算法模型不论是内插还是外插泛化性能上都有着更好的表现。</p>
+<p></br></p>
+<h2 id="52">5.2 引力波数据的制备和处理流程<a class="headerlink" href="#52" title="Permanent link">&para;</a></h2>
+<p></br></p>
+<p>在监督深度学习算法中，数据量越大模型的性能会越有优势 <sup id="fnref:28"><a class="footnote-ref" href="#fn:28">32</a></sup>。通常来说，获取大量高质量的带标签的训练数据是非常困难和繁琐的，尤其是在绝大多数深度学习应用领域中，如计算机视觉领域、语音识别和自然语言处理等。不过，在引力波数据处理中，我们并不会面对这些困难，这是因为我们总可以通过理论数值模拟得到源源不断的引力波波形和模拟噪声数据。</p>
+<p>为简单起见，我们假定引力波信号都是根据单个探测器理想定向的 (optimally oriented)，并且根据 SEOBNRE <sup id="fnref:29"><a class="footnote-ref" href="#fn:29">33</a></sup>,<sup id="fnref:30"><a class="footnote-ref" href="#fn:30">34</a></sup> 模型来生成双黑洞系统波源对应自旋都为零且无轨道偏心率的引力波波形。如此一来，我们的波源参数空间的维度就约化到了二维，即双黑洞系统各自的质量。与第<a href="../C4/">四</a>章一致，我们同样限制总质量参数以一个太阳质量为间隔，在 <span><span class="MathJax_Preview">5M_\odot</span><script type="math/tex">5M_\odot</script></span> 和 <span><span class="MathJax_Preview">150M_\odot</span><script type="math/tex">150M_\odot</script></span> 之间采样，并根据双黑洞的质量比从 1 到 10 间隔 0.1 均匀采样来生成波形模板数据。由此，共生成 3220 个引力波波形。我们仍要求模型输入数据的时序序列窗口为 1 秒的时长，并且在 8192Hz 上均匀采样。在这个采样率上进行机器学习建模是比较有效的 <sup id="fnref2:26"><a class="footnote-ref" href="#fn:26">30</a></sup>。值得留意的是，真实的引力波数据是连续的时序数据流，以时序窗口作为算法的输入进行时域扫描。可见，模型输入序列的窗口大小也是本文所考虑的学习任务的可调参数之一，该超参数对模型训练和引力波搜寻的影响将会在第<a href="../C6/">六</a>章中讨论。</p>
+<blockquote>
+<p>(左图) 模拟探测器噪声的 <span><span class="MathJax_Preview">\text{ASD}=\sqrt{\text{PSD}}</span><script type="math/tex">\text{ASD}=\sqrt{\text{PSD}}</script></span><br />
+(右图) 一个经过数据处理流程后的训练样本数据 (<span><span class="MathJax_Preview">35M_\odot+35M_\odot,\,\rho_\text{opt}=10</span><script type="math/tex">35M_\odot+35M_\odot,\,\rho_\text{opt}=10</script></span>)<br />
+<img alt="" src="../img/C5_ASD.png" style="zoom:15%" /><img alt="" src="../img/C5_example.png" style="zoom:15%" /></p>
+</blockquote>
+<p>与通常的引力波数据分析方法相同，我们以引力波探测器 “Zero-detuned High Power” <sup id="fnref:azdhp"><a class="footnote-ref" href="#fn:azdhp">1</a></sup> 设计灵敏度曲线 <sup id="fnref2:2"><a class="footnote-ref" href="#fn:2">6</a></sup> 为基准模拟背景噪声和估测 aLIGO 的噪声功率谱密度，并以此来对引力波数据进行白化。如上方上图所示表示在不同频率下对 aLIGO 探测器的近似灵敏度。很多引力波数据分析的研究都需要模拟噪声的来源，比如很早就有为构造机器学习算法而模拟背景噪声 <sup id="fnref2:23"><a class="footnote-ref" href="#fn:23">27</a></sup> <sup id="fnref:31"><a class="footnote-ref" href="#fn:31">35</a></sup> <sup id="fnref:32"><a class="footnote-ref" href="#fn:32">36</a></sup>，也有为了测试算法性能而采样了真实的 aLIGO 探测器噪声 <sup id="fnref2:22"><a class="footnote-ref" href="#fn:22">26</a></sup>。在本章中，我们对第<a href="../C4/">四</a>章模拟的高斯背景噪声进行“上色”，使得其可以表征真实引力波探测器的功率谱密度，在该高斯有色的探测器噪声背景下，构建用于引力波信号识别的神经网络模型。</p>
+<p>与第<a href="../C4/">四</a>章中数据集生成办法一致，我们依据一定的信噪比将所有混合后数据都分成独立的两部分，分别对应为训练集和测试集，并且测试集中引力波波形模板对应的总质量参数是与训练集的样本相错开 <span><span class="MathJax_Preview">0.5M_\odot</span><script type="math/tex">0.5M_\odot</script></span> 采样的。可见，各含有 1610 个引力波波形的两个数据集中并没有共同存在的波形模板。如此生成数据集合，就可以确保两个数据集是独立同分布的，满足机器学习模型优化的基本假设。并且这样也可以在一定程度上避免过拟合问题。两个数据集中波形模板的质量分布可见第<a href="../C4/">四</a>章中的质量分布图。</p>
+<p>在开始模型训练之前，我们对数据集中所有数据样本都进行相同的一套数据清理流程，如下方图所示 (仅展示数值为正的引力波数据)。先取 2 秒时长的引力波波形模板，并将每个波形的峰值都居中在 0.8 秒范围内随机排布。为了减少能谱泄露所带来的影响，我们使用一个 Tukey 窗函数来去掉两侧约 50\% 的波形信息。根据特定的信噪比需求以及对应不同的噪声估计来源，数据中波形模板的幅度会乘以一个缩放因子 <span><span class="MathJax_Preview">\alpha</span><script type="math/tex">\alpha</script></span>，再和 2 秒时长的有色背景噪声混合，随后根据噪声功率谱密度对混合后的数据样本进行加窗和白化处理。最后，通过截取居中的 1 秒时长的数据样本，与第<a href="../C4/">四</a>章一样为了优化模型训练的过程 <sup id="fnref:33"><a class="footnote-ref" href="#fn:33">37</a></sup> <sup id="fnref:34"><a class="footnote-ref" href="#fn:34">38</a></sup>，再经过标准化处理 (均值为0，方差为1) 后就可以制备出深度神经网络模型的输入数据集。类似地也可以生成一个等规模的模拟噪声数据集，从而扩大整个训练集和测试集的样本数目，分别有 3220 个数据样本。如上方右图所示，是一个训练样例数据。</p>
+<blockquote>
+<p>引力波数据预处理流程示意图<br />
+<img alt="引力波数据预处理流程示意图" src="../img/data_processing.png" style="zoom:16%" /></p>
+</blockquote>
+<p>在实际的模拟噪声生成过程中，我们使用了 PyCBC <sup id="fnref:pycbc"><a class="footnote-ref" href="#fn:pycbc">2</a></sup> 软件程序包 <sup id="fnref:35"><a class="footnote-ref" href="#fn:35">39</a></sup> <sup id="fnref:36"><a class="footnote-ref" href="#fn:36">40</a></sup> 来模拟 aLIGO 引力波探测器设计灵敏度的随机噪声。上述的数据处理流程参考自 Gabbard 等人 <sup id="fnref2:27"><a class="footnote-ref" href="#fn:27">31</a></sup> 在 2018 年发表在 Physical Review Letters 上的处理方法和源代码 <sup id="fnref:code"><a class="footnote-ref" href="#fn:code">3</a></sup>。他们通过模拟的噪声和引力波模板发现在较低的匹配滤波信噪比和相同误报率下，卷积神经网络与匹配滤波算法相比有着相当的引力波信号探测率。考虑到模拟探测器有色噪声对模型性能的影响，我们将在下一节来探讨匹配滤波信噪比和基于引力波振幅的信噪比之间的关系，以及在深度学习算法下，该选用哪种信噪比定义来构建训练数据集分布对模型的泛化性能更有效。</p>
+<p></br></p>
+<h2 id="53">5.3 引力波数据分析中信噪比的比较分析<a class="headerlink" href="#53" title="Permanent link">&para;</a></h2>
+<p></br></p>
+<p>在上一节的数据处理流程过程中，我们是通过一个缩放因子来改变数据中引力波模板的波形幅度，从而控制波形信号与噪声之间的关系，我们用信噪比标记制备出来的数据集。在不同的引力波数据处理文献中，信噪比的定义并不完全统一，一般都会在文献中明确表明当前工作中所使用的信噪比是如何定义的。在绝大多数的引力波信号处理文献 <sup id="fnref2:10"><a class="footnote-ref" href="#fn:10">14</a></sup> <sup id="fnref3:27"><a class="footnote-ref" href="#fn:27">31</a></sup> 中，都会使用匹配滤波信噪比 <span><span class="MathJax_Preview">\rho_\text{opt}</span><script type="math/tex">\rho_\text{opt}</script></span> 来衡量引力波信号在所给定的噪声功率谱下的探测能力 (第 <a href="../C2/#24">2.4</a> 节)，</p>
+<div>
+<div class="MathJax_Preview">
+    \rho_\text{opt}^2 = \langle h|h \rangle
+</div>
+<script type="math/tex; mode=display">
+    \rho_\text{opt}^2 = \langle h|h \rangle
+</script>
+</div>
+<p>该定义一般称作关于模板信号 <span><span class="MathJax_Preview">h(t)</span><script type="math/tex">h(t)</script></span> 的最佳匹配滤波信噪比 (optimal matched-filtering SNR) 或特征匹配滤波信噪比 (characteristic matched-filtering SNR)。之所以称其为“最佳”，是因为该定义对应于一段引力波数据 <span><span class="MathJax_Preview">d(t)</span><script type="math/tex">d(t)</script></span> 上对模板信号做滤波匹配结果的期望。所以，在用模板波形搜寻引力波信号时，会用基于匹配滤波结果关于该段数据 <span><span class="MathJax_Preview">d(t)</span><script type="math/tex">d(t)</script></span> 上的匹配滤波信噪比 <span><span class="MathJax_Preview">\rho_\text{MF}</span><script type="math/tex">\rho_\text{MF}</script></span> <sup id="fnref:37"><a class="footnote-ref" href="#fn:37">41</a></sup> 定义为</p>
+<div>
+<div class="MathJax_Preview">
+\begin{align}
+    \rho_\text{MF}^{2}(t_0) 
+    &amp;=\frac{1}{|\langle h | h\rangle|}|\langle d | h\rangle(t_0)|^{2} \\
+    \langle d | h\rangle(t)
+    &amp;=4  \int_{0}^{\infty} \frac{\hat{d}(f) \hat{h}^{*}(f)}{S_{n}(f)} e^{i 2 \pi f t} d f
+\end{align}
+</div>
+<script type="math/tex; mode=display">
+\begin{align}
+    \rho_\text{MF}^{2}(t_0) 
+    &=\frac{1}{|\langle h | h\rangle|}|\langle d | h\rangle(t_0)|^{2} \\
+    \langle d | h\rangle(t)
+    &=4  \int_{0}^{\infty} \frac{\hat{d}(f) \hat{h}^{*}(f)}{S_{n}(f)} e^{i 2 \pi f t} d f
+\end{align}
+</script>
+</div>
+<p>其中，<span><span class="MathJax_Preview">t_0</span><script type="math/tex">t_0</script></span> 是在给定区间上 <span><span class="MathJax_Preview">\rho_\text{MF}</span><script type="math/tex">\rho_\text{MF}</script></span> 的最大值似然所对应的信号到达时间。</p>
+<p>在有些深度学习引力波数据处理文献中，会使用另外一种信噪比定义(如 <sup id="fnref3:26"><a class="footnote-ref" href="#fn:26">30</a></sup> <sup id="fnref:38"><a class="footnote-ref" href="#fn:38">42</a></sup> 和本文第<a href="../C4/">四</a>章):</p>
+<div>
+<div class="MathJax_Preview">
+    \rho_\text{amp}=\frac{\max _{t} h}{\sqrt{\sigma_{\text{noise }}}}
+</div>
+<script type="math/tex; mode=display">
+    \rho_\text{amp}=\frac{\max _{t} h}{\sqrt{\sigma_{\text{noise }}}}
+</script>
+</div>
+<p>该信噪比的定义简单，操作方便，运算速度快。对于稳态高斯背景噪声而言，信号的幅度与该信噪比之间也成正比关系。为了便于对比研究文献中不同信噪比定义下的研究结果，以及探究清楚不同信噪比的定义对我们构建数据集分布的影响，以及会对训练机器学习模型性能的影响，我们将先分别对 <span><span class="MathJax_Preview">\rho_\text{opt}</span><script type="math/tex">\rho_\text{opt}</script></span> 和 <span><span class="MathJax_Preview">\rho_\text{amp}</span><script type="math/tex">\rho_\text{amp}</script></span> 这两种定义下的信噪比在引力波数据中做统计意义的比较分析。</p>
+<blockquote>
+<p>分布基于信噪比 <span><span class="MathJax_Preview">\rho_\text{amp}=0.03, 0.05, 0.1, 0.3, 0.5</span><script type="math/tex">\rho_\text{amp}=0.03, 0.05, 0.1, 0.3, 0.5</script></span> 时的数据集波形样本中 <br />
+(左) 信噪比 <span><span class="MathJax_Preview">\rho_\text{rho}</span><script type="math/tex">\rho_\text{rho}</script></span> 分布，和 <br />
+(右) 最大化的信噪比 <span><span class="MathJax_Preview">\rho_\text{MF}</span><script type="math/tex">\rho_\text{MF}</script></span> 分布<br />
+<img alt="" src="../img/C5_distri_rhoamp_rhoopt.png" style="zoom:15%" /><img alt="" src="../img/C5_distri_rhoamp_rhomf.png" style="zoom:15%" /></p>
+</blockquote>
+<p>首先，通过上一节中所介绍的数据集构造方法，我们根据 <span><span class="MathJax_Preview">\rho_\text{amp}</span><script type="math/tex">\rho_\text{amp}</script></span> 信噪比定义分别基于 <span><span class="MathJax_Preview">0.03, 0.05, 0.1, 0.3, 0.5</span><script type="math/tex">0.03, 0.05, 0.1, 0.3, 0.5</script></span> 来制备数据集，并探讨这些数据集上所有的数据样本中关于信噪比定义 <span><span class="MathJax_Preview">\rho_\text{opt}</span><script type="math/tex">\rho_\text{opt}</script></span> 和 <span><span class="MathJax_Preview">\rho_\text{MF}</span><script type="math/tex">\rho_\text{MF}</script></span> 的分布情况，如上方图像所示。从上方左图中的统计分布规律可以看到，对于给定的某 <span><span class="MathJax_Preview">\rho_\text{amp}</span><script type="math/tex">\rho_\text{amp}</script></span> (所有波形有相同的最大振幅) 来说，其各波形样本所对应的 <span><span class="MathJax_Preview">\rho_\text{opt}</span><script type="math/tex">\rho_\text{opt}</script></span> 信噪比会随着 <span><span class="MathJax_Preview">\rho_\text{amp}</span><script type="math/tex">\rho_\text{amp}</script></span> 的减小而线性的降低。而从上方右图中可知，当对这些不同振幅高度的 <span><span class="MathJax_Preview">\rho_\text{amp}</span><script type="math/tex">\rho_\text{amp}</script></span> 数据样本去做匹配滤波后，给出各数据样本的匹配滤波信噪比会收敛在 <span><span class="MathJax_Preview">\rho_\text{MF}=5</span><script type="math/tex">\rho_\text{MF}=5</script></span> 左右处。</p>
+<p>通过在各数据集样本上统计 <span><span class="MathJax_Preview">\rho_\text{opt}</span><script type="math/tex">\rho_\text{opt}</script></span> 和 <span><span class="MathJax_Preview">\rho_\text{MF}</span><script type="math/tex">\rho_\text{MF}</script></span> 信噪比的平均值，进而对这三个信噪比含义作比较，如下方图所示。可以看到 <span><span class="MathJax_Preview">\rho_\text{opt}</span><script type="math/tex">\rho_\text{opt}</script></span> 的平均值与 <span><span class="MathJax_Preview">\rho_\text{amp}</span><script type="math/tex">\rho_\text{amp}</script></span> 是明确的线性正比关系。这很容易理解，因为这两个定义都与波形的振幅成正比。<span><span class="MathJax_Preview">\rho_\text{MF}</span><script type="math/tex">\rho_\text{MF}</script></span> 在背景噪声的影响下，会在 <span><span class="MathJax_Preview">\rho_\text{amp}&lt;0.1</span><script type="math/tex">\rho_\text{amp}<0.1</script></span> 上最低收敛在 <span><span class="MathJax_Preview">5</span><script type="math/tex">5</script></span> 左右。这也就是为何在实际的引力波探测搜寻过程中，一般都是取匹配滤波信噪比的阈值为 <span><span class="MathJax_Preview">5\sim6</span><script type="math/tex">5\sim6</script></span> 来标记疑似引力波信号。</p>
+<blockquote>
+<p>信噪比 <span><span class="MathJax_Preview">\rho_\text{rho}</span><script type="math/tex">\rho_\text{rho}</script></span> 和最大化的 <span><span class="MathJax_Preview">\rho_\text{MF}</span><script type="math/tex">\rho_\text{MF}</script></span> 的平均值与信噪比 <span><span class="MathJax_Preview">\rho_\text{amp}</span><script type="math/tex">\rho_\text{amp}</script></span> 之间的关系<br />
+<img alt="" src="../img/C5_rhoamp_rhomf_rhoopt.png" style="zoom:30%" /></p>
+</blockquote>
+<p>在机器学习的最大似然估计理论里，算法模型本质上是在学习训练数据集的经验分布 (第 <a href="../C3/#321">3.2.1</a> 节)。所以，采用不同的信噪比定义其所构造的训练数据分布会对模型的训练表现和泛化能力产生影响。下面，我们就来量化这个训练分布的差异所带来的影响。为了让实验具有可比性，我们将采用 <span><span class="MathJax_Preview">\rho_\text{amp}</span><script type="math/tex">\rho_\text{amp}</script></span> 和 <span><span class="MathJax_Preview">\rho_\text{opt}</span><script type="math/tex">\rho_\text{opt}</script></span> 这两种信噪比定义，分别在 2, 1, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1, 0.05, 0.01 和对应的 <span><span class="MathJax_Preview">\rho_\text{opt}</span><script type="math/tex">\rho_\text{opt}</script></span> 期望值 100.41, 50.18, 45.17, 40.12, 35.11, 30.11, 25.11, 20.06, 15.05, 10.03, 5.02, 2.51, 0.5 上，通过逐步缩放数据集中引力波波形的幅度分别构建训练数据集，并在相同的卷积神经网络模型 (模型结构可见第<a href="../C4/">四</a>章中的网络结构图) 上训练优化。完成训练收敛后，在各训练数据集上所达到的准确率，如下方图像所示。图中上方的红色横轴对应的是 <span><span class="MathJax_Preview">\rho_\text{opt}</span><script type="math/tex">\rho_\text{opt}</script></span>，下方的蓝色横轴对应的是 <span><span class="MathJax_Preview">\rho_\text{amp}</span><script type="math/tex">\rho_\text{amp}</script></span>。可以看到网络模型对于引力波信号埋入噪声中的不同方式，有着不同的训练难度和优化效率。基于信号与噪声功率谱的 <span><span class="MathJax_Preview">\rho_\text{opt}</span><script type="math/tex">\rho_\text{opt}</script></span> 信噪比所刻画的引力波数据分布有着更优秀的训练收敛效果。</p>
+<blockquote>
+<p>在不同的信噪比 <span><span class="MathJax_Preview">\rho_\text{amp}</span><script type="math/tex">\rho_\text{amp}</script></span> (蓝色)和 <span><span class="MathJax_Preview">\rho_\text{opt}</span><script type="math/tex">\rho_\text{opt}</script></span> (红色)上模型训练收敛，训练集上对引力波波形的识别准确率<br />
+<img alt="" src="../img/C5_ACC_rhoamp_rhomf.png" style="zoom:30%" /></p>
+</blockquote>
+<p>为了无偏向的对比 <span><span class="MathJax_Preview">\rho_\text{opt}</span><script type="math/tex">\rho_\text{opt}</script></span> 和 <span><span class="MathJax_Preview">\rho_\text{amp}</span><script type="math/tex">\rho_\text{amp}</script></span> 这两个信噪比定义下测试数据上泛化能力，我们分别用他们构建了一系列引力波测试数据集来考察上述分别在不同数据分布意义下训练模型的泛化表现，如下方图像所示。从两图中可以看到，两种数据分布下训练收敛后的最佳泛化模型都分别处在 <span><span class="MathJax_Preview">\rho_\text{opt}=5\sim10</span><script type="math/tex">\rho_\text{opt}=5\sim10</script></span> (实线)和 <span><span class="MathJax_Preview">\rho_\text{amp}=0.2</span><script type="math/tex">\rho_\text{amp}=0.2</script></span> (虚线)，并且模型所对应测试数据集上的最佳泛化表现是非常接近的。在对应训练信噪比较大的模型中 (如<span><span class="MathJax_Preview">\rho_\text{opt}&gt;30,\rho_\text{amp}&gt;0.6</span><script type="math/tex">\rho_\text{opt}>30,\rho_\text{amp}>0.6</script></span>)，基于 <span><span class="MathJax_Preview">\rho_\text{opt}</span><script type="math/tex">\rho_\text{opt}</script></span> 训练构建的模型泛化表现是次于在 <span><span class="MathJax_Preview">\rho_\text{amp}</span><script type="math/tex">\rho_\text{amp}</script></span> 上构建的模型。然而在更低的 <span><span class="MathJax_Preview">\rho_\text{amp}&lt;0.2</span><script type="math/tex">\rho_\text{amp}<0.2</script></span> 信噪比上训练收敛后，基于 <span><span class="MathJax_Preview">\rho_\text{opt}</span><script type="math/tex">\rho_\text{opt}</script></span> 信噪比制备数据集而训练的模型泛化稳定性就表现得很好。</p>
+<blockquote>
+<p>分别基于 (左) <span><span class="MathJax_Preview">\rho_\text{opt}</span><script type="math/tex">\rho_\text{opt}</script></span> 和 (右) <span><span class="MathJax_Preview">\rho_\text{amp}</span><script type="math/tex">\rho_\text{amp}</script></span> 构建的测试数据集上，在不同数据分布上训练收敛后的模型泛化表现 AUC 图<br />
+<img alt="" src="../img/C5_AUC_rhoamp_rhomf.png" style="zoom:15%" /><img alt="" src="../img/C5_AUC_rhomf_rhoamp.png" style="zoom:15%" /></p>
+</blockquote>
+<p>综上所述，我们考虑基于匹配滤波的 <span><span class="MathJax_Preview">\rho_\text{opt}</span><script type="math/tex">\rho_\text{opt}</script></span> 信噪比所描述的训练数据分布来优化神经网络，并且逐步向降低信噪比的方向迁移学习时，在 <span><span class="MathJax_Preview">\rho_\text{opt}\in(5,10)</span><script type="math/tex">\rho_\text{opt}\in(5,10)</script></span> 之间选取泛化表现最好的网络参数作为最终训练收敛的机器学习模型。为了方便与传统信号处理领域中的引力波数据分析做对比，在未特别说明的情况下，我们也默认使用 <span><span class="MathJax_Preview">\rho_\text{opt}</span><script type="math/tex">\rho_\text{opt}</script></span> 信噪比作为引力波波形幅度缩放的定量标准，以此构建测试数据集并考察神经网络模型的泛化能力。</p>
+<p></br></p>
+<h2 id="54">5.4 卷积神经网络的超参数调优和性能比较<a class="headerlink" href="#54" title="Permanent link">&para;</a></h2>
+<p></br></p>
+<p>作为深度学习技术的常用算法，卷积神经网络基于人体视觉系统的工作模式所提出和得以发展，在计算机视觉、语音识别和自然语言处理等领域中应用非常广泛。作为全连接神经网络的特例 (第<a href="../C3/">三</a>章)，卷积神经网络经典的模型组件包括卷积运算层、非线性激活层和池化层等共三个层级（在本文中不考虑卷积的规范化）。近年来，已有不少研究者，如 <sup id="fnref4:26"><a class="footnote-ref" href="#fn:26">30</a></sup> (GH) 和 <sup id="fnref4:27"><a class="footnote-ref" href="#fn:27">31</a></sup> (GWHM)等，都是基于卷积神经网络成功地构建了引力波信号识别模型。虽然他们在模型构造上有一定的差异，但都在 aLIGO 模拟噪声下与传统的机器学习算法和匹配滤波技术的比较中有着可圈可点的优势。在本节，我们将根据第<a href="../C4/">四</a>章中的卷积神经网络作为初始模型，从网络模型的基础构造出发，切实地对卷积神经网络的算法实现进一步优化和改进。通过对结构组件的作用加强认识，我们将提出一个优化版的卷积神经网络结构，并与 GH 和 GWHM 在引力波信号识别的泛化性能上做比较。</p>
+<p>卷积神经网络都以1秒内的 8192 个引力波时序数据作为特征输入到网络中，并且输出一个二维特征向量来表征当前样本数据中存在引力波的概率。模型结构在整体上分为两部分，一部分是由卷积层构造的特征提取部分，另一部分是全连接的神经网络层构成的分类器。开始模型优化之前，需要先确定模型结构的系统参数，即所谓的超参数 (hyperparameters)。通过对不同超参数的搜寻和组合，会影响模型最终的识别性能和泛化能力。在全连接层部分中，我们考虑其层数、各层神经元的节点数目、非线性激活函数和随机失活 (dropout) 的概率等四个维度来考量。在特征提取部分中，我们会针对卷积层的层数、各层卷积神经元的节点数目、卷积核的大小、空洞卷积的大小、非线性激活函数、池化类型、池化卷积核的大小、池化的跳跃 (stride) 步长等八个维度对模型进行微调。关于卷积神经网络的结构组件及其中的详细含义可见第<a href="../C3/">三</a>章。</p>
+<blockquote>
+<p>第<a href="../C4/">四</a>章的初始模型、GH、GWHM 和本章的改进版卷积神经网络模型结构的超参数对比<br />
+<img alt="" src="https://cdn.mathpix.com/snip/images/7J_g3rCjALoMqYLZaTrzjHIUVdNzLCg0s4sBv99aFyU.original.fullsize.png" style="zoom:50%" /></p>
+</blockquote>
+<p>我们将第<a href="../C4/">四</a>章中的初步网络结构总结在了上方表中。作为对比，我们也总结了 <sup id="fnref5:26"><a class="footnote-ref" href="#fn:26">30</a></sup> 和 <sup id="fnref5:27"><a class="footnote-ref" href="#fn:27">31</a></sup> 的网络结构在表中，分别标记为 GH 和 GWHM。其中，GWHM 中 stride 超参数设置是参考了其公开的代码脚本 <sup id="fnref:script"><a class="footnote-ref" href="#fn:script">4</a></sup>。明显可以看到，我们的初始网络结构 (Preliminary) 是最简单的。粗略地说，GH 所构造的网络使用了更多的神经元数目，而 GWHM 的网络叠加了更多的卷积神经元层。接下来，我们将开始在初始模型基础上，对超参数进行微调(finetune)。</p>
+<blockquote>
+<p>对卷积层和全连接层的宽度(左上, 左下)和深度(右上, 右下)微调后模型在测试集上 AUC 图。<br />
+<img alt="" src="../img/C5_finetune_num_con.png" style="zoom:15%" /><img alt="" src="../img/C5_finetune_num_mlp.png" style="zoom:15%" /><br />
+<img alt="" src="../img/C5_finetune_num_conv_neurons.png" style="zoom:15%" /><img alt="" src="../img/C5_finetune_num_mlp_neurons.png" style="zoom:15%" /></p>
+</blockquote>
+<p>基于在上一节中介绍的数据处理流程，我们将会逐步降低训练集信噪比的方式来训练不同超参数组合下的网络模型。对于卷积神经网络的深度和宽度，我们分别对卷积层的层数和全连接层的层数在 <span><span class="MathJax_Preview">1,2,\dots,8</span><script type="math/tex">1,2,\dots,8</script></span> 和 <span><span class="MathJax_Preview">1,2,3,4</span><script type="math/tex">1,2,3,4</script></span> 中调整，以及分别对卷积层和全连接层中神经元的数目在 <span><span class="MathJax_Preview">(2^i,2^{i+1},2^{i+2}), i=2\sim6</span><script type="math/tex">(2^i,2^{i+1},2^{i+2}), i=2\sim6</script></span> 和 <span><span class="MathJax_Preview">2^i,i=4\sim8</span><script type="math/tex">2^i,i=4\sim8</script></span> 中调整，可以得到不同超参数设置的模型下，在低信噪比 <span><span class="MathJax_Preview">\rho_{opt}</span><script type="math/tex">\rho_{opt}</script></span> 测试集上的 AUC 表现，如上方图像所示。在图中已将相对泛化性能优异的超参数用实线绘制。可以看到在引力波数据背景下，并不是卷积神经网络构建的越深，就会有较好的泛化效果。最优异的超参数大致锁定在 3 个卷积和 2 个全连接层的组合，并且分别对应隐藏层神经元数为 <span><span class="MathJax_Preview">(32,64,128)</span><script type="math/tex">(32,64,128)</script></span> 和 <span><span class="MathJax_Preview">64</span><script type="math/tex">64</script></span>。我们之所以在泛化性能差别不大的情况下，会选择模型容量较小的超参数是因为小容量的模型会有更好的泛化性能 (可见第 <a href="../C3/#321">3.2.1</a> 节)。</p>
+<blockquote>
+<p>对卷积层 (左) 和全连接层 (右) 的非线性激活函数微调后模型在测试集上 AUC 图。<br />
+<img alt="" src="../img/C5_finetune_act_con.png" style="zoom:15%" /><img alt="" src="../img/C5_finetune_act_mlp.png" style="zoom:15%" /></p>
+</blockquote>
+<p>对网络结构的线性部分调参后，另一组非常重要的超参数就是非线性激活函数。我们分别对卷积层和全连接层中的非线性激活函数在 ReLU、Leaky ReLU (<span><span class="MathJax_Preview">\alpha=10^{-3}</span><script type="math/tex">\alpha=10^{-3}</script></span>)、PReLU 和 ELU (<span><span class="MathJax_Preview">\alpha=1</span><script type="math/tex">\alpha=1</script></span>) 等四种激活函数进行调整，如上方图像所示。从图中可以看到，卷积层的激活函数差异很小，而全连接层上的 ReLU 和 Leaky ReLU 有较明显的优势。关于这几种非线性激活函数的定义和特性可见本文的第 <a href="../C3/#342">3.4.2</a> 节。GWHM <sup id="fnref6:27"><a class="footnote-ref" href="#fn:27">31</a></sup> 所提出的网络中使用了 ELU 激活函数，但在我们的实验中其泛化效果并不是最佳的。由于我们发现不同维度的超参数之间并不是完全独立的，比方说在更宽的网络结构中，PReLU 的泛化性能会有明显地提升。所以，随后我们会从表现良好的超参数中再进一步地细调，并且将会使用 PReLU 非线性激活函数在我们最终的改进版网络中。</p>
+<blockquote>
+<p>对卷积核大小 (a) 随机失活的概率 (b)，池化核的类型与大小(c)和空洞卷积的大小(d)等四种超参数微调后模型在测试集上 AUC 图。<br />
+<img alt="" src="../img/C5_finetune_con_filter_size.png" style="zoom:15%" /><img alt="" src="../img/C5_finetune_prob_dropout.png" style="zoom:15%" /><br />
+<img alt="" src="../img/C5_finetune_pool.png" style="zoom:15%" /><img alt="" src="../img/C5_finetune_dilation.png" style="zoom:15%" /></p>
+</blockquote>
+<p>我们分别对其他超参数进行了微调，它们包括卷积层内的卷积核大小、池化核的类型与大小、空洞卷积的大小以及全连接层中随机失活的概率，如上方图像所示。我们也将相对泛化性能优异的超参数用实线绘制，并选取其为改进版本的网络结构模型的超参数。在我们的初始模型，GH 和 GWHM 的模型中都使用了最大池化函数，然而从我们的调参过程来看，平均池化在低信噪比引力波数据中也有着较好的泛化响应。在 GWHM 的模型中使用了 50% 随机失活，然而在我们的实验中随机失活会明显降低模型的识别能力，其可能的原因是随机背景噪声的扰动实现了与神经元随机失活以避免过拟合所达到的同样效果。</p>
+<p>根据上述不同超参数进行微调，选取相对泛化较好和次好的超参数进行更细化的网络结构搜寻后，我们给出了改进版的 (Improved) 卷积神经网络结构，可见上方的表。改进版的卷积神经网络仅由 3 个卷积层 和 2 个全连接层的结构所构成。与我们的初始模型相比，改进后卷积层的宽度加宽了 4 倍，最深卷积层输出特征图的感受野由 163 也放大了近 4 倍到 604，与之相比，GH 和 GWHM 的感受野分别为 4839 和 786。此外，非线性激活函数换做了有自适应学习参数的 PReLU 函数。</p>
+<blockquote>
+<p>上方表中的四个网络结构在相同的测试集上内插泛化 AUC 图<br />
+<img alt="上方表中的四个网络结构在相同的测试集上内插泛化 AUC 图" src="../img/C5_AUC_4models.png" style="zoom:25%" /></p>
+</blockquote>
+<p>现在，将上面表中四个不同的网络结构在引力波信号识别和泛化能力进行对比。正如我们在上一节中谈到的，训练数据集的信噪比分布和逐步降低信噪比的训练过程对模型的泛化性能是有影响的。所以，我们将表中的四个模型以完全相同的训练数据集和迁移学习过程进行训练，给出其各自的最佳泛化模型后，在相同的测试集上查看四个不同网络结构的泛化差异，如上图所示。从图中可以看到 GWHM 模型的内插泛化表现明显好于 GH 模型，而 GH 模型的泛化性能仅仅大概在 <span><span class="MathJax_Preview">\rho_\text{rho}&gt;6</span><script type="math/tex">\rho_\text{rho}>6</script></span> 比我们的初始模型要好一点，我们可以将其理解为 GH 有着更宽的神经结构。改进版的网络结构明显在引力波波形的内插泛化上比其他三个模型结构表现都更好。</p>
+<blockquote>
+<p>上面表中的四个网络结构分别在有自旋或偏心率的测试集上外插泛化 AUC 图<br />
+<img alt="" src="../img/C5_AUC_4models_spin.png" style="zoom:15%" /><img alt="" src="../img/C5_AUC_4models_E.png" style="zoom:15%" /></p>
+</blockquote>
+<p>此外，我们还分别制备了自旋均匀分布在 <span><span class="MathJax_Preview">s=0.1\sim0.6</span><script type="math/tex">s=0.1\sim0.6</script></span> 和偏心率均匀分布在 <span><span class="MathJax_Preview">e=0.1\sim0.6</span><script type="math/tex">e=0.1\sim0.6</script></span> 引力波波形模板的测试数据集，以此来考察上面表中四个网络结构的外插泛化性能，如上图所示。从图中可以看到，改进版的卷积神经网络在外插泛化能力上比其他三个模型结构依旧有着更为优异的表现。</p>
+<p>通过对卷积神经网络的基础结构组件进行超参数搜索，在充分了解其对引力波信号识别性能影响的基础上，可以在超参数空间中给出最佳的超参数组合。必须承认的是，在我们的优化调参实验中，不同模型之间泛化性能的差异并不是很大，这很可能与模型的容量和数据集相关。考虑到模型的容量总体都过小、训练数据复杂度与图像数据相比过于单一、以及训练域与测试域之间太过相近等等，这些因素都可能使得模型对超参数的变化不够敏感，我们并不打算过多的讨论其中的所有细节。在本文中，我们改进版的卷积神经网络有着更为简单的结构构造，在相同的训练和测试数据集环境下，比 <sup id="fnref6:26"><a class="footnote-ref" href="#fn:26">30</a></sup> <sup id="fnref7:27"><a class="footnote-ref" href="#fn:27">31</a></sup> 的网络结构有着更为优异的内插和外插泛化表现。可见，我们的网络结构是很值得期待的。</p>
+<p></br></p>
+<h2 id="55">5.5 总结与结论<a class="headerlink" href="#55" title="Permanent link">&para;</a></h2>
+<p></br></p>
+<p>引力波的成功探测不但完成了广义相对论实验检验的最后一块拼图，而且还打开了一扇观测天体和宇宙的全新窗口——引力波天文学 <sup id="fnref:39"><a class="footnote-ref" href="#fn:39">43</a></sup> <sup id="fnref:40"><a class="footnote-ref" href="#fn:40">44</a></sup>。同时它还将可能改变引力物理学研究的格局。在引力波实验以前，由于其他的引力实验只能涉及较弱引力场和低速的物理情形，以后牛顿参数衡量，相应参数小于甚至更小。而引力波探测对应的引力波源相应的参数在 1 的量级，是典型的强引力场强动态时空区域。引力物理学研究探讨的是广义相对论适用边界何在，失效后应该变成什么理论的问题。量子引力是该研究领域中典型的科学问题。在引力波探测之前，由于没有实验可供参考，人们只能利用理论推理的方式工作。所幸的是，引力波探测可以为这类基础引力物理问题提高有价值的线索。然而关键的问题是如何在强噪声环境下寻找到微弱的引力波信号 <sup id="fnref3:22"><a class="footnote-ref" href="#fn:22">26</a></sup>。</p>
+<p>在此前，已有一些基于深度学习实现引力波信号探测的类似工作 <sup id="fnref:41"><a class="footnote-ref" href="#fn:41">45</a></sup> <sup id="fnref8:27"><a class="footnote-ref" href="#fn:27">31</a></sup> <sup id="fnref2:38"><a class="footnote-ref" href="#fn:38">42</a></sup>。与我们的工作所不同的是，其要么是在高斯白噪声环境下训练的深度学习模型，要么是基于 aLIGO 探测器噪声所训练模型，与传统机器学习技术或匹配滤波技术作比较，还少有研究者对不同文献中所提出的卷积神经网络模型在引力波信号识别性能上作对比。在本章中，我们也提出了一个基于卷积神经网络的深度学习模型，通过训练该网络实现了 aLIGO 探测器噪声环境下的引力波信号识别，并与前人所提出的网络结构在超参数和泛化性能上进行了比较研究。</p>
+<p>深度学习方法包含有三个主要环节：数据的预处理，搭建神经网络，模型的训练过程。在本章的工作中，我们关注的是引力波数据的预处理流程，以及卷积神经网络架构的优化。我们不仅对引力波在不同信噪比影响下的数据预处理方法进行对比测试，也对引力波信号识别所影响的网络结构组件进行了系统性的研究，包含卷积的层数、卷积和池化核、卷积和池化的方式以及池化类型、还有全连接的层数、神经元数目、随机失活的概率、以及非线性激活函数的选取等等。由此，我们可以理解如何使用深度学习方法来实现引力波的深度学习数据分析。更重要的是，我们通过网络结构的超参数微调，得到了一个引力波信号泛化识别效果非常好的卷积神经网络。并且根据我们的实验测试，改进版本的卷积神经网络可以比前人  <sup id="fnref7:26"><a class="footnote-ref" href="#fn:26">30</a></sup> <sup id="fnref9:27"><a class="footnote-ref" href="#fn:27">31</a></sup> 所构建的网络模型有着更优异的性能和泛化表现。</p>
+<p>在本章中，我们仅仅使用了模拟的 aLIGO 背景噪声数据。将本章中所提出的改进版模型放置在真实的引力波探测数据上来考察其性能是一个很有趣的问题。我们将会在第<a href="../C6/">六</a>章中，进一步利用和开发卷积神经网络来探讨真实引力波数据上的信号识别问题。我们相信基于深度学习算法来实现引力波信号探测和数据处理，将会有助于我们发现引力理论预期之外的引力波信号，并透过潜藏在强噪声环境下引力波所携带的信息，有机会全面地推动当前引力理论的发展。</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:azdhp">
+<p><a href="https://dcc.ligo.org/LIGO-T0900288/public">https://dcc.ligo.org/LIGO-T0900288/public</a>&#160;<a class="footnote-backref" href="#fnref:azdhp" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:pycbc">
+<p><a href="https://ligo-cbc.github.io">https://ligo-cbc.github.io</a>&#160;<a class="footnote-backref" href="#fnref:pycbc" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:code">
+<p><a href="https://github.com/hagabbar/cnn_matchfiltering">https://github.com/hagabbar/cnn_matchfiltering</a>&#160;<a class="footnote-backref" href="#fnref:code" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:script">
+<p><a href="https://github.com/hagabbar/cnn_matchfiltering/blob/735b0f05e452fa983bba4404aaa27b49c1821506/CNN-keras.py">https://github.com/hagabbar/cnn_matchfiltering/blob/735b0f05e452fa983bba4404aaa27b49c1821506/CNN-keras.py</a>&#160;<a class="footnote-backref" href="#fnref:script" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+<li id="fn:1">
+<p>B. P. Abbott and others. Gw150914: the advanced ligo detectors in the era of first discoveries. <em>Phys. Rev. Lett.</em>, 116<span><span class="MathJax_Preview">13</span><script type="math/tex">13</script></span>:131103, 2016. <a href="https://arxiv.org/abs/1602.03838">arXiv:1602.03838</a>, <a href="https://doi.org/10.1103/PhysRevLett.116.131103">doi:10.1103/PhysRevLett.116.131103</a>.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>J. Aasi and others. Advanced ligo. <em>Class. Quant. Grav.</em>, 32:074001, 2015. <a href="https://arxiv.org/abs/1411.4547">arXiv:1411.4547</a>, <a href="https://doi.org/10.1088/0264-9381/32/7/074001">doi:10.1088/0264-9381/32/7/074001</a>.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 6 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:2" title="Jump back to footnote 6 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>F. Acernese and others. Advanced virgo: a second-generation interferometric gravitational wave detector. <em>Class. Quant. Grav.</em>, 32<span><span class="MathJax_Preview">2</span><script type="math/tex">2</script></span>:024001, 2015. <a href="https://arxiv.org/abs/1408.3978">arXiv:1408.3978</a>, <a href="https://doi.org/10.1088/0264-9381/32/2/024001">doi:10.1088/0264-9381/32/2/024001</a>.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 7 in the text">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p>B. P. Abbott and others. Observation of gravitational waves from a binary black hole merger. <em>Phys. Rev. Lett.</em>, 116<span><span class="MathJax_Preview">6</span><script type="math/tex">6</script></span>:061102, 2016. <a href="https://arxiv.org/abs/1602.03837">arXiv:1602.03837</a>, <a href="https://doi.org/10.1103/PhysRevLett.116.061102">doi:10.1103/PhysRevLett.116.061102</a>.&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 8 in the text">&#8617;</a></p>
+</li>
+<li id="fn:5">
+<p>B. P. Abbott and others. Gw151226: observation of gravitational waves from a 22-solar-mass binary black hole coalescence. <em>Phys. Rev. Lett.</em>, 116<span><span class="MathJax_Preview">24</span><script type="math/tex">24</script></span>:241103, 2016. <a href="https://arxiv.org/abs/1606.04855">arXiv:1606.04855</a>, <a href="https://doi.org/10.1103/PhysRevLett.116.241103">doi:10.1103/PhysRevLett.116.241103</a>.&#160;<a class="footnote-backref" href="#fnref:5" title="Jump back to footnote 9 in the text">&#8617;</a></p>
+</li>
+<li id="fn:6">
+<p>Benjamin P. Abbott and others. Gw170104: observation of a 50-solar-mass binary black hole coalescence at redshift 0.2. <em>Phys. Rev. Lett.</em>, 118<span><span class="MathJax_Preview">22</span><script type="math/tex">22</script></span>:221101, 2017. <a href="https://arxiv.org/abs/1706.01812">arXiv:1706.01812</a>, <a href="https://doi.org/10.1103/PhysRevLett.118.221101">doi:10.1103/PhysRevLett.118.221101</a>.&#160;<a class="footnote-backref" href="#fnref:6" title="Jump back to footnote 10 in the text">&#8617;</a></p>
+</li>
+<li id="fn:7">
+<p>B.. P.. Abbott and others. Gw170608: observation of a 19-solar-mass binary black hole coalescence. <em>Astrophys. J.</em>, 851<span><span class="MathJax_Preview">2</span><script type="math/tex">2</script></span>:L35, 2017. <a href="https://arxiv.org/abs/1711.05578">arXiv:1711.05578</a>, <a href="https://doi.org/10.3847/2041-8213/aa9f0c">doi:10.3847/2041-8213/aa9f0c</a>.&#160;<a class="footnote-backref" href="#fnref:7" title="Jump back to footnote 11 in the text">&#8617;</a></p>
+</li>
+<li id="fn:8">
+<p>B. P. Abbott and others. Gw170814: a three-detector observation of gravitational waves from a binary black hole coalescence. <em>Phys. Rev. Lett.</em>, 119<span><span class="MathJax_Preview">14</span><script type="math/tex">14</script></span>:141101, 2017. <a href="https://arxiv.org/abs/1709.09660">arXiv:1709.09660</a>, <a href="https://doi.org/10.1103/PhysRevLett.119.141101">doi:10.1103/PhysRevLett.119.141101</a>.&#160;<a class="footnote-backref" href="#fnref:8" title="Jump back to footnote 12 in the text">&#8617;</a></p>
+</li>
+<li id="fn:9">
+<p>B. P. Abbott and others. Multi-messenger observations of a binary neutron star merger. <em>Astrophys. J.</em>, 848<span><span class="MathJax_Preview">2</span><script type="math/tex">2</script></span>:L12, 2017. <a href="https://arxiv.org/abs/1710.05833">arXiv:1710.05833</a>, <a href="https://doi.org/10.3847/2041-8213/aa91c9">doi:10.3847/2041-8213/aa91c9</a>.&#160;<a class="footnote-backref" href="#fnref:9" title="Jump back to footnote 13 in the text">&#8617;</a></p>
+</li>
+<li id="fn:10">
+<p>B. P. Abbott and others. Gw170817: observation of gravitational waves from a binary neutron star inspiral. <em>Phys. Rev. Lett.</em>, 119<span><span class="MathJax_Preview">16</span><script type="math/tex">16</script></span>:161101, 2017. <a href="https://arxiv.org/abs/1710.05832">arXiv:1710.05832</a>, <a href="https://doi.org/10.1103/PhysRevLett.119.161101">doi:10.1103/PhysRevLett.119.161101</a>.&#160;<a class="footnote-backref" href="#fnref:10" title="Jump back to footnote 14 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:10" title="Jump back to footnote 14 in the text">&#8617;</a></p>
+</li>
+<li id="fn:11">
+<p>T. Abbott and others. The dark energy survey. <em>arXiv</em>, 2005. <a href="https://arxiv.org/abs/astro-ph/0510346">arXiv:astro-ph/0510346</a>.&#160;<a class="footnote-backref" href="#fnref:11" title="Jump back to footnote 15 in the text">&#8617;</a></p>
+</li>
+<li id="fn:12">
+<p>A. A. Abdo, M. Ajello, A. Allafort, L. Baldini, J. Ballet, G. Barbiellini, M. G. Baring, D. Bastieri, A. Belfiore, R. Bellazzini, B. Bhattacharyya, E. Bissaldi, E. D. Bloom, E. Bonamente, E. Bottacini, T. J. Brandt, J. Bregeon, M. Brigida, P. Bruel, R. Buehler, M. Burgay, T. H. Burnett, G. Busetto, S. Buson, G. A. Caliandro, R. A. Cameron, F. Camilo, P. A. Caraveo, J. M. Casandjian, C. Cecchi, Ö. Çelik, E. Charles, S. Chaty, R. C. G. Chaves, A. Chekhtman, A. W. Chen, J. Chiang, G. Chiaro, S. Ciprini, R. Claus, I. Cognard, J. Cohen-Tanugi, L. R. Cominsky, J. Conrad, S. Cutini, F. D\textquotesingle Ammando, A. de Angelis, M. E. DeCesar, A. De Luca, P. R. den Hartog, F. de Palma, C. D. Dermer, G. Desvignes, S. W. Digel, L. Di Venere, P. S. Drell, A. Drlica-Wagner, R. Dubois, D. Dumora, C. M. Espinoza, L. Falletti, C. Favuzzi, E. C. Ferrara, W. B. Focke, A. Franckowiak, P. C. C. Freire, S. Funk, P. Fusco, F. Gargano, D. Gasparrini, S. Germani, N. Giglietto, P. Giommi, F. Giordano, M. Giroletti, T. Glanzman, G. Godfrey, E. V. Gotthelf, I. A. Grenier, M.-H. Grondin, J. E. Grove, L. Guillemot, S. Guiriec, D. Hadasch, Y. Hanabata, A. K. Harding, M. Hayashida, E. Hays, J. Hessels, J. Hewitt, A. B. Hill, D. Horan, X. Hou, R. E. Hughes, M. S. Jackson, G. H. Janssen, T. Jogler, G. Jóhannesson, R. P. Johnson, A. S. Johnson, T. J. Johnson, W. N. Johnson, S. Johnston, T. Kamae, J. Kataoka, M. Keith, M. Kerr, J. Knödlseder, M. Kramer, M. Kuss, J. Lande, S. Larsson, L. Latronico, M. Lemoine-Goumard, F. Longo, F. Loparco, M. N. Lovellette, P. Lubrano, A. G. Lyne, R. N. Manchester, M. Marelli, F. Massaro, M. Mayer, M. N. Mazziotta, J. E. McEnery, M. A. McLaughlin, J. Mehault, P. F. Michelson, R. P. Mignani, W. Mitthumsiri, T. Mizuno, A. A. Moiseev, M. E. Monzani, A. Morselli, I. V. Moskalenko, S. Murgia, T. Nakamori, R. Nemmen, E. Nuss, M. Ohno, T. Ohsugi, M. Orienti, E. Orlando, J. F. Ormes, D. Paneque, J. H. Panetta, D. Parent, J. S. Perkins, M. Pesce-Rollins, M. Pierbattista, F. Piron, G. Pivato, H. J. Pletsch, T. A. Porter, A. Possenti, S. Rainò, R. Rando, S. M. Ransom, P. S. Ray, M. Razzano, N. Rea, A. Reimer, O. Reimer, N. Renault, T. Reposeur, S. Ritz, R. W. Romani, M. Roth, R. Rousseau, J. Roy, J. Ruan, A. Sartori, P. M. Saz Parkinson, J. D. Scargle, A. Schulz, C. Sgrò, R. Shannon, E. J. Siskind, D. A. Smith, G. Spandre, P. Spinelli, B. W. Stappers, A. W. Strong, D. J. Suson, H. Takahashi, J. G. Thayer, J. B. Thayer, G. Theureau, D. J. Thompson, S. E. Thorsett, L. Tibaldo, O. Tibolla, M. Tinivella, D. F. Torres, G. Tosti, E. Troja, Y. Uchiyama, T. L. Usher, J. Vandenbroucke, V. Vasileiou, C. Venter, G. Vianello, V. Vitale, N. Wang, P. Weltevrede, B. L. Winer, M. T. Wolff, D. L. Wood, K. S. Wood, M. Wood, and Z. Yang. The second fermi large area telescope catalog of gamma-ray pulsars. <em>The Astrophysical Journal Supplement Series</em>, 208<span><span class="MathJax_Preview">2</span><script type="math/tex">2</script></span>:17, September 2013. <a href="https://doi.org/10.1088/0067-0049/208/2/17">doi:10.1088/0067-0049/208/2/17</a>.&#160;<a class="footnote-backref" href="#fnref:12" title="Jump back to footnote 16 in the text">&#8617;</a></p>
+</li>
+<li id="fn:13">
+<p>J. Anthony Tyson. Large synoptic survey telescope: overview. <em>Proc. SPIE Int. Soc. Opt. Eng.</em>, 4836:10–20, 2002. <a href="https://arxiv.org/abs/astro-ph/0302102">arXiv:astro-ph/0302102</a>, <a href="https://doi.org/10.1117/12.456772">doi:10.1117/12.456772</a>.&#160;<a class="footnote-backref" href="#fnref:13" title="Jump back to footnote 17 in the text">&#8617;</a></p>
+</li>
+<li id="fn:14">
+<p>J. Anthony Tyson and Sidney Wolff. Survey and other telescope technologies and discoveries. In <em>Survey and Other Telescope Technologies and Discoveries</em>, volume 4836. 2002.&#160;<a class="footnote-backref" href="#fnref:14" title="Jump back to footnote 18 in the text">&#8617;</a></p>
+</li>
+<li id="fn:15">
+<p>Luca Amendola and others. Cosmology and fundamental physics with the euclid satellite. <em>Living Rev. Rel.</em>, 16:6, 2013. <a href="https://arxiv.org/abs/1206.1225">arXiv:1206.1225</a>, <a href="https://doi.org/10.12942/lrr-2013-6">doi:10.12942/lrr-2013-6</a>.&#160;<a class="footnote-backref" href="#fnref:15" title="Jump back to footnote 19 in the text">&#8617;</a></p>
+</li>
+<li id="fn:16">
+<p>Neil Gehrels and David N. Spergel. Wide-field infrared survey telescope <span><span class="MathJax_Preview">wfirst</span><script type="math/tex">wfirst</script></span> mission and synergies with lisa and ligo-virgo. <em>J. Phys. Conf. Ser.</em>, 610<span><span class="MathJax_Preview">1</span><script type="math/tex">1</script></span>:012007, 2015. <a href="https://arxiv.org/abs/1411.0313">arXiv:1411.0313</a>, <a href="https://doi.org/10.1088/1742-6596/610/1/012007">doi:10.1088/1742-6596/610/1/012007</a>.&#160;<a class="footnote-backref" href="#fnref:16" title="Jump back to footnote 20 in the text">&#8617;</a></p>
+</li>
+<li id="fn:17">
+<p>S. Adrian-Martinez and others. High-energy neutrino follow-up search of gravitational wave event gw150914 with antares and icecube. <em>Phys. Rev.</em>, D93<span><span class="MathJax_Preview">12</span><script type="math/tex">12</script></span>:122010, 2016. <a href="https://arxiv.org/abs/1602.05411">arXiv:1602.05411</a>, <a href="https://doi.org/10.1103/PhysRevD.93.122010">doi:10.1103/PhysRevD.93.122010</a>.&#160;<a class="footnote-backref" href="#fnref:17" title="Jump back to footnote 21 in the text">&#8617;</a></p>
+</li>
+<li id="fn:18">
+<p>Nathaniel Indik, Henning Fehrmann, Franz Harke, Badri Krishnan, and Alex B. Nielsen. Reducing the number of templates for aligned-spin compact binary coalescence gravitational wave searches using metric-agnostic template nudging. <em>Phys. Rev. D 97, 124008 <span><span class="MathJax_Preview">2018</span><script type="math/tex">2018</script></span></em>, December 2017. <a href="https://arxiv.org/abs/1712.07869v2">arXiv:1712.07869v2</a>, <a href="https://doi.org/10.1103/PhysRevD.97.124008">doi:10.1103/PhysRevD.97.124008</a>.&#160;<a class="footnote-backref" href="#fnref:18" title="Jump back to footnote 22 in the text">&#8617;</a></p>
+</li>
+<li id="fn:19">
+<p>Ian Harry, Stephen Privitera, Alejandro Bohé, and Alessandra Buonanno. Searching for gravitational waves from compact binaries with precessing spins. <em>Phys. Rev.</em>, D94<span><span class="MathJax_Preview">2</span><script type="math/tex">2</script></span>:024012, 2016. <a href="https://arxiv.org/abs/1603.02444">arXiv:1603.02444</a>, <a href="https://doi.org/10.1103/PhysRevD.94.024012">doi:10.1103/PhysRevD.94.024012</a>.&#160;<a class="footnote-backref" href="#fnref:19" title="Jump back to footnote 23 in the text">&#8617;</a></p>
+</li>
+<li id="fn:20">
+<p>Philip Graff, Farhan Feroz, Michael P. Hobson, and Anthony Lasenby. Bambi: blind accelerated multimodal bayesian inference. <em>MNRAS, Vol. 421, Issue 1, pg. 169-180 <span><span class="MathJax_Preview">2012</span><script type="math/tex">2012</script></span></em>, October 2011. <a href="https://arxiv.org/abs/1110.2997v2">arXiv:1110.2997v2</a>, <a href="https://doi.org/10.1111/j.1365-2966.2011.20288.x">doi:10.1111/j.1365-2966.2011.20288.x</a>.&#160;<a class="footnote-backref" href="#fnref:20" title="Jump back to footnote 24 in the text">&#8617;</a></p>
+</li>
+<li id="fn:21">
+<p>Nikhil Mukund, Sheelu Abraham, Shivaraj Kandhasamy, Sanjit Mitra, and Ninan Sajeeth Philip. Transient classification in ligo data using difference boosting neural network. <em>Phys. Rev. D 95, 104059 <span><span class="MathJax_Preview">2017</span><script type="math/tex">2017</script></span></em>, September 2016. <a href="https://arxiv.org/abs/1609.07259v3">arXiv:1609.07259v3</a>, <a href="https://doi.org/10.1103/PhysRevD.95.104059">doi:10.1103/PhysRevD.95.104059</a>.&#160;<a class="footnote-backref" href="#fnref:21" title="Jump back to footnote 25 in the text">&#8617;</a></p>
+</li>
+<li id="fn:22">
+<p>Jade Powell, Alejandro Torres-Forné, Ryan Lynch, Daniele Trifirò, Elena Cuoco, Marco Cavaglià, Ik Siong Heng, and José A. Font. Classification methods for noise transients in advanced gravitational-wave detectors ii: performance tests on advanced ligo data. <em>Class. Quant. Grav.</em>, 34<span><span class="MathJax_Preview">3</span><script type="math/tex">3</script></span>:034002, September 2017. <a href="https://arxiv.org/abs/1609.06262v2">arXiv:1609.06262v2</a>, <a href="https://doi.org/10.1088/1361-6382/34/3/034002">doi:10.1088/1361-6382/34/3/034002</a>.&#160;<a class="footnote-backref" href="#fnref:22" title="Jump back to footnote 26 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:22" title="Jump back to footnote 26 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:22" title="Jump back to footnote 26 in the text">&#8617;</a></p>
+</li>
+<li id="fn:23">
+<p>Jade Powell, Daniele Trifirò, Elena Cuoco, Ik Siong Heng, and Marco Cavaglià. Classification methods for noise transients in advanced gravitational-wave detectors. <em>Class. Quant. Grav.</em>, 32<span><span class="MathJax_Preview">21</span><script type="math/tex">21</script></span>:215012, May 2015. <a href="https://arxiv.org/abs/1505.01299v2">arXiv:1505.01299v2</a>, <a href="https://doi.org/10.1088/0264-9381/32/21/215012">doi:10.1088/0264-9381/32/21/215012</a>.&#160;<a class="footnote-backref" href="#fnref:23" title="Jump back to footnote 27 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:23" title="Jump back to footnote 27 in the text">&#8617;</a></p>
+</li>
+<li id="fn:24">
+<p>Michael Zevin, Scott Coughlin, Sara Bahaadini, Emre Besler, Neda Rohani, Sarah Allen, Miriam Cabero, Kevin Crowston, Aggelos K. Katsaggelos, Shane L. Larson, Tae Kyoung Lee, Chris Lintott, Tyson B. Littenberg, Andrew Lundgren, Carsten Oesterlund, Joshua R. Smith, Laura Trouille, and Vicky Kalogera. Gravity spy: integrating advanced ligo detector characterization, machine learning, and citizen science. <em>Class. Quantum Grav. 34 <span><span class="MathJax_Preview">2017</span><script type="math/tex">2017</script></span> 064003 <span><span class="MathJax_Preview">22pp</span><script type="math/tex">22pp</script></span></em>, November 2016. <a href="https://arxiv.org/abs/1611.04596v2">arXiv:1611.04596v2</a>, <a href="https://doi.org/10.1088/1361-6382/aa5cea">doi:10.1088/1361-6382/aa5cea</a>.&#160;<a class="footnote-backref" href="#fnref:24" title="Jump back to footnote 28 in the text">&#8617;</a></p>
+</li>
+<li id="fn:25">
+<p>Sara Bahaadini, Neda Rohani, Scott Coughlin, Michael Zevin, Vicky Kalogera, and Aggelos K. Katsaggelos. Deep multi-view models for glitch classification. In <em>2017 IEEE International Conference on Acoustics, Speech and Signal Processing <span><span class="MathJax_Preview">ICASSP</span><script type="math/tex">ICASSP</script></span></em>, 2931–2935. 2017. <a href="https://arxiv.org/abs/1705.00034">arXiv:1705.00034</a>, <a href="https://doi.org/10.1109/ICASSP.2017.7952693">doi:10.1109/ICASSP.2017.7952693</a>.&#160;<a class="footnote-backref" href="#fnref:25" title="Jump back to footnote 29 in the text">&#8617;</a></p>
+</li>
+<li id="fn:26">
+<p>Daniel George and E. A. Huerta. Deep neural networks to enable real-time multimessenger astrophysics. <em>Phys. Rev.</em>, D97<span><span class="MathJax_Preview">4</span><script type="math/tex">4</script></span>:044039, 2018. <a href="https://arxiv.org/abs/1701.00008">arXiv:1701.00008</a>, <a href="https://doi.org/10.1103/PhysRevD.97.044039">doi:10.1103/PhysRevD.97.044039</a>.&#160;<a class="footnote-backref" href="#fnref:26" title="Jump back to footnote 30 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:26" title="Jump back to footnote 30 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:26" title="Jump back to footnote 30 in the text">&#8617;</a><a class="footnote-backref" href="#fnref4:26" title="Jump back to footnote 30 in the text">&#8617;</a><a class="footnote-backref" href="#fnref5:26" title="Jump back to footnote 30 in the text">&#8617;</a><a class="footnote-backref" href="#fnref6:26" title="Jump back to footnote 30 in the text">&#8617;</a><a class="footnote-backref" href="#fnref7:26" title="Jump back to footnote 30 in the text">&#8617;</a></p>
+</li>
+<li id="fn:27">
+<p>Hunter Gabbard, Michael Williams, Fergus Hayes, and Chris Messenger. Matching matched filtering with deep networks for gravitational-wave astronomy. <em>Physical review letters</em>, 120<span><span class="MathJax_Preview">14</span><script type="math/tex">14</script></span>:141103, December 2018. <a href="https://arxiv.org/abs/1712.06041v2">arXiv:1712.06041v2</a>, <a href="https://doi.org/10.1103/physrevlett.120.141103">doi:10.1103/physrevlett.120.141103</a>.&#160;<a class="footnote-backref" href="#fnref:27" title="Jump back to footnote 31 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:27" title="Jump back to footnote 31 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:27" title="Jump back to footnote 31 in the text">&#8617;</a><a class="footnote-backref" href="#fnref4:27" title="Jump back to footnote 31 in the text">&#8617;</a><a class="footnote-backref" href="#fnref5:27" title="Jump back to footnote 31 in the text">&#8617;</a><a class="footnote-backref" href="#fnref6:27" title="Jump back to footnote 31 in the text">&#8617;</a><a class="footnote-backref" href="#fnref7:27" title="Jump back to footnote 31 in the text">&#8617;</a><a class="footnote-backref" href="#fnref8:27" title="Jump back to footnote 31 in the text">&#8617;</a><a class="footnote-backref" href="#fnref9:27" title="Jump back to footnote 31 in the text">&#8617;</a></p>
+</li>
+<li id="fn:28">
+<p>Ian Goodfellow, Yoshua Bengio, and Aaron Courville. <em>Deep Learning</em>. Adaptive Computation and Machine Learning series. The MIT Press, 2016. ISBN 9780262337373. URL: <a href="https://www.amazon.com/Deep-Learning-Adaptive-Computation-Machine-ebook/dp/B01MRVFGX4?SubscriptionId=AKIAIOBINVZYXZQZ2U3A&amp;tag=chimbori05-20&amp;linkCode=xm2&amp;camp=2025&amp;creative=165953&amp;creativeASIN=B01MRVFGX4">https://www.amazon.com/Deep-Learning-Adaptive-Computation-Machine-ebook/dp/B01MRVFGX4?SubscriptionId=AKIAIOBINVZYXZQZ2U3A&amp;tag=chimbori05-20&amp;linkCode=xm2&amp;camp=2025&amp;creative=165953&amp;creativeASIN=B01MRVFGX4</a>.&#160;<a class="footnote-backref" href="#fnref:28" title="Jump back to footnote 32 in the text">&#8617;</a></p>
+</li>
+<li id="fn:29">
+<p>Zhoujian Cao and Wen-Biao Han. Waveform model for an eccentric binary black hole based on the effective-one-body-numerical-relativity formalism. <em>Phys. Rev.</em>, D96<span><span class="MathJax_Preview">4</span><script type="math/tex">4</script></span>:044028, 2017. <a href="https://arxiv.org/abs/1708.00166">arXiv:1708.00166</a>, <a href="https://doi.org/10.1103/PhysRevD.96.044028">doi:10.1103/PhysRevD.96.044028</a>.&#160;<a class="footnote-backref" href="#fnref:29" title="Jump back to footnote 33 in the text">&#8617;</a></p>
+</li>
+<li id="fn:30">
+<p>Hsing-Po Pan, Chun-Yu Lin, Zhoujian Cao, and Hwei-Jang Yo. Accuracy of source localization for eccentric inspiraling binary mergers using a ground-based detector network. <em>Phys. Rev.</em>, D100<span><span class="MathJax_Preview">12</span><script type="math/tex">12</script></span>:124003, 2019. <a href="https://arxiv.org/abs/1912.04455">arXiv:1912.04455</a>, <a href="https://doi.org/10.1103/PhysRevD.100.124003">doi:10.1103/PhysRevD.100.124003</a>.&#160;<a class="footnote-backref" href="#fnref:30" title="Jump back to footnote 34 in the text">&#8617;</a></p>
+</li>
+<li id="fn:31">
+<p>J. Veitch and others. Parameter estimation for compact binaries with ground-based gravitational-wave observations using the lalinference software library. <em>Phys. Rev.</em>, D91<span><span class="MathJax_Preview">4</span><script type="math/tex">4</script></span>:042003, 2015. <a href="https://arxiv.org/abs/1409.7215">arXiv:1409.7215</a>, <a href="https://doi.org/10.1103/PhysRevD.91.042003">doi:10.1103/PhysRevD.91.042003</a>.&#160;<a class="footnote-backref" href="#fnref:31" title="Jump back to footnote 35 in the text">&#8617;</a></p>
+</li>
+<li id="fn:32">
+<p>Alejandro Torres-Forné, Antonio Marquina, José A. Font, and José M. Ibáñez. Denoising of gravitational wave signals via dictionary learning algorithms. <em>Phys. Rev.</em>, D94<span><span class="MathJax_Preview">12</span><script type="math/tex">12</script></span>:124040, 2016. <a href="https://arxiv.org/abs/1612.01305">arXiv:1612.01305</a>, <a href="https://doi.org/10.1103/PhysRevD.94.124040">doi:10.1103/PhysRevD.94.124040</a>.&#160;<a class="footnote-backref" href="#fnref:32" title="Jump back to footnote 36 in the text">&#8617;</a></p>
+</li>
+<li id="fn:33">
+<p>Yann A. LeCun, Léon Bottou, Genevieve B. Orr, and Klaus-Robert Müller. <em>Efficient BackProp</em>, pages 9–48. Springer Berlin Heidelberg, Berlin, Heidelberg, 2012. <a href="https://doi.org/10.1007/978-3-642-35289-8_3">doi:10.1007/978-3-642-35289-8_3</a>.&#160;<a class="footnote-backref" href="#fnref:33" title="Jump back to footnote 37 in the text">&#8617;</a></p>
+</li>
+<li id="fn:34">
+<p>Y. Lecun, L. Bottou, Y. Bengio, and P. Haffner. Gradient-based learning applied to document recognition. <em>Proceedings of the IEEE</em>, 86<span><span class="MathJax_Preview">11</span><script type="math/tex">11</script></span>:2278–2324, November 1998. <a href="https://doi.org/10.1109/5.726791">doi:10.1109/5.726791</a>.&#160;<a class="footnote-backref" href="#fnref:34" title="Jump back to footnote 38 in the text">&#8617;</a></p>
+</li>
+<li id="fn:35">
+<p>Samantha A. Usman and others. The pycbc search for gravitational waves from compact binary coalescence. <em>Class. Quant. Grav.</em>, 33<span><span class="MathJax_Preview">21</span><script type="math/tex">21</script></span>:215004, 2016. <a href="https://arxiv.org/abs/1508.02357">arXiv:1508.02357</a>, <a href="https://doi.org/10.1088/0264-9381/33/21/215004">doi:10.1088/0264-9381/33/21/215004</a>.&#160;<a class="footnote-backref" href="#fnref:35" title="Jump back to footnote 39 in the text">&#8617;</a></p>
+</li>
+<li id="fn:36">
+<p>Alex Nitz, Ian Harry, Duncan Brown, Christopher M. Biwer, Josh Willis, Tito Dal Canton, Collin Capano, Larne Pekowsky, Thomas Dent, Andrew R. Williamson, Soumi De, Gareth Davies, Miriam Cabero, Duncan Macleod, Bernd Machenschalk, Steven Reyes, Prayush Kumar, Thomas Massinger, Francesco Pannarale, Dfinstad, Márton Tápai, Stephen Fairhurst, Sebastian Khan, Leo Singer, Sumit Kumar, Alex Nielsen, Shasvath, Idorrington92, Amber Lenon, and Hunter Gabbard. Gwastro/pycbc: pycbc release v1.15.4. 2020. <a href="https://doi.org/10.5281/ZENODO.596388">doi:10.5281/ZENODO.596388</a>.&#160;<a class="footnote-backref" href="#fnref:36" title="Jump back to footnote 40 in the text">&#8617;</a></p>
+</li>
+<li id="fn:37">
+<p>Zhoujian Cao, Li-Fang Li, and Yan Wang. Gravitational lensing effects on parameter estimation in gravitational wave detection with advanced detectors. <em>Phys. Rev.</em>, D90<span><span class="MathJax_Preview">6</span><script type="math/tex">6</script></span>:062003, 2014. <a href="https://doi.org/10.1103/PhysRevD.90.062003">doi:10.1103/PhysRevD.90.062003</a>.&#160;<a class="footnote-backref" href="#fnref:37" title="Jump back to footnote 41 in the text">&#8617;</a></p>
+</li>
+<li id="fn:38">
+<p>Xiangru Li, Woliang Yu, and Xilong Fan. A method of detecting gravitational wave based on time-frequency analysis and convolutional neural networks. <em>arXiv</em>, 2017. <a href="https://arxiv.org/abs/1712.00356">arXiv:1712.00356</a>.&#160;<a class="footnote-backref" href="#fnref:38" title="Jump back to footnote 42 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:38" title="Jump back to footnote 42 in the text">&#8617;</a></p>
+</li>
+<li id="fn:39">
+<p>Rong-Gen Cai, Zhoujian Cao, Zong-Kuan Guo, Shao-Jiang Wang, and Tao Yang. The gravitational-wave physics. <em>Natl. Sci. Rev.</em>, 4<span><span class="MathJax_Preview">5</span><script type="math/tex">5</script></span>:687–706, April 2017. <a href="https://arxiv.org/abs/1703.00187">arXiv:1703.00187</a>, <a href="https://doi.org/10.1093/nsr/nwx029">doi:10.1093/nsr/nwx029</a>.&#160;<a class="footnote-backref" href="#fnref:39" title="Jump back to footnote 43 in the text">&#8617;</a></p>
+</li>
+<li id="fn:40">
+<p>ZhouJian Cao. Gravitational wave astronomy: chance and challenge to fundamental physics and astrophysics. <em>Science China Physics, Mechanics &amp; Astronomy</em>, 59<span><span class="MathJax_Preview">11</span><script type="math/tex">11</script></span>:110431, September 2016. <a href="https://doi.org/10.1007/s11433-016-0324-y">doi:10.1007/s11433-016-0324-y</a>.&#160;<a class="footnote-backref" href="#fnref:40" title="Jump back to footnote 44 in the text">&#8617;</a></p>
+</li>
+<li id="fn:41">
+<p>Daniel George and E. A. Huerta. Deep learning for real-time gravitational wave detection and parameter estimation: results with advanced ligo data. <em>Phys. Lett.</em>, B778:64–70, 2018. <a href="https://arxiv.org/abs/1711.03121">arXiv:1711.03121</a>, <a href="https://doi.org/10.1016/j.physletb.2017.12.053">doi:10.1016/j.physletb.2017.12.053</a>.&#160;<a class="footnote-backref" href="#fnref:41" title="Jump back to footnote 45 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+                <p>He Wang@BNU</p>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../mathjax-config.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
