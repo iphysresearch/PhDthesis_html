@@ -1,7 +1,18 @@
 site_name: GWDL
 nav:
-    - Home: index.md
-    - About: about.md
+    - 首页: index.md
+    - 正文:
+        - 摘要:  Abstract.md
+        - 第一章 绪论:  C1.md
+        - 第二章 引力波探测和数据分析理论:  C2.md
+        - 第三章 深度学习的理论基础: C3.md
+        - 第四章 引力波探测中关于神经网络的可解释性研究: C4.md
+        - 第五章 卷积神经网络结构对引力波信号识别的性能研究: C5.md
+        - 第六章 匹配滤波-卷积神经网络(MF-CNN)模型的应用研究: C6.md
+        - 第七章 总结与展望: C7.md
+        - 附录: Appendix.md
+    - 致谢: Acknowledgement.md
+    # - 关于: about.md
 theme:
     name: mkdocs
     highlightjs: true
@@ -15,8 +26,31 @@ markdown_extensions:
     - toc:
         permalink: True
         separator: "_"
+        # baselevel: 3
     - sane_lists
     - nl2br
     - codehilite
+    - footnotes
+    - meta
+    - pymdownx.arithmatex
+    - attr_list
+    - admonition
+    - codehilite
+    - pymdownx.details
+    - pymdownx.tabbed
+    # - mdx_bib:
+    #     bibtex_file: ref.bib
+    #     order: 'sorted'
+
+extra_javascript:
+    - mathjax-config.js
+    - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML
+
+
 plugins:
     - search:
+    - autolinks:
+    - bibtex:
+        bib_file: "ref.bib"
+        cite_style: "pandoc"     # plain  pandoc
+
