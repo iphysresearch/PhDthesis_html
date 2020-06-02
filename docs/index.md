@@ -22,7 +22,7 @@ some_url: https://example.com
 
 - 此文是本人博士毕业论文的 HTML 版，用于学位申请的 PDF 版可见：[Overleaf](https://www.overleaf.com/read/gthybdcykshj) 或 [Github](https://github.com/iphysresearch/GWDL_thesis)。毕业答辩用的 Slides 可见 [Slides.com](https://slides.com/iphysresearch/phd-defense)。
 
-- 公开此文档的原因，不仅是为了方便个人查阅和总结，也希望能够促进相关领域的研究和进步，多多增进学术交流的机会。
+- 开源此论文的原因，不仅是为了方便个人查阅和总结，也希望能够促进相关领域的研究和进步，多多增进学术交流的机会。
 
 - 该课题之初开展于相关研究的初探性阶段，由于本人才疏学浅，难免会存在理论上的疏忽和遗漏，或论述上的错误与不准确，也可能会有文献引用资料更新不及时的情况。如有不妥之处，还望明示指出!
 
