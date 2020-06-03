@@ -11,8 +11,8 @@ some_url: https://example.com
 
 ## 题目
 
->引力波探测中关于深度学习数据分析的研究
->Research on Data Analysis of Deep Learning in Gravitational Wave Detection
+>- 引力波探测中关于深度学习数据分析的研究
+>- Research on Data Analysis of Deep Learning in Gravitational Wave Detection
 
 
 ## 描述

@@ -2,12 +2,11 @@ site_name: GWDL
 repo_url: https://github.com/iphysresearch/PhDthesis_html
 site_description: My PhD thesis
 site_author: He Wang
-copyright: He Wang@BNU
+copyright: He Wang@BNU 2020
 docs_dir: md
 site_dir: docs
 edit_uri: edit/master/md/
-google_analytics: ['UA-134245065-2', 'iphysresearch.github.io/PhDthesis_html/']
-
+google_analytics: ['UA-134245065-2', 'iphysresearch.github.io']
 nav:
     - 首页: index.md
     - 正文:
