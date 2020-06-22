@@ -897,20 +897,20 @@
 <div>
 <div class="MathJax_Preview">
 \begin{align}
-    (a_1x_1 +a_1x_2) * w &amp;= a_1(x_1* w)+a_2(x_2* w)\\
+    (a_1x_2 +a_1x_2) * w &amp;= a_1(x_1* w)+a_2(x_2* w)\\
     (x* w)(t-T) &amp;= x(t-T)* w(t)
 \end{align}
 </div>
 <script type="math/tex; mode=display">
 \begin{align}
-    (a_1x_1 +a_1x_2) * w &= a_1(x_1* w)+a_2(x_2* w)\\
+    (a_1x_2 +a_1x_2) * w &= a_1(x_1* w)+a_2(x_2* w)\\
     (x* w)(t-T) &= x(t-T)* w(t)
 \end{align}
 </script>
 </div>
 <p>其中，<span><span class="MathJax_Preview">a_1,a_2,T</span><script type="math/tex">a_1,a_2,T</script></span> 都是常实数。上两式分别对应的是线性性和时间平移不变性。</p>
 <p>卷积运算是可交换的。然而在卷积神经网络的术语中，卷积的第一个参数 (函数 <span><span class="MathJax_Preview">x</span><script type="math/tex">x</script></span>) 通常叫做输入 (input)，第二个参数 (weight) 叫做卷积核 (kernel) 函数。卷积的输出一般都会叫作特征映射或特征图 (feature map)。在第<a href="../C6/">六</a>章的第 <a href="../C6/#63">6.3</a> 节中，我们将据此改进为深度学习框架下的卷积神经单元。</p>
-<p>当我们用计算机处理引力波数据时，信号数据在时间上是离散化采样的。根据附录 <a href="../Appendix/#a_nyquist">A</a> 中所介绍的采样定理确定采样率，考虑一段有限的时序信号 <span><span class="MathJax_Preview">x[n], n=0,1,\dots,D-1</span><script type="math/tex">x[n], n=0,1,\dots,D-1</script></span>，采样后的核函数 <span><span class="MathJax_Preview">x[n],n=0,1,\dots,M-1</span><script type="math/tex">x[n],n=0,1,\dots,M-1</script></span>，则可以定义完整的离散形式的卷积运算 <sup id="fnref:46"><a class="footnote-ref" href="#fn:46">53</a></sup>：</p>
+<p>当我们用计算机处理引力波数据时，信号数据在时间上是离散化采样的。根据附录 <a href="../Appendix/#a_nyquist">A</a> 中所介绍的采样定理确定采样率，考虑一段有限的时序信号 <span><span class="MathJax_Preview">x[n], n=0,1,\dots,D-1</span><script type="math/tex">x[n], n=0,1,\dots,D-1</script></span>，采样后的核函数 <span><span class="MathJax_Preview">w[n],n=0,1,\dots,M-1</span><script type="math/tex">w[n],n=0,1,\dots,M-1</script></span>，则可以定义完整的离散形式的卷积运算 <sup id="fnref:46"><a class="footnote-ref" href="#fn:46">53</a></sup>：</p>
 <div>
 <div class="MathJax_Preview">\label{eqn:C3_conv_dist}
     s[n]  = \sum^{\min(n,M)}_ {m=\max(0,n-D)} x[m]w[n-m],n=0,1,\dots,D+M
